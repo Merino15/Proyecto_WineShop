@@ -1,0 +1,830 @@
+/* ==========================================================================
+   GUÍA DE ESTILOS & VARIABLES CSS (WineShop - WCAG 2.1 AA / AAA)
+   ========================================================================== */
+:root {
+    /* Paleta Principal: Bordeos Oficial (Guía de Estilos) */
+    --color-primario-claro: #A54D58;
+    --color-primario-bordeos: #8B1A2B;  /* Burdeos 7 (Core) - Ratio 9.21:1 sobre blanco (Pasa AAA) */
+    --color-primario-oscuro: #4A1E24;
+
+    /* Paleta Secundaria / Acento: Dorado Viejo */
+    --color-secundario-dorado-claro: #E6D585;
+    --color-secundario-dorado: #CFB53B;       /* Acento visual e iconos sobre fondos oscuros (Ratio 8.56:1 AAA) */
+    --color-secundario-dorado-oscuro: #9E8825; /* Texto grande/precios destacados (Ratio 3.5:1 AA) */
+    
+    /* Neutros Cálidos (Fondos y Contenedores) */
+    --color-neutro-calido-100: #F9F8F6; /* Fondo base de la web */
+    --color-neutro-calido-300: #F1EFEA; /* Hero section y tarjetas */
+    --color-neutro-calido-500: #EAE6DF; /* Bordes sutiles y separadores */
+    
+    /* Escala de Grises Accesible */
+    --color-gris-900: #1A1A1A; /* Texto principal - Ratio 17.4:1 (Pasa AAA) */
+    --color-gris-700: #4D4D4D; /* Texto secundario - Ratio 7.96:1 (Pasa AAA) */
+    --color-gris-500: #595959; /* Texto auxiliar mínimo - Ratio 4.6:1 (Pasa AA) */
+    --color-gris-300: #8C8C8C; /* Bordes de campos y controles - Ratio 3.1:1 (Pasa AA para UI) */
+    --color-gris-100: #E6E6E6;
+
+    /* Estado de Error y Validación */
+    --color-error-fondo: #FFEBEE;
+    --color-error-texto: #B71C1C;
+    --color-error-borde: #D32F2F;
+
+    /* Tipografía con unidades relativas (rem) */
+    --font-titulos: 'Playfair Display', Georgia, serif;
+    --font-cuerpo: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Escala de espaciado en rem (base 16px) */
+    --espaciado-4: 0.25rem;   /* 4px */
+    --espaciado-8: 0.5rem;    /* 8px */
+    --espaciado-12: 0.75rem;  /* 12px */
+    --espaciado-16: 1rem;     /* 16px */
+    --espaciado-24: 1.5rem;   /* 24px */
+    --espaciado-32: 2rem;     /* 32px */
+    --espaciado-40: 2.5rem;   /* 40px */
+    --espaciado-48: 3rem;     /* 48px */
+    --espaciado-64: 4rem;     /* 64px */
+
+    /* Sombras y Elevación */
+    --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.12);
+    --sombra-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.35);
+    --sombra-destacado: 0 0 0 3px rgba(139, 26, 43, 0.25);
+}
+
+/* ==========================================================================
+   RESET & FUNDAMENTOS DE ACCESIBILIDAD
+   ========================================================================== */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+html {
+    font-size: 100%; /* Respeta la configuración nativa de zoom y fuentes del usuario */
+}
+
+body {
+    font-family: var(--font-cuerpo);
+    color: var(--color-gris-900);
+    background-color: var(--color-neutro-calido-100);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+}
+
+/* Indicador de Foco Visible de alto contraste para navegación por teclado (Tab) */
+:focus-visible {
+    outline: 3px solid var(--color-primario-bordeos) !important;
+    outline-offset: 3px !important;
+    border-radius: 4px;
+}
+
+/* Enlace de Salto (Skip Link) según el patrón exacto del documento formativo */
+.skip-link {
+    position: absolute;
+    top: -70px;
+    left: 0;
+    background: #000000;
+    color: #FFFFFF;
+    padding: var(--espaciado-12) var(--espaciado-16);
+    z-index: 100001;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--color-secundario-dorado);
+    outline-offset: 2px;
+}
+
+/* Ocultación semántica para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Tipografía y Jerarquía */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-titulos);
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.body-large { 
+    font-size: 1.125rem; 
+    line-height: 1.7; 
+}
+
+.body-regular { 
+    font-size: 1rem; 
+    line-height: 1.6; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--espaciado-24);
+}
+
+/* Soporte para usuarios con epilepsia fotosensible o sensibilidad al movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==========================================================================
+   DESENFOQUE DE FONDO & CONTROL DE EDAD (+18)
+   ========================================================================== */
+#sitio-web.contenido-bloqueado {
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+}
+
+html.edad-verificada #modal-edad {
+    display: none !important;
+}
+
+html.edad-verificada #sitio-web {
+    filter: none !important;
+    pointer-events: auto !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: var(--espaciado-24);
+}
+
+.modal-overlay.oculto {
+    display: none !important;
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    padding: var(--espaciado-40) var(--espaciado-32);
+    border-radius: 8px;
+    border: 1px solid var(--color-neutro-calido-500);
+    box-shadow: var(--sombra-modal);
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+}
+
+.modal-logo {
+    width: 260px;
+    height: 140px;
+    object-fit: contain;
+    display: block;
+    margin: -30px auto -15px;
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    margin-bottom: var(--espaciado-16);
+}
+
+.modal-content p {
+    color: var(--color-gris-700);
+    margin-bottom: var(--espaciado-32);
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-16);
+    width: 100%;
+}
+
+@media (min-width: 480px) {
+    .modal-buttons {
+        flex-direction: row;
+    }
+    .modal-buttons .btn {
+        flex: 1;
+    }
+}
+
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN
+   ========================================================================== */
+.site-header {
+    background-color: #FFFFFF;
+    border-bottom: 2px solid var(--color-neutro-calido-300);
+    padding: var(--espaciado-8) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4.5rem;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.logo {
+    width: 180px;
+    height: 160px;
+    object-fit: contain;
+    margin: -50px 0;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--espaciado-24);
+}
+
+/* Enlaces con diferenciación no exclusiva por color (subrayado al hover y borde activo) */
+.main-nav a {
+    color: var(--color-gris-900);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--espaciado-8) var(--espaciado-12);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px; /* Área táctil accesible */
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: var(--color-primario-bordeos);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.main-nav a[aria-current="page"] {
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    border-bottom-color: var(--color-primario-bordeos);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-16);
+}
+
+/* Selector de Idiomas accesible */
+.custom-lang-wrap {
+    display: inline-flex;
+    align-items: center;
+}
+
+#custom-lang-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #FFFFFF;
+    color: var(--color-gris-900);
+    border: 2px solid var(--color-gris-300);
+    border-radius: 22px;
+    height: 44px; /* Mínimo táctil accesible */
+    padding: 0 34px 0 14px;
+    font-family: var(--font-cuerpo);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238B1A2B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#custom-lang-select:hover,
+#custom-lang-select:focus-visible {
+    border-color: var(--color-primario-bordeos);
+    background-color: var(--color-neutro-calido-300);
+}
+
+/* Botones con área de pulsación de 44x44px */
+.btn-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--color-gris-900);
+    background-color: #FFFFFF;
+    border: 2px solid var(--color-gris-300);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    color: var(--color-primario-bordeos);
+    border-color: var(--color-primario-bordeos);
+    background-color: var(--color-neutro-calido-300);
+}
+
+.badge-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background-color: var(--color-primario-bordeos);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #FFFFFF;
+}
+
+.badge-count:empty,
+.badge-count[data-count="0"] {
+    display: none;
+}
+
+/* ==========================================================================
+   BOTONES ACCESIBLES
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px; /* Dimensión mínima motriz */
+    padding: var(--espaciado-12) var(--espaciado-24);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: var(--font-cuerpo);
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primario-bordeos);
+    color: #FFFFFF;
+    border: 2px solid var(--color-primario-bordeos);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primario-oscuro);
+    border-color: var(--color-primario-oscuro);
+}
+
+.btn-secondary {
+    background-color: #FFFFFF;
+    color: var(--color-gris-900);
+    border: 2px solid var(--color-gris-700);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-neutro-calido-300);
+    border-color: var(--color-primario-bordeos);
+    color: var(--color-primario-bordeos);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-section {
+    background-color: var(--color-neutro-calido-300);
+    padding: var(--espaciado-48) 0;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--espaciado-16);
+}
+
+.hero-content p {
+    margin-bottom: var(--espaciado-24);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-gris-700);
+}
+
+/* ==========================================================================
+   CATÁLOGO CON BARRA LATERAL & FILTROS ACCESIBLES
+   ========================================================================== */
+.catalog-section {
+    padding: var(--espaciado-48) 0;
+}
+
+.catalog-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-32);
+    align-items: flex-start;
+}
+
+@media (min-width: 900px) {
+    .catalog-layout {
+        flex-direction: row;
+    }
+}
+
+.catalog-sidebar {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: var(--espaciado-24);
+    border-radius: 8px;
+    border: 1px solid var(--color-neutro-calido-500);
+    box-shadow: var(--sombra-card);
+}
+
+@media (min-width: 900px) {
+    .catalog-sidebar {
+        width: 290px;
+        flex-shrink: 0;
+        position: sticky;
+        top: 90px;
+    }
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--espaciado-24);
+    padding-bottom: var(--espaciado-8);
+    border-bottom: 2px solid var(--color-neutro-calido-300);
+}
+
+.sidebar-title {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.btn-reset {
+    background: none;
+    border: none;
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--espaciado-8);
+}
+
+.filter-group {
+    margin-bottom: var(--espaciado-24);
+    border: none;
+    padding: 0;
+}
+
+/* Corrección de fieldset / legend para evitar marcos toscos sin perder semántica */
+fieldset.filter-group {
+    border: 0;
+    margin: 0 0 var(--espaciado-24) 0;
+    padding: 0;
+}
+
+legend.filter-group-title,
+.filter-group-title {
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-gris-900);
+    margin-bottom: var(--espaciado-12);
+    display: table;
+    padding: 0;
+}
+
+/* Buscador accesible */
+.search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    height: 44px; /* Mínimo táctil accesible */
+    padding: var(--espaciado-8) 38px var(--espaciado-8) var(--espaciado-12);
+    border: 2px solid var(--color-gris-300);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--color-gris-900);
+    background-color: var(--color-neutro-calido-100);
+    outline: none;
+}
+
+.search-input:focus-visible {
+    border-color: var(--color-primario-bordeos);
+    background-color: #FFFFFF;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    color: var(--color-gris-700);
+    pointer-events: none;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-12);
+    min-height: 44px; /* Dimensión táctil */
+    font-size: 1rem;
+    color: var(--color-gris-900);
+    cursor: pointer;
+}
+
+.filter-option input[type="radio"] {
+    accent-color: var(--color-primario-bordeos);
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.price-slider-wrap input[type="range"] {
+    width: 100%;
+    height: 32px;
+    accent-color: var(--color-primario-bordeos);
+    cursor: pointer;
+}
+
+.price-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--espaciado-8);
+    font-weight: 600;
+    color: var(--color-gris-900);
+}
+
+.results-counter {
+    font-size: 0.95rem;
+    color: var(--color-gris-700);
+    padding-top: var(--espaciado-16);
+    border-top: 1px solid var(--color-gris-100);
+    text-align: center;
+    font-weight: 600;
+}
+
+.catalog-content {
+    flex: 1;
+    width: 100%;
+}
+
+.grid-catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--espaciado-32);
+}
+
+.wine-card {
+    background-color: #FFFFFF;
+    padding: var(--espaciado-24);
+    border-radius: 8px;
+    border: 1px solid var(--color-neutro-calido-500);
+    box-shadow: var(--sombra-card);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.wine-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.model-container {
+    position: relative;
+    height: 260px;
+    width: 100%;
+    margin-bottom: var(--espaciado-16);
+    background-color: var(--color-neutro-calido-100);
+    border-radius: 4px;
+}
+
+.wine-3d-model {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-fav-card {
+    position: absolute;
+    top: var(--espaciado-8);
+    right: var(--espaciado-8);
+    width: 44px; /* Dimensión táctil */
+    height: 44px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    border: 2px solid var(--color-gris-300);
+    color: var(--color-gris-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.btn-fav-card:hover,
+.btn-fav-card.active {
+    color: var(--color-primario-bordeos);
+    border-color: var(--color-primario-bordeos);
+}
+
+.btn-fav-card.active svg {
+    fill: var(--color-primario-bordeos);
+}
+
+.wine-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.wine-link-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: var(--color-primario-bordeos);
+}
+
+.wine-name {
+    font-size: 1.4rem;
+    margin-bottom: var(--espaciado-8);
+}
+
+.wine-price {
+    color: var(--color-primario-oscuro);
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-top: auto;
+    margin-bottom: var(--espaciado-16);
+    padding-top: var(--espaciado-16);
+}
+
+/* ==========================================================================
+   ESTILOS DE FORMULARIOS & VALIDACIÓN ACCESIBLE (Documento WCAG)
+   ========================================================================== */
+.form-group {
+    margin-bottom: var(--espaciado-24);
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: var(--espaciado-8);
+    color: var(--color-gris-900);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: var(--espaciado-8) var(--espaciado-12);
+    border: 2px solid var(--color-gris-300);
+    border-radius: 4px;
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    background-color: #FFFFFF;
+}
+
+/* Indicadores visuales y técnicos de error según WCAG */
+.form-input[aria-invalid="true"],
+.form-textarea[aria-invalid="true"] {
+    border-color: var(--color-error-borde);
+    background-color: var(--color-error-fondo);
+}
+
+.error-text {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaciado-8);
+    color: var(--color-error-texto);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: var(--espaciado-8);
+}
+
+/* ==========================================================================
+   TABLAS ACCESIBLES (WCAG 2.1)
+   ========================================================================== */
+.table-responsive-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: var(--espaciado-24) 0;
+}
+
+table.accessible-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFFFFF;
+}
+
+table.accessible-table caption {
+    caption-side: top;
+    font-family: var(--font-titulos);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primario-bordeos);
+    padding: var(--espaciado-12) 0;
+    text-align: left;
+}
+
+table.accessible-table th,
+table.accessible-table td {
+    padding: var(--espaciado-12) var(--espaciado-16);
+    border-bottom: 1px solid var(--color-neutro-calido-500);
+    text-align: left;
+}
+
+table.accessible-table th {
+    background-color: var(--color-neutro-calido-300);
+    color: var(--color-gris-900);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA ACCESIBLE
+   ========================================================================== */
+.site-footer {
+    background-color: var(--color-gris-900);
+    color: #FFFFFF;
+    padding: var(--espaciado-48) 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-16);
+}
+
+.footer-logo {
+    height: 60px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espaciado-24);
+}
+
+.footer-links a {
+    color: #FFFFFF;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-links a:hover {
+    color: var(--color-secundario-dorado-claro);
+}
+
+/* Ocultar elementos visuales intrusivos de Google Translate */
+#google_translate_element,
+.goog-te-banner-frame,
+.skiptranslate {
+    display: none !important;
+}

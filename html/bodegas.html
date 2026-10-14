@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestras Bodegas - WineShop</title>
+
+    <!-- Tipografías oficiales: Playfair Display e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="../css/estilos_wineshop.css">
+</head>
+<body>
+
+    <!-- Enlace de salto accesible (WCAG) -->
+    <a href="#bodegas-principal" class="sr-only focus-visible" data-i18n="skip_to_content">Saltar al contenido de bodegas</a>
+
+    <!-- Cabecera y Navegación Principal -->
+    <header class="site-header" id="header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo-link" aria-label="WineShop - Volver a página de inicio">
+                <img src="../img/transparent-logo.svg" alt="Logotipo de WineShop" class="logo">
+            </a>
+            
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html" data-i18n="nav_inicio">Inicio</a></li>
+                    <li><a href="catalogo.html" data-i18n="nav_catalogo">Catálogo de Vinos</a></li>
+                    <li><a href="bodegas.html" aria-current="page" data-i18n="nav_bodegas">Bodegas</a></li>
+                    <li><a href="experiencias.html" data-i18n="nav_experiencias">Experiencias</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+               <!-- Selector propio elegante (sin bugs de texto) -->
+<div class="custom-lang-wrap">
+    <select id="custom-lang-select" aria-label="Seleccionar idioma">
+        <option value="es">ES - Español</option>
+        <option value="en">EN - English</option>
+        <option value="fr">FR - Français</option>
+        <option value="de">DE - Deutsch</option>
+    </select>
+</div>
+
+<!-- Contenedor de Google Translate (se mantiene oculto en segundo plano) -->
+<div id="google_translate_element" style="display: none;"></div>
+
+                <!-- Botón Favoritos -->
+                <a href="#favoritos" class="btn-icon" aria-label="Ver mis vinos favoritos, 3 guardados">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                    <span class="badge-count" aria-hidden="true">3</span>
+                </a>
+
+                <!-- Botón Perfil / Iniciar Sesión -->
+                <a href="#login" class="btn-icon" aria-label="Mi Cuenta, Iniciar Sesión">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </a>
+
+                <!-- Botón Carrito con Icono SVG -->
+                <button type="button" class="btn-icon cart-btn" aria-label="Ver carrito de compras, 0 productos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                    <span class="badge-count" aria-hidden="true">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main id="bodegas-principal">
+        <section class="hero-section" style="padding: var(--espaciado-40) 0;" aria-labelledby="titulo-bodegas">
+            <div class="container hero-content">
+                <h1 id="titulo-bodegas" data-i18n="bodegas_title">Bodegas Asociadas</h1>
+                <p class="body-large" data-i18n="bodegas_desc">Tradición centenaria, terruño privilegiado y procesos enológicos de máxima exigencia.</p>
+            </div>
+        </section>
+
+        <section class="catalog-section" aria-labelledby="seccion-listado-bodegas">
+            <div class="container">
+                <h2 id="seccion-listado-bodegas" class="sr-only" data-i18n="bodegas_list_title">Nuestras bodegas de origen</h2>
+                
+                <div class="grid-catalog">
+                    <!-- Bodega 1 -->
+                    <article class="wine-card" aria-labelledby="bodega-1-nombre">
+                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-oscuro);">
+                            <span style="font-family: var(--font-titulos); font-size: 2rem; color: var(--color-primario-bordeos); font-weight: 700;">Heredad Mayor</span>
+                        </div>
+                        <div class="wine-info">
+                            <h3 id="bodega-1-nombre" class="wine-name" style="font-size: 1.5rem;">Bodegas Heredad Mayor</h3>
+                            <p class="wine-vintage" data-i18n="bodega_1_sub">Rioja Alta · Fundada en 1892</p>
+                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="bodega_1_text">Viñedos centenarios en ladera orientada al mediodía. Elaboración artesanal en tinos de roble francés y crianza en calados subterráneos.</p>
+                            <a href="catalogo.html" class="btn btn-secondary btn-full" aria-label="Ver vinos de Bodegas Heredad Mayor" data-i18n="btn_ver_vinos">Ver sus vinos</a>
+                        </div>
+                    </article>
+
+                    <!-- Bodega 2 -->
+                    <article class="wine-card" aria-labelledby="bodega-2-nombre">
+                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-oscuro);">
+                            <span style="font-family: var(--font-titulos); font-size: 2rem; color: var(--color-primario-bordeos); font-weight: 700;">Valle del Silencio</span>
+                        </div>
+                        <div class="wine-info">
+                            <h3 id="bodega-2-nombre" class="wine-name" style="font-size: 1.5rem;">Viñedos del Silencio</h3>
+                            <p class="wine-vintage" data-i18n="bodega_2_sub">Rioja Alavesa · Viticultura Ecológica</p>
+                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="bodega_2_text">Suelos arcillo-calcáreos de altura dedicados al cultivo biodinámico. Vinos singulares, frescos y con gran mineralidad.</p>
+                            <a href="catalogo.html" class="btn btn-secondary btn-full" aria-label="Ver vinos de Viñedos del Silencio" data-i18n="btn_ver_vinos">Ver sus vinos</a>
+                        </div>
+                    </article>
+
+                    <!-- Bodega 3 -->
+                    <article class="wine-card" aria-labelledby="bodega-3-nombre">
+                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-oscuro);">
+                            <span style="font-family: var(--font-titulos); font-size: 2rem; color: var(--color-primario-bordeos); font-weight: 700;">Altos del Ebro</span>
+                        </div>
+                        <div class="wine-info">
+                            <h3 id="bodega-3-nombre" class="wine-name" style="font-size: 1.5rem;">Finca Altos del Ebro</h3>
+                            <p class="wine-vintage" data-i18n="bodega_3_sub">Rioja Oriental · Selección de Autor</p>
+                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="bodega_3_text">Especialistas en Garnachas viejas y uvas autóctonas en terrazas fluviales. Innovación técnica al servicio del equilibrio aromático.</p>
+                            <a href="catalogo.html" class="btn btn-secondary btn-full" aria-label="Ver vinos de Finca Altos del Ebro" data-i18n="btn_ver_vinos">Ver sus vinos</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container footer-container">
+            <img src="../img/transparent-logo.svg" alt="WineShop Logotipo" class="footer-logo">
+            <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
+            <nav class="footer-links" aria-label="Enlaces legales">
+                <a href="#" data-i18n="footer_privacy">Política de Privacidad</a>
+                <a href="#" data-i18n="footer_terms">Términos y Condiciones</a>
+                <a href="#" data-i18n="footer_a11y">Declaración de Accesibilidad</a>
+            </nav>
+        </div>
+    </footer>
+    <!-- Script Oficial de Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,es,fr,de',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

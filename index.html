@@ -50,7 +50,7 @@
         <header class="site-header" id="header">
             <div class="container header-container">
                 <a href="index.html" class="logo-link" aria-label="WineShop - Ir a página de inicio">
-                    <img src="img/transparent-logo.png" alt="Logotipo de WineShop" class="logo">
+                    <img src="img/transparent-logo.png" alt="WineShop Vinos Premium & Enoturismo" class="logo">
                 </a>
                 
                 <nav class="main-nav" aria-label="Navegación principal">
@@ -62,45 +62,47 @@
                     </ul>
                 </nav>
 
-               <!-- Selector propio elegante (sin bugs de texto) -->
-<div class="custom-lang-wrap">
-    <select id="custom-lang-select" aria-label="Seleccionar idioma">
-        <option value="es">ES - Español</option>
-        <option value="en">EN - English</option>
-        <option value="fr">FR - Français</option>
-        <option value="de">DE - Deutsch</option>
-    </select>
-</div>
-
-<!-- Contenedor de Google Translate (se mantiene oculto en segundo plano) -->
-<div id="google_translate_element" style="display: none;"></div>
-
-                    <!-- Botón Favoritos -->
-                    <a href="html/favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                        </svg>
-                        <span class="badge-count" id="header-fav-count"></span>
-                    </a>
-
-                    <!-- Botón Perfil / Iniciar Sesión -->
-                    <a href="#login" class="btn-icon" aria-label="Mi Cuenta, Iniciar Sesión">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </a>
-
-                    <!-- Botón Carrito con Icono SVG -->
-                    <button type="button" class="btn-icon cart-btn" aria-label="Ver carrito de compras, 0 productos">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <circle cx="8" cy="21" r="1"/>
-                            <circle cx="19" cy="21" r="1"/>
-                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                        </svg>
-                        <span class="badge-count" aria-hidden="true">0</span>
-                    </button>
+                <!-- Selector propio elegante (sin bugs de texto) -->
+                <div class="custom-lang-wrap">
+                    <label for="custom-lang-select" class="sr-only">Seleccionar idioma</label>
+                    <select id="custom-lang-select">
+                        <option value="es">ES - Español</option>
+                        <option value="en">EN - English</option>
+                        <option value="fr">FR - Français</option>
+                        <option value="de">DE - Deutsch</option>
+                    </select>
                 </div>
+
+                <!-- Contenedor de Google Translate (se mantiene oculto en segundo plano) -->
+                <div id="google_translate_element" style="display: none;"></div>
+
+                <!-- Botón Favoritos -->
+                <a href="html/favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                    <span class="sr-only">Ver mis vinos favoritos</span>
+                    <span class="badge-count" id="header-fav-count"></span>
+                </a>
+
+                <!-- Botón Perfil / Iniciar Sesión -->
+                <a href="#login" class="btn-icon" aria-label="Mi Cuenta, Iniciar Sesión">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="sr-only">Mi Cuenta, Iniciar Sesión</span>
+                </a>
+
+                <!-- Botón Carrito con Icono SVG -->
+                <button type="button" class="btn-icon cart-btn" aria-label="Ver carrito de compras, 0 productos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                    <span class="badge-count" aria-hidden="true">0</span>
+                </button>
             </div>
         </header>
 
@@ -144,7 +146,7 @@
                                 <h3 id="vino-destacado-1" class="wine-name">Reserva Especial 2018</h3>
                                 <p class="body-regular" data-i18n="vino_1_desc">Tempranillo, estructurado y de paso aterciopelado.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>24,00 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Reserva Especial 2018 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Reserva Especial 2018 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
@@ -169,7 +171,7 @@
                                 <h3 id="vino-destacado-2" class="wine-name">Blanco Fermentado</h3>
                                 <p class="body-regular" data-i18n="vino_2_desc">Viura seleccionada con crianza sobre lías.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>18,90 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Blanco Fermentado al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Blanco Fermentado al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
@@ -194,7 +196,7 @@
                                 <h3 id="vino-destacado-3" class="wine-name">Espumoso Brut Nature</h3>
                                 <p class="body-regular" data-i18n="vino_3_desc">Burbuja viva y cremosa, maduración tradicional.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>29,00 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Espumoso Brut Nature al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Espumoso Brut Nature al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 

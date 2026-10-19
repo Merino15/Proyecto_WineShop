@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso Restringido - Zona Arcade</title>
+    <title>Acceso Restringido - Zona Arcade | WineShop</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,7 @@
             max-width: 860px;
             width: 100%;
             text-align: center;
+            border: 2px solid var(--color-neutro-calido-500);
         }
 
         .arcade-title {
@@ -63,12 +64,13 @@
 
         .arcade-instructions {
             margin-top: var(--espaciado-16);
-            font-size: 0.95rem;
-            color: var(--color-gris-700);
+            font-size: 1rem;
+            color: var(--color-gris-900);
             display: flex;
             justify-content: center;
             gap: var(--espaciado-24);
             flex-wrap: wrap;
+            font-weight: 600;
         }
 
         .arcade-instructions kbd {
@@ -110,7 +112,7 @@
             </div>
 
             <div class="arcade-instructions">
-                <span>Saltar: <kbd>ESPACIO</kbd> o <kbd>↑</kbd></span>
+                <span>Saltar: <kbd>ESPACIO</kbd> / <kbd>↑</kbd> o Toque en pantalla</span>
                 <span>Agacharse: <kbd>↓</kbd> o <kbd>S</kbd></span>
             </div>
         </div>
@@ -426,21 +428,21 @@
             ctx.restore();
 
             if (!gameRunning) {
-                ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+                ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = "bold 20px Inter";
                 ctx.textAlign = "center";
-                ctx.fillText("PULSA ESPACIO PARA EMPEZAR", canvas.width / 2, canvas.height / 2);
+                ctx.fillText("PULSA ESPACIO O TOCA LA PANTALLA PARA EMPEZAR", canvas.width / 2, canvas.height / 2);
             } else if (gameOver) {
-                ctx.fillStyle = "rgba(74, 30, 36, 0.85)";
+                ctx.fillStyle = "rgba(61, 16, 23, 0.9)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = "bold 26px 'Playfair Display'";
                 ctx.textAlign = "center";
                 ctx.fillText("¡TE HAS TROPEZADO!", canvas.width / 2, canvas.height / 2 - 15);
                 ctx.font = "16px Inter";
-                ctx.fillText("Presiona ESPACIO o haz clic para volver a intentarlo", canvas.width / 2, canvas.height / 2 + 25);
+                ctx.fillText("Presiona ESPACIO o toca para volver a intentarlo", canvas.width / 2, canvas.height / 2 + 25);
             }
         }
 

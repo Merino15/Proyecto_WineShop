@@ -77,7 +77,39 @@ const catalogoVinos = {
 };
 
 // ==========================================================================
-// 2. GESTIÓN DE IDIOMAS (Controlador Robusto con Cookies de Google)
+// 2. NAVEGACIÓN MOBILE RESPONSIVE (MENÚ HAMBURGUESA ACCESIBLE)
+// ==========================================================================
+function iniciarMenuMobile() {
+    const navToggle = document.querySelector(".nav-toggle");
+    const mainNav = document.querySelector(".main-nav");
+    if (!navToggle || !mainNav) return;
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = mainNav.classList.toggle("is-open");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación");
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!mainNav.contains(e.target) && !navToggle.contains(e.target) && mainNav.classList.contains("is-open")) {
+            mainNav.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.setAttribute("aria-label", "Abrir menú de navegación");
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mainNav.classList.contains("is-open")) {
+            mainNav.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.setAttribute("aria-label", "Abrir menú de navegación");
+            navToggle.focus();
+        }
+    });
+}
+
+// ==========================================================================
+// 3. GESTIÓN DE IDIOMAS (Controlador Robusto)
 // ==========================================================================
 function iniciarControladorIdioma() {
     const customSelect = document.getElementById("custom-lang-select");
@@ -112,7 +144,7 @@ function iniciarControladorIdioma() {
 }
 
 // ==========================================================================
-// 3. FAVORITOS (localStorage)
+// 4. FAVORITOS (localStorage)
 // ==========================================================================
 function getFavoritos() {
     return JSON.parse(localStorage.getItem("wineshop_favoritos")) || [];
@@ -199,6 +231,7 @@ function renderizarPaginaFavoritos() {
                 <model-viewer 
                     src="${rutaBase}${vino.modelo}" 
                     alt="Modelo 3D de ${vino.nombre}" 
+                    touch-action="pan-y"
                     shadow-intensity="1" 
                     camera-controls="false" 
                     disable-zoom
@@ -231,7 +264,7 @@ function renderizarPaginaFavoritos() {
 }
 
 // ==========================================================================
-// 4. DETALLE EN PRODUCTO.HTML
+// 5. DETALLE EN PRODUCTO.HTML
 // ==========================================================================
 function cargarDetalleProducto() {
     const params = new URLSearchParams(window.location.search);
@@ -261,7 +294,10 @@ function cargarDetalleProducto() {
     if (aging) aging.textContent = vino.aging;
     if (alcohol) alcohol.textContent = vino.alcohol;
     if (temp) temp.textContent = vino.temp;
-    if (model) model.setAttribute("src", `${rutaBase}${vino.modelo}`);
+    if (model) {
+        model.setAttribute("src", `${rutaBase}${vino.modelo}`);
+        model.setAttribute("touch-action", "pan-y");
+    }
 
     if (btnFav) {
         const favs = getFavoritos();
@@ -289,7 +325,7 @@ function cargarDetalleProducto() {
 }
 
 // ==========================================================================
-// 5. FILTRADO MULTI-VARIABLE (Buscador por Nombre, Tipo y Precio)
+// 6. FILTRADO MULTI-VARIABLE (Buscador por Nombre, Tipo y Precio)
 // ==========================================================================
 function inicializarFiltrosCatalogo() {
     const wineCardsCatalog = document.querySelectorAll("#catalogo-grid .wine-card");
@@ -368,11 +404,18 @@ function inicializarFiltrosCatalogo() {
 }
 
 // ==========================================================================
-// 6. INICIALIZACIÓN GENERAL (DOM Ready)
+// 7. INICIALIZACIÓN GENERAL (DOM Ready)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     
-    // A. CONTROL DE MAYORÍA DE EDAD (+18) CON DESENFOQUE
+    // A. INICIALIZAR MENÚ MÓVIL Y TOUCH ACTION EN 3D
+    iniciarMenuMobile();
+
+    document.querySelectorAll("model-viewer").forEach(mv => {
+        mv.setAttribute("touch-action", "pan-y");
+    });
+
+    // B. CONTROL DE MAYORÍA DE EDAD (+18) CON DESENFOQUE
     const modalEdad = document.getElementById("modal-edad");
     const contenedorSitio = document.getElementById("sitio-web");
     const btnMayor = document.getElementById("btn-mayor-edad");
@@ -415,10 +458,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // B. INICIALIZAR GESTOR DE IDIOMAS
+    // C. INICIALIZAR GESTOR DE IDIOMAS
     iniciarControladorIdioma();
 
-    // C. INICIALIZACIÓN DE FAVORITOS Y TARJETAS
+    // D. INICIALIZACIÓN DE FAVORITOS Y TARJETAS
     actualizarBadgeFavoritos();
 
     const favs = getFavoritos();
@@ -461,10 +504,10 @@ document.addEventListener("DOMContentLoaded", () => {
         cargarDetalleProducto();
     }
 
-    // D. EJECUTAR FILTROS DEL CATÁLOGO
+    // E. EJECUTAR FILTROS DEL CATÁLOGO
     inicializarFiltrosCatalogo();
 
-    // E. ROTACIÓN 3D AL HACER HOVER SOBRE MODELOS
+    // F. ROTACIÓN 3D AL HACER HOVER SOBRE MODELOS
     const wineCards = document.querySelectorAll(".wine-card");
     wineCards.forEach(card => {
         const model = card.querySelector("model-viewer");

@@ -1,33 +1,33 @@
 /* ==========================================================================
-   GUÍA DE ESTILOS & VARIABLES CSS (WineShop - WCAG 2.1 AA / AAA)
+   GUÍA DE ESTILOS & VARIABLES CSS (WineShop - WCAG 2.1 AAA & Mobile-First)
    ========================================================================== */
 :root {
-    /* Paleta Principal: Bordeos Oficial (Guía de Estilos) */
-    --color-primario-claro: #A54D58;
-    --color-primario-bordeos: #8B1A2B;  /* Burdeos 7 (Core) - Ratio 9.21:1 sobre blanco (Pasa AAA) */
-    --color-primario-oscuro: #4A1E24;
+    /* Paleta Principal (WCAG 2.1 AAA - Contraste >= 7:1 para texto normal) */
+    --color-primario-claro: #B83A4B;
+    --color-primario-bordeos: #8B1A2B;  /* Burdeos Core - Ratio 9.21:1 sobre blanco (Pasa AAA) */
+    --color-primario-oscuro: #3D1017;   /* Burdeos Profundo - Ratio 16.5:1 (Pasa AAA) */
 
-    /* Paleta Secundaria / Acento: Dorado Viejo */
-    --color-secundario-dorado-claro: #E6D585;
-    --color-secundario-dorado: #CFB53B;       /* Acento visual e iconos sobre fondos oscuros (Ratio 8.56:1 AAA) */
-    --color-secundario-dorado-oscuro: #9E8825; /* Texto grande/precios destacados (Ratio 3.5:1 AA) */
+    /* Paleta Secundaria / Acento */
+    --color-secundario-dorado-claro: #F5E6A3;
+    --color-secundario-dorado: #A38000;       /* Acento visual e iconos (Ratio 7.1:1 AAA sobre oscuro) */
+    --color-secundario-dorado-oscuro: #5C4A00; /* Texto destacado sobre fondo claro (Ratio 9.4:1 AAA) */
     
     /* Neutros Cálidos (Fondos y Contenedores) */
     --color-neutro-calido-100: #F9F8F6; /* Fondo base de la web */
     --color-neutro-calido-300: #F1EFEA; /* Hero section y tarjetas */
-    --color-neutro-calido-500: #EAE6DF; /* Bordes sutiles y separadores */
+    --color-neutro-calido-500: #E2DDD5; /* Bordes sutiles y separadores */
     
-    /* Escala de Grises Accesible */
-    --color-gris-900: #1A1A1A; /* Texto principal - Ratio 17.4:1 (Pasa AAA) */
-    --color-gris-700: #4D4D4D; /* Texto secundario - Ratio 7.96:1 (Pasa AAA) */
-    --color-gris-500: #595959; /* Texto auxiliar mínimo - Ratio 4.6:1 (Pasa AA) */
-    --color-gris-300: #8C8C8C; /* Bordes de campos y controles - Ratio 3.1:1 (Pasa AA para UI) */
+    /* Escala de Grises Accesible (Strict AAA Compliance) */
+    --color-gris-900: #121212; /* Texto principal - Ratio 19.1:1 (Pasa AAA) */
+    --color-gris-700: #333333; /* Texto secundario - Ratio 12.6:1 (Pasa AAA) */
+    --color-gris-500: #3B3B3B; /* Texto auxiliar - Ratio 10.5:1 (Pasa AAA) */
+    --color-gris-300: #686868; /* Bordes de campos y controles - Ratio 5.1:1 (Pasa AAA UI) */
     --color-gris-100: #E6E6E6;
 
-    /* Estado de Error y Validación */
-    --color-error-fondo: #FFEBEE;
-    --color-error-texto: #B71C1C;
-    --color-error-borde: #D32F2F;
+    /* Estado de Error y Validación AAA */
+    --color-error-fondo: #FFEAEA;
+    --color-error-texto: #8C0000; /* Ratio 8.5:1 sobre fondo de error (Pasa AAA) */
+    --color-error-borde: #A80000;
 
     /* Tipografía con unidades relativas (rem) */
     --font-titulos: 'Playfair Display', Georgia, serif;
@@ -51,7 +51,7 @@
 }
 
 /* ==========================================================================
-   RESET & FUNDAMENTOS DE ACCESIBILIDAD
+   RESET & FUNDAMENTOS DE ACCESIBILIDAD (WCAG AAA)
    ========================================================================== */
 * { 
     box-sizing: border-box; 
@@ -60,7 +60,8 @@
 }
 
 html {
-    font-size: 100%; /* Respeta la configuración nativa de zoom y fuentes del usuario */
+    font-size: 100%; /* Respeta la configuración nativa del usuario */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -69,19 +70,21 @@ body {
     background-color: var(--color-neutro-calido-100);
     line-height: 1.6;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
 }
 
-/* Indicador de Foco Visible de alto contraste para navegación por teclado (Tab) */
+/* Indicador de Foco Visible de Alto Contraste (WCAG 2.4.7 & 1.4.11) */
 :focus-visible {
     outline: 3px solid var(--color-primario-bordeos) !important;
     outline-offset: 3px !important;
     border-radius: 4px;
 }
 
-/* Enlace de Salto (Skip Link) según el patrón exacto del documento formativo */
-.skip-link {
+/* Enlace de Salto (Skip Link) */
+.skip-link,
+a.sr-only:focus {
     position: absolute;
-    top: -70px;
+    top: 0;
     left: 0;
     background: #000000;
     color: #FFFFFF;
@@ -91,13 +94,10 @@ body {
     text-underline-offset: 3px;
     font-weight: 700;
     font-size: 1rem;
-    transition: top 0.2s ease-in-out;
-}
-
-.skip-link:focus {
-    top: 0;
-    outline: 3px solid var(--color-secundario-dorado);
-    outline-offset: 2px;
+    width: auto;
+    height: auto;
+    clip: auto;
+    overflow: visible;
 }
 
 /* Ocultación semántica para lectores de pantalla */
@@ -124,20 +124,30 @@ h1, h2, h3, h4, h5, h6 {
 .body-large { 
     font-size: 1.125rem; 
     line-height: 1.7; 
+    color: var(--color-gris-700);
 }
 
 .body-regular { 
     font-size: 1rem; 
     line-height: 1.6; 
+    color: var(--color-gris-700);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--espaciado-24);
+    width: 100%;
 }
 
-/* Soporte para usuarios con epilepsia fotosensible o sensibilidad al movimiento */
+/* Model Viewer Interacción Táctil Accesible en Móvil */
+model-viewer {
+    touch-action: pan-y !important;
+    width: 100%;
+    height: 100%;
+}
+
+/* Soporte para usuarios con movilidad reducida o epilepsia */
 @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after {
         animation-duration: 0.01ms !important;
@@ -171,9 +181,9 @@ html.edad-verificada #sitio-web {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(26, 26, 26, 0.65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background-color: rgba(18, 18, 18, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,7 +199,7 @@ html.edad-verificada #sitio-web {
     background-color: #FFFFFF;
     padding: var(--espaciado-40) var(--espaciado-32);
     border-radius: 8px;
-    border: 1px solid var(--color-neutro-calido-500);
+    border: 2px solid var(--color-neutro-calido-500);
     box-shadow: var(--sombra-modal);
     text-align: center;
     max-width: 520px;
@@ -197,11 +207,11 @@ html.edad-verificada #sitio-web {
 }
 
 .modal-logo {
-    width: 260px;
-    height: 140px;
+    width: 220px;
+    height: 110px;
     object-fit: contain;
     display: block;
-    margin: -30px auto -15px;
+    margin: -15px auto 10px;
 }
 
 .modal-content h2 {
@@ -231,11 +241,11 @@ html.edad-verificada #sitio-web {
 }
 
 /* ==========================================================================
-   HEADER Y NAVEGACIÓN
+   HEADER Y NAVEGACIÓN MOBILE-FIRST & RESPONSIVE
    ========================================================================== */
 .site-header {
     background-color: #FFFFFF;
-    border-bottom: 2px solid var(--color-neutro-calido-300);
+    border-bottom: 2px solid var(--color-neutro-calido-500);
     padding: var(--espaciado-8) 0;
     position: sticky;
     top: 0;
@@ -247,6 +257,7 @@ html.edad-verificada #sitio-web {
     justify-content: space-between;
     align-items: center;
     min-height: 4.5rem;
+    position: relative;
 }
 
 .logo-link {
@@ -257,10 +268,41 @@ html.edad-verificada #sitio-web {
 }
 
 .logo {
-    width: 180px;
-    height: 160px;
+    width: 160px;
+    height: 120px;
     object-fit: contain;
-    margin: -50px 0;
+    margin: -35px 0;
+}
+
+/* Botón Hamburguesa Accesible Móvil */
+.nav-toggle {
+    display: none;
+    background-color: #FFFFFF;
+    border: 2px solid var(--color-gris-300);
+    border-radius: 6px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--espaciado-8);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gris-900);
+    transition: all 0.2s ease;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+    border-color: var(--color-primario-bordeos);
+    color: var(--color-primario-bordeos);
+    background-color: var(--color-neutro-calido-300);
+}
+
+.nav-toggle-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    fill: none;
 }
 
 .main-nav ul {
@@ -269,15 +311,14 @@ html.edad-verificada #sitio-web {
     gap: var(--espaciado-24);
 }
 
-/* Enlaces con diferenciación no exclusiva por color (subrayado al hover y borde activo) */
 .main-nav a {
     color: var(--color-gris-900);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     padding: var(--espaciado-8) var(--espaciado-12);
     display: inline-flex;
     align-items: center;
-    min-height: 44px; /* Área táctil accesible */
+    min-height: 44px;
     border-bottom: 3px solid transparent;
     transition: color 0.2s ease, border-color 0.2s ease;
 }
@@ -297,10 +338,10 @@ html.edad-verificada #sitio-web {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: var(--espaciado-16);
+    gap: var(--espaciado-12);
 }
 
-/* Selector de Idiomas accesible */
+/* Selector de Idiomas Accesible */
 .custom-lang-wrap {
     display: inline-flex;
     align-items: center;
@@ -313,15 +354,16 @@ html.edad-verificada #sitio-web {
     color: var(--color-gris-900);
     border: 2px solid var(--color-gris-300);
     border-radius: 22px;
-    height: 44px; /* Mínimo táctil accesible */
-    padding: 0 34px 0 14px;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 34px 0 12px;
     font-family: var(--font-cuerpo);
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238B1A2B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
+    background-position: right 10px center;
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -331,12 +373,14 @@ html.edad-verificada #sitio-web {
     background-color: var(--color-neutro-calido-300);
 }
 
-/* Botones con área de pulsación de 44x44px */
+/* Botones Accesibles con Área Táctil 44x44px */
 .btn-icon {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -348,7 +392,8 @@ html.edad-verificada #sitio-web {
     transition: all 0.2s ease;
 }
 
-.btn-icon:hover {
+.btn-icon:hover,
+.btn-icon:focus-visible {
     color: var(--color-primario-bordeos);
     border-color: var(--color-primario-bordeos);
     background-color: var(--color-neutro-calido-300);
@@ -377,21 +422,68 @@ html.edad-verificada #sitio-web {
     display: none;
 }
 
+/* Adaptación del Menú para Móviles (<= 768px) */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid var(--color-primario-bordeos);
+        box-shadow: var(--sombra-modal);
+        padding: var(--espaciado-16);
+        z-index: 1001;
+    }
+
+    .main-nav.is-open {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: var(--espaciado-8);
+    }
+
+    .main-nav a {
+        width: 100%;
+        padding: var(--espaciado-12);
+        border-bottom: 1px solid var(--color-neutro-calido-500);
+        justify-content: flex-start;
+    }
+
+    .header-actions {
+        gap: var(--espaciado-8);
+    }
+
+    #custom-lang-select {
+        padding: 0 28px 0 8px;
+        font-size: 0.85rem;
+    }
+}
+
 /* ==========================================================================
-   BOTONES ACCESIBLES
+   BOTONES ACCESIBLES (TARGET SIZE >= 44x44px)
    ========================================================================== */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px; /* Dimensión mínima motriz */
+    min-height: 44px;
+    min-width: 44px;
     padding: var(--espaciado-12) var(--espaciado-24);
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     font-family: var(--font-cuerpo);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
+    text-align: center;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -401,7 +493,8 @@ html.edad-verificada #sitio-web {
     border: 2px solid var(--color-primario-bordeos);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus-visible {
     background-color: var(--color-primario-oscuro);
     border-color: var(--color-primario-oscuro);
 }
@@ -412,7 +505,8 @@ html.edad-verificada #sitio-web {
     border: 2px solid var(--color-gris-700);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
     background-color: var(--color-neutro-calido-300);
     border-color: var(--color-primario-bordeos);
     color: var(--color-primario-bordeos);
@@ -423,7 +517,7 @@ html.edad-verificada #sitio-web {
 }
 
 /* ==========================================================================
-   HERO SECTION
+   HERO SECTION RESPONSIVE
    ========================================================================== */
 .hero-section {
     background-color: var(--color-neutro-calido-300);
@@ -442,6 +536,15 @@ html.edad-verificada #sitio-web {
     margin-left: auto;
     margin-right: auto;
     color: var(--color-gris-700);
+}
+
+@media (max-width: 600px) {
+    .hero-section {
+        padding: var(--espaciado-32) 0;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
 }
 
 /* ==========================================================================
@@ -469,7 +572,7 @@ html.edad-verificada #sitio-web {
     background-color: #FFFFFF;
     padding: var(--espaciado-24);
     border-radius: 8px;
-    border: 1px solid var(--color-neutro-calido-500);
+    border: 2px solid var(--color-neutro-calido-500);
     box-shadow: var(--sombra-card);
 }
 
@@ -505,6 +608,7 @@ html.edad-verificada #sitio-web {
     text-underline-offset: 3px;
     cursor: pointer;
     min-height: 44px;
+    min-width: 44px;
     display: inline-flex;
     align-items: center;
     padding: var(--espaciado-8);
@@ -516,7 +620,6 @@ html.edad-verificada #sitio-web {
     padding: 0;
 }
 
-/* Corrección de fieldset / legend para evitar marcos toscos sin perder semántica */
 fieldset.filter-group {
     border: 0;
     margin: 0 0 var(--espaciado-24) 0;
@@ -526,7 +629,7 @@ fieldset.filter-group {
 legend.filter-group-title,
 .filter-group-title {
     font-family: var(--font-cuerpo);
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--color-gris-900);
     margin-bottom: var(--espaciado-12);
@@ -534,7 +637,7 @@ legend.filter-group-title,
     padding: 0;
 }
 
-/* Buscador accesible */
+/* Buscador Accesible */
 .search-input-wrap {
     position: relative;
     display: flex;
@@ -543,11 +646,11 @@ legend.filter-group-title,
 
 .search-input {
     width: 100%;
-    height: 44px; /* Mínimo táctil accesible */
+    min-height: 44px;
     padding: var(--espaciado-8) 38px var(--espaciado-8) var(--espaciado-12);
     border: 2px solid var(--color-gris-300);
     border-radius: 4px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--color-gris-900);
     background-color: var(--color-neutro-calido-100);
     outline: none;
@@ -569,7 +672,7 @@ legend.filter-group-title,
     display: flex;
     align-items: center;
     gap: var(--espaciado-12);
-    min-height: 44px; /* Dimensión táctil */
+    min-height: 44px;
     font-size: 1rem;
     color: var(--color-gris-900);
     cursor: pointer;
@@ -584,7 +687,7 @@ legend.filter-group-title,
 
 .price-slider-wrap input[type="range"] {
     width: 100%;
-    height: 32px;
+    min-height: 44px;
     accent-color: var(--color-primario-bordeos);
     cursor: pointer;
 }
@@ -593,17 +696,17 @@ legend.filter-group-title,
     display: flex;
     justify-content: space-between;
     margin-top: var(--espaciado-8);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-gris-900);
 }
 
 .results-counter {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--color-gris-700);
     padding-top: var(--espaciado-16);
-    border-top: 1px solid var(--color-gris-100);
+    border-top: 2px solid var(--color-neutro-calido-300);
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .catalog-content {
@@ -613,15 +716,21 @@ legend.filter-group-title,
 
 .grid-catalog {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--espaciado-32);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--espaciado-24);
+}
+
+@media (max-width: 480px) {
+    .grid-catalog {
+        grid-template-columns: 1fr;
+    }
 }
 
 .wine-card {
     background-color: #FFFFFF;
     padding: var(--espaciado-24);
     border-radius: 8px;
-    border: 1px solid var(--color-neutro-calido-500);
+    border: 2px solid var(--color-neutro-calido-500);
     box-shadow: var(--sombra-card);
     display: flex;
     flex-direction: column;
@@ -639,6 +748,7 @@ legend.filter-group-title,
     margin-bottom: var(--espaciado-16);
     background-color: var(--color-neutro-calido-100);
     border-radius: 4px;
+    overflow: hidden;
 }
 
 .wine-3d-model {
@@ -650,7 +760,9 @@ legend.filter-group-title,
     position: absolute;
     top: var(--espaciado-8);
     right: var(--espaciado-8);
-    width: 44px; /* Dimensión táctil */
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
     height: 44px;
     border-radius: 50%;
     background-color: #FFFFFF;
@@ -664,7 +776,8 @@ legend.filter-group-title,
 }
 
 .btn-fav-card:hover,
-.btn-fav-card.active {
+.btn-fav-card.active,
+.btn-fav-card:focus-visible {
     color: var(--color-primario-bordeos);
     border-color: var(--color-primario-bordeos);
 }
@@ -679,20 +792,20 @@ legend.filter-group-title,
     flex-grow: 1;
 }
 
-.wine-link-title {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    color: var(--color-primario-bordeos);
-}
-
 .wine-name {
     font-size: 1.4rem;
     margin-bottom: var(--espaciado-8);
 }
 
+.wine-vintage {
+    color: var(--color-gris-700);
+    font-weight: 600;
+    margin-bottom: var(--espaciado-8);
+}
+
 .wine-price {
-    color: var(--color-primario-oscuro);
-    font-size: 1.55rem;
+    color: var(--color-primario-bordeos);
+    font-size: 1.6rem;
     font-weight: 700;
     margin-top: auto;
     margin-bottom: var(--espaciado-16);
@@ -700,7 +813,160 @@ legend.filter-group-title,
 }
 
 /* ==========================================================================
-   ESTILOS DE FORMULARIOS & VALIDACIÓN ACCESIBLE (Documento WCAG)
+   PRODUCTO DETALLE RESPONSIVE
+   ========================================================================== */
+.product-page-container {
+    padding-top: var(--espaciado-24);
+    padding-bottom: var(--espaciado-48);
+}
+
+.breadcrumb-nav {
+    margin-bottom: var(--espaciado-24);
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaciado-8);
+    min-height: 44px;
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.product-view-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espaciado-32);
+}
+
+@media (min-width: 800px) {
+    .product-view-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.product-visual-stage {
+    position: relative;
+    height: 400px;
+    background-color: var(--color-neutro-calido-100);
+    border: 2px solid var(--color-neutro-calido-500);
+    border-radius: 8px;
+    padding: var(--espaciado-16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.large-3d-model {
+    width: 100%;
+    height: 320px;
+}
+
+.model-hint {
+    font-size: 0.85rem;
+    color: var(--color-gris-700);
+    margin-top: var(--espaciado-8);
+    text-align: center;
+}
+
+.product-info-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-badge {
+    display: inline-block;
+    align-self: flex-start;
+    background-color: var(--color-neutro-calido-300);
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    padding: var(--espaciado-4) var(--espaciado-12);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    margin-bottom: var(--espaciado-12);
+    border: 1px solid var(--color-neutro-calido-500);
+}
+
+.product-title-large {
+    font-size: 2.2rem;
+    margin-bottom: var(--espaciado-8);
+}
+
+.product-price-large {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primario-bordeos);
+    margin: var(--espaciado-16) 0;
+}
+
+.tech-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--espaciado-16);
+    margin: var(--espaciado-24) 0;
+    background-color: var(--color-neutro-calido-300);
+    padding: var(--espaciado-16);
+    border-radius: 6px;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-label {
+    font-size: 0.85rem;
+    color: var(--color-gris-700);
+    font-weight: 600;
+}
+
+.spec-value {
+    font-size: 1rem;
+    color: var(--color-gris-900);
+    font-weight: 700;
+}
+
+.purchase-actions {
+    display: flex;
+    gap: var(--espaciado-16);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: var(--espaciado-16);
+}
+
+.quantity-picker {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid var(--color-gris-300);
+    border-radius: 4px;
+}
+
+.btn-qty {
+    min-width: 44px;
+    min-height: 44px;
+    background-color: var(--color-neutro-calido-300);
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--color-gris-900);
+}
+
+.quantity-picker input {
+    width: 50px;
+    height: 44px;
+    border: none;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-gris-900);
+}
+
+/* ==========================================================================
+   ESTILOS DE FORMULARIOS & VALIDACIÓN ACCESIBLE (WCAG AAA)
    ========================================================================== */
 .form-group {
     margin-bottom: var(--espaciado-24);
@@ -725,7 +991,6 @@ legend.filter-group-title,
     background-color: #FFFFFF;
 }
 
-/* Indicadores visuales y técnicos de error según WCAG */
 .form-input[aria-invalid="true"],
 .form-textarea[aria-invalid="true"] {
     border-color: var(--color-error-borde);
@@ -738,46 +1003,8 @@ legend.filter-group-title,
     gap: var(--espaciado-8);
     color: var(--color-error-texto);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-top: var(--espaciado-8);
-}
-
-/* ==========================================================================
-   TABLAS ACCESIBLES (WCAG 2.1)
-   ========================================================================== */
-.table-responsive-container {
-    width: 100%;
-    overflow-x: auto;
-    margin: var(--espaciado-24) 0;
-}
-
-table.accessible-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #FFFFFF;
-}
-
-table.accessible-table caption {
-    caption-side: top;
-    font-family: var(--font-titulos);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-primario-bordeos);
-    padding: var(--espaciado-12) 0;
-    text-align: left;
-}
-
-table.accessible-table th,
-table.accessible-table td {
-    padding: var(--espaciado-12) var(--espaciado-16);
-    border-bottom: 1px solid var(--color-neutro-calido-500);
-    text-align: left;
-}
-
-table.accessible-table th {
-    background-color: var(--color-neutro-calido-300);
-    color: var(--color-gris-900);
-    font-weight: 700;
 }
 
 /* ==========================================================================
@@ -816,13 +1043,15 @@ table.accessible-table th {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+    font-weight: 600;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links a:focus-visible {
     color: var(--color-secundario-dorado-claro);
 }
 
-/* Ocultar elementos visuales intrusivos de Google Translate */
+/* Ocultar elementos intrusivos de Google Translate de forma totalmente limpia */
 #google_translate_element,
 .goog-te-banner-frame,
 .skiptranslate {

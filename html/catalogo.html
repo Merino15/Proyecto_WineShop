@@ -16,14 +16,21 @@
 
     <a href="#catalogo-principal" class="sr-only focus-visible" data-i18n="skip_to_content">Saltar al catálogo de vinos</a>
 
-    <!-- Cabecera -->
+    <!-- Cabecera y Navegación Principal Mobile-First WCAG AAA -->
     <header class="site-header" id="header">
         <div class="container header-container">
             <a href="../index.html" class="logo-link" aria-label="WineShop - Volver a la página de inicio">
-                <img src="../img/transparent-logo.png" alt="Logotipo de WineShop" class="logo">
+                <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium & Enoturismo" class="logo">
             </a>
+
+            <!-- Botón de Menú Hamburguesa para Dispositivos Móviles -->
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav-list" aria-label="Abrir menú de navegación">
+                <svg class="nav-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </button>
             
-            <nav class="main-nav" aria-label="Navegación principal">
+            <nav class="main-nav" id="main-nav-list" aria-label="Navegación principal">
                 <ul>
                     <li><a href="../index.html" data-i18n="nav_inicio">Inicio</a></li>
                     <li><a href="catalogo.html" aria-current="page" data-i18n="nav_catalogo">Catálogo de Vinos</a></li>
@@ -33,18 +40,17 @@
             </nav>
 
             <div class="header-actions">
-                <!-- Selector propio elegante (sin bugs de texto) -->
-<div class="custom-lang-wrap">
-    <select id="custom-lang-select" aria-label="Seleccionar idioma">
-        <option value="es">ES - Español</option>
-        <option value="en">EN - English</option>
-        <option value="fr">FR - Français</option>
-        <option value="de">DE - Deutsch</option>
-    </select>
-</div>
+                <div class="custom-lang-wrap">
+                    <label for="custom-lang-select" class="sr-only">Seleccionar idioma</label>
+                    <select id="custom-lang-select">
+                        <option value="es">ES - Español</option>
+                        <option value="en">EN - English</option>
+                        <option value="fr">FR - Français</option>
+                        <option value="de">DE - Deutsch</option>
+                    </select>
+                </div>
 
-<!-- Contenedor de Google Translate (se mantiene oculto en segundo plano) -->
-<div id="google_translate_element" style="display: none;"></div>
+                <div id="google_translate_element" class="sr-only"></div>
 
                 <a href="favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
@@ -53,14 +59,14 @@
                     <span class="badge-count" id="header-fav-count"></span>
                 </a>
 
-                <a href="#login" class="btn-icon" aria-label="Mi Cuenta">
+                <a href="#login" class="btn-icon" aria-label="Mi Cuenta, Iniciar Sesión">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                     </svg>
                 </a>
 
-                <button type="button" class="btn-icon cart-btn" aria-label="Ver carrito">
+                <button type="button" class="btn-icon cart-btn" aria-label="Ver carrito de compras, 0 productos">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                         <circle cx="8" cy="21" r="1"/>
                         <circle cx="19" cy="21" r="1"/>
@@ -72,7 +78,6 @@
         </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main id="catalogo-principal">
         <section class="hero-section" style="padding: var(--espaciado-40) 0;" aria-labelledby="titulo-catalogo">
             <div class="container hero-content">
@@ -81,32 +86,28 @@
             </div>
         </section>
 
-        <!-- Sección del Catálogo con Filtro Lateral Izquierdo -->
         <section class="catalog-section">
             <div class="container catalog-layout">
                 
-                <!-- Columna Izquierda: Panel de Filtros -->
                 <aside class="catalog-sidebar" aria-label="Filtros del catálogo">
                     <div class="sidebar-header">
                         <h2 class="sidebar-title" data-i18n="filter_title">Filtros</h2>
                         <button type="button" id="btn-reset-filters" class="btn-reset" data-i18n="filter_reset">Limpiar</button>
                     </div>
 
-                    <!-- Buscador por nombre -->
                     <div class="filter-group">
                         <label for="wine-search" class="filter-group-title" style="display: block;" data-i18n="filter_search_title">Buscar vino</label>
                         <div class="search-input-wrap">
                             <input type="search" id="wine-search" class="search-input" placeholder="Ej. Reserva Especial..." autocomplete="off">
-                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
                         </div>
                     </div>
 
-                    <!-- Tipo de Vino -->
-                    <div class="filter-group">
-                        <h3 class="filter-group-title" data-i18n="filter_type_title">Tipo de Vino</h3>
+                    <fieldset class="filter-group">
+                        <legend class="filter-group-title" data-i18n="filter_type_title">Tipo de Vino</legend>
                         <label class="filter-option">
                             <input type="radio" name="wine-type" value="todos" checked>
                             <span data-i18n="filter_all">Todos los vinos</span>
@@ -127,11 +128,10 @@
                             <input type="radio" name="wine-type" value="rosado">
                             <span data-i18n="filter_rose">Rosados</span>
                         </label>
-                    </div>
+                    </fieldset>
 
-                    <!-- Rango de Precio -->
                     <div class="filter-group">
-                        <h3 class="filter-group-title" data-i18n="filter_price_title">Precio Máximo</h3>
+                        <label for="price-range" class="filter-group-title" style="display: block;" data-i18n="filter_price_title">Precio Máximo</label>
                         <div class="price-slider-wrap">
                             <input type="range" id="price-range" min="15" max="50" step="1" value="50">
                             <div class="price-indicator">
@@ -146,103 +146,96 @@
                     </div>
                 </aside>
 
-                <!-- Columna Derecha: Parrilla de Vinos -->
                 <div class="catalog-content">
                     <div class="grid-catalog" id="catalogo-grid">
                         
-                        <!-- Vino 1 -->
                         <article class="wine-card" data-id="vino-1" data-type="tinto" data-price="24.00" aria-labelledby="vino-1-nombre">
                             <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir a favoritos" aria-pressed="false">
+                                <button type="button" class="btn-fav-card" aria-label="Añadir Reserva Especial 2018 a favoritos" aria-pressed="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                                 </button>
-                                <model-viewer src="../botella_vino.glb" alt="Modelo 3D de Reserva Especial 2018" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
+                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Reserva Especial 2018" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
                             </div>
                             <div class="wine-info">
-                                <h2 id="vino-1-nombre" class="wine-name" style="font-size: 1.5rem;">Reserva Especial 2018</h2>
+                                <h2 id="vino-1-nombre" class="wine-name">Reserva Especial 2018</h2>
                                 <p class="body-regular" data-i18n="vino_1_cat_desc">Tempranillo, intenso, elegante y estructurado.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>24,00 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Reserva Especial 2018 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Reserva Especial 2018 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
-                        <!-- Vino 2 -->
                         <article class="wine-card" data-id="vino-2" data-type="tinto" data-price="35.50" aria-labelledby="vino-2-nombre">
                             <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir a favoritos" aria-pressed="false">
+                                <button type="button" class="btn-fav-card" aria-label="Añadir Gran Bordeos Crianza a favoritos" aria-pressed="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                                 </button>
-                                <model-viewer src="../botella_vino.glb" alt="Modelo 3D de Gran Bordeos" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
+                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Gran Bordeos Crianza" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
                             </div>
                             <div class="wine-info">
-                                <h2 id="vino-2-nombre" class="wine-name" style="font-size: 1.5rem;">Gran Bordeos Crianza</h2>
+                                <h2 id="vino-2-nombre" class="wine-name">Gran Bordeos Crianza</h2>
                                 <p class="body-regular" data-i18n="vino_2_cat_desc">Aromas a roble tostado, ciruela y frutos rojos.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>35,50 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Gran Bordeos Crianza al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Gran Bordeos Crianza al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
-                        <!-- Vino 3 -->
                         <article class="wine-card" data-id="vino-3" data-type="blanco" data-price="18.90" aria-labelledby="vino-3-nombre">
                             <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir a favoritos" aria-pressed="false">
+                                <button type="button" class="btn-fav-card" aria-label="Añadir Blanco Fermentado a favoritos" aria-pressed="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                                 </button>
-                                <model-viewer src="../botella_vino.glb" alt="Modelo 3D de Blanco Fermentado" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
+                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Blanco Fermentado en Barrica" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
                             </div>
                             <div class="wine-info">
-                                <h2 id="vino-3-nombre" class="wine-name" style="font-size: 1.5rem;">Blanco Fermentado en Barrica</h2>
+                                <h2 id="vino-3-nombre" class="wine-name">Blanco Fermentado en Barrica</h2>
                                 <p class="body-regular" data-i18n="vino_3_cat_desc">Viura fresca, notas cítricas, florales y miel.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>18,90 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Blanco Fermentado en Barrica al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Blanco Fermentado en Barrica al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
-                        <!-- Vino 4 -->
                         <article class="wine-card" data-id="vino-4" data-type="espumoso" data-price="29.00" aria-labelledby="vino-4-nombre">
                             <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir a favoritos" aria-pressed="false">
+                                <button type="button" class="btn-fav-card" aria-label="Añadir Espumoso Brut Nature a favoritos" aria-pressed="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                                 </button>
-                                <model-viewer src="../botella_vino.glb" alt="Modelo 3D de Espumoso Brut Nature" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
+                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Espumoso Brut Nature" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
                             </div>
                             <div class="wine-info">
-                                <h2 id="vino-4-nombre" class="wine-name" style="font-size: 1.5rem;">Espumoso Brut Nature</h2>
+                                <h2 id="vino-4-nombre" class="wine-name">Espumoso Brut Nature</h2>
                                 <p class="body-regular" data-i18n="vino_4_cat_desc">Burbuja fina persistente, ideal para celebraciones.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>29,00 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Espumoso Brut Nature al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Espumoso Brut Nature al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
-                        <!-- Vino 5 -->
                         <article class="wine-card" data-id="vino-5" data-type="tinto" data-price="42.00" aria-labelledby="vino-5-nombre">
                             <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir a favoritos" aria-pressed="false">
+                                <button type="button" class="btn-fav-card" aria-label="Añadir Selección de Autor a favoritos" aria-pressed="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                                 </button>
-                                <model-viewer src="../botella_vino.glb" alt="Modelo 3D de Selección Autor" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
+                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Selección Autor" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
                             </div>
                             <div class="wine-info">
-                                <h2 id="vino-5-nombre" class="wine-name" style="font-size: 1.5rem;">Selección de Autor 2017</h2>
+                                <h2 id="vino-5-nombre" class="wine-name">Selección de Autor 2017</h2>
                                 <p class="body-regular" data-i18n="vino_5_cat_desc">Edición limitada procedente de viñedos viejos.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>42,00 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Selección de Autor 2017 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Selección de Autor 2017 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
-                        <!-- Vino 6 -->
                         <article class="wine-card" data-id="vino-6" data-type="rosado" data-price="15.50" aria-labelledby="vino-6-nombre">
                             <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir a favoritos" aria-pressed="false">
+                                <button type="button" class="btn-fav-card" aria-label="Añadir Rosado Pálido a favoritos" aria-pressed="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                                 </button>
-                                <model-viewer src="../botella_vino.glb" alt="Modelo 3D de Rosado Pálido" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
+                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Rosado Pálido" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
                             </div>
                             <div class="wine-info">
-                                <h2 id="vino-6-nombre" class="wine-name" style="font-size: 1.5rem;">Rosado Pálido de Lágrima</h2>
+                                <h2 id="vino-6-nombre" class="wine-name">Rosado Pálido de Lágrima</h2>
                                 <p class="body-regular" data-i18n="vino_6_cat_desc">Garnacha suave, sutil, aromática y muy refrescante.</p>
                                 <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>15,50 €</p>
-                                <button class="btn btn-primary btn-full" aria-label="Añadir Rosado Pálido de Lágrima al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
+                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Rosado Pálido de Lágrima al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
                             </div>
                         </article>
 
@@ -257,7 +250,6 @@
         </section>
     </main>
 
-    <!-- Pie de página -->
     <footer class="site-footer" role="contentinfo">
         <div class="container footer-container">
             <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo">
@@ -269,17 +261,7 @@
             </nav>
         </div>
     </footer>
-<!-- Script Oficial de Google Translate -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'es',
-                includedLanguages: 'en,es,fr,de',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script src="../js/main.js"></script>
 </body>
 </html>

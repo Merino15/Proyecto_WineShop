@@ -5,30 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de Edad - WineShop</title>
 
-    <!-- Tipografías oficiales: Playfair Display e Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Estilos generales -->
     <link rel="stylesheet" href="css/estilos_wineshop.css">
 </head>
-<body class="age-gate-body">
+<body>
 
-    <!-- Enlace de salto accesible WCAG -->
     <a href="#age-gate-container" class="sr-only focus-visible">Saltar a la verificación</a>
 
-    <!-- Pantalla de confirmación de edad -->
-    <main id="age-gate-container" class="age-gate-wrapper">
-        <div class="age-gate-card">
-            <img src="img/transparent-logo.svg" alt="Logotipo WineShop" class="age-gate-logo">
+    <main id="age-gate-container" class="modal-overlay">
+        <div class="modal-content">
+            <img src="img/transparent-logo.png" alt="Logotipo WineShop Vinos Premium & Enoturismo" class="modal-logo">
             
-            <h1 class="age-gate-title">¿Eres mayor de edad?</h1>
-            <p class="body-large age-gate-text">
+            <h1 class="product-title-large" style="font-size: 2rem; margin-bottom: var(--espaciado-16);">¿Eres mayor de edad?</h1>
+            <p class="body-regular" style="margin-bottom: var(--espaciado-24);">
                 Debes tener al menos 18 años para acceder a WineShop y descubrir nuestra selección de vinos y bodegas. Fomentamos el consumo responsable.
             </p>
 
-            <div class="age-gate-actions">
+            <div class="modal-buttons">
                 <button type="button" id="btn-confirm-mayor" class="btn btn-primary btn-full">
                     Sí, tengo 18 años o más
                 </button>
@@ -37,7 +33,7 @@
                 </button>
             </div>
             
-            <p class="age-gate-notice">Al acceder confirmas que cumples con la edad legal de consumo de alcohol en tu país de residencia.</p>
+            <p style="font-size: 0.85rem; color: var(--color-gris-700); margin-top: var(--espaciado-16);">Al acceder confirmas que cumples con la edad legal de consumo de alcohol en tu país de residencia.</p>
         </div>
     </main>
 
@@ -46,7 +42,6 @@
             const btnMayor = document.getElementById('btn-confirm-mayor');
             const btnMenor = document.getElementById('btn-confirm-menor');
 
-            // Si ya lo verificó antes en la misma sesión, pasa directo
             if (sessionStorage.getItem('wineshop_mayor_edad') === 'true') {
                 window.location.replace('index.html');
             }
@@ -57,7 +52,7 @@
             });
 
             btnMenor.addEventListener('click', () => {
-                window.location.href = 'https://chromedino.com/';
+                window.location.href = 'html/juego_menores.html';
             });
         });
     </script>

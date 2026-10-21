@@ -1,0 +1,42 @@
+# =========================================================
+# robots.txt optimizado para GEO y SEO - WineShop
+# =========================================================
+
+# Configuración general para buscadores tradicionales (Google, Bing)
+User-agent: *
+Allow: /
+Disallow: /favoritos.html
+Disallow: /juego_menores.html
+
+# --- RASTREADORES DE IA Y LLMs (GEO) ---
+# Permitir a OpenAI (ChatGPT y SearchGPT)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# Permitir a Google AI Overviews y Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Permitir a Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Permitir a Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Permitir a Apple (Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /
+
+# --- PROTECCIÓN DE ARCHIVOS DINÁMICOS ---
+# Es vital NO bloquear la ejecución de scripts o estilos. 
+# Si el bot no puede ejecutar geo.js, no verá tus datos.
+Allow: /js/
+Allow: /css/
+Allow: /db.json
+
+# Mapa del sitio (Sustituir por tu dominio real)
+Sitemap: https://www.wineshop-ejemplo.com/sitemap.xml

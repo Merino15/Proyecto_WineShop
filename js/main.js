@@ -189,13 +189,11 @@ function aplicarTraducciones(idioma) {
         if (dicc[clave]) elem.textContent = dicc[clave];
     });
 
-    // Placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach(elem => {
         const clave = elem.getAttribute("data-i18n-placeholder");
         if (dicc[clave]) elem.setAttribute("placeholder", dicc[clave]);
     });
 
-    // Re-renderizar Vistas dinámicas
     renderizarVinos("destacados-grid", true);
     renderizarVinos("catalogo-grid", false);
     renderizarBodegas();
@@ -208,6 +206,13 @@ function aplicarTraducciones(idioma) {
     actualizarBadgesCarrito();
     actualizarBadgeFavoritos();
     iniciarAnimacionesScroll();
+
+    // ==========================================
+    // NUEVO: INICIALIZAR OPTIMIZACIÓN GEO
+    // ==========================================
+    if (typeof GEOEngine !== "undefined") {
+        GEOEngine.init(appData, currentLang);
+    }
 }
 
 function iniciarControladorIdioma() {

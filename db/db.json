@@ -1,0 +1,155 @@
+{
+  "vinos": [
+    {
+      "id": "vino-1",
+      "nombre": "Reserva Especial 2018",
+      "precio": "24,00 €",
+      "precioNum": 24.00,
+      "modelo": "botella_vino.glb",
+      "tipo": "tinto",
+      "destacado": true,
+      "i18n": {
+        "es": { "desc": "Tempranillo, intenso, elegante y estructurado.", "cat_desc": "Tempranillo, intenso, elegante y estructurado.", "vintage": "D.O.Ca. Rioja · Cosecha 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 meses en barrica" },
+        "en": { "desc": "Tempranillo, intense, elegant and structured.", "cat_desc": "Tempranillo, intense, elegant and structured.", "vintage": "D.O.Ca. Rioja · 2018 Vintage", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 months in oak" },
+        "fr": { "desc": "Tempranillo, intense, élégant et structuré.", "cat_desc": "Tempranillo, intense, élégant et structuré.", "vintage": "D.O.Ca. Rioja · Millésime 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 mois en fûts" },
+        "de": { "desc": "Tempranillo, intensiv, elegant und strukturiert.", "cat_desc": "Tempranillo, intensiv, elegant und strukturiert.", "vintage": "D.O.Ca. Rioja · Jahrgang 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 Monate im Fass" }
+      },
+      "alcohol": "14,5% Vol.",
+      "temp": "16°C - 18°C"
+    },
+    {
+      "id": "vino-2",
+      "nombre": "Gran Bordeos Crianza",
+      "precio": "35,50 €",
+      "precioNum": 35.50,
+      "modelo": "botella_vino.glb",
+      "tipo": "tinto",
+      "destacado": false,
+      "i18n": {
+        "es": { "desc": "Aromas a roble tostado, ciruela y frutos rojos.", "cat_desc": "Aromas a roble tostado, ciruela y frutos rojos.", "vintage": "AOC Bordeaux Superieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 meses en barrica" },
+        "en": { "desc": "Aromas of toasted oak, plum and ripe red fruits.", "cat_desc": "Aromas of toasted oak, plum and ripe red fruits.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 months in barrel" },
+        "fr": { "desc": "Arômes de chêne toasté, prune et fruits rouges.", "cat_desc": "Arômes de chêne toasté, prune et fruits rouges.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 mois en fûts" },
+        "de": { "desc": "Aromen von gerösteter Eiche, Pflaume und roten Waldbeeren.", "cat_desc": "Aromen von gerösteter Eiche, Pflaume und roten Waldbeeren.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 Monate im Fass" }
+      },
+      "alcohol": "14,0% Vol.",
+      "temp": "16°C - 17°C"
+    },
+    {
+      "id": "vino-3",
+      "nombre": "Blanco Fermentado en Barrica",
+      "precio": "18,90 €",
+      "precioNum": 18.90,
+      "modelo": "botella_vino.glb",
+      "tipo": "blanco",
+      "destacado": true,
+      "i18n": {
+        "es": { "desc": "Viura fresca, notas cítricas, florales y miel.", "cat_desc": "Viura fresca, notas cítricas, florales y miel.", "vintage": "D.O.Ca. Rioja · Selección Especial", "grape": "Viura 85%, Malvasía 15%", "aging": "6 meses sobre lías" },
+        "en": { "desc": "Fresh Viura with citrus, delicate florals and honey notes.", "cat_desc": "Fresh Viura with citrus, delicate florals and honey notes.", "vintage": "D.O.Ca. Rioja · Special Selection", "grape": "Viura 85%, Malvasía 15%", "aging": "6 months on lees" },
+        "fr": { "desc": "Viura frais, notes d'agrumes, florales et touche de miel.", "cat_desc": "Viura frais, notes d'agrumes, florales et touche de miel.", "vintage": "D.O.Ca. Rioja · Sélection Spéciale", "grape": "Viura 85%, Malvasía 15%", "aging": "6 mois sur lies fines" },
+        "de": { "desc": "Frischer Viura mit Zitrusnuancen, Blütennoten und Honig.", "cat_desc": "Frischer Viura mit Zitrusnuancen, Blütennoten und Honig.", "vintage": "D.O.Ca. Rioja · Sonderauslese", "grape": "Viura 85%, Malvasía 15%", "aging": "6 Monate auf der Feinhefe" }
+      },
+      "alcohol": "13,0% Vol.",
+      "temp": "10°C - 12°C"
+    },
+    {
+      "id": "vino-4",
+      "nombre": "Espumoso Brut Nature",
+      "precio": "29,00 €",
+      "precioNum": 29.00,
+      "modelo": "botella_vino.glb",
+      "tipo": "espumoso",
+      "destacado": true,
+      "i18n": {
+        "es": { "desc": "Burbuja fina persistente, ideal para celebraciones.", "cat_desc": "Burbuja fina persistente, ideal para celebraciones.", "vintage": "Método Tradicional", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 meses en calado" },
+        "en": { "desc": "Persistent fine bubbles, ideal for celebrations.", "cat_desc": "Persistent fine bubbles, ideal for celebrations.", "vintage": "Traditional Method", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 months in cellar" },
+        "fr": { "desc": "Bulle fine et persistante, parfait pour les célébrations.", "cat_desc": "Bulle fine et persistante, parfait pour les célébrations.", "vintage": "Méthode Traditionnelle", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 mois en cave" },
+        "de": { "desc": "Feine anhaltende Perlage, perfekt für Festtage.", "cat_desc": "Feine anhaltende Perlage, perfekt für Festtage.", "vintage": "Traditionelle Flaschengärung", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 Monate im Keller" }
+      },
+      "alcohol": "12,5% Vol.",
+      "temp": "6°C - 8°C"
+    }
+  ],
+  "bodegas": [
+    {
+      "id": "bodega-1",
+      "nombre": "Bodegas Heredad Mayor",
+      "abreviatura": "Heredad Mayor",
+      "i18n": {
+        "es": { "subtitulo": "Rioja Alta · Fundada en 1892", "desc": "Viñedos centenarios en ladera orientada al mediodía. Elaboración artesanal en tinos de roble francés y crianza en calados subterráneos." },
+        "en": { "subtitulo": "Rioja Alta · Founded in 1892", "desc": "Centenary south-facing hillside vineyards. Handcrafted aging in French oak vats and subterranean cellars." },
+        "fr": { "subtitulo": "Rioja Alta · Fondé en 1892", "desc": "Vignes centenaires exposées plein sud. Élevage artisanal en foudres de chêne français et caves souterraines." },
+        "de": { "subtitulo": "Rioja Alta · Gegründet 1892", "desc": "Jahrhundertealte Weinberge in sonniger Südlage. Handwerkliche Reifung in Eichenbottichen und Felsenkellern." }
+      }
+    }
+  ],
+  "experiencias": [
+    {
+      "id": "exp-1",
+      "precio": "45,00 €",
+      "i18n": {
+        "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada." },
+        "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting." },
+        "fr": { "banner": "Dégustation d'Exception", "titulo": "Dégustation Premium & Caves", "duracion": "Durée : 2h 30m · Petits groupes", "desc": "Parcours dans les caves souterraines du XIXe siècle suivi d'une dégustation." },
+        "de": { "banner": "Besondere Verkostung", "titulo": "Premium-Verkostung & Historische Keller", "duracion": "Dauer: 2h 30m · Kleine Gruppen", "desc": "Führung durch Gewölbekeller aus dem 19. Jahrhundert samt Verkostung." }
+      }
+    }
+  ],
+  "i18n": {
+    "es": {
+      "nav_inicio": "Inicio",
+      "nav_catalogo": "Catálogo de Vinos",
+      "nav_bodegas": "Bodegas",
+      "nav_experiencias": "Experiencias",
+      "btn_carrito": "Añadir al carrito",
+      "precio_label": "Precio: ",
+      "btn_ver_vinos": "Ver sus vinos",
+      "btn_reservar": "Reservar Experiencia",
+      "per_person": "/ persona",
+      "fav_remove_aria": "Quitar de favoritos",
+      "results_text": "vinos encontrados",
+      "no_wines_found": "No se han encontrado vinos que coincidan con estos filtros."
+    },
+    "en": {
+      "nav_inicio": "Home",
+      "nav_catalogo": "Wine Catalog",
+      "nav_bodegas": "Wineries",
+      "nav_experiencias": "Experiences",
+      "btn_carrito": "Add to cart",
+      "precio_label": "Price: ",
+      "btn_ver_vinos": "View wines",
+      "btn_reservar": "Book Experience",
+      "per_person": "/ person",
+      "fav_remove_aria": "Remove from favorites",
+      "results_text": "wines found",
+      "no_wines_found": "No wines match your selected filter criteria."
+    },
+    "fr": {
+      "nav_inicio": "Accueil",
+      "nav_catalogo": "Catalogue",
+      "nav_bodegas": "Domaines",
+      "nav_experiencias": "Expériences",
+      "btn_carrito": "Ajouter au panier",
+      "precio_label": "Prix : ",
+      "btn_ver_vinos": "Voir leurs vins",
+      "btn_reservar": "Réserver l'Expérience",
+      "per_person": "/ personne",
+      "fav_remove_aria": "Retirer des favoris",
+      "results_text": "vins trouvés",
+      "no_wines_found": "Aucun vin ne correspond aux filtres."
+    },
+    "de": {
+      "nav_inicio": "Startseite",
+      "nav_catalogo": "Katalog",
+      "nav_bodegas": "Weingüter",
+      "nav_experiencias": "Erlebnisse",
+      "btn_carrito": "In den Warenkorb",
+      "precio_label": "Preis: ",
+      "btn_ver_vinos": "Deren Weine ansehen",
+      "btn_reservar": "Erlebnis buchen",
+      "per_person": "/ Person",
+      "fav_remove_aria": "Aus Favoriten entfernen",
+      "results_text": "Weine gefunden",
+      "no_wines_found": "Keine Weine entsprechen den Filtern."
+    }
+  }
+}

@@ -86,51 +86,13 @@
         </section>
 
         <section class="catalog-section" aria-labelledby="titulo-galeria-exp">
-            <div class="container">
-                <h2 id="titulo-galeria-exp" class="sr-only" data-i18n="exp_title">Nuestras Experiencias</h2>
-                
-                <div class="grid-catalog">
-                    <article class="wine-card" aria-labelledby="exp-1-nombre">
-                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-300);">
-                            <span style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); font-weight: 700;" data-i18n="exp_1_banner">Cata Singular</span>
-                        </div>
-                        <div class="wine-info">
-                            <h3 id="exp-1-nombre" class="wine-name" data-i18n="exp_1_title">Cata Premium y Calados Históricos</h3>
-                            <p class="wine-vintage" data-i18n="exp_1_duration">Duración: 2h 30m · Grupos reducidos</p>
-                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="exp_1_desc">Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos.</p>
-                            <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>45,00 € <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-gris-700);" data-i18n="per_person">/ persona</span></p>
-                            <button type="button" class="btn btn-primary btn-full" aria-label="Reservar Cata Premium y Calados Históricos" data-i18n="btn_reservar">Reservar Experiencia</button>
-                        </div>
-                    </article>
-
-                    <article class="wine-card" aria-labelledby="exp-2-nombre">
-                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-300);">
-                            <span style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); font-weight: 700;" data-i18n="exp_2_banner">Paseo en Viñedo</span>
-                        </div>
-                        <div class="wine-info">
-                            <h3 id="exp-2-nombre" class="wine-name" data-i18n="exp_2_title">Ruta en 4x4 por Viñas Viejas</h3>
-                            <p class="wine-vintage" data-i18n="exp_2_duration">Duración: 3h 30m · Exterior</p>
-                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="exp_2_desc">Aventura por las parcelas más singulares, explicación del terruño y aperitivo campestre con cata al aire libre.</p>
-                            <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>65,00 € <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-gris-700);" data-i18n="per_person">/ persona</span></p>
-                            <button type="button" class="btn btn-primary btn-full" aria-label="Reservar Ruta en 4x4 por Viñas Viejas" data-i18n="btn_reservar">Reservar Experiencia</button>
-                        </div>
-                    </article>
-
-                    <article class="wine-card" aria-labelledby="exp-3-nombre">
-                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-300);">
-                            <span style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); font-weight: 700;" data-i18n="exp_3_banner">Maridaje de Autor</span>
-                        </div>
-                        <div class="wine-info">
-                            <h3 id="exp-3-nombre" class="wine-name" data-i18n="exp_3_title">Menú Degustación & Maridaje</h3>
-                            <p class="wine-vintage" data-i18n="exp_3_duration">Comida o Cena · Salón Privado</p>
-                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="exp_3_desc">Experiencia gastronómica de 6 pases creada por chefs locales, maridada con las añadas más exclusivas de nuestra bodega.</p>
-                            <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>95,00 € <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-gris-700);" data-i18n="per_person">/ persona</span></p>
-                            <button type="button" class="btn btn-primary btn-full" aria-label="Reservar Menú Degustación y Maridaje" data-i18n="btn_reservar">Reservar Experiencia</button>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+    <div class="container">
+        <h2 id="titulo-galeria-exp" class="sr-only" data-i18n="exp_title">Nuestras Experiencias</h2>
+        
+        <!-- JS inyectará las experiencias desde db.json aquí -->
+        <div class="grid-catalog" id="experiencias-grid"></div>
+    </div>
+</section>
     </main>
 
     <footer class="site-footer" role="contentinfo">

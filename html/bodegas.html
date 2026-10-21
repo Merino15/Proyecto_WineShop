@@ -85,49 +85,14 @@
             </div>
         </section>
 
-        <section class="catalog-section" aria-labelledby="seccion-listado-bodegas">
-            <div class="container">
-                <h2 id="seccion-listado-bodegas" class="sr-only" data-i18n="bodegas_list_title">Nuestras bodegas de origen</h2>
-                
-                <div class="grid-catalog">
-                    <article class="wine-card" aria-labelledby="bodega-1-nombre">
-                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-300);">
-                            <span style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); font-weight: 700;">Heredad Mayor</span>
-                        </div>
-                        <div class="wine-info">
-                            <h3 id="bodega-1-nombre" class="wine-name">Bodegas Heredad Mayor</h3>
-                            <p class="wine-vintage" data-i18n="bodega_1_sub">Rioja Alta · Fundada en 1892</p>
-                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="bodega_1_text">Viñedos centenarios en ladera orientada al mediodía. Elaboración artesanal en tinos de roble francés y crianza en calados subterráneos.</p>
-                            <a href="catalogo.html" class="btn btn-secondary btn-full" aria-label="Ver vinos de Bodegas Heredad Mayor" data-i18n="btn_ver_vinos">Ver sus vinos</a>
-                        </div>
-                    </article>
-
-                    <article class="wine-card" aria-labelledby="bodega-2-nombre">
-                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-300);">
-                            <span style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); font-weight: 700;">Valle del Silencio</span>
-                        </div>
-                        <div class="wine-info">
-                            <h3 id="bodega-2-nombre" class="wine-name">Viñedos del Silencio</h3>
-                            <p class="wine-vintage" data-i18n="bodega_2_sub">Rioja Alavesa · Viticultura Ecológica</p>
-                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="bodega_2_text">Suelos arcillo-calcáreos de altura dedicados al cultivo biodinámico. Vinos singulares, frescos y con gran mineralidad.</p>
-                            <a href="catalogo.html" class="btn btn-secondary btn-full" aria-label="Ver vinos de Viñedos del Silencio" data-i18n="btn_ver_vinos">Ver sus vinos</a>
-                        </div>
-                    </article>
-
-                    <article class="wine-card" aria-labelledby="bodega-3-nombre">
-                        <div class="model-container" style="display: flex; align-items: center; justify-content: center; background-color: var(--color-neutro-calido-300);">
-                            <span style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); font-weight: 700;">Altos del Ebro</span>
-                        </div>
-                        <div class="wine-info">
-                            <h3 id="bodega-3-nombre" class="wine-name">Finca Altos del Ebro</h3>
-                            <p class="wine-vintage" data-i18n="bodega_3_sub">Rioja Oriental · Selección de Autor</p>
-                            <p class="body-regular" style="margin: var(--espaciado-8) 0 var(--espaciado-16);" data-i18n="bodega_3_text">Especialistas en Garnachas viejas y uvas autóctonas en terrazas fluviales. Innovación técnica al servicio del equilibrio aromático.</p>
-                            <a href="catalogo.html" class="btn btn-secondary btn-full" aria-label="Ver vinos de Finca Altos del Ebro" data-i18n="btn_ver_vinos">Ver sus vinos</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+       <section class="catalog-section" aria-labelledby="seccion-listado-bodegas">
+    <div class="container">
+        <h2 id="seccion-listado-bodegas" class="sr-only" data-i18n="bodegas_list_title">Nuestras bodegas de origen</h2>
+        
+        <!-- JS inyectará las bodegas desde db.json aquí -->
+        <div class="grid-catalog" id="bodegas-grid"></div>
+    </div>
+</section>
     </main>
 
     <footer class="site-footer" role="contentinfo">

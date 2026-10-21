@@ -147,105 +147,13 @@
                 </aside>
 
                 <div class="catalog-content">
-                    <div class="grid-catalog" id="catalogo-grid">
-                        
-                        <article class="wine-card" data-id="vino-1" data-type="tinto" data-price="24.00" aria-labelledby="vino-1-nombre">
-                            <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir Reserva Especial 2018 a favoritos" aria-pressed="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                                </button>
-                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Reserva Especial 2018" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
-                            </div>
-                            <div class="wine-info">
-                                <h2 id="vino-1-nombre" class="wine-name">Reserva Especial 2018</h2>
-                                <p class="body-regular" data-i18n="vino_1_cat_desc">Tempranillo, intenso, elegante y estructurado.</p>
-                                <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>24,00 €</p>
-                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Reserva Especial 2018 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
-                            </div>
-                        </article>
+    <!-- Contenedor vacío para los vinos filtrados desde db.json -->
+    <div class="grid-catalog" id="catalogo-grid"></div>
 
-                        <article class="wine-card" data-id="vino-2" data-type="tinto" data-price="35.50" aria-labelledby="vino-2-nombre">
-                            <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir Gran Bordeos Crianza a favoritos" aria-pressed="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                                </button>
-                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Gran Bordeos Crianza" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
-                            </div>
-                            <div class="wine-info">
-                                <h2 id="vino-2-nombre" class="wine-name">Gran Bordeos Crianza</h2>
-                                <p class="body-regular" data-i18n="vino_2_cat_desc">Aromas a roble tostado, ciruela y frutos rojos.</p>
-                                <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>35,50 €</p>
-                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Gran Bordeos Crianza al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
-                            </div>
-                        </article>
-
-                        <article class="wine-card" data-id="vino-3" data-type="blanco" data-price="18.90" aria-labelledby="vino-3-nombre">
-                            <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir Blanco Fermentado a favoritos" aria-pressed="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                                </button>
-                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Blanco Fermentado en Barrica" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
-                            </div>
-                            <div class="wine-info">
-                                <h2 id="vino-3-nombre" class="wine-name">Blanco Fermentado en Barrica</h2>
-                                <p class="body-regular" data-i18n="vino_3_cat_desc">Viura fresca, notas cítricas, florales y miel.</p>
-                                <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>18,90 €</p>
-                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Blanco Fermentado en Barrica al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
-                            </div>
-                        </article>
-
-                        <article class="wine-card" data-id="vino-4" data-type="espumoso" data-price="29.00" aria-labelledby="vino-4-nombre">
-                            <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir Espumoso Brut Nature a favoritos" aria-pressed="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                                </button>
-                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Espumoso Brut Nature" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
-                            </div>
-                            <div class="wine-info">
-                                <h2 id="vino-4-nombre" class="wine-name">Espumoso Brut Nature</h2>
-                                <p class="body-regular" data-i18n="vino_4_cat_desc">Burbuja fina persistente, ideal para celebraciones.</p>
-                                <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>29,00 €</p>
-                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Espumoso Brut Nature al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
-                            </div>
-                        </article>
-
-                        <article class="wine-card" data-id="vino-5" data-type="tinto" data-price="42.00" aria-labelledby="vino-5-nombre">
-                            <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir Selección de Autor a favoritos" aria-pressed="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                                </button>
-                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Selección Autor" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
-                            </div>
-                            <div class="wine-info">
-                                <h2 id="vino-5-nombre" class="wine-name">Selección de Autor 2017</h2>
-                                <p class="body-regular" data-i18n="vino_5_cat_desc">Edición limitada procedente de viñedos viejos.</p>
-                                <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>42,00 €</p>
-                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Selección de Autor 2017 al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
-                            </div>
-                        </article>
-
-                        <article class="wine-card" data-id="vino-6" data-type="rosado" data-price="15.50" aria-labelledby="vino-6-nombre">
-                            <div class="model-container">
-                                <button type="button" class="btn-fav-card" aria-label="Añadir Rosado Pálido a favoritos" aria-pressed="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                                </button>
-                                <model-viewer src="../botella_vino.glb" touch-action="pan-y" alt="Modelo 3D de Rosado Pálido" shadow-intensity="1" camera-controls="false" disable-zoom class="wine-3d-model"></model-viewer>
-                            </div>
-                            <div class="wine-info">
-                                <h2 id="vino-6-nombre" class="wine-name">Rosado Pálido de Lágrima</h2>
-                                <p class="body-regular" data-i18n="vino_6_cat_desc">Garnacha suave, sutil, aromática y muy refrescante.</p>
-                                <p class="wine-price"><span class="sr-only" data-i18n="precio_label">Precio: </span>15,50 €</p>
-                                <button type="button" class="btn btn-primary btn-full" aria-label="Añadir Rosado Pálido de Lágrima al carrito" data-i18n="btn_carrito">Añadir al carrito</button>
-                            </div>
-                        </article>
-
-                    </div>
-
-                    <div id="no-results" style="display: none; text-align: center; padding: var(--espaciado-48) 0;">
-                        <p class="body-large" data-i18n="no_wines_found">No se han encontrado vinos que coincidan con estos filtros.</p>
-                    </div>
-                </div>
-
+    <div id="no-results" style="display: none; text-align: center; padding: var(--espaciado-48) 0;">
+        <p class="body-large" data-i18n="no_wines_found">No se han encontrado vinos que coincidan con estos filtros.</p>
+    </div>
+</div>
             </div>
         </section>
     </main>

@@ -8,14 +8,14 @@
       "modelo": "botella_vino.glb",
       "tipo": "tinto",
       "destacado": true,
+      "alcohol": "14,5% Vol.",
+      "temp": "16°C - 18°C",
       "i18n": {
         "es": { "desc": "Tempranillo, intenso, elegante y estructurado.", "cat_desc": "Tempranillo, intenso, elegante y estructurado.", "vintage": "D.O.Ca. Rioja · Cosecha 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 meses en barrica" },
         "en": { "desc": "Tempranillo, intense, elegant and structured.", "cat_desc": "Tempranillo, intense, elegant and structured.", "vintage": "D.O.Ca. Rioja · 2018 Vintage", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 months in oak" },
         "fr": { "desc": "Tempranillo, intense, élégant et structuré.", "cat_desc": "Tempranillo, intense, élégant et structuré.", "vintage": "D.O.Ca. Rioja · Millésime 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 mois en fûts" },
         "de": { "desc": "Tempranillo, intensiv, elegant und strukturiert.", "cat_desc": "Tempranillo, intensiv, elegant und strukturiert.", "vintage": "D.O.Ca. Rioja · Jahrgang 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 Monate im Fass" }
-      },
-      "alcohol": "14,5% Vol.",
-      "temp": "16°C - 18°C"
+      }
     },
     {
       "id": "vino-2",
@@ -25,14 +25,14 @@
       "modelo": "botella_vino.glb",
       "tipo": "tinto",
       "destacado": false,
+      "alcohol": "14,0% Vol.",
+      "temp": "16°C - 17°C",
       "i18n": {
         "es": { "desc": "Aromas a roble tostado, ciruela y frutos rojos.", "cat_desc": "Aromas a roble tostado, ciruela y frutos rojos.", "vintage": "AOC Bordeaux Superieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 meses en barrica" },
         "en": { "desc": "Aromas of toasted oak, plum and ripe red fruits.", "cat_desc": "Aromas of toasted oak, plum and ripe red fruits.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 months in barrel" },
         "fr": { "desc": "Arômes de chêne toasté, prune et fruits rouges.", "cat_desc": "Arômes de chêne toasté, prune et fruits rouges.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 mois en fûts" },
         "de": { "desc": "Aromen von gerösteter Eiche, Pflaume und roten Waldbeeren.", "cat_desc": "Aromen von gerösteter Eiche, Pflaume und roten Waldbeeren.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 Monate im Fass" }
-      },
-      "alcohol": "14,0% Vol.",
-      "temp": "16°C - 17°C"
+      }
     },
     {
       "id": "vino-3",
@@ -42,14 +42,14 @@
       "modelo": "botella_vino.glb",
       "tipo": "blanco",
       "destacado": true,
+      "alcohol": "13,0% Vol.",
+      "temp": "10°C - 12°C",
       "i18n": {
         "es": { "desc": "Viura fresca, notas cítricas, florales y miel.", "cat_desc": "Viura fresca, notas cítricas, florales y miel.", "vintage": "D.O.Ca. Rioja · Selección Especial", "grape": "Viura 85%, Malvasía 15%", "aging": "6 meses sobre lías" },
         "en": { "desc": "Fresh Viura with citrus, delicate florals and honey notes.", "cat_desc": "Fresh Viura with citrus, delicate florals and honey notes.", "vintage": "D.O.Ca. Rioja · Special Selection", "grape": "Viura 85%, Malvasía 15%", "aging": "6 months on lees" },
         "fr": { "desc": "Viura frais, notes d'agrumes, florales et touche de miel.", "cat_desc": "Viura frais, notes d'agrumes, florales et touche de miel.", "vintage": "D.O.Ca. Rioja · Sélection Spéciale", "grape": "Viura 85%, Malvasía 15%", "aging": "6 mois sur lies fines" },
         "de": { "desc": "Frischer Viura mit Zitrusnuancen, Blütennoten und Honig.", "cat_desc": "Frischer Viura mit Zitrusnuancen, Blütennoten und Honig.", "vintage": "D.O.Ca. Rioja · Sonderauslese", "grape": "Viura 85%, Malvasía 15%", "aging": "6 Monate auf der Feinhefe" }
-      },
-      "alcohol": "13,0% Vol.",
-      "temp": "10°C - 12°C"
+      }
     },
     {
       "id": "vino-4",
@@ -59,14 +59,150 @@
       "modelo": "botella_vino.glb",
       "tipo": "espumoso",
       "destacado": true,
+      "alcohol": "12,5% Vol.",
+      "temp": "6°C - 8°C",
       "i18n": {
         "es": { "desc": "Burbuja fina persistente, ideal para celebraciones.", "cat_desc": "Burbuja fina persistente, ideal para celebraciones.", "vintage": "Método Tradicional", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 meses en calado" },
         "en": { "desc": "Persistent fine bubbles, ideal for celebrations.", "cat_desc": "Persistent fine bubbles, ideal for celebrations.", "vintage": "Traditional Method", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 months in cellar" },
         "fr": { "desc": "Bulle fine et persistante, parfait pour les célébrations.", "cat_desc": "Bulle fine et persistante, parfait pour les célébrations.", "vintage": "Méthode Traditionnelle", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 mois en cave" },
         "de": { "desc": "Feine anhaltende Perlage, perfekt für Festtage.", "cat_desc": "Feine anhaltende Perlage, perfekt für Festtage.", "vintage": "Traditionelle Flaschengärung", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 Monate im Keller" }
-      },
-      "alcohol": "12,5% Vol.",
-      "temp": "6°C - 8°C"
+      }
+    },
+    {
+      "id": "vino-5",
+      "nombre": "Selección de Autor 2017",
+      "precio": "42,00 €",
+      "precioNum": 42.00,
+      "modelo": "botella_vino.glb",
+      "tipo": "tinto",
+      "destacado": false,
+      "alcohol": "15,0% Vol.",
+      "temp": "17°C - 19°C",
+      "i18n": {
+        "es": { "desc": "Edición limitada procedente de viñedos viejos.", "cat_desc": "Edición limitada procedente de viñedos viejos.", "vintage": "Viñedo Singular", "grape": "Garnacha 100%", "aging": "20 meses en foudres" },
+        "en": { "desc": "Limited edition crafted from old vineyards.", "cat_desc": "Limited edition crafted from old vineyards.", "vintage": "Single Vineyard", "grape": "Grenache 100%", "aging": "20 months in foudres" },
+        "fr": { "desc": "Édition limitée issue de très vieilles vignes.", "cat_desc": "Édition limitée issue de très vieilles vignes.", "vintage": "Vignoble d'Exception", "grape": "Grenache 100%", "aging": "20 mois en foudres" },
+        "de": { "desc": "Limitierte Auflage aus historischen alten Reben.", "cat_desc": "Limitierte Auflage aus historischen alten Reben.", "vintage": "Einzellage", "grape": "Garnacha 100%", "aging": "20 Monate in Foudres" }
+      }
+    },
+    {
+      "id": "vino-6",
+      "nombre": "Rosado Pálido de Lágrima",
+      "precio": "15,50 €",
+      "precioNum": 15.50,
+      "modelo": "botella_vino.glb",
+      "tipo": "rosado",
+      "destacado": true,
+      "alcohol": "13,5% Vol.",
+      "temp": "8°C - 10°C",
+      "i18n": {
+        "es": { "desc": "Garnacha suave, sutil, aromática y muy refrescante.", "cat_desc": "Garnacha suave, sutil, aromática y muy refrescante.", "vintage": "Prensado Directo", "grape": "Garnacha 80%, Tempranillo Blanco 20%", "aging": "Joven" },
+        "en": { "desc": "Smooth Grenache, subtle, aromatic and refreshing.", "cat_desc": "Smooth Grenache, subtle, aromatic and refreshing.", "vintage": "Direct Press", "grape": "Grenache 80%, White Tempranillo 20%", "aging": "Young" },
+        "fr": { "desc": "Grenache délicat, subtil, aromatique et très frais.", "cat_desc": "Grenache délicat, subtil, aromatique et très frais.", "vintage": "Pressurage Direct", "grape": "Grenache 80%, Tempranillo Blanc 20%", "aging": "Jeune" },
+        "de": { "desc": "Sanfter Garnacha, subtil, blumig und erfrischend kühl.", "cat_desc": "Sanfter Garnacha, subtil, blumig und erfrischend kühl.", "vintage": "Direktpressung", "grape": "Garnacha 80%, Weißer Tempranillo 20%", "aging": "Jung" }
+      }
+    },
+    {
+      "id": "vino-7",
+      "nombre": "Verdejo sobre Lías",
+      "precio": "12,90 €",
+      "precioNum": 12.90,
+      "modelo": "botella_vino.glb",
+      "tipo": "blanco",
+      "destacado": false,
+      "alcohol": "13,0% Vol.",
+      "temp": "7°C - 9°C",
+      "i18n": {
+        "es": { "desc": "Fresco, herbáceo y con gran volumen en boca.", "cat_desc": "Fresco, herbáceo y con gran volumen en boca.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 meses sobre lías" },
+        "en": { "desc": "Fresh, herbaceous with great volume on the palate.", "cat_desc": "Fresh, herbaceous with great volume on the palate.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 months on lees" },
+        "fr": { "desc": "Frais, herbacé avec un grand volume en bouche.", "cat_desc": "Frais, herbacé avec un grand volume en bouche.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 mois sur lies fines" },
+        "de": { "desc": "Frisch, kräuterig und mit großem Volumen am Gaumen.", "cat_desc": "Frisch, kräuterig und mit großem Volumen am Gaumen.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 Monate auf der Hefe" }
+      }
+    },
+    {
+      "id": "vino-8",
+      "nombre": "Graciano Monovarietal",
+      "precio": "22,00 €",
+      "precioNum": 22.00,
+      "modelo": "botella_vino.glb",
+      "tipo": "tinto",
+      "destacado": false,
+      "alcohol": "14,0% Vol.",
+      "temp": "15°C - 17°C",
+      "i18n": {
+        "es": { "desc": "Alta intensidad de color, especiado y floral.", "cat_desc": "Alta intensidad de color, especiado y floral.", "vintage": "Edición Limitada", "grape": "Graciano 100%", "aging": "12 meses en roble francés" },
+        "en": { "desc": "High color intensity, spicy and floral notes.", "cat_desc": "High color intensity, spicy and floral notes.", "vintage": "Limited Edition", "grape": "Graciano 100%", "aging": "12 months in French oak" },
+        "fr": { "desc": "Haute intensité de couleur, épicé et floral.", "cat_desc": "Haute intensité de couleur, épicé et floral.", "vintage": "Édition Limitée", "grape": "Graciano 100%", "aging": "12 mois en chêne français" },
+        "de": { "desc": "Hohe Farbintensität, würzig und blumig.", "cat_desc": "Hohe Farbintensität, würzig und blumig.", "vintage": "Limitierte Edition", "grape": "Graciano 100%", "aging": "12 Monate in französischer Eiche" }
+      }
+    },
+    {
+      "id": "vino-9",
+      "nombre": "Rosé Espumoso Reserva",
+      "precio": "31,00 €",
+      "precioNum": 31.00,
+      "modelo": "botella_vino.glb",
+      "tipo": "espumoso",
+      "destacado": false,
+      "alcohol": "12,0% Vol.",
+      "temp": "6°C - 8°C",
+      "i18n": {
+        "es": { "desc": "Elegante color salmón, notas de frutos rojos y brioche.", "cat_desc": "Elegante color salmón, notas de frutos rojos y brioche.", "vintage": "Método Tradicional", "grape": "Pinot Noir 100%", "aging": "24 meses en rima" },
+        "en": { "desc": "Elegant salmon color, notes of red berries and brioche.", "cat_desc": "Elegant salmon color, notes of red berries and brioche.", "vintage": "Traditional Method", "grape": "Pinot Noir 100%", "aging": "24 months on lees" },
+        "fr": { "desc": "Couleur saumon élégante, notes de fruits rouges et de brioche.", "cat_desc": "Couleur saumon élégante, notes de fruits rouges et de brioche.", "vintage": "Méthode Traditionnelle", "grape": "Pinot Noir 100%", "aging": "24 mois sur lattes" },
+        "de": { "desc": "Elegante Lachsfarbe, Noten von roten Beeren und Brioche.", "cat_desc": "Elegante Lachsfarbe, Noten von roten Beeren und Brioche.", "vintage": "Traditionelle Flaschengärung", "grape": "Pinot Noir 100%", "aging": "24 Monate auf der Hefe" }
+      }
+    },
+    {
+      "id": "vino-10",
+      "nombre": "Chardonnay Gran Reserva",
+      "precio": "48,50 €",
+      "precioNum": 48.50,
+      "modelo": "botella_vino.glb",
+      "tipo": "blanco",
+      "destacado": true,
+      "alcohol": "13,5% Vol.",
+      "temp": "11°C - 13°C",
+      "i18n": {
+        "es": { "desc": "Blanco complejo, untuoso, con notas de mantequilla.", "cat_desc": "Blanco complejo, untuoso, con notas de mantequilla y vainilla.", "vintage": "Añada Excepcional", "grape": "Chardonnay 100%", "aging": "18 meses en barrica nueva" },
+        "en": { "desc": "Complex, unctuous white wine with buttery notes.", "cat_desc": "Complex, unctuous white wine with buttery notes and vanilla.", "vintage": "Exceptional Vintage", "grape": "Chardonnay 100%", "aging": "18 months in new oak" },
+        "fr": { "desc": "Vin blanc complexe, onctueux, aux notes beurrées.", "cat_desc": "Vin blanc complexe, onctueux, aux notes beurrées et vanillées.", "vintage": "Millésime Exceptionnel", "grape": "Chardonnay 100%", "aging": "18 mois en fûts neufs" },
+        "de": { "desc": "Komplexer, geschmeidiger Weißwein mit Butternoten.", "cat_desc": "Komplexer, geschmeidiger Weißwein mit Butternoten und Vanille.", "vintage": "Außergewöhnlicher Jahrgang", "grape": "Chardonnay 100%", "aging": "18 Monate im neuen Fass" }
+      }
+    },
+    {
+      "id": "vino-11",
+      "nombre": "Garnacha Centenaria",
+      "precio": "38,00 €",
+      "precioNum": 38.00,
+      "modelo": "botella_vino.glb",
+      "tipo": "tinto",
+      "destacado": false,
+      "alcohol": "14,5% Vol.",
+      "temp": "16°C - 18°C",
+      "i18n": {
+        "es": { "desc": "Fruta roja madura, mineral, procedente de viñas de 100 años.", "cat_desc": "Fruta roja madura, mineral, procedente de viñas de 100 años.", "vintage": "Cepas Viejas", "grape": "Garnacha 100%", "aging": "14 meses en roble francés" },
+        "en": { "desc": "Ripe red fruit, mineral, from 100-year-old vines.", "cat_desc": "Ripe red fruit, mineral, from 100-year-old vines.", "vintage": "Old Vines", "grape": "Grenache 100%", "aging": "14 months in French oak" },
+        "fr": { "desc": "Fruits rouges mûrs, minéral, issu de vignes de 100 ans.", "cat_desc": "Fruits rouges mûrs, minéral, issu de vignes de 100 ans.", "vintage": "Vieilles Vignes", "grape": "Grenache 100%", "aging": "14 mois en chêne français" },
+        "de": { "desc": "Reife rote Früchte, mineralisch, von 100 Jahre alten Reben.", "cat_desc": "Reife rote Früchte, mineralisch, von 100 Jahre alten Reben.", "vintage": "Alte Reben", "grape": "Garnacha 100%", "aging": "14 Monate in französischer Eiche" }
+      }
+    },
+    {
+      "id": "vino-12",
+      "nombre": "Tempranillo Joven 2023",
+      "precio": "9,50 €",
+      "precioNum": 9.50,
+      "modelo": "botella_vino.glb",
+      "tipo": "tinto",
+      "destacado": false,
+      "alcohol": "13,5% Vol.",
+      "temp": "14°C - 16°C",
+      "i18n": {
+        "es": { "desc": "Vino joven, frutal, vibrante y muy fácil de beber.", "cat_desc": "Vino joven, frutal, vibrante y muy fácil de beber.", "vintage": "Cosecha del Año", "grape": "Tempranillo 100%", "aging": "Sin barrica (Joven)" },
+        "en": { "desc": "Young, fruity, vibrant wine that is very easy to drink.", "cat_desc": "Young, fruity, vibrant wine that is very easy to drink.", "vintage": "Current Vintage", "grape": "Tempranillo 100%", "aging": "Unoaked (Young)" },
+        "fr": { "desc": "Vin jeune, fruité, vibrant et très facile à boire.", "cat_desc": "Vin jeune, fruité, vibrant et très facile à boire.", "vintage": "Millésime de l'Année", "grape": "Tempranillo 100%", "aging": "Sans fût (Jeune)" },
+        "de": { "desc": "Junger, fruchtiger, lebendiger Wein, sehr süffig.", "cat_desc": "Junger, fruchtiger, lebendiger Wein, sehr süffig.", "vintage": "Aktueller Jahrgang", "grape": "Tempranillo 100%", "aging": "Ohne Holzeinfluss (Jung)" }
+      }
     }
   ],
   "bodegas": [
@@ -80,6 +216,28 @@
         "fr": { "subtitulo": "Rioja Alta · Fondé en 1892", "desc": "Vignes centenaires exposées plein sud. Élevage artisanal en foudres de chêne français et caves souterraines." },
         "de": { "subtitulo": "Rioja Alta · Gegründet 1892", "desc": "Jahrhundertealte Weinberge in sonniger Südlage. Handwerkliche Reifung in Eichenbottichen und Felsenkellern." }
       }
+    },
+    {
+      "id": "bodega-2",
+      "nombre": "Viñedos del Silencio",
+      "abreviatura": "Valle del Silencio",
+      "i18n": {
+        "es": { "subtitulo": "Rioja Alavesa · Viticultura Ecológica", "desc": "Suelos arcillo-calcáreos de altura dedicados al cultivo biodinámico. Vinos singulares, frescos y con gran mineralidad." },
+        "en": { "subtitulo": "Rioja Alavesa · Organic Viticulture", "desc": "High-altitude limestone-clay soils dedicated to biodynamic farming. Singular, mineral-driven fresh wines." },
+        "fr": { "subtitulo": "Rioja Alavesa · Viticulture Biologique", "desc": "Sols argilo-calcaires d'altitude dédiés à la biodynamie. Vins authentiques, frais et d'une belle minéralité." },
+        "de": { "subtitulo": "Rioja Alavesa · Ökologischer Weinbau", "desc": "Höhenlagen mit Ton-Kalk-Böden für biodynamischen Weinbau. Außergewöhnliche, mineralisch-frische Weine." }
+      }
+    },
+    {
+      "id": "bodega-3",
+      "nombre": "Finca Altos del Ebro",
+      "abreviatura": "Altos del Ebro",
+      "i18n": {
+        "es": { "subtitulo": "Rioja Oriental · Selección de Autor", "desc": "Especialistas en Garnachas viejas y uvas autóctonas en terrazas fluviales. Innovación técnica al servicio del equilibrio aromático." },
+        "en": { "subtitulo": "Rioja Oriental · Signature Selection", "desc": "Old-vine Grenache and native varietal masters on fluvial terraces. Technical innovation ensuring aromatic harmony." },
+        "fr": { "subtitulo": "Rioja Oriental · Sélection d'Auteur", "desc": "Spécialistes des vieux Grenaches sur terrasses fluviales. L'innovation technique au service de l'équilibre." },
+        "de": { "subtitulo": "Rioja Oriental · Autorenauslese", "desc": "Experten für alte Garnacha-Reben auf Flussterrassen. Moderne Kellertechnik im Dienste aromatischer Balance." }
+      }
     }
   ],
   "experiencias": [
@@ -87,10 +245,30 @@
       "id": "exp-1",
       "precio": "45,00 €",
       "i18n": {
-        "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada." },
-        "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting." },
-        "fr": { "banner": "Dégustation d'Exception", "titulo": "Dégustation Premium & Caves", "duracion": "Durée : 2h 30m · Petits groupes", "desc": "Parcours dans les caves souterraines du XIXe siècle suivi d'une dégustation." },
-        "de": { "banner": "Besondere Verkostung", "titulo": "Premium-Verkostung & Historische Keller", "duracion": "Dauer: 2h 30m · Kleine Gruppen", "desc": "Führung durch Gewölbekeller aus dem 19. Jahrhundert samt Verkostung." }
+        "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos." },
+        "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting of 4 prestigious wines paired with artisan cheeses and Iberian meats." },
+        "fr": { "banner": "Dégustation d'Exception", "titulo": "Dégustation Premium & Caves", "duracion": "Durée : 2h 30m · Petits groupes", "desc": "Parcours dans les caves souterraines du XIXe siècle suivi d'une dégustation de 4 vins haut de gamme avec fromages et charcuteries ibériques." },
+        "de": { "banner": "Besondere Verkostung", "titulo": "Premium-Verkostung & Historische Keller", "duracion": "Dauer: 2h 30m · Kleine Gruppen", "desc": "Führung durch Gewölbekeller aus dem 19. Jahrhundert samt Verkostung von 4 Spitzenweinen mit Käse und iberischem Schinken." }
+      }
+    },
+    {
+      "id": "exp-2",
+      "precio": "65,00 €",
+      "i18n": {
+        "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 por Viñas Viejas", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas más singulares, explicación del terruño y aperitivo campestre con cata al aire libre." },
+        "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition through Old Vines", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across our most scenic plots, in-depth terroir explanations and a country picnic with open-air tasting." },
+        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 parmi les Vieilles Vignes", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers nos parcelles emblématiques, découverte géologique du terroir et pique-nique champêtre avec dégustation." },
+        "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour durch alte Weinberge", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch unsere spektakulärsten Parzellen mit Terroir-Erklärungen und rustikalem Picknick unter freiem Himmel." }
+      }
+    },
+    {
+      "id": "exp-3",
+      "precio": "95,00 €",
+      "i18n": {
+        "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación & Maridaje", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica de 6 pases creada por chefs locales, maridada con las añadas más exclusivas de nuestra bodega." },
+        "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu & Wine Pairing", "duracion": "Lunch or Dinner · Private Salon", "desc": "6-course gastronomic tasting menu crafted by local master chefs, matched with our winery's rarest reserve vintages." },
+        "fr": { "banner": "Accord d'Auteur", "titulo": "Menu Dégustation & Accord Mets-Vins", "duracion": "Déjeuner ou Dîner · Salon Privé", "desc": "Menu d'exception en 6 temps signé par des chefs réputés, sublimé par les plus grands millésimes de notre réserve." },
+        "de": { "banner": "Gourmet-Pairing", "titulo": "Degustationsmenü & Weinbegleitung", "duracion": "Mittag- oder Abendessen · Privatsalon", "desc": "6-Gänge-Gourmetmenü renommierter Spitzenköche, abgestimmt auf die erlesensten Jahrgänge unserer Schatzkammer." }
       }
     }
   ],

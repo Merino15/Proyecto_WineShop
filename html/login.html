@@ -176,6 +176,13 @@
             background-color: var(--color-neutro-calido-100);
             border-color: var(--color-gris-700);
         }
+
+        .error-text {
+            color: #D32F2F;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -367,12 +374,17 @@
     <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const usuarioActivo = obtenerUsuarioActivo();
+            if (usuarioActivo) {
+                window.location.href = 'mi_cuenta.html';
+                return;
+            }
+
             const tabLogin = document.getElementById('tab-login');
             const tabRegister = document.getElementById('tab-register');
             const formLogin = document.getElementById('form-login');
             const formRegister = document.getElementById('form-register');
 
-            // Pestañas
             tabLogin.addEventListener('click', () => {
                 tabLogin.classList.add('active');
                 tabLogin.setAttribute('aria-selected', 'true');
@@ -391,7 +403,6 @@
                 formLogin.classList.add('oculto');
             });
 
-            // Toggle Password
             document.querySelectorAll('.btn-toggle-pwd').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const targetId = btn.getAttribute('data-target');
@@ -404,12 +415,10 @@
                 });
             });
 
-            // Botón de Google Sign-In
             document.getElementById('btn-social-google').addEventListener('click', () => {
                 autenticarConGoogleSimulado();
             });
 
-            // Login Estándar
             formLogin.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = document.getElementById('login-email').value.trim();
@@ -443,7 +452,6 @@
                 }
             });
 
-            // Registro Estándar
             formRegister.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const name = document.getElementById('reg-name').value.trim();

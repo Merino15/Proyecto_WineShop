@@ -185,19 +185,16 @@ function aplicarTraducciones(idioma) {
     document.documentElement.lang = idioma;
     const dicc = appData.i18n[idioma];
 
-    // Textos estáticos UI
     document.querySelectorAll("[data-i18n]").forEach(elem => {
         const clave = elem.getAttribute("data-i18n");
         if (dicc[clave]) elem.textContent = dicc[clave];
     });
 
-    // Placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach(elem => {
         const clave = elem.getAttribute("data-i18n-placeholder");
         if (dicc[clave]) elem.setAttribute("placeholder", dicc[clave]);
     });
 
-    // Re-renderizar Vistas dinámicas
     renderizarVinos("destacados-grid", true);
     renderizarVinos("catalogo-grid", false);
     renderizarBodegas();
@@ -211,7 +208,6 @@ function aplicarTraducciones(idioma) {
     actualizarBadgeFavoritos();
     iniciarAnimacionesScroll();
 
-    // Motor GEO (IA RAG / JSON-LD)
     if (typeof GEOEngine !== "undefined") {
         GEOEngine.init(appData, currentLang);
     }
@@ -609,7 +605,7 @@ function iniciarAnimacionesScroll() {
 }
 
 // ==========================================================================
-// 9. GESTIÓN DE AUTENTICACIÓN Y USUARIOS (localStorage + db.json)
+// 9. GESTIÓN DE AUTENTICACIÓN, GOOGLE SIGN-IN Y CERRAR SESIÓN
 // ==========================================================================
 function obtenerTodosLosUsuarios() {
     const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
@@ -617,24 +613,26 @@ function obtenerTodosLosUsuarios() {
     return [...usuariosBD, ...usuariosLocal];
 }
 
-function registrarUsuario(nombre, email, password) {
+function registrarUsuario(nombre, email, password, avatar = null) {
     const usuarios = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
-    const existe = obtenerTodosLosUsuarios().some(u => u.email.toLowerCase() === email.toLowerCase());
+    const existe = obtenerTodosLosUsuarios().find(u => u.email.toLowerCase() === email.toLowerCase());
 
     if (existe) {
-        return { success: false, message: "El correo electrónico ya está registrado." };
+        // Si ya existe y se autentica mediante Google, actualizar datos
+        guardarSesionUsuario(existe);
+        return { success: true, user: existe };
     }
 
     const nuevoUsuario = {
         id: "usr-" + Date.now(),
         nombre: nombre,
         email: email,
-        password: password
+        password: password || "google-oauth-login",
+        avatar: avatar || "https://lh3.googleusercontent.com/a/default-user"
     };
 
     usuarios.push(nuevoUsuario);
     localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usuarios));
-    
     guardarSesionUsuario(nuevoUsuario);
     return { success: true, user: nuevoUsuario };
 }
@@ -651,8 +649,28 @@ function autenticarUsuario(email, password) {
     return { success: false, message: "Correo o contraseña incorrectos." };
 }
 
+function autenticarConGoogleSimulado() {
+    const usuarioGoogle = {
+        id: "usr-google-" + Date.now(),
+        nombre: "Víctor Merino (Google)",
+        email: "victor.google@wineshop.es",
+        avatar: "https://lh3.googleusercontent.com/a/default-user"
+    };
+    registrarUsuario(usuarioGoogle.nombre, usuarioGoogle.email, null, usuarioGoogle.avatar);
+    mostrarToast("¡Sesión iniciada con Google!");
+    setTimeout(() => {
+        const isSubdir = window.location.pathname.includes("/html/");
+        window.location.href = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
+    }, 800);
+}
+
 function guardarSesionUsuario(usuario) {
-    const sesion = { id: usuario.id, nombre: usuario.nombre, email: usuario.email };
+    const sesion = { 
+        id: usuario.id, 
+        nombre: usuario.nombre, 
+        email: usuario.email,
+        avatar: usuario.avatar || "https://lh3.googleusercontent.com/a/default-user"
+    };
     localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(sesion));
     actualizarEstadoUsuarioUI();
 }
@@ -665,31 +683,42 @@ function obtenerUsuarioActivo() {
     }
 }
 
+// Cierre de Sesión Completo: Elimina sesión Y vacía el carrito por completo
 function cerrarSesion() {
     localStorage.removeItem(ACTIVE_USER_KEY);
+    
+    // VACIAR EL CARRITO AL CERRAR SESIÓN (REQUISITO EXPLÍCITO)
+    localStorage.removeItem(CART_STORAGE_KEY);
+    actualizarBadgesCarrito();
+    renderizarCarritoUI();
+
     actualizarEstadoUsuarioUI();
-    mostrarToast("Sesión cerrada correctamente");
+    mostrarToast("Sesión cerrada y carrito vaciado");
+
+    const isSubdir = window.location.pathname.includes("/html/");
+    const rutaInicio = isSubdir ? "../index.html" : "index.html";
+    setTimeout(() => {
+        window.location.href = rutaInicio;
+    }, 800);
 }
 
 function actualizarEstadoUsuarioUI() {
     const usuario = obtenerUsuarioActivo();
-    document.querySelectorAll("a[href*='login.html']").forEach(link => {
+    const isSubdir = window.location.pathname.includes("/html/");
+    const rutaCuenta = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
+    const rutaLogin = isSubdir ? "login.html" : "html/login.html";
+
+    document.querySelectorAll("a[href*='login.html'], a[href*='mi_cuenta.html']").forEach(link => {
         if (usuario) {
-            link.setAttribute("aria-label", `Cuenta de ${usuario.nombre} (Cerrar sesión)`);
-            link.setAttribute("title", `Conectado como ${usuario.nombre} - Clic para cerrar sesión`);
+            link.href = rutaCuenta;
+            link.setAttribute("aria-label", `Mi Cuenta (${usuario.nombre})`);
+            link.setAttribute("title", `Conectado como ${usuario.nombre}`);
             link.classList.add("user-logged-in");
-            link.onclick = (e) => {
-                if (!window.location.pathname.includes("login.html")) {
-                    e.preventDefault();
-                    if (confirm(`¿Deseas cerrar la sesión de ${usuario.nombre}?`)) {
-                        cerrarSesion();
-                    }
-                }
-            };
         } else {
+            link.href = rutaLogin;
+            link.setAttribute("aria-label", "Iniciar Sesión");
             link.removeAttribute("title");
             link.classList.remove("user-logged-in");
-            link.onclick = null;
         }
     });
 }

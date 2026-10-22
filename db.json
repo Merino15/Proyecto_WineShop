@@ -2,9 +2,92 @@
   "usuarios": [
     {
       "id": "usr-1",
-      "nombre": "Usuario Demo",
+      "nombre": "Víctor Merino",
       "email": "demo@wineshop.es",
-      "password": "password123"
+      "password": "password123",
+      "telefono": "+34 600 123 456",
+      "avatar": "https://lh3.googleusercontent.com/a/default-user"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "PED-2026-8841",
+      "usuarioId": "usr-1",
+      "fecha": "18/10/2026",
+      "estado": "Entregado",
+      "metodoPago": "Tarjeta de crédito (•••• 4242)",
+      "direccionEnvio": "Calle Gran Vía, 12, 3ºA, 26001 Logroño (La Rioja)",
+      "items": [
+        {
+          "id": "vino-1",
+          "nombre": "Reserva Especial 2018",
+          "cantidad": 2,
+          "precioNum": 24.00,
+          "precio": "24,00 €"
+        },
+        {
+          "id": "vino-3",
+          "nombre": "Blanco Fermentado en Barrica",
+          "cantidad": 1,
+          "precioNum": 18.90,
+          "precio": "18,90 €"
+        }
+      ],
+      "totalNum": 66.90,
+      "total": "66,90 €"
+    },
+    {
+      "id": "PED-2026-9012",
+      "usuarioId": "usr-1",
+      "fecha": "02/10/2026",
+      "estado": "En camino",
+      "metodoPago": "Google Pay",
+      "direccionEnvio": "Calle Gran Vía, 12, 3ºA, 26001 Logroño (La Rioja)",
+      "items": [
+        {
+          "id": "vino-10",
+          "nombre": "Chardonnay Gran Reserva",
+          "cantidad": 1,
+          "precioNum": 48.50,
+          "precio": "48,50 €"
+        }
+      ],
+      "totalNum": 48.50,
+      "total": "48,50 €"
+    }
+  ],
+  "direcciones": [
+    {
+      "id": "dir-1",
+      "usuarioId": "usr-1",
+      "alias": "Domicilio Principal",
+      "calle": "Calle Gran Vía, 12, 3ºA",
+      "ciudad": "Logroño",
+      "codigoPostal": "26001",
+      "provincia": "La Rioja",
+      "telefono": "+34 600 123 456"
+    },
+    {
+      "id": "dir-2",
+      "usuarioId": "usr-1",
+      "alias": "Oficina / Trabajo",
+      "calle": "Polígono El Lobero, Nave 4",
+      "ciudad": "Logroño",
+      "codigoPostal": "26006",
+      "provincia": "La Rioja",
+      "telefono": "+34 600 123 456"
+    }
+  ],
+  "reservas": [
+    {
+      "id": "RES-2026-041",
+      "usuarioId": "usr-1",
+      "experienciaId": "exp-1",
+      "titulo": "Cata Premium y Calados Históricos",
+      "fechaEvento": "15/11/2026 - 11:30 h",
+      "personas": 2,
+      "estado": "Confirmada",
+      "total": "90,00 €"
     }
   ],
   "vinos": [
@@ -265,7 +348,7 @@
       "i18n": {
         "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 por Viñas Viejas", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas más singulares, explicación del terruño y aperitivo campestre con cata al aire libre." },
         "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition through Old Vines", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across our most scenic plots, in-depth terroir explanations and a country picnic with open-air tasting." },
-        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 parmi les Vieilles Vignes", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers nos parcelles emblématiques, découverte géologique du terroir et pique-nique champêtre avec dégustation." },
+        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 parmi les Vieilles Vignes", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à través nos parcelles emblématiques, découverte géologique du terroir et pique-nique champêtre avec dégustation." },
         "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour durch alte Weinberge", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch unsere spektakulärsten Parzellen mit Terroir-Erklärungen und rustikalem Picknick unter freiem Himmel." }
       }
     },

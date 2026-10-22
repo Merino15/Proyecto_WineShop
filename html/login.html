@@ -372,7 +372,7 @@
             const formLogin = document.getElementById('form-login');
             const formRegister = document.getElementById('form-register');
 
-            // Control de Pestañas
+            // Pestañas
             tabLogin.addEventListener('click', () => {
                 tabLogin.classList.add('active');
                 tabLogin.setAttribute('aria-selected', 'true');
@@ -391,7 +391,7 @@
                 formLogin.classList.add('oculto');
             });
 
-            // Toggle Contraseña
+            // Toggle Password
             document.querySelectorAll('.btn-toggle-pwd').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const targetId = btn.getAttribute('data-target');
@@ -404,7 +404,12 @@
                 });
             });
 
-            // Submit Iniciar Sesión
+            // Botón de Google Sign-In
+            document.getElementById('btn-social-google').addEventListener('click', () => {
+                autenticarConGoogleSimulado();
+            });
+
+            // Login Estándar
             formLogin.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = document.getElementById('login-email').value.trim();
@@ -430,7 +435,7 @@
                         if (typeof mostrarToast === 'function') {
                             mostrarToast(`Bienvenido de nuevo, ${res.user.nombre}`);
                         }
-                        setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+                        setTimeout(() => { window.location.href = 'mi_cuenta.html'; }, 800);
                     } else {
                         errPwd.textContent = res.message;
                         errPwd.style.display = 'inline-flex';
@@ -438,7 +443,7 @@
                 }
             });
 
-            // Submit Registro
+            // Registro Estándar
             formRegister.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const name = document.getElementById('reg-name').value.trim();
@@ -470,7 +475,7 @@
                         if (typeof mostrarToast === 'function') {
                             mostrarToast(`Cuenta creada. ¡Bienvenido, ${name}!`);
                         }
-                        setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+                        setTimeout(() => { window.location.href = 'mi_cuenta.html'; }, 800);
                     } else {
                         const errMail = document.getElementById('reg-email-error');
                         errMail.textContent = res.message;

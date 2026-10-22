@@ -6,6 +6,26 @@
       "email": "demo@wineshop.es",
       "password": "password123",
       "telefono": "+34 600 123 456",
+      "fechaNacimiento": "1998-05-14",
+      "dni": "12345678Z",
+      "direccion": "Calle Gran Vía, 12, 3ºA",
+      "ciudad": "Logroño",
+      "codigoPostal": "26001",
+      "provincia": "La Rioja",
+      "avatar": "https://lh3.googleusercontent.com/a/default-user"
+    },
+    {
+      "id": "usr-2",
+      "nombre": "Elena Gómez",
+      "email": "elena.gomez@ejemplo.com",
+      "password": "password456",
+      "telefono": "+34 611 987 654",
+      "fechaNacimiento": "1992-11-20",
+      "dni": "87654321X",
+      "direccion": "Avenida de Madrid, 45, 1ºB",
+      "ciudad": "Logroño",
+      "codigoPostal": "26004",
+      "provincia": "La Rioja",
       "avatar": "https://lh3.googleusercontent.com/a/default-user"
     }
   ],
@@ -54,6 +74,25 @@
       ],
       "totalNum": 48.50,
       "total": "48,50 €"
+    },
+    {
+      "id": "PED-2026-7730",
+      "usuarioId": "usr-1",
+      "fecha": "15/08/2026",
+      "estado": "Entregado",
+      "metodoPago": "Bizum",
+      "direccionEnvio": "Polígono El Lobero, Nave 4, 26006 Logroño (La Rioja)",
+      "items": [
+        {
+          "id": "vino-4",
+          "nombre": "Espumoso Brut Nature",
+          "cantidad": 3,
+          "precioNum": 29.00,
+          "precio": "29,00 €"
+        }
+      ],
+      "totalNum": 87.00,
+      "total": "87,00 €"
     }
   ],
   "direcciones": [
@@ -88,6 +127,16 @@
       "personas": 2,
       "estado": "Confirmada",
       "total": "90,00 €"
+    },
+    {
+      "id": "RES-2026-089",
+      "usuarioId": "usr-1",
+      "experienciaId": "exp-3",
+      "titulo": "Menú Degustación & Maridaje",
+      "fechaEvento": "05/12/2026 - 14:00 h",
+      "personas": 2,
+      "estado": "Confirmada",
+      "total": "190,00 €"
     }
   ],
   "vinos": [
@@ -329,6 +378,28 @@
         "fr": { "subtitulo": "Rioja Oriental · Sélection d'Auteur", "desc": "Spécialistes des vieux Grenaches sur terrasses fluviales. L'innovation technique au service de l'équilibre." },
         "de": { "subtitulo": "Rioja Oriental · Autorenauslese", "desc": "Experten für alte Garnacha-Reben auf Flussterrassen. Moderne Kellertechnik im Dienste aromatischer Balance." }
       }
+    },
+    {
+      "id": "bodega-4",
+      "nombre": "Castillo de San Asensio",
+      "abreviatura": "San Asensio",
+      "i18n": {
+        "es": { "subtitulo": "Cuna del Clarete · Fundada en 1954", "desc": "Referente en el cultivo de garnachas y tempranillos blancos. Tradición vinícola en el corazón de la Rioja Alta." },
+        "en": { "subtitulo": "Home of Claret · Founded in 1954", "desc": "Benchmark for Garnacha and White Tempranillo grapes. Winemaking tradition in the heart of Rioja Alta." },
+        "fr": { "subtitulo": "Berceau du Claret · Fondé en 1954", "desc": "Référence dans la culture de Grenache et Tempranillo blanc. Tradition viticole al cœur de la Rioja Alta." },
+        "de": { "subtitulo": "Wiege des Claret · Gegründet 1954", "desc": "Maßstab für Garnacha und weißen Tempranillo. Weinbautradition im Herzen der Rioja Alta." }
+      }
+    },
+    {
+      "id": "bodega-5",
+      "nombre": "Dominio de la Grajera",
+      "abreviatura": "La Grajera",
+      "i18n": {
+        "es": { "subtitulo": "Entorno Natural · Viticultura Sostenible", "desc": "Rodeada de bosques y lagos naturales, combina tecnología enológica vanguardista con arquitectura bioclimática." },
+        "en": { "subtitulo": "Natural Reserve · Sustainable Farming", "desc": "Surrounded by natural forests and lakes, combining cutting-edge technology with bioclimatic design." },
+        "fr": { "subtitulo": "Réserve Naturelle · Viticulture Durable", "desc": "Entouré de forêts et lac naturel, alliage de technologie de pointe et d'architecture bioclimatique." },
+        "de": { "subtitulo": "Naturreservat · Nachhaltiger Anbau", "desc": "Umgeben von Wäldern und Seen, verbindet avantgardistische Kellereitechnik mit Bioklima-Architektur." }
+      }
     }
   ],
   "experiencias": [
@@ -348,7 +419,7 @@
       "i18n": {
         "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 por Viñas Viejas", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas más singulares, explicación del terruño y aperitivo campestre con cata al aire libre." },
         "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition through Old Vines", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across our most scenic plots, in-depth terroir explanations and a country picnic with open-air tasting." },
-        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 parmi les Vieilles Vignes", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à través nos parcelles emblématiques, découverte géologique du terroir et pique-nique champêtre avec dégustation." },
+        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 parmi les Vieilles Vignes", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers nos parcelles emblématiques, découverte géologique du terroir et pique-nique champêtre avec dégustation." },
         "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour durch alte Weinberge", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch unsere spektakulärsten Parzellen mit Terroir-Erklärungen und rustikalem Picknick unter freiem Himmel." }
       }
     },
@@ -360,6 +431,16 @@
         "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu & Wine Pairing", "duracion": "Lunch or Dinner · Private Salon", "desc": "6-course gastronomic tasting menu crafted by local master chefs, matched with our winery's rarest reserve vintages." },
         "fr": { "banner": "Accord d'Auteur", "titulo": "Menu Dégustation & Accord Mets-Vins", "duracion": "Déjeuner ou Dîner · Salon Privé", "desc": "Menu d'exception en 6 temps signé par des chefs réputés, sublimé par les plus grands millésimes de notre réserve." },
         "de": { "banner": "Gourmet-Pairing", "titulo": "Degustationsmenü & Weinbegleitung", "duracion": "Mittag- oder Abendessen · Privatsalon", "desc": "6-Gänge-Gourmetmenü renommierter Spitzenköche, abgestimmt auf die erlesensten Jahrgänge unserer Schatzkammer." }
+      }
+    },
+    {
+      "id": "exp-4",
+      "precio": "120,00 €",
+      "i18n": {
+        "es": { "banner": "Curso Enología", "titulo": "Taller de Coupage e Iniciación al Enólogo", "duracion": "Duración: 4h 00m · Incluye botella propia", "desc": "Aprende el arte de ensamblar varietales, crea tu propia mezcla personalizada y embotéllala con tu propia etiqueta." },
+        "en": { "banner": "Winemaking Masterclass", "titulo": "Blending Workshop & Winemaker Experience", "duracion": "Duration: 4h 00m · Custom bottle included", "desc": "Master the art of varietal blending, craft your unique custom blend and bottle it with your personalized label." },
+        "fr": { "banner": "Atelier Enologie", "titulo": "Atelier Assemblage et Initiatoin à l'Enologie", "duracion": "Durée : 4h 00m · Bouteille sur mesure incluse", "desc": "Découvrez l'art de l'assemblage des cépages, créez votre cuvée sur-mesure y repartes avec votre bouteille personnalisée." },
+        "de": { "banner": "Winzer-Workshop", "titulo": "Cuvée-Blending & Masterclass", "duracion": "Dauer: 4h 00m · Eigenes Etikett inkl.", "desc": "Lernen Sie das Mischen verschiedener Rebsorten, kreieren Sie Ihre eigene Cuvée und füllen Sie Ihre persönliche Flasche ab." }
       }
     }
   ],
@@ -376,7 +457,12 @@
       "per_person": "/ persona",
       "fav_remove_aria": "Quitar de favoritos",
       "results_text": "vinos encontrados",
-      "no_wines_found": "No se han encontrado vinos que coincidan con estos filtros."
+      "no_wines_found": "No se han encontrado vinos que coincidan con estos filtros.",
+      "footer_copy": "© 2026 WineShop. Todos los derechos reservados.",
+      "footer_privacy": "Política de Privacidad",
+      "footer_terms": "Términos y Condiciones",
+      "footer_a11y": "Declaración de Accesibilidad",
+      "skip_to_content": "Saltar al contenido principal"
     },
     "en": {
       "nav_inicio": "Home",
@@ -390,7 +476,12 @@
       "per_person": "/ person",
       "fav_remove_aria": "Remove from favorites",
       "results_text": "wines found",
-      "no_wines_found": "No wines match your selected filter criteria."
+      "no_wines_found": "No wines match your selected filter criteria.",
+      "footer_copy": "© 2026 WineShop. All rights reserved.",
+      "footer_privacy": "Privacy Policy",
+      "footer_terms": "Terms & Conditions",
+      "footer_a11y": "Accessibility Statement",
+      "skip_to_content": "Skip to main content"
     },
     "fr": {
       "nav_inicio": "Accueil",
@@ -404,7 +495,12 @@
       "per_person": "/ personne",
       "fav_remove_aria": "Retirer des favoris",
       "results_text": "vins trouvés",
-      "no_wines_found": "Aucun vin ne correspond aux filtres."
+      "no_wines_found": "Aucun vin ne correspond aux filtres.",
+      "footer_copy": "© 2026 WineShop. Tous droits réservés.",
+      "footer_privacy": "Politique de Confidentialité",
+      "footer_terms": "Conditions Générales",
+      "footer_a11y": "Déclaration d'Accessibilité",
+      "skip_to_content": "Passer au contenu principal"
     },
     "de": {
       "nav_inicio": "Startseite",
@@ -418,7 +514,12 @@
       "per_person": "/ Person",
       "fav_remove_aria": "Aus Favoriten entfernen",
       "results_text": "Weine gefunden",
-      "no_wines_found": "Keine Weine entsprechen den Filtern."
+      "no_wines_found": "Keine Weine entsprechen den Filtern.",
+      "footer_copy": "© 2026 WineShop. Alle Rechte vorbehalten.",
+      "footer_privacy": "Datenschutz",
+      "footer_terms": "AGB",
+      "footer_a11y": "Barrierefreiheit",
+      "skip_to_content": "Zum Hauptinhalt springen"
     }
   }
 }

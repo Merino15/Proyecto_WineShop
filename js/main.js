@@ -605,20 +605,26 @@ function iniciarAnimacionesScroll() {
 }
 
 // ==========================================================================
-// 9. GESTIÓN DE AUTENTICACIÓN, GOOGLE SIGN-IN Y CERRAR SESIÓN
+// 9. GESTIÓN DE AUTENTICACIÓN Y EDICIÓN DE PERFIL (localStorage + db.json)
 // ==========================================================================
 function obtenerTodosLosUsuarios() {
     const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
     const usuariosBD = appData && appData.usuarios ? appData.usuarios : [];
-    return [...usuariosBD, ...usuariosLocal];
+    
+    // Fusionar manteniendo la versión más reciente en localStorage
+    const mapaUsuarios = new Map();
+    usuariosBD.forEach(u => mapaUsuarios.set(u.id, u));
+    usuariosLocal.forEach(u => mapaUsuarios.set(u.id, { ...mapaUsuarios.get(u.id), ...u }));
+
+    return Array.from(mapaUsuarios.values());
 }
 
 function registrarUsuario(nombre, email, password, avatar = null) {
-    const usuarios = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
-    const existe = obtenerTodosLosUsuarios().find(u => u.email.toLowerCase() === email.toLowerCase());
+    const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+    const todos = obtenerTodosLosUsuarios();
+    const existe = todos.find(u => u.email.toLowerCase() === email.toLowerCase());
 
     if (existe) {
-        // Si ya existe y se autentica mediante Google, actualizar datos
         guardarSesionUsuario(existe);
         return { success: true, user: existe };
     }
@@ -628,11 +634,18 @@ function registrarUsuario(nombre, email, password, avatar = null) {
         nombre: nombre,
         email: email,
         password: password || "google-oauth-login",
+        telefono: "",
+        fechaNacimiento: "",
+        dni: "",
+        direccion: "",
+        ciudad: "",
+        codigoPostal: "",
+        provincia: "",
         avatar: avatar || "https://lh3.googleusercontent.com/a/default-user"
     };
 
-    usuarios.push(nuevoUsuario);
-    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usuarios));
+    usuariosLocal.push(nuevoUsuario);
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usuariosLocal));
     guardarSesionUsuario(nuevoUsuario);
     return { success: true, user: nuevoUsuario };
 }
@@ -649,26 +662,18 @@ function autenticarUsuario(email, password) {
     return { success: false, message: "Correo o contraseña incorrectos." };
 }
 
-function autenticarConGoogleSimulado() {
-    const usuarioGoogle = {
-        id: "usr-google-" + Date.now(),
-        nombre: "Víctor Merino (Google)",
-        email: "victor.google@wineshop.es",
-        avatar: "https://lh3.googleusercontent.com/a/default-user"
-    };
-    registrarUsuario(usuarioGoogle.nombre, usuarioGoogle.email, null, usuarioGoogle.avatar);
-    mostrarToast("¡Sesión iniciada con Google!");
-    setTimeout(() => {
-        const isSubdir = window.location.pathname.includes("/html/");
-        window.location.href = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
-    }, 800);
-}
-
 function guardarSesionUsuario(usuario) {
     const sesion = { 
         id: usuario.id, 
         nombre: usuario.nombre, 
         email: usuario.email,
+        telefono: usuario.telefono || "",
+        fechaNacimiento: usuario.fechaNacimiento || "",
+        dni: usuario.dni || "",
+        direccion: usuario.direccion || "",
+        ciudad: usuario.ciudad || "",
+        codigoPostal: usuario.codigoPostal || "",
+        provincia: usuario.provincia || "",
         avatar: usuario.avatar || "https://lh3.googleusercontent.com/a/default-user"
     };
     localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(sesion));
@@ -683,11 +688,33 @@ function obtenerUsuarioActivo() {
     }
 }
 
-// Cierre de Sesión Completo: Elimina sesión Y vacía el carrito por completo
+// Nueva función para guardar cambios editados desde la página "Mi Cuenta"
+function actualizarPerfilUsuario(datosNuevos) {
+    const sesion = obtenerUsuarioActivo();
+    if (!sesion) return { success: false, message: "No hay sesión activa." };
+
+    const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+    let usuarioGuardado = usuariosLocal.find(u => u.id === sesion.id || u.email.toLowerCase() === sesion.email.toLowerCase());
+
+    const usuarioActualizado = {
+        ...(usuarioGuardado || sesion),
+        ...datosNuevos
+    };
+
+    if (usuarioGuardado) {
+        Object.assign(usuarioGuardado, datosNuevos);
+    } else {
+        usuariosLocal.push(usuarioActualizado);
+    }
+
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usuariosLocal));
+    guardarSesionUsuario(usuarioActualizado);
+
+    return { success: true, user: usuarioActualizado };
+}
+
 function cerrarSesion() {
     localStorage.removeItem(ACTIVE_USER_KEY);
-    
-    // VACIAR EL CARRITO AL CERRAR SESIÓN (REQUISITO EXPLÍCITO)
     localStorage.removeItem(CART_STORAGE_KEY);
     actualizarBadgesCarrito();
     renderizarCarritoUI();
@@ -701,28 +728,6 @@ function cerrarSesion() {
         window.location.href = rutaInicio;
     }, 800);
 }
-
-function actualizarEstadoUsuarioUI() {
-    const usuario = obtenerUsuarioActivo();
-    const isSubdir = window.location.pathname.includes("/html/");
-    const rutaCuenta = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
-    const rutaLogin = isSubdir ? "login.html" : "html/login.html";
-
-    document.querySelectorAll("a[href*='login.html'], a[href*='mi_cuenta.html']").forEach(link => {
-        if (usuario) {
-            link.href = rutaCuenta;
-            link.setAttribute("aria-label", `Mi Cuenta (${usuario.nombre})`);
-            link.setAttribute("title", `Conectado como ${usuario.nombre}`);
-            link.classList.add("user-logged-in");
-        } else {
-            link.href = rutaLogin;
-            link.setAttribute("aria-label", "Iniciar Sesión");
-            link.removeAttribute("title");
-            link.classList.remove("user-logged-in");
-        }
-    });
-}
-
 // ==========================================================================
 // 10. INICIALIZACIÓN GLOBAL
 // ==========================================================================

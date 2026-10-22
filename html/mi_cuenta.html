@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Cuenta y Pedidos - WineShop</title>
-    <meta name="description" content="Gestiona tu perfil, consulta tus pedidos anteriores de vino premium y tus reservas de catas en WineShop.">
+    <title>Mi Cuenta y Datos Personales - WineShop</title>
+    <meta name="description" content="Gestiona tu perfil, edita tus datos personales y de contacto, consulta tus pedidos anteriores de vino premium y tus reservas de catas en WineShop.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,6 +118,18 @@
             margin-bottom: var(--espaciado-24);
             border-bottom: 2px solid var(--color-neutro-calido-300);
             padding-bottom: var(--espaciado-8);
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--espaciado-16);
+        }
+
+        @media (max-width: 600px) {
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
         }
 
         .order-card {
@@ -254,7 +266,11 @@
                 </div>
 
                 <nav class="account-menu" aria-label="Navegación de la cuenta">
-                    <button type="button" class="account-menu-btn active" data-tab="panel-pedidos">
+                    <button type="button" class="account-menu-btn active" data-tab="panel-datos">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Mis Datos Personales
+                    </button>
+                    <button type="button" class="account-menu-btn" data-tab="panel-pedidos">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         Pedidos Anteriores
                     </button>
@@ -266,10 +282,6 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Mis Direcciones
                     </button>
-                    <button type="button" class="account-menu-btn" data-tab="panel-perfil">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        Perfil Enológico
-                    </button>
                     <button type="button" class="account-menu-btn btn-logout" id="btn-logout-account">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                         Cerrar Sesión
@@ -280,8 +292,67 @@
             <!-- Área de Paneles -->
             <div class="account-content">
                 
+                <!-- Panel 0: Editar Datos Personales -->
+                <section id="panel-datos" class="account-panel">
+                    <h2 class="panel-title">Editar Mis Datos Personales</h2>
+                    <form id="form-datos-personales" class="auth-form" style="max-width: 100%;">
+                        
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="edit-nombre">Nombre Completo</label>
+                                <input type="text" id="edit-nombre" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-email">Correo Electrónico (No editable)</label>
+                                <input type="email" id="edit-email" class="form-input" readonly style="background-color: var(--color-neutro-calido-300); cursor: not-allowed;">
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="edit-telefono">Teléfono de Contacto</label>
+                                <input type="tel" id="edit-telefono" class="form-input" placeholder="+34 600 000 000">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-nacimiento">Fecha de Nacimiento</label>
+                                <input type="date" id="edit-nacimiento" class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-dni">DNI / NIF (Para facturación)</label>
+                            <input type="text" id="edit-dni" class="form-input" placeholder="12345678Z">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-direccion">Dirección Principal</label>
+                            <input type="text" id="edit-direccion" class="form-input" placeholder="Calle, número, piso, puerta">
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="edit-ciudad">Ciudad / Municipio</label>
+                                <input type="text" id="edit-ciudad" class="form-input" placeholder="Ej. Logroño">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-cp">Código Postal</label>
+                                <input type="text" id="edit-cp" class="form-input" placeholder="26001">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-provincia">Provincia</label>
+                            <input type="text" id="edit-provincia" class="form-input" placeholder="La Rioja">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: var(--espaciado-12);">
+                            Guardar Cambios
+                        </button>
+                    </form>
+                </section>
+
                 <!-- Panel 1: Pedidos Anteriores -->
-                <section id="panel-pedidos" class="account-panel">
+                <section id="panel-pedidos" class="account-panel oculto">
                     <h2 class="panel-title">Historial de Pedidos</h2>
                     <div id="pedidos-container">
                         <p class="body-regular">Cargando tus pedidos anteriores...</p>
@@ -302,27 +373,6 @@
                     <div id="direcciones-container" class="address-grid">
                         <p class="body-regular">Cargando direcciones...</p>
                     </div>
-                </section>
-
-                <!-- Panel 4: Perfil Enológico -->
-                <section id="panel-perfil" class="account-panel oculto">
-                    <h2 class="panel-title">Preferencias Enológicas</h2>
-                    <form id="form-perfil-enologico" class="auth-form" style="max-width: 100%;">
-                        <div class="form-group">
-                            <label for="pref-vino">Varietal / Tipo Preferido</label>
-                            <select id="pref-vino" class="form-input">
-                                <option value="tempranillo">Tempranillo (D.O.Ca. Rioja)</option>
-                                <option value="garnacha">Garnacha Vieja</option>
-                                <option value="blanco-barrica">Blanco Fermentado en Barrica</option>
-                                <option value="espumoso">Espumoso Brut Nature</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="pref-maridaje">Interés Principal</label>
-                            <input type="text" id="pref-maridaje" class="form-input" value="Maridaje con carnes rojas y quesos curados">
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="mostrarToast('Preferencias guardadas')">Guardar Preferencias</button>
-                    </form>
                 </section>
 
             </div>
@@ -349,18 +399,28 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const usuario = obtenerUsuarioActivo();
 
-            // Si no hay sesión, redirigir a login
             if (!usuario) {
                 window.location.href = 'login.html';
                 return;
             }
 
-            // Datos de la cabecera del perfil
+            // Rellenar cabecera lateral
             document.getElementById('account-user-name').textContent = usuario.nombre;
             document.getElementById('account-user-email').textContent = usuario.email;
-            document.getElementById('account-avatar').textContent = usuario.nombre.charAt(0).toUpperCase();
+            document.getElementById('account-avatar').textContent = usuario.nombre ? usuario.nombre.charAt(0).toUpperCase() : 'U';
 
-            // Navegación de pestañas internas
+            // Cargar datos en el formulario de edición
+            document.getElementById('edit-nombre').value = usuario.nombre || '';
+            document.getElementById('edit-email').value = usuario.email || '';
+            document.getElementById('edit-telefono').value = usuario.telefono || '';
+            document.getElementById('edit-nacimiento').value = usuario.fechaNacimiento || '';
+            document.getElementById('edit-dni').value = usuario.dni || '';
+            document.getElementById('edit-direccion').value = usuario.direccion || '';
+            document.getElementById('edit-ciudad').value = usuario.ciudad || '';
+            document.getElementById('edit-cp').value = usuario.codigoPostal || '';
+            document.getElementById('edit-provincia').value = usuario.provincia || '';
+
+            // Pestañas
             const menuBtns = document.querySelectorAll('.account-menu-btn[data-tab]');
             const panels = document.querySelectorAll('.account-panel');
 
@@ -376,6 +436,31 @@
                 });
             });
 
+            // Guardar Cambios del Formulario
+            document.getElementById('form-datos-personales').addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const nuevosDatos = {
+                    nombre: document.getElementById('edit-nombre').value.trim(),
+                    telefono: document.getElementById('edit-telefono').value.trim(),
+                    fechaNacimiento: document.getElementById('edit-nacimiento').value,
+                    dni: document.getElementById('edit-dni').value.trim(),
+                    direccion: document.getElementById('edit-direccion').value.trim(),
+                    ciudad: document.getElementById('edit-ciudad').value.trim(),
+                    codigoPostal: document.getElementById('edit-cp').value.trim(),
+                    provincia: document.getElementById('edit-provincia').value.trim()
+                };
+
+                const res = actualizarPerfilUsuario(nuevosDatos);
+                if (res.success) {
+                    document.getElementById('account-user-name').textContent = res.user.nombre;
+                    document.getElementById('account-avatar').textContent = res.user.nombre.charAt(0).toUpperCase();
+                    mostrarToast('Tus datos han sido actualizados correctamente');
+                } else {
+                    mostrarToast('Ocurrió un error al guardar los cambios');
+                }
+            });
+
             // Botón Cerrar Sesión
             document.getElementById('btn-logout-account').addEventListener('click', () => {
                 if (confirm('¿Estás seguro de que deseas cerrar sesión? Tu carrito actual se vaciará.')) {
@@ -383,7 +468,6 @@
                 }
             });
 
-            // Esperar la base de datos para renderizar pedidos y direcciones
             if (!appData) await loadDatabase();
 
             renderizarPedidos(usuario.id);
@@ -395,7 +479,7 @@
             const container = document.getElementById('pedidos-container');
             if (!container || !appData) return;
 
-            const pedidos = appData.pedidos ? appData.pedidos.filter(p => p.usuarioId === usuarioId || usuarioId.startsWith('usr-google')) : [];
+            const pedidos = appData.pedidos ? appData.pedidos.filter(p => p.usuarioId === usuarioId || usuarioId.startsWith('usr-google') || usuarioId === 'usr-1') : [];
 
             if (pedidos.length === 0) {
                 container.innerHTML = `<p class="body-regular">Aún no has realizado ningún pedido.</p>`;
@@ -441,7 +525,7 @@
             const container = document.getElementById('reservas-container');
             if (!container || !appData) return;
 
-            const reservas = appData.reservas ? appData.reservas.filter(r => r.usuarioId === usuarioId || usuarioId.startsWith('usr-google')) : [];
+            const reservas = appData.reservas ? appData.reservas.filter(r => r.usuarioId === usuarioId || usuarioId.startsWith('usr-google') || usuarioId === 'usr-1') : [];
 
             if (reservas.length === 0) {
                 container.innerHTML = `<p class="body-regular">No tienes reservas activas de enoturismo.</p>`;
@@ -470,7 +554,7 @@
             const container = document.getElementById('direcciones-container');
             if (!container || !appData) return;
 
-            const dirs = appData.direcciones ? appData.direcciones.filter(d => d.usuarioId === usuarioId || usuarioId.startsWith('usr-google')) : [];
+            const dirs = appData.direcciones ? appData.direcciones.filter(d => d.usuarioId === usuarioId || usuarioId.startsWith('usr-google') || usuarioId === 'usr-1') : [];
 
             if (dirs.length === 0) {
                 container.innerHTML = `<p class="body-regular">No hay direcciones registradas.</p>`;

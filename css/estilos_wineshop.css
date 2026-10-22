@@ -1017,6 +1017,12 @@ legend.filter-group-title,
     text-align: center;
 }
 
+/* Forzar color blanco para párrafos y clases de texto dentro del footer */
+.site-footer p,
+.site-footer .body-regular {
+    color: #FFFFFF;
+}
+
 .footer-container {
     display: flex;
     flex-direction: column;

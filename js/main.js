@@ -617,13 +617,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Verificación de edad
     const modalEdad = document.getElementById("modal-edad");
     if (modalEdad) {
+        // Si ya está verificado como mayor de edad, ocultamos el modal
         if (sessionStorage.getItem("wineshop_mayor_edad") === "true") {
             modalEdad.classList.add("oculto");
-            document.getElementById("sitio-web").classList.remove("contenido-bloqueado");
+            document.getElementById("sitio-web")?.classList.remove("contenido-bloqueado");
         }
+
+        // Evento Botón Mayor de Edad
         document.getElementById("btn-mayor-edad")?.addEventListener("click", () => {
             sessionStorage.setItem("wineshop_mayor_edad", "true");
-            window.location.reload();
+            document.documentElement.classList.add("edad-verificada");
+            modalEdad.classList.add("oculto");
+            document.getElementById("sitio-web")?.classList.remove("contenido-bloqueado");
+            document.body.style.overflow = "";
+        });
+
+        // Evento Botón Menor de Edad (Redirección al juego)
+        document.getElementById("btn-menor-edad")?.addEventListener("click", () => {
+            const isSubdir = window.location.pathname.includes("/html/");
+            const rutaJuego = isSubdir ? "juego_menores.html" : "html/juego_menores.html";
+            window.location.href = rutaJuego;
         });
     }
 

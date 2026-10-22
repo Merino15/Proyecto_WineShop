@@ -372,13 +372,12 @@
             const formLogin = document.getElementById('form-login');
             const formRegister = document.getElementById('form-register');
 
-            // Cambio de pestañas
+            // Control de Pestañas
             tabLogin.addEventListener('click', () => {
                 tabLogin.classList.add('active');
                 tabLogin.setAttribute('aria-selected', 'true');
                 tabRegister.classList.remove('active');
                 tabRegister.setAttribute('aria-selected', 'false');
-
                 formLogin.classList.remove('oculto');
                 formRegister.classList.add('oculto');
             });
@@ -388,12 +387,11 @@
                 tabRegister.setAttribute('aria-selected', 'true');
                 tabLogin.classList.remove('active');
                 tabLogin.setAttribute('aria-selected', 'false');
-
                 formRegister.classList.remove('oculto');
                 formLogin.classList.add('oculto');
             });
 
-            // Mostrar/Ocultar contraseña
+            // Toggle Contraseña
             document.querySelectorAll('.btn-toggle-pwd').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const targetId = btn.getAttribute('data-target');
@@ -406,121 +404,79 @@
                 });
             });
 
-            // Validación Iniciar Sesión
+            // Submit Iniciar Sesión
             formLogin.addEventListener('submit', (e) => {
                 e.preventDefault();
-                let valid = true;
-                const email = document.getElementById('login-email');
-                const pwd = document.getElementById('login-password');
+                const email = document.getElementById('login-email').value.trim();
+                const pwd = document.getElementById('login-password').value;
                 const errEmail = document.getElementById('login-email-error');
                 const errPwd = document.getElementById('login-password-error');
 
-                if (!email.value || !email.value.includes('@')) {
-                    email.setAttribute('aria-invalid', 'true');
-                    errEmail.style.display = 'inline-flex';
-                    valid = false;
-                } else {
-                    email.removeAttribute('aria-invalid');
-                    errEmail.style.display = 'none';
-                }
-
-                if (!pwd.value) {
-                    pwd.setAttribute('aria-invalid', 'true');
-                    errPwd.style.display = 'inline-flex';
-                    valid = false;
-                } else {
-                    pwd.removeAttribute('aria-invalid');
-                    errPwd.style.display = 'none';
-                }
-
-                if (valid) {
-                    if (typeof mostrarToast === 'function') {
-                        mostrarToast('¡Sesión iniciada correctamente!');
-                    }
-                    setTimeout(() => {
-                        window.location.href = '../index.html';
-                    }, 1200);
-                }
-            });
-
-            // Validación Registro
-            formRegister.addEventListener('submit', (e) => {
-                e.preventDefault();
                 let valid = true;
 
-                const name = document.getElementById('reg-name');
-                const email = document.getElementById('reg-email');
-                const pwd = document.getElementById('reg-password');
-                const age = document.getElementById('reg-age');
-                const terms = document.getElementById('reg-terms');
-
-                if (!name.value.trim()) {
-                    name.setAttribute('aria-invalid', 'true');
-                    document.getElementById('reg-name-error').style.display = 'inline-flex';
+                if (!email || !email.includes('@')) {
+                    errEmail.style.display = 'inline-flex';
                     valid = false;
-                } else {
-                    name.removeAttribute('aria-invalid');
-                    document.getElementById('reg-name-error').style.display = 'none';
-                }
+                } else { errEmail.style.display = 'none'; }
 
-                if (!email.value || !email.value.includes('@')) {
-                    email.setAttribute('aria-invalid', 'true');
-                    document.getElementById('reg-email-error').style.display = 'inline-flex';
+                if (!pwd) {
+                    errPwd.style.display = 'inline-flex';
                     valid = false;
-                } else {
-                    email.removeAttribute('aria-invalid');
-                    document.getElementById('reg-email-error').style.display = 'none';
-                }
-
-                if (!pwd.value || pwd.value.length < 8) {
-                    pwd.setAttribute('aria-invalid', 'true');
-                    document.getElementById('reg-password-error').style.display = 'inline-flex';
-                    valid = false;
-                } else {
-                    pwd.removeAttribute('aria-invalid');
-                    document.getElementById('reg-password-error').style.display = 'none';
-                }
-
-                if (!age.checked) {
-                    document.getElementById('reg-age-error').style.display = 'inline-flex';
-                    valid = false;
-                } else {
-                    document.getElementById('reg-age-error').style.display = 'none';
-                }
-
-                if (!terms.checked) {
-                    document.getElementById('reg-terms-error').style.display = 'inline-flex';
-                    valid = false;
-                } else {
-                    document.getElementById('reg-terms-error').style.display = 'none';
-                }
+                } else { errPwd.style.display = 'none'; }
 
                 if (valid) {
-                    if (typeof mostrarToast === 'function') {
-                        mostrarToast('¡Cuenta creada con éxito!');
+                    const res = autenticarUsuario(email, pwd);
+                    if (res.success) {
+                        if (typeof mostrarToast === 'function') {
+                            mostrarToast(`Bienvenido de nuevo, ${res.user.nombre}`);
+                        }
+                        setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+                    } else {
+                        errPwd.textContent = res.message;
+                        errPwd.style.display = 'inline-flex';
                     }
-                    setTimeout(() => {
-                        window.location.href = '../index.html';
-                    }, 1200);
                 }
             });
 
-            // Olvidó contraseña simulado
-            document.getElementById('link-forgot').addEventListener('click', (e) => {
+            // Submit Registro
+            formRegister.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (typeof mostrarToast === 'function') {
-                    mostrarToast('Se ha enviado un correo para restablecer tu contraseña');
-                }
-            });
+                const name = document.getElementById('reg-name').value.trim();
+                const email = document.getElementById('reg-email').value.trim();
+                const pwd = document.getElementById('reg-password').value;
+                const age = document.getElementById('reg-age').checked;
+                const terms = document.getElementById('reg-terms').checked;
 
-            // Google login simulado
-            document.getElementById('btn-social-google').addEventListener('click', () => {
-                if (typeof mostrarToast === 'function') {
-                    mostrarToast('Conectando con Google...');
+                let valid = true;
+
+                if (!name) { document.getElementById('reg-name-error').style.display = 'inline-flex'; valid = false; } 
+                else { document.getElementById('reg-name-error').style.display = 'none'; }
+
+                if (!email || !email.includes('@')) { document.getElementById('reg-email-error').style.display = 'inline-flex'; valid = false; } 
+                else { document.getElementById('reg-email-error').style.display = 'none'; }
+
+                if (!pwd || pwd.length < 8) { document.getElementById('reg-password-error').style.display = 'inline-flex'; valid = false; } 
+                else { document.getElementById('reg-password-error').style.display = 'none'; }
+
+                if (!age) { document.getElementById('reg-age-error').style.display = 'inline-flex'; valid = false; } 
+                else { document.getElementById('reg-age-error').style.display = 'none'; }
+
+                if (!terms) { document.getElementById('reg-terms-error').style.display = 'inline-flex'; valid = false; } 
+                else { document.getElementById('reg-terms-error').style.display = 'none'; }
+
+                if (valid) {
+                    const res = registrarUsuario(name, email, pwd);
+                    if (res.success) {
+                        if (typeof mostrarToast === 'function') {
+                            mostrarToast(`Cuenta creada. ¡Bienvenido, ${name}!`);
+                        }
+                        setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+                    } else {
+                        const errMail = document.getElementById('reg-email-error');
+                        errMail.textContent = res.message;
+                        errMail.style.display = 'inline-flex';
+                    }
                 }
-                setTimeout(() => {
-                    window.location.href = '../index.html';
-                }, 1000);
             });
         });
     </script>

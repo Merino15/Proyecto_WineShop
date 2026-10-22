@@ -1,6 +1,8 @@
 let appData = null;
 let currentLang = "es";
 const CART_STORAGE_KEY = "wineshop_carrito_items";
+const USERS_STORAGE_KEY = "wineshop_usuarios";
+const ACTIVE_USER_KEY = "wineshop_usuario_activo";
 
 // ==========================================================================
 // 1. CARGA DE BASE DE DATOS (JSON)
@@ -189,11 +191,13 @@ function aplicarTraducciones(idioma) {
         if (dicc[clave]) elem.textContent = dicc[clave];
     });
 
+    // Placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach(elem => {
         const clave = elem.getAttribute("data-i18n-placeholder");
         if (dicc[clave]) elem.setAttribute("placeholder", dicc[clave]);
     });
 
+    // Re-renderizar Vistas dinámicas
     renderizarVinos("destacados-grid", true);
     renderizarVinos("catalogo-grid", false);
     renderizarBodegas();
@@ -207,9 +211,7 @@ function aplicarTraducciones(idioma) {
     actualizarBadgeFavoritos();
     iniciarAnimacionesScroll();
 
-    // ==========================================
-    // NUEVO: INICIALIZAR OPTIMIZACIÓN GEO
-    // ==========================================
+    // Motor GEO (IA RAG / JSON-LD)
     if (typeof GEOEngine !== "undefined") {
         GEOEngine.init(appData, currentLang);
     }
@@ -357,7 +359,6 @@ function cargarDetalleProducto() {
 // 6. FILTROS CATÁLOGO
 // ==========================================================================
 function inicializarFiltrosCatalogo() {
-    // Verificación de seguridad: Evita errores si no estamos en el catálogo
     if (!document.getElementById("catalogo-grid")) return;
 
     const searchInput = document.getElementById("wine-search");
@@ -525,7 +526,6 @@ function iniciarCarrito() {
                 guardarCarrito(items);
                 mostrarToast(`Añadido al carrito`, "cart");
                 
-                // Abre el carrito visualmente después de añadir (opcional)
                 renderizarCarritoUI();
                 document.getElementById("cart-overlay").classList.add("is-open");
                 document.getElementById("cart-slide-panel").classList.add("is-open");
@@ -609,7 +609,93 @@ function iniciarAnimacionesScroll() {
 }
 
 // ==========================================================================
-// 9. INICIALIZACIÓN GLOBAL
+// 9. GESTIÓN DE AUTENTICACIÓN Y USUARIOS (localStorage + db.json)
+// ==========================================================================
+function obtenerTodosLosUsuarios() {
+    const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+    const usuariosBD = appData && appData.usuarios ? appData.usuarios : [];
+    return [...usuariosBD, ...usuariosLocal];
+}
+
+function registrarUsuario(nombre, email, password) {
+    const usuarios = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+    const existe = obtenerTodosLosUsuarios().some(u => u.email.toLowerCase() === email.toLowerCase());
+
+    if (existe) {
+        return { success: false, message: "El correo electrónico ya está registrado." };
+    }
+
+    const nuevoUsuario = {
+        id: "usr-" + Date.now(),
+        nombre: nombre,
+        email: email,
+        password: password
+    };
+
+    usuarios.push(nuevoUsuario);
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usuarios));
+    
+    guardarSesionUsuario(nuevoUsuario);
+    return { success: true, user: nuevoUsuario };
+}
+
+function autenticarUsuario(email, password) {
+    const todos = obtenerTodosLosUsuarios();
+    const usuario = todos.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+    if (usuario) {
+        guardarSesionUsuario(usuario);
+        return { success: true, user: usuario };
+    }
+
+    return { success: false, message: "Correo o contraseña incorrectos." };
+}
+
+function guardarSesionUsuario(usuario) {
+    const sesion = { id: usuario.id, nombre: usuario.nombre, email: usuario.email };
+    localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(sesion));
+    actualizarEstadoUsuarioUI();
+}
+
+function obtenerUsuarioActivo() {
+    try {
+        return JSON.parse(localStorage.getItem(ACTIVE_USER_KEY));
+    } catch (e) {
+        return null;
+    }
+}
+
+function cerrarSesion() {
+    localStorage.removeItem(ACTIVE_USER_KEY);
+    actualizarEstadoUsuarioUI();
+    mostrarToast("Sesión cerrada correctamente");
+}
+
+function actualizarEstadoUsuarioUI() {
+    const usuario = obtenerUsuarioActivo();
+    document.querySelectorAll("a[href*='login.html']").forEach(link => {
+        if (usuario) {
+            link.setAttribute("aria-label", `Cuenta de ${usuario.nombre} (Cerrar sesión)`);
+            link.setAttribute("title", `Conectado como ${usuario.nombre} - Clic para cerrar sesión`);
+            link.classList.add("user-logged-in");
+            link.onclick = (e) => {
+                if (!window.location.pathname.includes("login.html")) {
+                    e.preventDefault();
+                    if (confirm(`¿Deseas cerrar la sesión de ${usuario.nombre}?`)) {
+                        cerrarSesion();
+                    }
+                }
+            };
+        } else {
+            link.removeAttribute("title");
+            link.classList.remove("user-logged-in");
+            link.onclick = null;
+        }
+    });
+}
+
+// ==========================================================================
+// 10. INICIALIZACIÓN GLOBAL
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", async () => {
     iniciarMenuMobile();
@@ -617,13 +703,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Verificación de edad
     const modalEdad = document.getElementById("modal-edad");
     if (modalEdad) {
-        // Si ya está verificado como mayor de edad, ocultamos el modal
         if (sessionStorage.getItem("wineshop_mayor_edad") === "true") {
             modalEdad.classList.add("oculto");
             document.getElementById("sitio-web")?.classList.remove("contenido-bloqueado");
         }
 
-        // Evento Botón Mayor de Edad
         document.getElementById("btn-mayor-edad")?.addEventListener("click", () => {
             sessionStorage.setItem("wineshop_mayor_edad", "true");
             document.documentElement.classList.add("edad-verificada");
@@ -632,7 +716,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.body.style.overflow = "";
         });
 
-        // Evento Botón Menor de Edad (Redirección al juego)
         document.getElementById("btn-menor-edad")?.addEventListener("click", () => {
             const isSubdir = window.location.pathname.includes("/html/");
             const rutaJuego = isSubdir ? "juego_menores.html" : "html/juego_menores.html";
@@ -645,5 +728,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if(appData) {
         iniciarControladorIdioma();
         iniciarCarrito();
+        actualizarEstadoUsuarioUI();
     }
 });

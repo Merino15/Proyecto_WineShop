@@ -687,28 +687,33 @@ function obtenerUsuarioActivo() {
         return null;
     }
 }
-
-// Nueva función para guardar cambios editados desde la página "Mi Cuenta"
+// Actualización del perfil con persistencia total
 function actualizarPerfilUsuario(datosNuevos) {
     const sesion = obtenerUsuarioActivo();
     if (!sesion) return { success: false, message: "No hay sesión activa." };
 
-    const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
-    let usuarioGuardado = usuariosLocal.find(u => u.id === sesion.id || u.email.toLowerCase() === sesion.email.toLowerCase());
-
+    // 1. Unificar datos de la sesión con los nuevos datos introducidos
     const usuarioActualizado = {
-        ...(usuarioGuardado || sesion),
+        ...sesion,
         ...datosNuevos
     };
 
-    if (usuarioGuardado) {
-        Object.assign(usuarioGuardado, datosNuevos);
+    // 2. Guardar en la sesión activa
+    localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(usuarioActualizado));
+
+    // 3. Actualizar la lista global de usuarios registrados en localStorage
+    const usuariosLocal = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+    const index = usuariosLocal.findIndex(u => u.id === sesion.id || u.email.toLowerCase() === sesion.email.toLowerCase());
+
+    if (index !== -1) {
+        usuariosLocal[index] = { ...usuariosLocal[index], ...datosNuevos };
     } else {
         usuariosLocal.push(usuarioActualizado);
     }
-
     localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usuariosLocal));
-    guardarSesionUsuario(usuarioActualizado);
+
+    // 4. Refrescar interfaz
+    actualizarEstadoUsuarioUI();
 
     return { success: true, user: usuarioActualizado };
 }

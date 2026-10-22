@@ -293,63 +293,74 @@
             <div class="account-content">
                 
                 <!-- Panel 0: Editar Datos Personales -->
-                <section id="panel-datos" class="account-panel">
-                    <h2 class="panel-title">Editar Mis Datos Personales</h2>
-                    <form id="form-datos-personales" class="auth-form" style="max-width: 100%;">
-                        
-                        <div class="form-grid-2">
-                            <div class="form-group">
-                                <label for="edit-nombre">Nombre Completo</label>
-                                <input type="text" id="edit-nombre" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-email">Correo Electrónico (No editable)</label>
-                                <input type="email" id="edit-email" class="form-input" readonly style="background-color: var(--color-neutro-calido-300); cursor: not-allowed;">
-                            </div>
-                        </div>
+                <!-- Panel: Editar Datos Personales -->
+<section id="panel-datos" class="account-panel">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--espaciado-24); border-bottom: 2px solid var(--color-neutro-calido-300); padding-bottom: var(--espaciado-8);">
+        <h2 class="panel-title" style="border: none; margin: 0; padding: 0;">Mis Datos Personales</h2>
+        <button type="button" id="btn-toggle-edit" class="btn btn-secondary" style="min-height: 38px; padding: 4px 16px;">
+            Habilitar Edición
+        </button>
+    </div>
 
-                        <div class="form-grid-2">
-                            <div class="form-group">
-                                <label for="edit-telefono">Teléfono de Contacto</label>
-                                <input type="tel" id="edit-telefono" class="form-input" placeholder="+34 600 000 000">
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-nacimiento">Fecha de Nacimiento</label>
-                                <input type="date" id="edit-nacimiento" class="form-input">
-                            </div>
-                        </div>
+    <form id="form-datos-personales" class="auth-form" style="max-width: 100%;">
+        <fieldset id="fieldset-datos" disabled style="border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--espaciado-20);">
+            
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label for="edit-nombre">Nombre Completo</label>
+                    <input type="text" id="edit-nombre" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Correo Electrónico</label>
+                    <input type="email" id="edit-email" class="form-input" required>
+                </div>
+            </div>
 
-                        <div class="form-group">
-                            <label for="edit-dni">DNI / NIF (Para facturación)</label>
-                            <input type="text" id="edit-dni" class="form-input" placeholder="12345678Z">
-                        </div>
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label for="edit-telefono">Teléfono de Contacto</label>
+                    <input type="tel" id="edit-telefono" class="form-input" placeholder="+34 600 000 000">
+                </div>
+                <div class="form-group">
+                    <label for="edit-nacimiento">Fecha de Nacimiento</label>
+                    <input type="date" id="edit-nacimiento" class="form-input">
+                </div>
+            </div>
 
-                        <div class="form-group">
-                            <label for="edit-direccion">Dirección Principal</label>
-                            <input type="text" id="edit-direccion" class="form-input" placeholder="Calle, número, piso, puerta">
-                        </div>
+            <div class="form-group">
+                <label for="edit-dni">DNI / NIF (Facturación)</label>
+                <input type="text" id="edit-dni" class="form-input" placeholder="12345678Z">
+            </div>
 
-                        <div class="form-grid-2">
-                            <div class="form-group">
-                                <label for="edit-ciudad">Ciudad / Municipio</label>
-                                <input type="text" id="edit-ciudad" class="form-input" placeholder="Ej. Logroño">
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-cp">Código Postal</label>
-                                <input type="text" id="edit-cp" class="form-input" placeholder="26001">
-                            </div>
-                        </div>
+            <div class="form-group">
+                <label for="edit-direccion">Dirección Principal</label>
+                <input type="text" id="edit-direccion" class="form-input" placeholder="Calle, número, piso, puerta">
+            </div>
 
-                        <div class="form-group">
-                            <label for="edit-provincia">Provincia</label>
-                            <input type="text" id="edit-provincia" class="form-input" placeholder="La Rioja">
-                        </div>
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label for="edit-ciudad">Ciudad / Municipio</label>
+                    <input type="text" id="edit-ciudad" class="form-input" placeholder="Ej. Logroño">
+                </div>
+                <div class="form-group">
+                    <label for="edit-cp">Código Postal</label>
+                    <input type="text" id="edit-cp" class="form-input" placeholder="26001">
+                </div>
+            </div>
 
-                        <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: var(--espaciado-12);">
-                            Guardar Cambios
-                        </button>
-                    </form>
-                </section>
+            <div class="form-group">
+                <label for="edit-provincia">Provincia</label>
+                <input type="text" id="edit-provincia" class="form-input" placeholder="La Rioja">
+            </div>
+
+            <div id="action-buttons-edit" style="display: none; gap: var(--espaciado-12); margin-top: var(--espaciado-12);">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <button type="button" id="btn-cancel-edit" class="btn btn-secondary">Cancelar</button>
+            </div>
+
+        </fieldset>
+    </form>
+</section>
 
                 <!-- Panel 1: Pedidos Anteriores -->
                 <section id="panel-pedidos" class="account-panel oculto">

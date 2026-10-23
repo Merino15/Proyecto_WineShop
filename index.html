@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WineShop | Vinos Premium Rioja & Enoturismo Exclusivo</title>
+    
+    <!-- Guardián de Verificación de Edad (Comprobación inmediata antes del renderizado) -->
+    <script>
+        if (sessionStorage.getItem('wineshop_mayor_edad') !== 'true') {
+            window.location.replace('verificacion_edad.html');
+        }
+    </script>
+
     <meta name="description" content="Descubre vinos premium de Rioja con denominación de origen, visitas guiadas a bodegas históricas y catas exclusivas. Compra online con envío garantizado.">
     <meta name="keywords" content="vino rioja, comprar vino online, bodegas rioja, enoturismo, cata de vinos, vino tinto reserva">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -78,7 +86,7 @@
 <body>
 
     <!-- Enlace de salto a contenido principal (WCAG AAA) -->
-    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+    <a href="#contenido-principal" class="skip-link" data-i18n="skip_to_content">Saltar al contenido principal</a>
 
     <!-- Notificaciones Accesibles / Live Region -->
     <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
@@ -91,9 +99,8 @@
             </a>
 
             <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav-list" aria-label="Abrir menú de navegación">
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
+                <span class="sr-only">Menú</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
             
             <nav class="main-nav" id="main-nav-list" aria-label="Navegación principal">
@@ -125,10 +132,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </a>
 
-                <button type="button" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
+                <a href="html/checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -178,7 +185,7 @@
                 </div>
 
                 <div id="destacados-grid" class="products-grid" role="region" aria-label="Lista de vinos destacados">
-                    <!-- Contenido renderizado dinámicamente por js/main.js -->
+                    <!-- Renderizado dinámico vía js/main.js -->
                 </div>
             </div>
         </section>

@@ -1,0 +1,15 @@
+{
+  "short_name": "WineShop",
+  "name": "WineShop - Vinos Premium Rioja",
+  "icons": [
+    {
+      "src": "img/transparent-logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#F9F6F0",
+  "theme_color": "#5B0E2D",
+  "display": "standalone"
+}

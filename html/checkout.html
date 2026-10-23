@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tramitar Pedido | WineShop</title>
+    <meta name="description" content="Finaliza tu compra de vinos D.O.Ca. Rioja con envío seguro y garantía de autenticidad.">
+    <link rel="stylesheet" href="../css/estilos_wineshop.css">
+    <style>
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: var(--espaciado-32);
+            margin-top: var(--espaciado-32);
+        }
+        .order-summary-box {
+            background-color: var(--color-blanco);
+            border: 2px solid var(--color-borde);
+            border-radius: 8px;
+            padding: var(--espaciado-24);
+            height: fit-content;
+            box-shadow: var(--sombra-card);
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--espaciado-8) 0;
+            border-bottom: 1px solid var(--color-borde);
+        }
+        .summary-row.total {
+            border-bottom: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primario-bordeos);
+            padding-top: var(--espaciado-16);
+        }
+        @media (max-width: 868px) {
+            .checkout-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+    <div id="live-announcer" class="sr-only" aria-live="polite"></div>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo-link" aria-label="WineShop - Inicio">
+                <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium" class="logo" width="160" height="50">
+            </a>
+            <nav class="main-nav" aria-label="Navegación secundaria">
+                <ul>
+                    <li><a href="catalogo.html">Volver al Catálogo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido-principal" class="container section-padding" tabindex="-1">
+        <h1 class="section-title">Finalizar Pedido</h1>
+
+        <div class="checkout-grid">
+            <!-- Formulario de Envío y Pago -->
+            <form id="form-checkout" class="wine-card" style="padding: var(--espaciado-24);" novalidate>
+                <fieldset style="border: none; margin-bottom: var(--espaciado-24);">
+                    <legend style="font-family: var(--font-titulos); font-size: 1.4rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">1. Datos de Envío</legend>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--espaciado-16); margin-bottom: var(--espaciado-16);">
+                        <div>
+                            <label for="co-nombre" style="font-weight: 700; display: block;">Nombre Completo *</label>
+                            <input type="text" id="co-nombre" class="lang-select" style="width: 100%;" required>
+                        </div>
+                        <div>
+                            <label for="co-dni" style="font-weight: 700; display: block;">DNI / NIF *</label>
+                            <input type="text" id="co-dni" class="lang-select" style="width: 100%;" placeholder="12345678Z" required>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: var(--espaciado-16);">
+                        <label for="co-direccion" style="font-weight: 700; display: block;">Dirección Completa *</label>
+                        <input type="text" id="co-direccion" class="lang-select" style="width: 100%;" placeholder="Calle, número, piso" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--espaciado-16);">
+                        <div>
+                            <label for="co-cp" style="font-weight: 700; display: block;">C.P. *</label>
+                            <input type="text" id="co-cp" class="lang-select" style="width: 100%;" required>
+                        </div>
+                        <div>
+                            <label for="co-ciudad" style="font-weight: 700; display: block;">Ciudad *</label>
+                            <input type="text" id="co-ciudad" class="lang-select" style="width: 100%;" required>
+                        </div>
+                        <div>
+                            <label for="co-provincia" style="font-weight: 700; display: block;">Provincia *</label>
+                            <input type="text" id="co-provincia" class="lang-select" style="width: 100%;" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset style="border: none; margin-bottom: var(--espaciado-24);">
+                    <legend style="font-family: var(--font-titulos); font-size: 1.4rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">2. Método de Pago</legend>
+                    
+                    <div style="display: flex; flex-direction: column; gap: var(--espaciado-12);">
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; min-height: 44px;">
+                            <input type="radio" name="pago" value="tarjeta" checked style="width: 20px; height: 20px; accent-color: var(--color-primario-bordeos);">
+                            Tarjeta de Crédito / Débito (Bizum disponible)
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; min-height: 44px;">
+                            <input type="radio" name="pago" value="transferencia" style="width: 20px; height: 20px; accent-color: var(--color-primario-bordeos);">
+                            Transferencia Bancaria Directa
+                        </label>
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary btn-full">Confirmar y Pagar</button>
+            </form>
+
+            <!-- Desglose de Pedido -->
+            <aside class="order-summary-box" aria-labelledby="summary-title">
+                <h2 id="summary-title" style="font-family: var(--font-titulos); font-size: 1.5rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">Resumen del Pedido</h2>
+                <div id="checkout-items-list"></div>
+                
+                <div style="margin-top: var(--espaciado-16);">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="co-subtotal">0,00 €</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Gastos de Envío</span>
+                        <span id="co-envio">Gratis</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total (IVA inc.)</span>
+                        <span id="co-total">0,00 €</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="../js/geo.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const usuario = obtenerUsuarioActivo();
+            if (usuario) {
+                document.getElementById('co-nombre').value = usuario.nombre || '';
+                document.getElementById('co-dni').value = usuario.dni || '';
+                document.getElementById('co-direccion').value = usuario.direccion || '';
+                document.getElementById('co-cp').value = usuario.codigoPostal || '';
+                document.getElementById('co-ciudad').value = usuario.ciudad || '';
+                document.getElementById('co-provincia').value = usuario.provincia || '';
+            }
+
+            const carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
+            const container = document.getElementById('checkout-items-list');
+            let subtotal = 0;
+
+            if (carrito.length === 0) {
+                container.innerHTML = '<p>No hay productos en el carrito.</p>';
+            } else {
+                container.innerHTML = carrito.map(item => {
+                    subtotal += item.precioNum * item.cantidad;
+                    return `
+                        <div class="summary-row">
+                            <span>${item.nombre} (x${item.cantidad})</span>
+                            <span>${(item.precioNum * item.cantidad).toFixed(2)} €</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const gastosEnvio = subtotal > 50 || subtotal === 0 ? 0 : 4.95;
+            document.getElementById('co-subtotal').textContent = `${subtotal.toFixed(2)} €`;
+            document.getElementById('co-envio').textContent = gastosEnvio === 0 ? 'Gratis' : `${gastosEnvio.toFixed(2)} €`;
+            document.getElementById('co-total').textContent = `${(subtotal + gastosEnvio).toFixed(2)} €`;
+
+            document.getElementById('form-checkout').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (carrito.length === 0) {
+                    mostrarToast("El carrito está vacío");
+                    return;
+                }
+                localStorage.removeItem('wineshop_carrito_items');
+                mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
+                setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

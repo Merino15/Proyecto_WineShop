@@ -1,497 +1,101 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión / Registro - WineShop</title>
-    <meta name="description" content="Accede a tu cuenta de WineShop para gestionar tus pedidos de vino premium, guardar tus favoritos y consultar tus reservas de enoturismo.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
+    <title>Iniciar Sesión / Registro | WineShop</title>
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
-    <script src="../js/geo.js"></script>
-
-    <style>
-        .auth-container {
-            max-width: 520px;
-            margin: var(--espaciado-32) auto var(--espaciado-64);
-            background-color: #FFFFFF;
-            padding: var(--espaciado-40) var(--espaciado-32);
-            border-radius: 8px;
-            border: 2px solid var(--color-neutro-calido-500);
-            box-shadow: var(--sombra-card);
-        }
-
-        .auth-tabs {
-            display: flex;
-            border-bottom: 2px solid var(--color-neutro-calido-500);
-            margin-bottom: var(--espaciado-32);
-        }
-
-        .auth-tab-btn {
-            flex: 1;
-            padding: var(--espaciado-12) var(--espaciado-16);
-            background: none;
-            border: none;
-            border-bottom: 3px solid transparent;
-            font-family: var(--font-cuerpo);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--color-gris-700);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            min-height: 44px;
-        }
-
-        .auth-tab-btn.active {
-            color: var(--color-primario-bordeos);
-            border-bottom-color: var(--color-primario-bordeos);
-        }
-
-        .auth-tab-btn:hover:not(.active) {
-            color: var(--color-gris-900);
-            background-color: var(--color-neutro-calido-100);
-        }
-
-        .auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: var(--espaciado-20);
-        }
-
-        .auth-form.oculto {
-            display: none;
-        }
-
-        .password-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .password-wrap .form-input {
-            padding-right: 48px;
-        }
-
-        .btn-toggle-pwd {
-            position: absolute;
-            right: 4px;
-            background: none;
-            border: none;
-            min-width: 44px;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-gris-700);
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .btn-toggle-pwd:hover,
-        .btn-toggle-pwd:focus-visible {
-            color: var(--color-primario-bordeos);
-        }
-
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--espaciado-12);
-            font-size: 0.95rem;
-        }
-
-        .checkbox-label {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--espaciado-8);
-            cursor: pointer;
-            min-height: 44px;
-            color: var(--color-gris-900);
-            font-weight: 600;
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--color-primario-bordeos);
-            cursor: pointer;
-        }
-
-        .forgot-link {
-            color: var(--color-primario-bordeos);
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-
-        .divider-social {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: var(--espaciado-24) 0;
-            color: var(--color-gris-700);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .divider-social::before,
-        .divider-social::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid var(--color-neutro-calido-500);
-        }
-
-        .divider-social span {
-            padding: 0 var(--espaciado-12);
-        }
-
-        .social-login-btns {
-            display: flex;
-            flex-direction: column;
-            gap: var(--espaciado-12);
-        }
-
-        .btn-social {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--espaciado-12);
-            min-height: 44px;
-            padding: var(--espaciado-8) var(--espaciado-16);
-            border: 2px solid var(--color-gris-300);
-            border-radius: 4px;
-            background-color: #FFFFFF;
-            color: var(--color-gris-900);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-social:hover,
-        .btn-social:focus-visible {
-            background-color: var(--color-neutro-calido-100);
-            border-color: var(--color-gris-700);
-        }
-
-        .error-text {
-            color: #D32F2F;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 4px;
-        }
-    </style>
 </head>
 <body>
 
-    <a href="#contenido-principal" class="sr-only focus-visible" data-i18n="skip_to_content">Saltar al contenido principal</a>
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <!-- Cabecera -->
-    <header class="site-header" id="header">
+    <header class="site-header">
         <div class="container header-container">
-            <a href="../index.html" class="logo-link" aria-label="WineShop - Volver a la página de inicio">
-                <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium & Enoturismo" class="logo">
+            <a href="../index.html" class="logo-link" aria-label="WineShop - Inicio">
+                <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium" class="logo" width="160" height="50">
             </a>
 
-            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav-list" aria-label="Abrir menú de navegación">
-                <svg class="nav-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                </svg>
-            </button>
-            
             <nav class="main-nav" id="main-nav-list" aria-label="Navegación principal">
                 <ul>
-                    <li><a href="../index.html" data-i18n="nav_inicio">Inicio</a></li>
-                    <li><a href="catalogo.html" data-i18n="nav_catalogo">Catálogo de Vinos</a></li>
-                    <li><a href="bodegas.html" data-i18n="nav_bodegas">Bodegas</a></li>
-                    <li><a href="experiencias.html" data-i18n="nav_experiencias">Experiencias</a></li>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo de Vinos</a></li>
+                    <li><a href="bodegas.html">Bodegas</a></li>
+                    <li><a href="experiencias.html">Experiencias</a></li>
                 </ul>
             </nav>
 
             <div class="header-actions">
-                <div class="custom-lang-wrap">
-                    <label for="custom-lang-select" class="sr-only">Seleccionar idioma</label>
-                    <select id="custom-lang-select">
-                        <option value="es">ES - Español</option>
-                        <option value="en">EN - English</option>
-                        <option value="fr">FR - Français</option>
-                        <option value="de">DE - Deutsch</option>
-                    </select>
-                </div>
-
                 <a href="favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                    </svg>
-                    <span class="badge-count" id="header-fav-count"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <span class="badge-count" id="header-fav-count" aria-hidden="true"></span>
                 </a>
-
-                <a href="login.html" class="btn-icon" aria-label="Mi Cuenta, Iniciar Sesión" aria-current="page">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                    </svg>
+                <a href="checkout.html" class="btn-icon" aria-label="Abrir carrito">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
                 </a>
-
-                <button type="button" class="btn-icon cart-btn" aria-label="Ver carrito de compras">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                        <circle cx="8" cy="21" r="1"/>
-                        <circle cx="19" cy="21" r="1"/>
-                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                    </svg>
-                    <span class="badge-count" aria-hidden="true">0</span>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
-    <main id="contenido-principal" class="container product-page-container" tabindex="-1">
-        
-        <nav class="breadcrumb-nav" aria-label="Migas de pan">
-            <a href="../index.html" class="btn-back">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
-                <span>Volver al inicio</span>
-            </a>
-        </nav>
+    <main id="contenido-principal" class="container section-padding" tabindex="-1">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
 
         <div class="auth-container">
-            
-            <div class="auth-tabs" role="tablist" aria-label="Opciones de acceso">
-                <button type="button" id="tab-login" class="auth-tab-btn active" role="tab" aria-selected="true" aria-controls="form-login">
-                    Iniciar Sesión
-                </button>
-                <button type="button" id="tab-register" class="auth-tab-btn" role="tab" aria-selected="false" aria-controls="form-register">
-                    Crear Cuenta
-                </button>
-            </div>
-
-            <!-- Formulario Iniciar Sesión -->
-            <form id="form-login" class="auth-form" role="tabpanel" aria-labelledby="tab-login" novalidate>
-                <div class="form-group">
-                    <label for="login-email">Correo Electrónico</label>
-                    <input type="email" id="login-email" class="form-input" autocomplete="email" required placeholder="ejemplo@correo.com">
-                    <span class="error-text" id="login-email-error" style="display: none;">Introduce un correo electrónico válido</span>
+            <div class="auth-card">
+                <div class="auth-tabs" role="tablist">
+                    <button type="button" class="tab-btn active" role="tab" aria-selected="true" id="tab-login">Iniciar Sesión</button>
+                    <button type="button" class="tab-btn" role="tab" aria-selected="false" id="tab-register">Crear Cuenta</button>
                 </div>
 
-                <div class="form-group">
-                    <label for="login-password">Contraseña</label>
-                    <div class="password-wrap">
-                        <input type="password" id="login-password" class="form-input" autocomplete="current-password" required placeholder="••••••••">
-                        <button type="button" class="btn-toggle-pwd" data-target="login-password" aria-label="Mostrar u ocultar contraseña">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        </button>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label for="login-email">Correo Electrónico</label>
+                        <input type="email" id="login-email" placeholder="ejemplo@correo.com" required autocomplete="email">
                     </div>
-                    <span class="error-text" id="login-password-error" style="display: none;">Por favor, introduce tu contraseña</span>
-                </div>
 
-                <div class="form-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="login-remember">
-                        <span>Recordar sesión</span>
-                    </label>
-                    <a href="#" class="forgot-link" id="link-forgot">¿Olvidaste tu contraseña?</a>
-                </div>
+                    <div class="form-group">
+                        <label for="login-password">Contraseña</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
 
-                <button type="submit" class="btn btn-primary btn-full">Iniciar Sesión</button>
+                    <div class="form-row-flex">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember-me">
+                            Recordar sesión
+                        </label>
+                        <a href="#" style="color: var(--color-primario-bordeos); font-weight: 700; font-size: 0.9rem;">¿Olvidaste tu contraseña?</a>
+                    </div>
 
-                <div class="divider-social">
-                    <span>O accede con</span>
-                </div>
+                    <button type="submit" class="btn btn-primary btn-full">Iniciar Sesión</button>
 
-                <div class="social-login-btns">
-                    <button type="button" class="btn-social" id="btn-social-google">
-                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>
+                    <div class="auth-divider">
+                        <span>O accede con</span>
+                    </div>
+
+                    <button type="button" class="btn-google">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
                         Google
                     </button>
-                </div>
-            </form>
-
-            <!-- Formulario Registro -->
-            <form id="form-register" class="auth-form oculto" role="tabpanel" aria-labelledby="tab-register" novalidate>
-                <div class="form-group">
-                    <label for="reg-name">Nombre Completo</label>
-                    <input type="text" id="reg-name" class="form-input" required placeholder="Ej. Juan Pérez">
-                    <span class="error-text" id="reg-name-error" style="display: none;">Por favor, introduce tu nombre</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="reg-email">Correo Electrónico</label>
-                    <input type="email" id="reg-email" class="form-input" autocomplete="email" required placeholder="ejemplo@correo.com">
-                    <span class="error-text" id="reg-email-error" style="display: none;">Introduce un correo válido</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="reg-password">Contraseña</label>
-                    <div class="password-wrap">
-                        <input type="password" id="reg-password" class="form-input" autocomplete="new-password" required placeholder="Mínimo 8 caracteres">
-                        <button type="button" class="btn-toggle-pwd" data-target="reg-password" aria-label="Mostrar u ocultar contraseña">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                        </button>
-                    </div>
-                    <span class="error-text" id="reg-password-error" style="display: none;">La contraseña debe tener al menos 8 caracteres</span>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label" style="align-items: flex-start;">
-                        <input type="checkbox" id="reg-age" required style="margin-top: 3px;">
-                        <span>Declaro solemnemente que soy mayor de 18 años y tengo capacidad legal para comprar bebidas alcohólicas.</span>
-                    </label>
-                    <span class="error-text" id="reg-age-error" style="display: none;">Debes confirmar que eres mayor de edad</span>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label" style="align-items: flex-start;">
-                        <input type="checkbox" id="reg-terms" required style="margin-top: 3px;">
-                        <span>Acepto los <a href="terminos_condiciones.html" target="_blank" class="forgot-link">Términos y Condiciones</a> y la <a href="politica_privacidad.html" target="_blank" class="forgot-link">Política de Privacidad</a>.</span>
-                    </label>
-                    <span class="error-text" id="reg-terms-error" style="display: none;">Debes aceptar las políticas legales</span>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-full">Crear Cuenta</button>
-            </form>
-
+                </form>
+            </div>
         </div>
-
     </main>
 
-    <!-- Pie de página -->
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer">
         <div class="container footer-container">
-            <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo">
-            <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
-            <nav class="footer-links" aria-label="Enlaces legales">
-                <a href="politica_privacidad.html" data-i18n="footer_privacy">Política de Privacidad</a>
-                <a href="terminos_condiciones.html" data-i18n="footer_terms">Términos y Condiciones</a>
-                <a href="declaracion_accesibilidad.html" data-i18n="footer_a11y">Declaración de Accesibilidad</a>
+            <div class="footer-brand">
+                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
+                <p class="body-regular">© 2026 WineShop. Todos los derechos reservados.</p>
+            </div>
+            <nav class="footer-links">
+                <a href="politica_privacidad.html">Política de Privacidad</a>
+                <a href="terminos_condiciones.html">Términos y Condiciones</a>
+                <a href="declaracion_accesibilidad.html">Declaración de Accesibilidad</a>
             </nav>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const usuarioActivo = obtenerUsuarioActivo();
-            if (usuarioActivo) {
-                window.location.href = 'mi_cuenta.html';
-                return;
-            }
-
-            const tabLogin = document.getElementById('tab-login');
-            const tabRegister = document.getElementById('tab-register');
-            const formLogin = document.getElementById('form-login');
-            const formRegister = document.getElementById('form-register');
-
-            tabLogin.addEventListener('click', () => {
-                tabLogin.classList.add('active');
-                tabLogin.setAttribute('aria-selected', 'true');
-                tabRegister.classList.remove('active');
-                tabRegister.setAttribute('aria-selected', 'false');
-                formLogin.classList.remove('oculto');
-                formRegister.classList.add('oculto');
-            });
-
-            tabRegister.addEventListener('click', () => {
-                tabRegister.classList.add('active');
-                tabRegister.setAttribute('aria-selected', 'true');
-                tabLogin.classList.remove('active');
-                tabLogin.setAttribute('aria-selected', 'false');
-                formRegister.classList.remove('oculto');
-                formLogin.classList.add('oculto');
-            });
-
-            document.querySelectorAll('.btn-toggle-pwd').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const targetId = btn.getAttribute('data-target');
-                    const input = document.getElementById(targetId);
-                    if (input) {
-                        const isPassword = input.type === 'password';
-                        input.type = isPassword ? 'text' : 'password';
-                        btn.setAttribute('aria-label', isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña');
-                    }
-                });
-            });
-
-            document.getElementById('btn-social-google').addEventListener('click', () => {
-                autenticarConGoogleSimulado();
-            });
-
-            formLogin.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value.trim();
-                const pwd = document.getElementById('login-password').value;
-                const errEmail = document.getElementById('login-email-error');
-                const errPwd = document.getElementById('login-password-error');
-
-                let valid = true;
-
-                if (!email || !email.includes('@')) {
-                    errEmail.style.display = 'inline-flex';
-                    valid = false;
-                } else { errEmail.style.display = 'none'; }
-
-                if (!pwd) {
-                    errPwd.style.display = 'inline-flex';
-                    valid = false;
-                } else { errPwd.style.display = 'none'; }
-
-                if (valid) {
-                    const res = autenticarUsuario(email, pwd);
-                    if (res.success) {
-                        if (typeof mostrarToast === 'function') {
-                            mostrarToast(`Bienvenido de nuevo, ${res.user.nombre}`);
-                        }
-                        setTimeout(() => { window.location.href = 'mi_cuenta.html'; }, 800);
-                    } else {
-                        errPwd.textContent = res.message;
-                        errPwd.style.display = 'inline-flex';
-                    }
-                }
-            });
-
-            formRegister.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const name = document.getElementById('reg-name').value.trim();
-                const email = document.getElementById('reg-email').value.trim();
-                const pwd = document.getElementById('reg-password').value;
-                const age = document.getElementById('reg-age').checked;
-                const terms = document.getElementById('reg-terms').checked;
-
-                let valid = true;
-
-                if (!name) { document.getElementById('reg-name-error').style.display = 'inline-flex'; valid = false; } 
-                else { document.getElementById('reg-name-error').style.display = 'none'; }
-
-                if (!email || !email.includes('@')) { document.getElementById('reg-email-error').style.display = 'inline-flex'; valid = false; } 
-                else { document.getElementById('reg-email-error').style.display = 'none'; }
-
-                if (!pwd || pwd.length < 8) { document.getElementById('reg-password-error').style.display = 'inline-flex'; valid = false; } 
-                else { document.getElementById('reg-password-error').style.display = 'none'; }
-
-                if (!age) { document.getElementById('reg-age-error').style.display = 'inline-flex'; valid = false; } 
-                else { document.getElementById('reg-age-error').style.display = 'none'; }
-
-                if (!terms) { document.getElementById('reg-terms-error').style.display = 'inline-flex'; valid = false; } 
-                else { document.getElementById('reg-terms-error').style.display = 'none'; }
-
-                if (valid) {
-                    const res = registrarUsuario(name, email, pwd);
-                    if (res.success) {
-                        if (typeof mostrarToast === 'function') {
-                            mostrarToast(`Cuenta creada. ¡Bienvenido, ${name}!`);
-                        }
-                        setTimeout(() => { window.location.href = 'mi_cuenta.html'; }, 800);
-                    } else {
-                        const errMail = document.getElementById('reg-email-error');
-                        errMail.textContent = res.message;
-                        errMail.style.display = 'inline-flex';
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>

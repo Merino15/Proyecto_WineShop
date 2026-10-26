@@ -52,78 +52,6 @@
       }
     }
     </script>
-    <!-- Sección Carrusel de Reseñas / Testimonios -->
-        <section class="testimonials-section section-padding" aria-labelledby="testimonials-heading">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="testimonials-heading" class="section-title">Lo que dicen nuestros clientes</h2>
-                    <p class="section-subtitle" style="text-align: center; margin-bottom: var(--espaciado-32);">Experiencias reales de amantes del vino y apasionados del enoturismo.</p>
-                </div>
-
-                <div class="testimonials-carousel-wrapper">
-                    <button type="button" class="carousel-arrow prev-testimonial" aria-label="Reseña anterior">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </button>
-
-                    <div class="testimonials-slider">
-                        <!-- Reseña 1 -->
-                        <article class="testimonial-card active">
-                            <div class="testimonial-stars" aria-label="Valoración: 5 de 5 estrellas">★★★★★</div>
-                            <blockquote class="testimonial-quote">
-                                "El envío de los Reserva a Logroño llegó en menos de 24 horas y con un embalaje térmico impecable. La selección de Rioja que tienen es sencillamente de otro nivel."
-                            </blockquote>
-                            <div class="testimonial-author">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Foto de Marta Salgado" class="author-avatar">
-                                <div>
-                                    <strong class="author-name">Marta Salgado</strong>
-                                    <span class="author-role">Sommelier y clienta habitual</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Reseña 2 -->
-                        <article class="testimonial-card">
-                            <div class="testimonial-stars" aria-label="Valoración: 5 de 5 estrellas">★★★★★</div>
-                            <blockquote class="testimonial-quote">
-                                "Reservamos la cata en calados históricos a través de la web para nuestro aniversario. Una experiencia inolvidable con un trato inmejorable, repetiremos seguro."
-                            </blockquote>
-                            <div class="testimonial-author">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Foto de Javier Otazu" class="author-avatar">
-                                <div>
-                                    <strong class="author-name">Javier Otazu</strong>
-                                    <span class="author-role">Entusiasta del enoturismo</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Reseña 3 -->
-                        <article class="testimonial-card">
-                            <div class="testimonial-stars" aria-label="Valoración: 5 de 5 estrellas">★★★★★</div>
-                            <blockquote class="testimonial-quote">
-                                "Me sorprendió gratamente poder examinar las botellas antes de comprar. Compré un Gran Reserva Prado Enea para una cena familiar y fue un rotundo éxito."
-                            </blockquote>
-                            <div class="testimonial-author">
-                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Foto de Carmen Izquierdo" class="author-avatar">
-                                <div>
-                                    <strong class="author-name">Carmen Izquierdo</strong>
-                                    <span class="author-role">Coleccionista de vinos</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <button type="button" class="carousel-arrow next-testimonial" aria-label="Siguiente reseña">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </button>
-                </div>
-
-                <div class="testimonials-indicators" role="tablist" aria-label="Seleccionar reseña">
-                    <button type="button" class="dot active" role="tab" aria-selected="true" aria-label="Ver reseña 1"></button>
-                    <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ver reseña 2"></button>
-                    <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ver reseña 3"></button>
-                </div>
-            </div>
-        </section>
 </head>
 <body>
 
@@ -284,7 +212,7 @@
             </div>
         </section>
 
-        <!-- Selección Destacada -->
+       <!-- Selección Destacada (última sección de productos) -->
         <section class="section-padding" aria-labelledby="featured-heading">
             <div class="container">
                 <div class="section-header">
@@ -293,6 +221,79 @@
                 </div>
 
                 <div id="destacados-grid" class="products-grid" role="region" aria-label="Lista de vinos destacados"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE RESEÑAS (Justo antes de cerrar el </main> y entrar al <footer>) -->
+        <section class="testimonials-section section-padding" aria-labelledby="testimonials-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="testimonials-heading" class="section-title">Lo que dicen nuestros clientes</h2>
+                    <p class="section-subtitle" style="text-align: center; margin-bottom: var(--espaciado-32);">Experiencias reales de amantes del vino y apasionados del enoturismo.</p>
+                </div>
+
+                <div class="testimonials-carousel-wrapper">
+                    <button type="button" class="carousel-arrow prev-testimonial" aria-label="Reseña anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+
+                    <div class="testimonials-slider">
+                        <!-- Reseña 1 -->
+                        <article class="testimonial-card active">
+                            <div class="testimonial-stars" aria-label="Valoración: 5 de 5 estrellas">★★★★★</div>
+                            <blockquote class="testimonial-quote">
+                                "El envío de los Reserva a Logroño llegó en menos de 24 horas y con un embalaje térmico impecable. La selección de Rioja que tienen es sencillamente de otro nivel."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Foto de Marta Salgado" class="author-avatar">
+                                <div>
+                                    <strong class="author-name">Marta Salgado</strong>
+                                    <span class="author-role">Sommelier y clienta habitual</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Reseña 2 -->
+                        <article class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="Valoración: 5 de 5 estrellas">★★★★★</div>
+                            <blockquote class="testimonial-quote">
+                                "Reservamos la cata en calados históricos a través de la web para nuestro aniversario. Una experiencia inolvidable con un trato inmejorable, repetiremos seguro."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Foto de Javier Otazu" class="author-avatar">
+                                <div>
+                                    <strong class="author-name">Javier Otazu</strong>
+                                    <span class="author-role">Entusiasta del enoturismo</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Reseña 3 -->
+                        <article class="testimonial-card">
+                            <div class="testimonial-stars" aria-label="Valoración: 5 de 5 estrellas">★★★★★</div>
+                            <blockquote class="testimonial-quote">
+                                "Me sorprendió gratamente poder examinar las botellas antes de comprar. Compré un Gran Reserva Prado Enea para una cena familiar y fue un rotundo éxito."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Foto de Carmen Izquierdo" class="author-avatar">
+                                <div>
+                                    <strong class="author-name">Carmen Izquierdo</strong>
+                                    <span class="author-role">Coleccionista de vinos</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <button type="button" class="carousel-arrow next-testimonial" aria-label="Siguiente reseña">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+
+                <div class="testimonials-indicators" role="tablist" aria-label="Seleccionar reseña">
+                    <button type="button" class="dot active" role="tab" aria-selected="true" aria-label="Ver reseña 1"></button>
+                    <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ver reseña 2"></button>
+                    <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ver reseña 3"></button>
+                </div>
             </div>
         </section>
 

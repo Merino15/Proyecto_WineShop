@@ -491,7 +491,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         aplicarTraducciones();
         
         iniciarVerificacionEdad();
-        iniciarNewsletterPopup(); // <--- Añadir aquí
+        iniciarNewsletterPopup();
+        iniciarAutenticacion(); // <--- Añadir aquí
         iniciarCarruselHero();
         iniciarCarruselResenas();
         
@@ -624,4 +625,125 @@ function iniciarCarruselResenas() {
     });
 
     startAutoplay();
+}
+/**
+ * Gestión de Autenticación (Login, Registro y Alternancia de Pestañas)
+ */
+function iniciarAutenticacion() {
+    const tabLogin = document.getElementById("tab-login");
+    const tabRegister = document.getElementById("tab-register");
+    const formLogin = document.getElementById("form-login");
+    const formRegister = document.getElementById("form-register");
+
+    if (!tabLogin || !tabRegister || !formLogin || !formRegister) return;
+
+    // Control de cambio entre pestañas
+    tabLogin.addEventListener("click", () => {
+        tabLogin.classList.add("active");
+        tabLogin.setAttribute("aria-selected", "true");
+        tabRegister.classList.remove("active");
+        tabRegister.setAttribute("aria-selected", "false");
+
+        formLogin.classList.remove("hidden");
+        formRegister.classList.add("hidden");
+    });
+
+    tabRegister.addEventListener("click", () => {
+        tabRegister.classList.add("active");
+        tabRegister.setAttribute("aria-selected", "true");
+        tabLogin.classList.remove("active");
+        tabLogin.setAttribute("aria-selected", "false");
+
+        formRegister.classList.remove("hidden");
+        formLogin.classList.add("hidden");
+    });
+
+    // Proceso de Iniciar Sesión
+    formLogin.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("login-email")?.value.trim();
+        const password = document.getElementById("login-password")?.value.trim();
+
+        if (!email || !password) {
+            mostrarToast("Por favor, rellena todos los campos.");
+            return;
+        }
+
+        // Combinar usuarios precargados de db.json + registrados localmente
+        const usuariosLocales = JSON.parse(localStorage.getItem("wineshop_usuarios_locales")) || [];
+        const todosLosUsuarios = [...(appData?.usuarios || []), ...usuariosLocales];
+
+        const usuarioEncontrado = todosLosUsuarios.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+        if (usuarioEncontrado) {
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(usuarioEncontrado));
+            mostrarToast(`¡Bienvenido de nuevo, ${usuarioEncontrado.nombre}!`);
+            announceToScreenReader(`Sesión iniciada como ${usuarioEncontrado.nombre}`);
+            
+            setTimeout(() => {
+                window.location.href = isSubdir ? "../index.html" : "index.html";
+            }, 1200);
+        } else {
+            mostrarToast("Correo electrónico o contraseña incorrectos.");
+        }
+    });
+
+    // Proceso de Registro de Cuenta
+    formRegister.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById("reg-nombre")?.value.trim();
+        const email = document.getElementById("reg-email")?.value.trim();
+        const password = document.getElementById("reg-password")?.value.trim();
+        const confirmPass = document.getElementById("reg-confirm-password")?.value.trim();
+        const terms = document.getElementById("reg-terms")?.checked;
+
+        if (!nombre || !email || !password || !confirmPass) {
+            mostrarToast("Por favor, completa todos los campos.");
+            return;
+        }
+
+        if (password.length < 6) {
+            mostrarToast("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+
+        if (password !== confirmPass) {
+            mostrarToast("Las contraseñas no coinciden.");
+            return;
+        }
+
+        if (!terms) {
+            mostrarToast("Debes aceptar la política de privacidad.");
+            return;
+        }
+
+        // Verificar si el correo ya está registrado
+        const usuariosLocales = JSON.parse(localStorage.getItem("wineshop_usuarios_locales")) || [];
+        const todosLosUsuarios = [...(appData?.usuarios || []), ...usuariosLocales];
+
+        if (todosLosUsuarios.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+            mostrarToast("Ya existe una cuenta con este correo electrónico.");
+            return;
+        }
+
+        // Crear el nuevo usuario y almacenarlo
+        const nuevoUsuario = {
+            id: `usr-local-${Date.now()}`,
+            nombre: nombre,
+            email: email,
+            password: password,
+            avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80"
+        };
+
+        usuariosLocales.push(nuevoUsuario);
+        localStorage.setItem("wineshop_usuarios_locales", JSON.stringify(usuariosLocales));
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(nuevoUsuario));
+
+        mostrarToast("¡Cuenta creada correctamente! Redirigiendo...");
+        announceToScreenReader("Cuenta creada con éxito.");
+
+        setTimeout(() => {
+            window.location.href = isSubdir ? "../index.html" : "index.html";
+        }, 1200);
+    });
 }

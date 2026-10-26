@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Completo de Vinos | WineShop Rioja</title>
-    <meta name="description" content="Explora nuestro catálogo completo de vinos Tintos, Blancos, Rosados y Espumosos de La Rioja. Filtra por categoría, precio y nombre.">
-    <link rel="canonical" href="https://www.wineshop.es/html/catalogo.html">
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
@@ -40,8 +38,6 @@
                     <select id="custom-lang-select" class="lang-select">
                         <option value="es">ES - Español</option>
                         <option value="en">EN - English</option>
-                        <option value="fr">FR - Français</option>
-                        <option value="de">DE - Deutsch</option>
                     </select>
                 </div>
 
@@ -54,10 +50,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </a>
 
-                <button type="button" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
+                <a href="checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -99,22 +95,22 @@
             </div>
         </section>
 
-        <!-- Grid de Catálogo -->
         <div id="catalogo-grid" class="products-grid" role="region" aria-label="Lista de vinos disponibles"></div>
     </main>
 
     <footer class="site-footer" role="contentinfo">
         <div class="container footer-container">
-            <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
+            <div class="footer-brand">
+                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
+                <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
+            </div>
             <nav class="footer-links" aria-label="Enlaces legales">
                 <a href="politica_privacidad.html" data-i18n="footer_privacy">Política de Privacidad</a>
-                <a href="terminos_condiciones.html" data-i18n="footer_terms">Términos y Condiciones</a>
                 <a href="declaracion_accesibilidad.html" data-i18n="footer_a11y">Declaración de Accesibilidad</a>
             </nav>
         </div>
     </footer>
 
-    <script src="../js/geo.js"></script>
     <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

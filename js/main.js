@@ -1,6 +1,6 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
- * Incluye carrusel Hero interactivo, gestión de catálogo 3D, bodegas con enlaces externos,
+ * Incluye carrusel Hero interactivo, gestión de catálogo 3D, bodegas con imágenes y enlaces externos,
  * enoturismo, carrito de compras, favoritos e internacionalización (es, en, fr, de).
  */
 
@@ -187,7 +187,7 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
 }
 
 /**
- * Renderizado de Bodegas
+ * Renderizado de Bodegas con Imagen Destacada
  */
 function renderizarBodegas(contenedorId) {
     const contenedor = document.getElementById(contenedorId);
@@ -200,22 +200,26 @@ function renderizarBodegas(contenedorId) {
         const traduccion = (bodega.i18n && bodega.i18n[currentLang]) ? bodega.i18n[currentLang] : (bodega.i18n ? bodega.i18n["es"] : {});
         const article = document.createElement("article");
         article.className = "wine-card";
-        article.style.padding = "var(--espaciado-24)";
 
-        const enlaceBodega = bodega.url || `${basePath}html/catalogo.html`;
+        const imgPath = bodega.imagen.startsWith('http') ? bodega.imagen : `${basePath}${bodega.imagen}`;
 
         article.innerHTML = `
-            <h3 class="wine-name">${bodega.nombre}</h3>
-            <p class="hero-tag" style="margin-bottom: 8px;">${traduccion.subtitulo || ''}</p>
-            <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <a href="${basePath}html/catalogo.html" class="btn btn-secondary" style="flex: 1;">${dicc.btn_ver_vinos || 'Ver sus vinos'}</a>
-                ${bodega.url ? `
-                    <a href="${bodega.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1;">
-                        Web Oficial 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 6px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    </a>
-                ` : ''}
+            <div class="card-img-wrap">
+                <img src="${imgPath}" alt="Instalaciones de ${bodega.nombre}" class="card-img" loading="lazy">
+            </div>
+            <div class="wine-info">
+                <h3 class="wine-name">${bodega.nombre}</h3>
+                <p class="hero-tag" style="margin-bottom: 8px;">${traduccion.subtitulo || ''}</p>
+                <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto;">
+                    <a href="${basePath}html/catalogo.html" class="btn btn-secondary" style="flex: 1;">${dicc.btn_ver_vinos || 'Ver sus vinos'}</a>
+                    ${bodega.url ? `
+                        <a href="${bodega.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1;">
+                            Web Oficial 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 6px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    ` : ''}
+                </div>
             </div>
         `;
         contenedor.appendChild(article);
@@ -223,7 +227,7 @@ function renderizarBodegas(contenedorId) {
 }
 
 /**
- * Renderizado de Experiencias de Enoturismo con Redirección Externa a Bodegas
+ * Renderizado de Experiencias con Imagen Destacada y Redirección
  */
 function renderizarExperiencias(contenedorId) {
     const contenedor = document.getElementById(contenedorId);
@@ -236,32 +240,37 @@ function renderizarExperiencias(contenedorId) {
         const traduccion = (exp.i18n && exp.i18n[currentLang]) ? exp.i18n[currentLang] : (exp.i18n ? exp.i18n["es"] : {});
         const article = document.createElement("article");
         article.className = "wine-card";
-        article.style.padding = "var(--espaciado-24)";
 
         const enlaceUrl = exp.urlBodega || `${basePath}html/bodegas.html`;
+        const imgPath = exp.imagen.startsWith('http') ? exp.imagen : `${basePath}${exp.imagen}`;
 
         article.innerHTML = `
-            <span class="hero-tag">${traduccion.banner || 'Enoturismo'}</span>
-            <h3 class="wine-name">${traduccion.titulo || 'Experiencia'}</h3>
-            <p style="font-weight: 700; color: var(--color-secundario-oro); margin-bottom: 6px;">
-                Organizado por: ${exp.nombreBodega || 'Bodega Asociada'}
-            </p>
-            <p style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">${traduccion.duracion || ''}</p>
-            <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
-            <p class="wine-price">${exp.precio} <small style="font-size: 0.9rem; font-weight: 400;">${dicc.per_person || '/ persona'}</small></p>
-            
-            <a href="${enlaceUrl}" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn btn-primary btn-full"
-               aria-label="${traduccion.titulo} - ${dicc.btn_reservar_bodega || 'Reservar en la web de la bodega'} (abre en nueva pestaña)">
-                ${dicc.btn_reservar_bodega || 'Reservar en la web de la bodega'}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-            </a>
+            <div class="card-img-wrap">
+                <span class="badge-overlay">${traduccion.banner || 'Enoturismo'}</span>
+                <img src="${imgPath}" alt="${traduccion.titulo || 'Experiencia enoturística'}" class="card-img" loading="lazy">
+            </div>
+            <div class="wine-info">
+                <h3 class="wine-name">${traduccion.titulo || 'Experiencia'}</h3>
+                <p style="font-weight: 700; color: var(--color-secundario-oro); margin-bottom: 6px;">
+                    Organizado por: ${exp.nombreBodega || 'Bodega Asociada'}
+                </p>
+                <p style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">${traduccion.duracion || ''}</p>
+                <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
+                <p class="wine-price" style="margin-top: auto;">${exp.precio} <small style="font-size: 0.9rem; font-weight: 400;">${dicc.per_person || '/ persona'}</small></p>
+                
+                <a href="${enlaceUrl}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="btn btn-primary btn-full"
+                   aria-label="${traduccion.titulo} - ${dicc.btn_reservar_bodega || 'Reservar en la web de la bodega'} (abre en nueva pestaña)">
+                    ${dicc.btn_reservar_bodega || 'Reservar en la web de la bodega'}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
         `;
         contenedor.appendChild(article);
     });

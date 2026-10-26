@@ -353,6 +353,186 @@ input:focus, select:focus, textarea:focus {
     min-height: 44px;
 }
 
+/* Carrusel Hero Dinámico */
+.hero-carousel-section {
+    position: relative;
+    background: linear-gradient(135deg, #FFFFFF 0%, var(--color-neutro-claro) 100%);
+    border-bottom: 2px solid var(--color-borde);
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
+    padding: var(--espaciado-64) 0;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.carousel-slide.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-40);
+    align-items: center;
+}
+
+.hero-tag {
+    display: inline-block;
+    color: var(--color-secundario-oro);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--espaciado-12);
+}
+
+.hero-title, .section-title {
+    font-family: var(--font-titulos);
+    font-size: 3rem;
+    line-height: 1.15;
+    color: var(--color-primario-bordeos);
+    margin-bottom: var(--espaciado-16);
+}
+
+.section-title {
+    font-size: 2.4rem;
+    text-align: center;
+}
+
+.hero-subtitle, .section-subtitle, .body-regular {
+    font-size: 1.05rem;
+    color: var(--color-neutro-gris);
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--espaciado-16);
+    flex-wrap: wrap;
+    margin-top: var(--espaciado-24);
+}
+
+.hero-3d-wrapper {
+    width: 100%;
+    height: 420px;
+}
+
+.hero-model {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-blanco);
+    border: 2px solid var(--color-borde);
+    color: var(--color-primario-bordeos);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: var(--sombra-card);
+    transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    background: var(--color-primario-bordeos);
+    color: var(--color-blanco);
+    border-color: var(--color-primario-bordeos);
+}
+
+.carousel-arrow.prev { left: 24px; }
+.carousel-arrow.next { right: 24px; }
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.carousel-indicators .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primario-bordeos);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators .dot.active {
+    background: var(--color-primario-bordeos);
+    width: 32px;
+    border-radius: 12px;
+}
+
+/* Imágenes y Encuadre Multimedia */
+.card-img-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--color-neutro-claro);
+    border-bottom: 2px solid var(--color-borde);
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+}
+
+.wine-card:hover .card-img {
+    transform: scale(1.06);
+}
+
+.badge-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(91, 14, 45, 0.9);
+    color: var(--color-blanco);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+}
+
 /* Tarjeta de Autenticación / Login */
 .auth-container {
     max-width: 480px;
@@ -420,7 +600,7 @@ input:focus, select:focus, textarea:focus {
     font-weight: 600;
 }
 
-/* Páginas Legales (Politica de Privacidad / Términos) */
+/* Páginas Legales */
 .legal-card {
     background-color: var(--color-blanco);
     border: 2px solid var(--color-borde);
@@ -463,64 +643,6 @@ input:focus, select:focus, textarea:focus {
     font-size: 0.95rem;
     font-weight: 600;
     text-align: center;
-}
-
-/* Hero Section */
-.hero-section {
-    padding: var(--espaciado-64) 0;
-    background: linear-gradient(135deg, #FFFFFF 0%, var(--color-neutro-claro) 100%);
-    border-bottom: 1px solid var(--color-borde);
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--espaciado-40);
-    align-items: center;
-}
-
-.hero-tag {
-    display: inline-block;
-    color: var(--color-secundario-oro);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: var(--espaciado-12);
-}
-
-.hero-title, .section-title {
-    font-family: var(--font-titulos);
-    font-size: 3rem;
-    line-height: 1.15;
-    color: var(--color-primario-bordeos);
-    margin-bottom: var(--espaciado-16);
-}
-
-.section-title {
-    font-size: 2.4rem;
-    text-align: center;
-}
-
-.hero-subtitle, .section-subtitle, .body-regular {
-    font-size: 1.05rem;
-    color: var(--color-neutro-gris);
-}
-
-.hero-actions {
-    display: flex;
-    gap: var(--espaciado-16);
-    flex-wrap: wrap;
-    margin-top: var(--espaciado-24);
-}
-
-.hero-3d-wrapper {
-    width: 100%;
-    height: 420px;
-}
-
-.hero-model {
-    width: 100%;
-    height: 100%;
 }
 
 /* Panel de Filtros */
@@ -674,7 +796,7 @@ input:focus, select:focus, textarea:focus {
     font-weight: 600;
 }
 
-/* Pie de Página (Corrección de Contraste AAA) */
+/* Pie de Página (Contraste AAA) */
 .site-footer {
     background-color: var(--color-neutro-oscuro);
     color: var(--color-blanco);
@@ -754,107 +876,11 @@ input:focus, select:focus, textarea:focus {
     .filter-grid {
         grid-template-columns: 1fr;
     }
-}
 
-/* ==========================================================================
-   CARRUSEL HERO DINÁMICO
-   ========================================================================== */
-.hero-carousel-section {
-    position: relative;
-    background: linear-gradient(135deg, #FFFFFF 0%, var(--color-neutro-claro) 100%);
-    border-bottom: 2px solid var(--color-borde);
-    overflow: hidden;
-}
-
-.carousel-wrapper {
-    position: relative;
-    width: 100%;
-    min-height: 520px;
-}
-
-.carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
-    padding: var(--espaciado-64) 0;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-}
-
-.carousel-slide.active {
-    position: relative;
-    opacity: 1;
-    visibility: visible;
-    z-index: 2;
-}
-
-/* Controles laterales (Flechas) */
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--color-blanco);
-    border: 2px solid var(--color-borde);
-    color: var(--color-primario-bordeos);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: var(--sombra-card);
-    transition: all 0.2s ease;
-}
-
-.carousel-arrow:hover {
-    background: var(--color-primario-bordeos);
-    color: var(--color-blanco);
-    border-color: var(--color-primario-bordeos);
-}
-
-.carousel-arrow.prev { left: 24px; }
-.carousel-arrow.next { right: 24px; }
-
-/* Indicadores de Puntos (Dots) */
-.carousel-indicators {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-    z-index: 10;
-}
-
-.carousel-indicators .dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid var(--color-primario-bordeos);
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.3s ease;
-}
-
-.carousel-indicators .dot.active {
-    background: var(--color-primario-bordeos);
-    width: 32px;
-    border-radius: 12px;
-}
-
-@media (max-width: 868px) {
     .carousel-arrow {
-        display: none; /* Se ocultan en pantallas pequeñas para priorizar el contenido */
+        display: none;
     }
+
     .carousel-wrapper {
         min-height: auto;
     }

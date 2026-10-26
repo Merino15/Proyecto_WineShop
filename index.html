@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WineShop | Vinos Premium Rioja & Enoturismo Exclusivo</title>
     
-    <!-- Guardián de Verificación de Edad (Comprobación inmediata antes del renderizado) -->
+    <!-- Guardián de Verificación de Edad -->
     <script>
         if (sessionStorage.getItem('wineshop_mayor_edad') !== 'true') {
             window.location.replace('verificacion_edad.html');
@@ -31,22 +31,14 @@
     <meta property="og:image" content="https://www.wineshop.es/img/og-wineshop.jpg">
     <meta property="og:locale" content="es_ES">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="WineShop | Vinos Premium & Enoturismo">
-    <meta name="twitter:description" content="Vinos de alta gama y experiencias de enoturismo en La Rioja.">
-    <meta name="twitter:image" content="https://www.wineshop.es/img/og-wineshop.jpg">
-
-    <!-- Recurso Tipográfico y Estilos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos_wineshop.css">
 
-    <!-- Model Viewer para renderizado 3D accesible -->
+    <!-- Model Viewer para 3D -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-    <!-- Schema.org JSON-LD para SEO Estructurado -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,34 +56,15 @@
         "addressRegion": "La Rioja",
         "postalCode": "26001",
         "addressCountry": "ES"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 42.4650,
-        "longitude": -2.4456
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "09:00",
-        "closes": "20:00"
-      },
-      "sameAs": [
-        "https://www.facebook.com/wineshoprioja",
-        "https://www.instagram.com/wineshoprioja"
-      ]
+      }
     }
     </script>
 </head>
 <body>
 
-    <!-- Enlace de salto a contenido principal (WCAG AAA) -->
     <a href="#contenido-principal" class="skip-link" data-i18n="skip_to_content">Saltar al contenido principal</a>
-
-    <!-- Notificaciones Accesibles / Live Region -->
     <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Cabecera Principal -->
     <header class="site-header" id="header">
         <div class="container header-container">
             <a href="index.html" class="logo-link" aria-label="WineShop - Inicio">
@@ -124,149 +97,142 @@
                 </div>
 
                 <a href="html/favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     <span class="badge-count" id="header-fav-count" aria-hidden="true"></span>
                 </a>
 
                 <a href="html/login.html" class="btn-icon" aria-label="Mi Cuenta e Iniciar Sesión">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </a>
 
                 <a href="html/checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main id="contenido-principal" tabindex="-1">
 
-        <!-- Banner Geo-Detectado -->
         <section id="geo-banner" class="geo-banner-container" aria-label="Información regional de envío y experiencias">
             <div class="container geo-banner-content">
                 <p id="geo-location-text">Detectando tu ubicación para ofrecerte tarifas de envío optimizadas...</p>
             </div>
         </section>
 
-       <!-- Carrusel Hero Accesible (Promociones y Destacados) -->
-<section class="hero-carousel-section" aria-roledescription="carrusel" aria-label="Promociones y novedades de WineShop">
-    <div class="carousel-wrapper">
+        <!-- Carrusel Hero Accesible (Promociones y Destacados) -->
+        <section class="hero-carousel-section" aria-roledescription="carrusel" aria-label="Promociones y novedades de WineShop">
+            <div class="carousel-wrapper">
 
-        <!-- Diapositiva 1: Reserva D.O.Ca. Rioja -->
-        <div class="carousel-slide active" role="group" aria-roledescription="diapositiva" aria-label="1 de 3">
-            <div class="container hero-grid">
-                <div class="hero-text">
-                    <span class="hero-tag" data-i18n="hero_tag">D.O.Ca. Rioja Reserva</span>
-                    <h1 class="hero-title" data-i18n="hero_title">La Esencia de la Tierra en Cada Copa</h1>
-                    <p class="hero-subtitle" data-i18n="hero_subtitle">Descubre caldos criados en barricas de roble e historias centenarias de nuestras bodegas seleccionadas en Logroño y la Rioja Alta.</p>
-                    <div class="hero-actions">
-                        <a href="html/catalogo.html" class="btn btn-primary" data-i18n="btn_explorar">Explorar Catálogo</a>
-                        <a href="html/experiencias.html" class="btn btn-secondary" data-i18n="btn_experiencias">Reservar Cata</a>
+                <!-- Diapositiva 1 -->
+                <div class="carousel-slide active" role="group" aria-roledescription="diapositiva" aria-label="1 de 3">
+                    <div class="container hero-grid">
+                        <div class="hero-text">
+                            <span class="hero-tag" data-i18n="hero_tag">D.O.Ca. Rioja Reserva</span>
+                            <h1 class="hero-title" data-i18n="hero_title">La Esencia de la Tierra en Cada Copa</h1>
+                            <p class="hero-subtitle" data-i18n="hero_subtitle">Descubre caldos criados en barricas de roble e historias centenarias de nuestras bodegas seleccionadas en Logroño y la Rioja Alta.</p>
+                            <div class="hero-actions">
+                                <a href="html/catalogo.html" class="btn btn-primary" data-i18n="btn_explorar">Explorar Catálogo</a>
+                                <a href="html/experiencias.html" class="btn btn-secondary" data-i18n="btn_experiencias">Reservar Cata</a>
+                            </div>
+                        </div>
+                        <div class="hero-3d-wrapper">
+                            <model-viewer 
+                                src="models/wine_bottle.glb" 
+                                alt="Botella de vino Rioja Reserva en 3D" 
+                                auto-rotate 
+                                camera-controls 
+                                shadow-intensity="1" 
+                                class="hero-model"
+                                ar>
+                            </model-viewer>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-3d-wrapper">
-                    <model-viewer 
-                        src="models/wine_bottle.glb" 
-                        alt="Botella de vino Rioja Reserva en 3D" 
-                        auto-rotate 
-                        camera-controls 
-                        shadow-intensity="1" 
-                        class="hero-model"
-                        ar>
-                    </model-viewer>
-                </div>
-            </div>
-        </div>
 
-        <!-- Diapositiva 2: Enoturismo y Rutas por Bodegas -->
-        <div class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3">
-            <div class="container hero-grid">
-                <div class="hero-text">
-                    <span class="hero-tag">Enoturismo Exclusivo</span>
-                    <h2 class="hero-title">Visita las Bodegas Centenarias de La Rioja</h2>
-                    <p class="hero-subtitle">Sumérgete en la cultura del vino con rutas en 4x4 por viñedos viejos, catas comentadas en calados históricos y maridajes de autor.</p>
-                    <div class="hero-actions">
-                        <a href="html/experiencias.html" class="btn btn-primary">Ver Experiencias</a>
-                        <a href="html/bodegas.html" class="btn btn-secondary">Conocer Bodegas</a>
+                <!-- Diapositiva 2 -->
+                <div class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3">
+                    <div class="container hero-grid">
+                        <div class="hero-text">
+                            <span class="hero-tag">Enoturismo Exclusivo</span>
+                            <h2 class="hero-title">Visita las Bodegas Centenarias de La Rioja</h2>
+                            <p class="hero-subtitle">Sumérgete en la cultura del vino con rutas en 4x4 por viñedos viejos, catas comentadas en calados históricos y maridajes de autor.</p>
+                            <div class="hero-actions">
+                                <a href="html/experiencias.html" class="btn btn-primary">Ver Experiencias</a>
+                                <a href="html/bodegas.html" class="btn btn-secondary">Conocer Bodegas</a>
+                            </div>
+                        </div>
+                        <div class="hero-3d-wrapper">
+                            <model-viewer 
+                                src="models/wine_bottle.glb" 
+                                alt="Botella de vino de autor en 3D" 
+                                auto-rotate 
+                                camera-controls 
+                                shadow-intensity="1" 
+                                class="hero-model"
+                                ar>
+                            </model-viewer>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-3d-wrapper">
-                    <model-viewer 
-                        src="models/wine_bottle.glb" 
-                        alt="Botella de vino de autor en 3D" 
-                        auto-rotate 
-                        camera-controls 
-                        shadow-intensity="1" 
-                        class="hero-model"
-                        ar>
-                    </model-viewer>
-                </div>
-            </div>
-        </div>
 
-        <!-- Diapositiva 3: Promoción Envíos Gratis -->
-        <div class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3">
-            <div class="container hero-grid">
-                <div class="hero-text">
-                    <span class="hero-tag">Promoción Especial</span>
-                    <h2 class="hero-title">Envío Gratuito en Pedidos Superiores a 50 €</h2>
-                    <p class="hero-subtitle">Recibe tus vinos Crianza, Reserva y Gran Reserva en 24-48 horas con embalaje térmico de máxima protección directo a tu domicilio.</p>
-                    <div class="hero-actions">
-                        <a href="html/catalogo.html" class="btn btn-primary">Comprar Vinos</a>
-                        <a href="html/login.html" class="btn btn-secondary">Crear Cuenta</a>
+                <!-- Diapositiva 3 -->
+                <div class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3">
+                    <div class="container hero-grid">
+                        <div class="hero-text">
+                            <span class="hero-tag">Promoción Especial</span>
+                            <h2 class="hero-title">Envío Gratuito en Pedidos Superiores a 50 €</h2>
+                            <p class="hero-subtitle">Recibe tus vinos Crianza, Reserva y Gran Reserva en 24-48 horas con embalaje térmico de máxima protección directo a tu domicilio.</p>
+                            <div class="hero-actions">
+                                <a href="html/catalogo.html" class="btn btn-primary">Comprar Vinos</a>
+                                <a href="html/login.html" class="btn btn-secondary">Crear Cuenta</a>
+                            </div>
+                        </div>
+                        <div class="hero-3d-wrapper">
+                            <model-viewer 
+                                src="models/wine_bottle.glb" 
+                                alt="Selección de vinos con envío directo" 
+                                auto-rotate 
+                                camera-controls 
+                                shadow-intensity="1" 
+                                class="hero-model"
+                                ar>
+                            </model-viewer>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-3d-wrapper">
-                    <model-viewer 
-                        src="models/wine_bottle.glb" 
-                        alt="Selección de vinos con envío directo" 
-                        auto-rotate 
-                        camera-controls 
-                        shadow-intensity="1" 
-                        class="hero-model"
-                        ar>
-                    </model-viewer>
-                </div>
+
             </div>
-        </div>
 
-    </div>
+            <button type="button" class="carousel-arrow prev" aria-label="Diapositiva anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" class="carousel-arrow next" aria-label="Siguiente diapositiva">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
 
-    <!-- Botones de Navegación Flechas -->
-    <button type="button" class="carousel-arrow prev" aria-label="Diapositiva anterior">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <button type="button" class="carousel-arrow next" aria-label="Siguiente diapositiva">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
+            <div class="carousel-indicators" role="tablist" aria-label="Seleccionar diapositiva">
+                <button type="button" class="dot active" role="tab" aria-selected="true" aria-label="Ir a diapositiva 1"></button>
+                <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ir a diapositiva 2"></button>
+                <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ir a diapositiva 3"></button>
+            </div>
+        </section>
 
-    <!-- Puntos de Indicación (Dots) -->
-    <div class="carousel-indicators" role="tablist" aria-label="Seleccionar diapositiva">
-        <button type="button" class="dot active" role="tab" aria-selected="true" aria-label="Ir a diapositiva 1"></button>
-        <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ir a diapositiva 2"></button>
-        <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ir a diapositiva 3"></button>
-    </div>
-</section>
-
-        <!-- Sección de Vinos Destacados -->
+        <!-- Selección Destacada -->
         <section class="section-padding" aria-labelledby="featured-heading">
             <div class="container">
                 <div class="section-header">
                     <h2 id="featured-heading" class="section-title" data-i18n="destacados_titulo">Selección Destacada</h2>
-                    <p class="section-subtitle" data-i18n="destacados_sub">Botellas premiadas con valoraciones superiores a 95 puntos Peñín.</p>
+                    <p class="section-subtitle" style="text-align: center; margin-bottom: var(--espaciado-32);" data-i18n="destacados_sub">Botellas premiadas con valoraciones superiores a 95 puntos Peñín.</p>
                 </div>
 
-                <div id="destacados-grid" class="products-grid" role="region" aria-label="Lista de vinos destacados">
-                    <!-- Renderizado dinámico vía js/main.js -->
-                </div>
+                <div id="destacados-grid" class="products-grid" role="region" aria-label="Lista de vinos destacados"></div>
             </div>
         </section>
 
     </main>
 
-    <!-- Pie de página -->
     <footer class="site-footer" role="contentinfo">
         <div class="container footer-container">
             <div class="footer-brand">
@@ -275,14 +241,11 @@
             </div>
             <nav class="footer-links" aria-label="Enlaces legales y accesibilidad">
                 <a href="html/politica_privacidad.html" data-i18n="footer_privacy">Política de Privacidad</a>
-                <a href="html/terminos_condiciones.html" data-i18n="footer_terms">Términos y Condiciones</a>
                 <a href="html/declaracion_accesibilidad.html" data-i18n="footer_a11y">Declaración de Accesibilidad AAA</a>
             </nav>
         </div>
     </footer>
 
-    <!-- Scripts Core -->
-    <script src="js/geo.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

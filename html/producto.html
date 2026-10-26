@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Vino | WineShop Rioja</title>
-    <meta name="description" content="Consulta la ficha técnica, notas de cata, maridaje y características del vino seleccionado.">
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <style>
@@ -45,7 +44,6 @@
 <body>
 
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
-    <div id="live-announcer" class="sr-only" aria-live="polite"></div>
 
     <header class="site-header">
         <div class="container header-container">
@@ -62,10 +60,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     <span class="badge-count" id="header-fav-count" aria-hidden="true"></span>
                 </a>
-                <button type="button" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
+                <a href="checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -103,13 +101,19 @@
         </div>
     </main>
 
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer">
         <div class="container footer-container">
-            <p>© 2026 WineShop. Accesibilidad WCAG 2.1 AAA.</p>
+            <div class="footer-brand">
+                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
+                <p class="body-regular">© 2026 WineShop. Todos los derechos reservados.</p>
+            </div>
+            <nav class="footer-links">
+                <a href="politica_privacidad.html">Política de Privacidad</a>
+                <a href="declaracion_accesibilidad.html">Declaración de Accesibilidad</a>
+            </nav>
         </div>
     </footer>
 
-    <script src="../js/geo.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

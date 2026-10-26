@@ -55,88 +55,127 @@
       ],
       "totalNum": 66.90,
       "total": "66,90 €"
-    },
-    {
-      "id": "PED-2026-9012",
-      "usuarioId": "usr-1",
-      "fecha": "02/10/2026",
-      "estado": "En camino",
-      "metodoPago": "Google Pay",
-      "direccionEnvio": "Calle Gran Vía, 12, 3ºA, 26001 Logroño (La Rioja)",
-      "items": [
-        {
-          "id": "vino-10",
-          "nombre": "Chardonnay Gran Reserva",
-          "cantidad": 1,
-          "precioNum": 48.50,
-          "precio": "48,50 €"
-        }
-      ],
-      "totalNum": 48.50,
-      "total": "48,50 €"
-    },
-    {
-      "id": "PED-2026-7730",
-      "usuarioId": "usr-1",
-      "fecha": "15/08/2026",
-      "estado": "Entregado",
-      "metodoPago": "Bizum",
-      "direccionEnvio": "Polígono El Lobero, Nave 4, 26006 Logroño (La Rioja)",
-      "items": [
-        {
-          "id": "vino-4",
-          "nombre": "Espumoso Brut Nature",
-          "cantidad": 3,
-          "precioNum": 29.00,
-          "precio": "29,00 €"
-        }
-      ],
-      "totalNum": 87.00,
-      "total": "87,00 €"
     }
   ],
-  "direcciones": [
+  "bodegas": [
     {
-      "id": "dir-1",
-      "usuarioId": "usr-1",
-      "alias": "Domicilio Principal",
-      "calle": "Calle Gran Vía, 12, 3ºA",
-      "ciudad": "Logroño",
-      "codigoPostal": "26001",
-      "provincia": "La Rioja",
-      "telefono": "+34 600 123 456"
+      "id": "bodega-1",
+      "nombre": "Bodegas Marqués de Riscal",
+      "abreviatura": "Marqués de Riscal",
+      "url": "https://www.marquesderiscal.com",
+      "imagen": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "subtitulo": "Elciego (Rioja Alavesa) · Fundada en 1858", "desc": "Pionera en la elaboración de vinos según las técnicas bordolesas. Icono del enoturismo internacional con su Ciudad del Vino diseñada por Frank Gehry." },
+        "en": { "subtitulo": "Elciego (Rioja Alavesa) · Founded in 1858", "desc": "Pioneer in modern Bordeaux winemaking in Rioja. An international wine tourism icon with its City of Wine designed by Frank Gehry." },
+        "fr": { "subtitulo": "Elciego (Rioja Alavesa) · Fondé en 1858", "desc": "Pionnier dans l'élaboration de vins selon les méthodes bordelaises. Cité du Vin emblématique conçue par Frank Gehry." },
+        "de": { "subtitulo": "Elciego (Rioja Alavesa) · Gegründet 1858", "desc": "Pionier der modernen Weinherstellung nach Bordeaux-Art. Die Stadt des Weines von Frank Gehry ist ein globales Wahrzeichen." }
+      }
     },
     {
-      "id": "dir-2",
-      "usuarioId": "usr-1",
-      "alias": "Oficina / Trabajo",
-      "calle": "Polígono El Lobero, Nave 4",
-      "ciudad": "Logroño",
-      "codigoPostal": "26006",
-      "provincia": "La Rioja",
-      "telefono": "+34 600 123 456"
+      "id": "bodega-2",
+      "nombre": "Bodegas Muga",
+      "abreviatura": "Bodegas Muga",
+      "url": "https://www.bodegasmuga.com",
+      "imagen": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "subtitulo": "Barrio de la Estación, Haro · Fundada en 1932", "desc": "Tradición familiar ininterrumpida en el corazón vinícola de Haro. Elaboración artesanal con tonelería propia y clarificación tradicional con clara de huevo." },
+        "en": { "subtitulo": "Station District, Haro · Founded in 1932", "desc": "Unbroken family tradition in Haro's historic Station District. Handcrafted aging with in-house cooperage." },
+        "fr": { "subtitulo": "Quartier de la Gare, Haro · Fondé en 1932", "desc": "Tradition familiale au cœur du quartier historique d'Haro. Tonnellerie propre et collage traditionnel." },
+        "de": { "subtitulo": "Bahnhofsviertel, Haro · Gegründet 1932", "desc": "Familientradition im historischen Bahnhofsviertel von Haro. Eigene Küferwerkstatt." }
+      }
+    },
+    {
+      "id": "bodega-3",
+      "nombre": "Vivanco (Cultura del Vino)",
+      "abreviatura": "Bodegas Vivanco",
+      "url": "https://vivancoculturadelvino.es",
+      "imagen": "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "subtitulo": "Briones (Rioja Alta) · Viticultura de Autor", "desc": "Ubicada en uno de los pueblos más bellos de España. Alberga el Museo Vivanco de la Cultura del Vino, considerado el mejor del mundo por la OMT." },
+        "en": { "subtitulo": "Briones (Rioja Alta) · Signature Viticulture", "desc": "Located in one of Spain's most scenic villages. Home to the Vivanco Museum of Wine Culture." },
+        "fr": { "subtitulo": "Briones (Rioja Alta) · Viticulture d'Auteur", "desc": "Situé dans l'un des plus beaux villages d'Espagne. Abrite le Musée Vivanco de la Culture du Vin." },
+        "de": { "subtitulo": "Briones (Rioja Alta) · Autorenschaftlicher Weinbau", "desc": "Gelegen in einem der schönsten Dörfer Spaniens. Beherbergt das weltberühmte Vivanco-Museum." }
+      }
+    },
+    {
+      "id": "bodega-4",
+      "nombre": "Bodegas Marqués de Murrieta",
+      "abreviatura": "Marqués de Murrieta",
+      "url": "https://marquesdemurrieta.com",
+      "imagen": "https://images.unsplash.com/photo-1528823872057-9c018a7a70b3?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "subtitulo": "Finca Ygay, Logroño · Fundada en 1852", "desc": "Origen de la D.O.Ca. Rioja en el histórico Castillo de Ygay. Vinos de finca elegantes, reconocidos mundialmente con 100 puntos Parker." },
+        "en": { "subtitulo": "Ygay Estate, Logroño · Founded in 1852", "desc": "The birthplace of Rioja fine wine in the historic Ygay Castle. Elegant estate wines globally recognized." },
+        "fr": { "subtitulo": "Domaine Ygay, Logroño · Fondé en 1852", "desc": "Berceau des grands vins de la Rioja au Château Ygay. Vins de domaine élégants." },
+        "de": { "subtitulo": "Finca Ygay, Logroño · Gegründet 1852", "desc": "Die Wiege der feinen Rioja-Weine im historischen Schloss Ygay. Elegante Lagenweine." }
+      }
+    },
+    {
+      "id": "bodega-5",
+      "nombre": "Bodegas Franco-Españolas",
+      "abreviatura": "Franco-Españolas",
+      "url": "https://www.francoespanolas.com",
+      "imagen": "https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "subtitulo": "Logroño (Orilla del Ebro) · Fundada en 1890", "desc": "Bodega urbana centenaria a escasos metros del casco antiguo de Logroño. Historia viva donde Ernest Hemingway degustaba sus famosos vinos." },
+        "en": { "subtitulo": "Logroño (Ebro Riverbank) · Founded in 1890", "desc": "Centenary urban winery just steps from Logroño's historic center. Living history once frequented by Ernest Hemingway." },
+        "fr": { "subtitulo": "Logroño (Bords de l'Ebre) · Fondé en 1890", "desc": "Domaine urbain centenaire à deux pas du centre historique de Logroño." },
+        "de": { "subtitulo": "Logroño (Ebro-Ufer) · Gegründet 1890", "desc": "Jahrhundertealtes städtisches Weingut nahe der Altstadt von Logroño." }
+      }
     }
   ],
-  "reservas": [
+  "experiencias": [
     {
-      "id": "RES-2026-041",
-      "usuarioId": "usr-1",
-      "experienciaId": "exp-1",
-      "titulo": "Cata Premium y Calados Históricos",
-      "fechaEvento": "15/11/2026 - 11:30 h",
-      "personas": 2,
-      "estado": "Confirmada",
-      "total": "90,00 €"
+      "id": "exp-1",
+      "precio": "45,00 €",
+      "nombreBodega": "Bodegas Franco-Españolas",
+      "urlBodega": "https://www.francoespanolas.com/enoturismo/",
+      "imagen": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos." },
+        "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting of 4 prestigious wines paired with artisan cheeses." },
+        "fr": { "banner": "Dégustation d'Exception", "titulo": "Dégustation Premium & Caves", "duracion": "Durée : 2h 30m · Petits groupes", "desc": "Parcours dans les caves souterraines du XIXe siècle suivi d'une dégustation de 4 vins haut de gamme." },
+        "de": { "banner": "Besondere Verkostung", "titulo": "Premium-Verkostung & Historische Keller", "duracion": "Dauer: 2h 30m · Kleine Gruppen", "desc": "Führung durch Gewölbekeller aus dem 19. Jahrhundert samt Verkostung de 4 Spitzenweinen." }
+      }
     },
     {
-      "id": "RES-2026-089",
-      "usuarioId": "usr-1",
-      "experienciaId": "exp-3",
-      "titulo": "Menú Degustación & Maridaje",
-      "fechaEvento": "05/12/2026 - 14:00 h",
-      "personas": 2,
-      "estado": "Confirmada",
-      "total": "190,00 €"
+      "id": "exp-2",
+      "precio": "65,00 €",
+      "nombreBodega": "Bodegas Muga",
+      "urlBodega": "https://www.bodegasmuga.com/visitas/",
+      "imagen": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 y Visita a Tonelería", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas del Barrio de la Estación, demostración de tonelería artesanal y cata comentada con almuerzo campero." },
+        "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition & Cooperage Tour", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across Station District plots, artisanal cooperage demonstration and guided tasting." },
+        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 et Visite de Tonnellerie", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers les parcelles du quartier de la Gare et dégustation." },
+        "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour & Küfer-Führung", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch die Lagen von Haro mit Verkostung." }
+      }
+    },
+    {
+      "id": "exp-3",
+      "precio": "95,00 €",
+      "nombreBodega": "Bodegas Marqués de Murrieta",
+      "urlBodega": "https://marquesdemurrieta.com/enoturismo/",
+      "imagen": "https://images.unsplash.com/photo-1528823872057-9c018a7a70b3?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación en el Castillo de Ygay", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica exclusiva en el histórico Castillo de Ygay maridada con las cosechas más laureadas de la bodega." },
+        "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu at Ygay Castle", "duracion": "Lunch or Dinner · Private Salon", "desc": "Exclusive gastronomic experience inside the historic Ygay Castle paired with top vintages." },
+        "fr": { "banner": "Accord d'Auteur", "titulo": "Menu Dégustation au Château Ygay", "duracion": "Déjeuner ou Dîner · Salon Privé", "desc": "Expérience gastronomique exclusive dans le Château Ygay." },
+        "de": { "banner": "Gourmet-Pairing", "titulo": "Degustationsmenü auf Schloss Ygay", "duracion": "Mittag- oder Abendessen · Privatsalon", "desc": "Exklusives Gourmet-Erlebnis im historischen Schloss Ygay." }
+      }
+    },
+    {
+      "id": "exp-4",
+      "precio": "120,00 €",
+      "nombreBodega": "Vivanco (Cultura del Vino)",
+      "urlBodega": "https://vivancoculturadelvino.es/es/enoturismo/",
+      "imagen": "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80",
+      "i18n": {
+        "es": { "banner": "Curso Enología", "titulo": "Entrada al Museo del Vino y Taller de Cata", "duracion": "Duración: 4h 00m · Incluye visita al Museo", "desc": "Recorrido por el museo de la cultura del vino mejor del mundo y máster clase de cata sensorial impartida por sumilleres." },
+        "en": { "banner": "Winemaking Masterclass", "titulo": "Wine Museum Tour & Tasting Workshop", "duracion": "Duration: 4h 00m · Museum entry included", "desc": "Guided tour through the world's best wine museum followed by a sensory tasting masterclass." },
+        "fr": { "banner": "Atelier Œnologie", "titulo": "Visite du Musée du Vin et Atelier Dégustation", "duracion": "Durée : 4h 00m · Entrée Musée incluse", "desc": "Découvrez le meilleur musée de la culture du vin au monde." },
+        "de": { "banner": "Winzer-Workshop", "titulo": "Weinmuseum-Führung & Sensorik-Seminar", "duracion": "Dauer: 4h 00m · Museumseintritt inkl.", "desc": "Führung durch das weltbeste Weinmuseum samt Sensorik-Seminar." }
+      }
     }
   ],
   "vinos": [
@@ -151,10 +190,10 @@
       "alcohol": "14,5% Vol.",
       "temp": "16°C - 18°C",
       "i18n": {
-        "es": { "desc": "Tempranillo, intenso, elegante y estructurado.", "cat_desc": "Tempranillo, intenso, elegante y estructurado.", "vintage": "D.O.Ca. Rioja · Cosecha 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 meses en barrica" },
-        "en": { "desc": "Tempranillo, intense, elegant and structured.", "cat_desc": "Tempranillo, intense, elegant and structured.", "vintage": "D.O.Ca. Rioja · 2018 Vintage", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 months in oak" },
-        "fr": { "desc": "Tempranillo, intense, élégant et structuré.", "cat_desc": "Tempranillo, intense, élégant et structuré.", "vintage": "D.O.Ca. Rioja · Millésime 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 mois en fûts" },
-        "de": { "desc": "Tempranillo, intensiv, elegant und strukturiert.", "cat_desc": "Tempranillo, intensiv, elegant und strukturiert.", "vintage": "D.O.Ca. Rioja · Jahrgang 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 Monate im Fass" }
+        "es": { "desc": "Tempranillo, intenso, elegante y estructurado.", "vintage": "D.O.Ca. Rioja · Cosecha 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 meses en barrica" },
+        "en": { "desc": "Tempranillo, intense, elegant and structured.", "vintage": "D.O.Ca. Rioja · 2018 Vintage", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 months in oak" },
+        "fr": { "desc": "Tempranillo, intense, élégant et structuré.", "vintage": "D.O.Ca. Rioja · Millésime 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 mois en fûts" },
+        "de": { "desc": "Tempranillo, intensiv, elegant und strukturiert.", "vintage": "D.O.Ca. Rioja · Jahrgang 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 Monate im Fass" }
       }
     },
     {
@@ -168,10 +207,8 @@
       "alcohol": "14,0% Vol.",
       "temp": "16°C - 17°C",
       "i18n": {
-        "es": { "desc": "Aromas a roble tostado, ciruela y frutos rojos.", "cat_desc": "Aromas a roble tostado, ciruela y frutos rojos.", "vintage": "AOC Bordeaux Superieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 meses en barrica" },
-        "en": { "desc": "Aromas of toasted oak, plum and ripe red fruits.", "cat_desc": "Aromas of toasted oak, plum and ripe red fruits.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 months in barrel" },
-        "fr": { "desc": "Arômes de chêne toasté, prune et fruits rouges.", "cat_desc": "Arômes de chêne toasté, prune et fruits rouges.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 mois en fûts" },
-        "de": { "desc": "Aromen von gerösteter Eiche, Pflaume und roten Waldbeeren.", "cat_desc": "Aromen von gerösteter Eiche, Pflaume und roten Waldbeeren.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 Monate im Fass" }
+        "es": { "desc": "Aromas a roble tostado, ciruela y frutos rojos.", "vintage": "AOC Bordeaux Superieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 meses en barrica" },
+        "en": { "desc": "Aromas of toasted oak, plum and ripe red fruits.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 months in barrel" }
       }
     },
     {
@@ -185,10 +222,8 @@
       "alcohol": "13,0% Vol.",
       "temp": "10°C - 12°C",
       "i18n": {
-        "es": { "desc": "Viura fresca, notas cítricas, florales y miel.", "cat_desc": "Viura fresca, notas cítricas, florales y miel.", "vintage": "D.O.Ca. Rioja · Selección Especial", "grape": "Viura 85%, Malvasía 15%", "aging": "6 meses sobre lías" },
-        "en": { "desc": "Fresh Viura with citrus, delicate florals and honey notes.", "cat_desc": "Fresh Viura with citrus, delicate florals and honey notes.", "vintage": "D.O.Ca. Rioja · Special Selection", "grape": "Viura 85%, Malvasía 15%", "aging": "6 months on lees" },
-        "fr": { "desc": "Viura frais, notes d'agrumes, florales et touche de miel.", "cat_desc": "Viura frais, notes d'agrumes, florales et touche de miel.", "vintage": "D.O.Ca. Rioja · Sélection Spéciale", "grape": "Viura 85%, Malvasía 15%", "aging": "6 mois sur lies fines" },
-        "de": { "desc": "Frischer Viura mit Zitrusnuancen, Blütennoten und Honig.", "cat_desc": "Frischer Viura mit Zitrusnuancen, Blütennoten und Honig.", "vintage": "D.O.Ca. Rioja · Sonderauslese", "grape": "Viura 85%, Malvasía 15%", "aging": "6 Monate auf der Feinhefe" }
+        "es": { "desc": "Viura fresca, notas cítricas, florales y miel.", "vintage": "D.O.Ca. Rioja · Selección Especial", "grape": "Viura 85%, Malvasía 15%", "aging": "6 meses sobre lías" },
+        "en": { "desc": "Fresh Viura with citrus, delicate florals and honey notes.", "vintage": "D.O.Ca. Rioja · Special Selection", "grape": "Viura 85%, Malvasía 15%", "aging": "6 months on lees" }
       }
     },
     {
@@ -202,27 +237,8 @@
       "alcohol": "12,5% Vol.",
       "temp": "6°C - 8°C",
       "i18n": {
-        "es": { "desc": "Burbuja fina persistente, ideal para celebraciones.", "cat_desc": "Burbuja fina persistente, ideal para celebraciones.", "vintage": "Método Tradicional", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 meses en calado" },
-        "en": { "desc": "Persistent fine bubbles, ideal for celebrations.", "cat_desc": "Persistent fine bubbles, ideal for celebrations.", "vintage": "Traditional Method", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 months in cellar" },
-        "fr": { "desc": "Bulle fine et persistante, parfait pour les célébrations.", "cat_desc": "Bulle fine et persistante, parfait pour les célébrations.", "vintage": "Méthode Traditionnelle", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 mois en cave" },
-        "de": { "desc": "Feine anhaltende Perlage, perfekt für Festtage.", "cat_desc": "Feine anhaltende Perlage, perfekt für Festtage.", "vintage": "Traditionelle Flaschengärung", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 Monate im Keller" }
-      }
-    },
-    {
-      "id": "vino-5",
-      "nombre": "Selección de Autor 2017",
-      "precio": "42,00 €",
-      "precioNum": 42.00,
-      "modelo": "botella_vino.glb",
-      "tipo": "tinto",
-      "destacado": false,
-      "alcohol": "15,0% Vol.",
-      "temp": "17°C - 19°C",
-      "i18n": {
-        "es": { "desc": "Edición limitada procedente de viñedos viejos.", "cat_desc": "Edición limitada procedente de viñedos viejos.", "vintage": "Viñedo Singular", "grape": "Garnacha 100%", "aging": "20 meses en foudres" },
-        "en": { "desc": "Limited edition crafted from old vineyards.", "cat_desc": "Limited edition crafted from old vineyards.", "vintage": "Single Vineyard", "grape": "Grenache 100%", "aging": "20 months in foudres" },
-        "fr": { "desc": "Édition limitée issue de très vieilles vignes.", "cat_desc": "Édition limitée issue de très vieilles vignes.", "vintage": "Vignoble d'Exception", "grape": "Grenache 100%", "aging": "20 mois en foudres" },
-        "de": { "desc": "Limitierte Auflage aus historischen alten Reben.", "cat_desc": "Limitierte Auflage aus historischen alten Reben.", "vintage": "Einzellage", "grape": "Garnacha 100%", "aging": "20 Monate in Foudres" }
+        "es": { "desc": "Burbuja fina persistente, ideal para celebraciones.", "vintage": "Método Tradicional", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 meses en calado" },
+        "en": { "desc": "Persistent fine bubbles, ideal for celebrations.", "vintage": "Traditional Method", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 months in cellar" }
       }
     },
     {
@@ -236,61 +252,8 @@
       "alcohol": "13,5% Vol.",
       "temp": "8°C - 10°C",
       "i18n": {
-        "es": { "desc": "Garnacha suave, sutil, aromática y muy refrescante.", "cat_desc": "Garnacha suave, sutil, aromática y muy refrescante.", "vintage": "Prensado Directo", "grape": "Garnacha 80%, Tempranillo Blanco 20%", "aging": "Joven" },
-        "en": { "desc": "Smooth Grenache, subtle, aromatic and refreshing.", "cat_desc": "Smooth Grenache, subtle, aromatic and refreshing.", "vintage": "Direct Press", "grape": "Grenache 80%, White Tempranillo 20%", "aging": "Young" },
-        "fr": { "desc": "Grenache délicat, subtil, aromatique et très frais.", "cat_desc": "Grenache délicat, subtil, aromatique et très frais.", "vintage": "Pressurage Direct", "grape": "Grenache 80%, Tempranillo Blanc 20%", "aging": "Jeune" },
-        "de": { "desc": "Sanfter Garnacha, subtil, blumig und erfrischend kühl.", "cat_desc": "Sanfter Garnacha, subtil, blumig und erfrischend kühl.", "vintage": "Direktpressung", "grape": "Garnacha 80%, Weißer Tempranillo 20%", "aging": "Jung" }
-      }
-    },
-    {
-      "id": "vino-7",
-      "nombre": "Verdejo sobre Lías",
-      "precio": "12,90 €",
-      "precioNum": 12.90,
-      "modelo": "botella_vino.glb",
-      "tipo": "blanco",
-      "destacado": false,
-      "alcohol": "13,0% Vol.",
-      "temp": "7°C - 9°C",
-      "i18n": {
-        "es": { "desc": "Fresco, herbáceo y con gran volumen en boca.", "cat_desc": "Fresco, herbáceo y con gran volumen en boca.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 meses sobre lías" },
-        "en": { "desc": "Fresh, herbaceous with great volume on the palate.", "cat_desc": "Fresh, herbaceous with great volume on the palate.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 months on lees" },
-        "fr": { "desc": "Frais, herbacé avec un grand volume en bouche.", "cat_desc": "Frais, herbacé avec un grand volume en bouche.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 mois sur lies fines" },
-        "de": { "desc": "Frisch, kräuterig und mit großem Volumen am Gaumen.", "cat_desc": "Frisch, kräuterig und mit großem Volumen am Gaumen.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 Monate auf der Hefe" }
-      }
-    },
-    {
-      "id": "vino-8",
-      "nombre": "Graciano Monovarietal",
-      "precio": "22,00 €",
-      "precioNum": 22.00,
-      "modelo": "botella_vino.glb",
-      "tipo": "tinto",
-      "destacado": false,
-      "alcohol": "14,0% Vol.",
-      "temp": "15°C - 17°C",
-      "i18n": {
-        "es": { "desc": "Alta intensidad de color, especiado y floral.", "cat_desc": "Alta intensidad de color, especiado y floral.", "vintage": "Edición Limitada", "grape": "Graciano 100%", "aging": "12 meses en roble francés" },
-        "en": { "desc": "High color intensity, spicy and floral notes.", "cat_desc": "High color intensity, spicy and floral notes.", "vintage": "Limited Edition", "grape": "Graciano 100%", "aging": "12 months in French oak" },
-        "fr": { "desc": "Haute intensité de couleur, épicé et floral.", "cat_desc": "Haute intensité de couleur, épicé et floral.", "vintage": "Édition Limitée", "grape": "Graciano 100%", "aging": "12 mois en chêne français" },
-        "de": { "desc": "Hohe Farbintensität, würzig und blumig.", "cat_desc": "Hohe Farbintensität, würzig und blumig.", "vintage": "Limitierte Edition", "grape": "Graciano 100%", "aging": "12 Monate in französischer Eiche" }
-      }
-    },
-    {
-      "id": "vino-9",
-      "nombre": "Rosé Espumoso Reserva",
-      "precio": "31,00 €",
-      "precioNum": 31.00,
-      "modelo": "botella_vino.glb",
-      "tipo": "espumoso",
-      "destacado": false,
-      "alcohol": "12,0% Vol.",
-      "temp": "6°C - 8°C",
-      "i18n": {
-        "es": { "desc": "Elegante color salmón, notas de frutos rojos y brioche.", "cat_desc": "Elegante color salmón, notas de frutos rojos y brioche.", "vintage": "Método Tradicional", "grape": "Pinot Noir 100%", "aging": "24 meses en rima" },
-        "en": { "desc": "Elegant salmon color, notes of red berries and brioche.", "cat_desc": "Elegant salmon color, notes of red berries and brioche.", "vintage": "Traditional Method", "grape": "Pinot Noir 100%", "aging": "24 months on lees" },
-        "fr": { "desc": "Couleur saumon élégante, notes de fruits rouges et de brioche.", "cat_desc": "Couleur saumon élégante, notes de fruits rouges et de brioche.", "vintage": "Méthode Traditionnelle", "grape": "Pinot Noir 100%", "aging": "24 mois sur lattes" },
-        "de": { "desc": "Elegante Lachsfarbe, Noten von roten Beeren und Brioche.", "cat_desc": "Elegante Lachsfarbe, Noten von roten Beeren und Brioche.", "vintage": "Traditionelle Flaschengärung", "grape": "Pinot Noir 100%", "aging": "24 Monate auf der Hefe" }
+        "es": { "desc": "Garnacha suave, sutil, aromática y muy refrescante.", "vintage": "Prensado Directo", "grape": "Garnacha 80%, Tempranillo Blanco 20%", "aging": "Joven" },
+        "en": { "desc": "Smooth Grenache, subtle, aromatic and refreshing.", "vintage": "Direct Press", "grape": "Grenache 80%, White Tempranillo 20%", "aging": "Young" }
       }
     },
     {
@@ -304,156 +267,8 @@
       "alcohol": "13,5% Vol.",
       "temp": "11°C - 13°C",
       "i18n": {
-        "es": { "desc": "Blanco complejo, untuoso, con notas de mantequilla.", "cat_desc": "Blanco complejo, untuoso, con notas de mantequilla y vainilla.", "vintage": "Añada Excepcional", "grape": "Chardonnay 100%", "aging": "18 meses en barrica nueva" },
-        "en": { "desc": "Complex, unctuous white wine with buttery notes.", "cat_desc": "Complex, unctuous white wine with buttery notes and vanilla.", "vintage": "Exceptional Vintage", "grape": "Chardonnay 100%", "aging": "18 months in new oak" },
-        "fr": { "desc": "Vin blanc complexe, onctueux, aux notes beurrées.", "cat_desc": "Vin blanc complexe, onctueux, aux notes beurrées et vanillées.", "vintage": "Millésime Exceptionnel", "grape": "Chardonnay 100%", "aging": "18 mois en fûts neufs" },
-        "de": { "desc": "Komplexer, geschmeidiger Weißwein mit Butternoten.", "cat_desc": "Komplexer, geschmeidiger Weißwein mit Butternoten und Vanille.", "vintage": "Außergewöhnlicher Jahrgang", "grape": "Chardonnay 100%", "aging": "18 Monate im neuen Fass" }
-      }
-    },
-    {
-      "id": "vino-11",
-      "nombre": "Garnacha Centenaria",
-      "precio": "38,00 €",
-      "precioNum": 38.00,
-      "modelo": "botella_vino.glb",
-      "tipo": "tinto",
-      "destacado": false,
-      "alcohol": "14,5% Vol.",
-      "temp": "16°C - 18°C",
-      "i18n": {
-        "es": { "desc": "Fruta roja madura, mineral, procedente de viñas de 100 años.", "cat_desc": "Fruta roja madura, mineral, procedente de viñas de 100 años.", "vintage": "Cepas Viejas", "grape": "Garnacha 100%", "aging": "14 meses en roble francés" },
-        "en": { "desc": "Ripe red fruit, mineral, from 100-year-old vines.", "cat_desc": "Ripe red fruit, mineral, from 100-year-old vines.", "vintage": "Old Vines", "grape": "Grenache 100%", "aging": "14 months in French oak" },
-        "fr": { "desc": "Fruits rouges mûrs, minéral, issu de vignes de 100 ans.", "cat_desc": "Fruits rouges mûrs, minéral, issu de vignes de 100 ans.", "vintage": "Vieilles Vignes", "grape": "Grenache 100%", "aging": "14 mois en chêne français" },
-        "de": { "desc": "Reife rote Früchte, mineralisch, von 100 Jahre alten Reben.", "cat_desc": "Reife rote Früchte, mineralisch, von 100 Jahre alten Reben.", "vintage": "Alte Reben", "grape": "Garnacha 100%", "aging": "14 Monate in französischer Eiche" }
-      }
-    },
-    {
-      "id": "vino-12",
-      "nombre": "Tempranillo Joven 2023",
-      "precio": "9,50 €",
-      "precioNum": 9.50,
-      "modelo": "botella_vino.glb",
-      "tipo": "tinto",
-      "destacado": false,
-      "alcohol": "13,5% Vol.",
-      "temp": "14°C - 16°C",
-      "i18n": {
-        "es": { "desc": "Vino joven, frutal, vibrante y muy fácil de beber.", "cat_desc": "Vino joven, frutal, vibrante y muy fácil de beber.", "vintage": "Cosecha del Año", "grape": "Tempranillo 100%", "aging": "Sin barrica (Joven)" },
-        "en": { "desc": "Young, fruity, vibrant wine that is very easy to drink.", "cat_desc": "Young, fruity, vibrant wine that is very easy to drink.", "vintage": "Current Vintage", "grape": "Tempranillo 100%", "aging": "Unoaked (Young)" },
-        "fr": { "desc": "Vin jeune, fruité, vibrant et très facile à boire.", "cat_desc": "Vin jeune, fruité, vibrant et très facile à boire.", "vintage": "Millésime de l'Année", "grape": "Tempranillo 100%", "aging": "Sans fût (Jeune)" },
-        "de": { "desc": "Junger, fruchtiger, lebendiger Wein, sehr süffig.", "cat_desc": "Junger, fruchtiger, lebendiger Wein, sehr süffig.", "vintage": "Aktueller Jahrgang", "grape": "Tempranillo 100%", "aging": "Ohne Holzeinfluss (Jung)" }
-      }
-    }
-  ],
-  "bodegas": [
-    {
-      "id": "bodega-1",
-      "nombre": "Bodegas Marqués de Riscal",
-      "abreviatura": "Marqués de Riscal",
-      "url": "https://www.marquesderiscal.com",
-      "i18n": {
-        "es": { "subtitulo": "Elciego (Rioja Alavesa) · Fundada en 1858", "desc": "Pionera en la elaboración de vinos según las técnicas bordolesas. Icono del enoturismo internacional con su Ciudad del Vino diseñada por Frank Gehry." },
-        "en": { "subtitulo": "Elciego (Rioja Alavesa) · Founded in 1858", "desc": "Pioneer in modern Bordeaux winemaking in Rioja. An international wine tourism icon with its City of Wine designed by Frank Gehry." },
-        "fr": { "subtitulo": "Elciego (Rioja Alavesa) · Fondé en 1858", "desc": "Pionnier dans l'élaboration de vins selon les méthodes bordelaises. Cité du Vin emblématique conçue par Frank Gehry." },
-        "de": { "subtitulo": "Elciego (Rioja Alavesa) · Gegründet 1858", "desc": "Pionier der modernen Weinherstellung nach Bordeaux-Art. Die Stadt des Weines von Frank Gehry ist ein globales Wahrzeichen." }
-      }
-    },
-    {
-      "id": "bodega-2",
-      "nombre": "Bodegas Muga",
-      "abreviatura": "Bodegas Muga",
-      "url": "https://www.bodegasmuga.com",
-      "i18n": {
-        "es": { "subtitulo": "Barrio de la Estación, Haro · Fundada en 1932", "desc": "Tradición familiar ininterrumpida en el corazón vinícola de Haro. Elaboración artesanal con tonelería propia y clarificación tradicional con clara de huevo." },
-        "en": { "subtitulo": "Station District, Haro · Founded in 1932", "desc": "Unbroken family tradition in Haro's historic Station District. Handcrafted aging with in-house cooperage and traditional egg white fining." },
-        "fr": { "subtitulo": "Quartier de la Gare, Haro · Fondé en 1932", "desc": "Tradition familiale au cœur du quartier historique d'Haro. Tonellerie propre et collage traditionnel au blanc d'œuf." },
-        "de": { "subtitulo": "Bahnhofsviertel, Haro · Gegründet 1932", "desc": "Familientradition im historischen Bahnhofsviertel von Haro. Eigene Küferwerkstatt und traditionelle Eiweißschönung." }
-      }
-    },
-    {
-      "id": "bodega-3",
-      "nombre": "Vivanco (Cultura del Vino)",
-      "abreviatura": "Bodegas Vivanco",
-      "url": "https://vivancoculturadelvino.es",
-      "i18n": {
-        "es": { "subtitulo": "Briones (Rioja Alta) · Viticultura de Autor", "desc": "Ubicada en uno de los pueblos más bellos de España. Alberga el Museo Vivanco de la Cultura del Vino, considerado el mejor del mundo por la OMT." },
-        "en": { "subtitulo": "Briones (Rioja Alta) · Signature Viticulture", "desc": "Located in one of Spain's most scenic villages. Home to the Vivanco Museum of Wine Culture, awarded best in the world by the UNWTO." },
-        "fr": { "subtitulo": "Briones (Rioja Alta) · Viticulture d'Auteur", "desc": "Situé dans l'un des plus beaux villages d'Espagne. Abrite el Musée Vivanco de la Culture du Vin, reconnu par l'OMT." },
-        "de": { "subtitulo": "Briones (Rioja Alta) · Autorenschaftlicher Weinbau", "desc": "Gelegen in einem der schönsten Dörfer Spaniens. Beherbergt das weltberühmte Vivanco-Museum für Weinkultur." }
-      }
-    },
-    {
-      "id": "bodega-4",
-      "nombre": "Bodegas Marqués de Murrieta",
-      "abreviatura": "Marqués de Murrieta",
-      "url": "https://marquesdemurrieta.com",
-      "i18n": {
-        "es": { "subtitulo": "Finca Ygay, Logroño · Fundada en 1852", "desc": "Origen de la D.O.Ca. Rioja en el histórico Castillo de Ygay. Vinos de finca elegantes, reconocidos mundialmente con 100 puntos Parker." },
-        "en": { "subtitulo": "Ygay Estate, Logroño · Founded in 1852", "desc": "The birthplace of Rioja fine wine in the historic Ygay Castle. Elegant estate wines globally recognized with 100 Parker points." },
-        "fr": { "subtitulo": "Domaine Ygay, Logroño · Fondé en 1852", "desc": "Berceau des grands vins de la Rioja al Château Ygay. Vins de domaine élégants gratifiés de 100 points Parker." },
-        "de": { "subtitulo": "Finca Ygay, Logroño · Gegründet 1852", "desc": "Die Wiege der feinen Rioja-Weine im historischen Schloss Ygay. Elegante Lagenweine, ausgezeichnet mit 100 Parker-Punkten." }
-      }
-    },
-    {
-      "id": "bodega-5",
-      "nombre": "Bodegas Franco-Españolas",
-      "abreviatura": "Franco-Españolas",
-      "url": "https://www.francoespanolas.com",
-      "i18n": {
-        "es": { "subtitulo": "Logroño (Orilla del Ebro) · Fundada en 1890", "desc": "Bodega urbana centenaria a escasos metros del casco antiguo de Logroño. Historia viva donde Ernest Hemingway degustaba sus famosos vinos." },
-        "en": { "subtitulo": "Logroño (Ebro Riverbank) · Founded in 1890", "desc": "Centenary urban winery just steps from Logroño's historic center. Living history once frequented by Ernest Hemingway." },
-        "fr": { "subtitulo": "Logroño (Bords de l'Ebre) · Fondé en 1890", "desc": "Domaine urbain centenaire à deux pas del centre historique de Logroño. Lieu d'histoire apprécié par Ernest Hemingway." },
-        "de": { "subtitulo": "Logroño (Ebro-Ufer) · Gegründet 1890", "desc": "Jahrhundertealtes städtisches Weingut nahe der Altstadt von Logroño. Historischer Ort, den einst Ernest Hemingway schätzte." }
-      }
-    }
-  ],
-  "experiencias": [
-    {
-      "id": "exp-1",
-      "precio": "45,00 €",
-      "nombreBodega": "Bodegas Franco-Españolas",
-      "urlBodega": "https://www.francoespanolas.com/enoturismo/",
-      "i18n": {
-        "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos." },
-        "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting of 4 prestigious wines paired with artisan cheeses and Iberian meats." },
-        "fr": { "banner": "Dégustation d'Exception", "titulo": "Dégustation Premium & Caves", "duracion": "Durée : 2h 30m · Petits groupes", "desc": "Parcours dans les caves souterraines du XIXe siècle suivi d'une dégustation de 4 vins haut de gamme avec fromages et charcuteries ibériques." },
-        "de": { "banner": "Besondere Verkostung", "titulo": "Premium-Verkostung & Historische Keller", "duracion": "Dauer: 2h 30m · Kleine Gruppen", "desc": "Führung durch Gewölbekeller aus dem 19. Jahrhundert samt Verkostung von 4 Spitzenweinen mit Käse und iberischem Schinken." }
-      }
-    },
-    {
-      "id": "exp-2",
-      "precio": "65,00 €",
-      "nombreBodega": "Bodegas Muga",
-      "urlBodega": "https://www.bodegasmuga.com/enoturismo-rioja/",
-      "i18n": {
-        "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 y Visita a Tonelería", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas del Barrio de la Estación, demostración de tonelería artesanal y cata comentada con almuerzo campero." },
-        "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition & Cooperage Tour", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across Station District plots, artisanal cooperage demonstration and guided tasting with country lunch." },
-        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 et Visite de Tonellerie", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers les parcelles du quartier de la Gare, démonstration de tonnellerie y dégustation avec pique-nique." },
-        "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour & Küfer-Führung", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch die Lagen von Haro, Einblicke in die Küferwerkstatt und Verkostung mit deftigem Imbiss." }
-      }
-    },
-    {
-      "id": "exp-3",
-      "precio": "95,00 €",
-      "nombreBodega": "Bodegas Marqués de Murrieta",
-      "urlBodega": "https://marquesdemurrieta.com/reserva/",
-      "i18n": {
-        "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación en el Castillo de Ygay", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica exclusiva en el histórico Castillo de Ygay maridada con las cosechas más laureadas de la bodega." },
-        "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu at Ygay Castle", "duracion": "Lunch or Dinner · Private Salon", "desc": "Exclusive gastronomic experience inside the historic Ygay Castle paired with the winery's top award-winning vintages." },
-        "fr": { "banner": "Accord d'Auteur", "titulo": "Menu Dégustation au Château Ygay", "duracion": "Déjeuner ou Dîner · Salon Privé", "desc": "Expérience gastronomique exclusive dans el Château Ygay historique sublimée par les plus grands millésimes." },
-        "de": { "banner": "Gourmet-Pairing", "titulo": "Degustationsmenü auf Schloss Ygay", "duracion": "Mittag- oder Abendessen · Privatsalon", "desc": "Exklusives Gourmet-Erlebnis im historischen Schloss Ygay, abgestimmt auf die höchstprämierten Jahrgänge." }
-      }
-    },
-    {
-      "id": "exp-4",
-      "precio": "120,00 €",
-      "nombreBodega": "Vivanco (Cultura del Vino)",
-      "urlBodega": "https://vivancoculturadelvino.es/es/enoturismo/",
-      "i18n": {
-        "es": { "banner": "Curso Enología", "titulo": "Entrada al Museo del Vino y Taller de Cata", "duracion": "Duración: 4h 00m · Incluye visita al Museo", "desc": "Recorrido por el museo de la cultura del vino mejor del mundo y máster clase de cata sensorial impartida por sumilleres." },
-        "en": { "banner": "Winemaking Masterclass", "titulo": "Wine Museum Tour & Tasting Workshop", "duracion": "Duration: 4h 00m · Museum entry included", "desc": "Guided tour through the world's best wine museum followed by a sensory tasting masterclass led by professional sommelier." },
-        "fr": { "banner": "Atelier Enologie", "titulo": "Visite du Musée du Vin et Atelier Dégustation", "duracion": "Durée : 4h 00m · Entrée Musée incluse", "desc": "Découvrez le meilleur musée de la culture du vin au monde suivi d'un atelier de dégustation sensorielle." },
-        "de": { "banner": "Winzer-Workshop", "titulo": "Weinmuseum-Führung & Sensorik-Seminar", "duracion": "Dauer: 4h 00m · Museumseintritt inkl.", "desc": "Führung durch das weltbeste Weinmuseum samt anschliessendem Sensorik-Seminar unter Leitung eines Sommeliers." }
+        "es": { "desc": "Blanco complejo, untuoso, con notas de mantequilla.", "vintage": "Añada Excepcional", "grape": "Chardonnay 100%", "aging": "18 meses en barrica nueva" },
+        "en": { "desc": "Complex, unctuous white wine with buttery notes.", "vintage": "Exceptional Vintage", "grape": "Chardonnay 100%", "aging": "18 months in new oak" }
       }
     }
   ],
@@ -470,6 +285,8 @@
       "btn_reservar_bodega": "Reservar en la web de la bodega",
       "exp_title": "Experiencias y Enoturismo",
       "exp_desc": "Descubre las mejores actividades enoturísticas organizadas por nuestras bodegas asociadas. Te redirigiremos directamente a su web oficial para gestionar tu reserva.",
+      "destacados_titulo": "Selección Destacada",
+      "destacados_sub": "Botellas premiadas con valoraciones superiores a 95 puntos Peñín.",
       "per_person": "/ persona",
       "fav_remove_aria": "Quitar de favoritos",
       "results_text": "vinos encontrados",
@@ -492,6 +309,8 @@
       "btn_reservar_bodega": "Book on winery website",
       "exp_title": "Experiences & Wine Tourism",
       "exp_desc": "Discover wine tourism activities organized by our partner wineries. You will be redirected to their official booking page.",
+      "destacados_titulo": "Featured Selection",
+      "destacados_sub": "Award-winning bottles rated over 95 Peñín points.",
       "per_person": "/ person",
       "fav_remove_aria": "Remove from favorites",
       "results_text": "wines found",
@@ -501,50 +320,6 @@
       "footer_terms": "Terms & Conditions",
       "footer_a11y": "Accessibility Statement",
       "skip_to_content": "Skip to main content"
-    },
-    "fr": {
-      "nav_inicio": "Accueil",
-      "nav_catalogo": "Catalogue",
-      "nav_bodegas": "Domaines",
-      "nav_experiencias": "Expériences",
-      "btn_carrito": "Ajouter au panier",
-      "precio_label": "Prix : ",
-      "btn_ver_vinos": "Voir leurs vins",
-      "btn_reservar": "Réserver l'Expérience",
-      "btn_reservar_bodega": "Réserver sur le site du domaine",
-      "exp_title": "Expériences & Œnotourisme",
-      "exp_desc": "Découvrez les activités œnotouristiques organisées par nos domaines partenaires. Vous serez redirigé vers leur site officiel.",
-      "per_person": "/ personne",
-      "fav_remove_aria": "Retirer des favoris",
-      "results_text": "vins trouvés",
-      "no_wines_found": "Aucun vin ne correspond aux filtres.",
-      "footer_copy": "© 2026 WineShop. Tous droits réservés.",
-      "footer_privacy": "Politique de Confidentialité",
-      "footer_terms": "Conditions Générales",
-      "footer_a11y": "Déclaration d'Accessibilité",
-      "skip_to_content": "Passer au contenu principal"
-    },
-    "de": {
-      "nav_inicio": "Startseite",
-      "nav_catalogo": "Katalog",
-      "nav_bodegas": "Weingüter",
-      "nav_experiencias": "Erlebnisse",
-      "btn_carrito": "In den Warenkorb",
-      "precio_label": "Preis: ",
-      "btn_ver_vinos": "Deren Weine ansehen",
-      "btn_reservar": "Erlebnis buchen",
-      "btn_reservar_bodega": "Auf der Weingut-Website buchen",
-      "exp_title": "Erlebnisse & Weintourismus",
-      "exp_desc": "Entdecken Sie Weinerlebnisse unserer Partner-Weingüter. Sie werden zur Buchung direkt auf deren offizielle Website weitergeleitet.",
-      "per_person": "/ Person",
-      "fav_remove_aria": "Aus Favoriten entfernen",
-      "results_text": "Weine gefunden",
-      "no_wines_found": "Keine Weine entsprechen den Filtern.",
-      "footer_copy": "© 2026 WineShop. Alle Rechte vorbehalten.",
-      "footer_privacy": "Datenschutz",
-      "footer_terms": "AGB",
-      "footer_a11y": "Barrierefreiheit",
-      "skip_to_content": "Zum Hauptinhalt springen"
     }
   }
 }

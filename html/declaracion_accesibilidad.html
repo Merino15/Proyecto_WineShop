@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
     <header class="site-header">
         <div class="container header-container">
             <a href="../index.html" class="logo-link" aria-label="WineShop - Inicio">
@@ -16,27 +18,32 @@
         </div>
     </header>
 
-    <main class="container section-padding">
-        <h1 class="section-title">Declaración de Accesibilidad WCAG 2.1 AAA</h1>
-        <div style="background: #FFF; padding: 32px; border: 2px solid var(--color-borde); border-radius: 8px; margin-top: 24px; line-height: 1.8;">
-            <p><strong>WineShop</strong> se ha comprometido a hacer accesible su sitio web de conformidad con el Real Decreto 1112/2018 y las pautas internacionales <strong>WCAG 2.1 Nivel AAA</strong>.</p>
+    <main id="contenido-principal" class="container section-padding" tabindex="-1">
+        <a href="../index.html" class="back-link">← Volver al inicio</a>
+
+        <article class="legal-card">
+            <h1>Declaración de Accesibilidad WCAG 2.1 AAA</h1>
+            <p class="body-regular" style="margin-bottom: var(--espaciado-24);"><strong>WineShop</strong> se compromete a hacer accesible su sitio web de conformidad con el Real Decreto 1112/2018 y las pautas internacionales <strong>WCAG 2.1 Nivel AAA</strong>.</p>
             
-            <h2 style="color: var(--color-primario-bordeos); margin-top: 20px;">Medidas Adaptadas</h2>
-            <ul style="margin-left: 20px;">
-                <li>Contraste cromático superior a 7:1 en textos estándar.</li>
+            <h2>Medidas Adaptadas</h2>
+            <ul>
+                <li>Contraste cromático superior a 7:1 en textos e interfaces clave.</li>
                 <li>Navegación completa por teclado con anillos de foco visibles de 3px.</li>
-                <li>Modelos 3D e imágenes suplementadas con descripciones y alternativas de texto.</li>
-                <li>Estructura semántica HTML5 enriquecida con atributos ARIA y regiones de anuncio dinámico.</li>
+                <li>Modelos 3D e imágenes suplementadas con descripciones y texto alternativo.</li>
+                <li>Estructura semántica HTML5 enriquecida con atributos ARIA y regiones de anuncio dinámico (`aria-live`).</li>
             </ul>
 
-            <h2 style="color: var(--color-primario-bordeos); margin-top: 20px;">Contacto y Sugerencias</h2>
-            <p>Si encuentras alguna barrera de accesibilidad, puedes notificárnoslo enviando un correo a <a href="mailto:accesibilidad@wineshop.es" style="color: var(--color-primario-bordeos); font-weight: 700;">accesibilidad@wineshop.es</a>.</p>
-        </div>
+            <h2>Contacto y Sugerencias</h2>
+            <p class="body-regular">Si encuentras alguna barrera de accesibilidad, puedes notificárnoslo enviando un correo a <a href="mailto:accesibilidad@wineshop.es" style="color: var(--color-primario-bordeos); font-weight: 700;">accesibilidad@wineshop.es</a>.</p>
+        </article>
     </main>
 
     <footer class="site-footer">
         <div class="container footer-container">
-            <p>© 2026 WineShop. Todos los derechos reservados.</p>
+            <div class="footer-brand">
+                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
+                <p class="body-regular">© 2026 WineShop. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 

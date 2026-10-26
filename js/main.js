@@ -492,6 +492,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         iniciarVerificacionEdad();
         iniciarCarruselHero();
+        iniciarCarruselResenas(); // <--- Añadir aquí
+        
         renderizarVinos("destacados-grid", true);
         renderizarVinos("catalogo-grid", false);
         renderizarBodegas("bodegas-grid");
@@ -499,9 +501,69 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         actualizarBadgeFavoritos();
         actualizarBadgeCarrito();
-        
-        if (typeof GEOEngine !== "undefined") {
-            GEOEngine.init(appData, currentLang);
-        }
     }
 });
+/**
+ * Carrusel de Reseñas / Testimonios
+ */
+function iniciarCarruselResenas() {
+    const slides = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.testimonials-indicators .dot');
+    const btnPrev = document.querySelector('.prev-testimonial');
+    const btnNext = document.querySelector('.next-testimonial');
+    
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.remove('active');
+            dots[currentIndex].setAttribute('aria-selected', 'false');
+        }
+
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides[currentIndex].classList.add('active');
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.add('active');
+            dots[currentIndex].setAttribute('aria-selected', 'true');
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        timer = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 5500);
+    }
+
+    function stopAutoplay() {
+        if (timer) clearInterval(timer);
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+            startAutoplay();
+        });
+    }
+
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+            startAutoplay();
+        });
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            goToSlide(idx);
+            startAutoplay();
+        });
+    });
+
+    startAutoplay();
+}

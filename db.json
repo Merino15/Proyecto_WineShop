@@ -348,57 +348,62 @@
   "bodegas": [
     {
       "id": "bodega-1",
-      "nombre": "Bodegas Heredad Mayor",
-      "abreviatura": "Heredad Mayor",
+      "nombre": "Bodegas Marqués de Riscal",
+      "abreviatura": "Marqués de Riscal",
+      "url": "https://www.marquesderiscal.com",
       "i18n": {
-        "es": { "subtitulo": "Rioja Alta · Fundada en 1892", "desc": "Viñedos centenarios en ladera orientada al mediodía. Elaboración artesanal en tinos de roble francés y crianza en calados subterráneos." },
-        "en": { "subtitulo": "Rioja Alta · Founded in 1892", "desc": "Centenary south-facing hillside vineyards. Handcrafted aging in French oak vats and subterranean cellars." },
-        "fr": { "subtitulo": "Rioja Alta · Fondé en 1892", "desc": "Vignes centenaires exposées plein sud. Élevage artisanal en foudres de chêne français et caves souterraines." },
-        "de": { "subtitulo": "Rioja Alta · Gegründet 1892", "desc": "Jahrhundertealte Weinberge in sonniger Südlage. Handwerkliche Reifung in Eichenbottichen und Felsenkellern." }
+        "es": { "subtitulo": "Elciego (Rioja Alavesa) · Fundada en 1858", "desc": "Pionera en la elaboración de vinos según las técnicas bordolesas. Icono del enoturismo internacional con su Ciudad del Vino diseñada por Frank Gehry." },
+        "en": { "subtitulo": "Elciego (Rioja Alavesa) · Founded in 1858", "desc": "Pioneer in modern Bordeaux winemaking in Rioja. An international wine tourism icon with its City of Wine designed by Frank Gehry." },
+        "fr": { "subtitulo": "Elciego (Rioja Alavesa) · Fondé en 1858", "desc": "Pionnier dans l'élaboration de vins selon les méthodes bordelaises. Cité du Vin emblématique conçue par Frank Gehry." },
+        "de": { "subtitulo": "Elciego (Rioja Alavesa) · Gegründet 1858", "desc": "Pionier der modernen Weinherstellung nach Bordeaux-Art. Die Stadt des Weines von Frank Gehry ist ein globales Wahrzeichen." }
       }
     },
     {
       "id": "bodega-2",
-      "nombre": "Viñedos del Silencio",
-      "abreviatura": "Valle del Silencio",
+      "nombre": "Bodegas Muga",
+      "abreviatura": "Bodegas Muga",
+      "url": "https://www.bodegasmuga.com",
       "i18n": {
-        "es": { "subtitulo": "Rioja Alavesa · Viticultura Ecológica", "desc": "Suelos arcillo-calcáreos de altura dedicados al cultivo biodinámico. Vinos singulares, frescos y con gran mineralidad." },
-        "en": { "subtitulo": "Rioja Alavesa · Organic Viticulture", "desc": "High-altitude limestone-clay soils dedicated to biodynamic farming. Singular, mineral-driven fresh wines." },
-        "fr": { "subtitulo": "Rioja Alavesa · Viticulture Biologique", "desc": "Sols argilo-calcaires d'altitude dédiés à la biodynamie. Vins authentiques, frais et d'une belle minéralité." },
-        "de": { "subtitulo": "Rioja Alavesa · Ökologischer Weinbau", "desc": "Höhenlagen mit Ton-Kalk-Böden für biodynamischen Weinbau. Außergewöhnliche, mineralisch-frische Weine." }
+        "es": { "subtitulo": "Barrio de la Estación, Haro · Fundada en 1932", "desc": "Tradición familiar ininterrumpida en el corazón vinícola de Haro. Elaboración artesanal con tonelería propia y clarificación tradicional con clara de huevo." },
+        "en": { "subtitulo": "Station District, Haro · Founded in 1932", "desc": "Unbroken family tradition in Haro's historic Station District. Handcrafted aging with in-house cooperage and traditional egg white fining." },
+        "fr": { "subtitulo": "Quartier de la Gare, Haro · Fondé en 1932", "desc": "Tradition familiale au cœur du quartier historique d'Haro. Tonellerie propre et collage traditionnel au blanc d'œuf." },
+        "de": { "subtitulo": "Bahnhofsviertel, Haro · Gegründet 1932", "desc": "Familientradition im historischen Bahnhofsviertel von Haro. Eigene Küferwerkstatt und traditionelle Eiweißschönung." }
       }
     },
     {
       "id": "bodega-3",
-      "nombre": "Finca Altos del Ebro",
-      "abreviatura": "Altos del Ebro",
+      "nombre": "Vivanco (Cultura del Vino)",
+      "abreviatura": "Bodegas Vivanco",
+      "url": "https://vivancoculturadelvino.es",
       "i18n": {
-        "es": { "subtitulo": "Rioja Oriental · Selección de Autor", "desc": "Especialistas en Garnachas viejas y uvas autóctonas en terrazas fluviales. Innovación técnica al servicio del equilibrio aromático." },
-        "en": { "subtitulo": "Rioja Oriental · Signature Selection", "desc": "Old-vine Grenache and native varietal masters on fluvial terraces. Technical innovation ensuring aromatic harmony." },
-        "fr": { "subtitulo": "Rioja Oriental · Sélection d'Auteur", "desc": "Spécialistes des vieux Grenaches sur terrasses fluviales. L'innovation technique au service de l'équilibre." },
-        "de": { "subtitulo": "Rioja Oriental · Autorenauslese", "desc": "Experten für alte Garnacha-Reben auf Flussterrassen. Moderne Kellertechnik im Dienste aromatischer Balance." }
+        "es": { "subtitulo": "Briones (Rioja Alta) · Viticultura de Autor", "desc": "Ubicada en uno de los pueblos más bellos de España. Alberga el Museo Vivanco de la Cultura del Vino, considerado el mejor del mundo por la OMT." },
+        "en": { "subtitulo": "Briones (Rioja Alta) · Signature Viticulture", "desc": "Located in one of Spain's most scenic villages. Home to the Vivanco Museum of Wine Culture, awarded best in the world by the UNWTO." },
+        "fr": { "subtitulo": "Briones (Rioja Alta) · Viticulture d'Auteur", "desc": "Situé dans l'un des plus beaux villages d'Espagne. Abrite el Musée Vivanco de la Culture du Vin, reconnu par l'OMT." },
+        "de": { "subtitulo": "Briones (Rioja Alta) · Autorenschaftlicher Weinbau", "desc": "Gelegen in einem der schönsten Dörfer Spaniens. Beherbergt das weltberühmte Vivanco-Museum für Weinkultur." }
       }
     },
     {
       "id": "bodega-4",
-      "nombre": "Castillo de San Asensio",
-      "abreviatura": "San Asensio",
+      "nombre": "Bodegas Marqués de Murrieta",
+      "abreviatura": "Marqués de Murrieta",
+      "url": "https://marquesdemurrieta.com",
       "i18n": {
-        "es": { "subtitulo": "Cuna del Clarete · Fundada en 1954", "desc": "Referente en el cultivo de garnachas y tempranillos blancos. Tradición vinícola en el corazón de la Rioja Alta." },
-        "en": { "subtitulo": "Home of Claret · Founded in 1954", "desc": "Benchmark for Garnacha and White Tempranillo grapes. Winemaking tradition in the heart of Rioja Alta." },
-        "fr": { "subtitulo": "Berceau du Claret · Fondé en 1954", "desc": "Référence dans la culture de Grenache et Tempranillo blanc. Tradition viticole al cœur de la Rioja Alta." },
-        "de": { "subtitulo": "Wiege des Claret · Gegründet 1954", "desc": "Maßstab für Garnacha und weißen Tempranillo. Weinbautradition im Herzen der Rioja Alta." }
+        "es": { "subtitulo": "Finca Ygay, Logroño · Fundada en 1852", "desc": "Origen de la D.O.Ca. Rioja en el histórico Castillo de Ygay. Vinos de finca elegantes, reconocidos mundialmente con 100 puntos Parker." },
+        "en": { "subtitulo": "Ygay Estate, Logroño · Founded in 1852", "desc": "The birthplace of Rioja fine wine in the historic Ygay Castle. Elegant estate wines globally recognized with 100 Parker points." },
+        "fr": { "subtitulo": "Domaine Ygay, Logroño · Fondé en 1852", "desc": "Berceau des grands vins de la Rioja al Château Ygay. Vins de domaine élégants gratifiés de 100 points Parker." },
+        "de": { "subtitulo": "Finca Ygay, Logroño · Gegründet 1852", "desc": "Die Wiege der feinen Rioja-Weine im historischen Schloss Ygay. Elegante Lagenweine, ausgezeichnet mit 100 Parker-Punkten." }
       }
     },
     {
       "id": "bodega-5",
-      "nombre": "Dominio de la Grajera",
-      "abreviatura": "La Grajera",
+      "nombre": "Bodegas Franco-Españolas",
+      "abreviatura": "Franco-Españolas",
+      "url": "https://www.francoespanolas.com",
       "i18n": {
-        "es": { "subtitulo": "Entorno Natural · Viticultura Sostenible", "desc": "Rodeada de bosques y lagos naturales, combina tecnología enológica vanguardista con arquitectura bioclimática." },
-        "en": { "subtitulo": "Natural Reserve · Sustainable Farming", "desc": "Surrounded by natural forests and lakes, combining cutting-edge technology with bioclimatic design." },
-        "fr": { "subtitulo": "Réserve Naturelle · Viticulture Durable", "desc": "Entouré de forêts et lac naturel, alliage de technologie de pointe et d'architecture bioclimatique." },
-        "de": { "subtitulo": "Naturreservat · Nachhaltiger Anbau", "desc": "Umgeben von Wäldern und Seen, verbindet avantgardistische Kellereitechnik mit Bioklima-Architektur." }
+        "es": { "subtitulo": "Logroño (Orilla del Ebro) · Fundada en 1890", "desc": "Bodega urbana centenaria a escasos metros del casco antiguo de Logroño. Historia viva donde Ernest Hemingway degustaba sus famosos vinos." },
+        "en": { "subtitulo": "Logroño (Ebro Riverbank) · Founded in 1890", "desc": "Centenary urban winery just steps from Logroño's historic center. Living history once frequented by Ernest Hemingway." },
+        "fr": { "subtitulo": "Logroño (Bords de l'Ebre) · Fondé en 1890", "desc": "Domaine urbain centenaire à deux pas del centre historique de Logroño. Lieu d'histoire apprécié par Ernest Hemingway." },
+        "de": { "subtitulo": "Logroño (Ebro-Ufer) · Gegründet 1890", "desc": "Jahrhundertealtes städtisches Weingut nahe der Altstadt von Logroño. Historischer Ort, den einst Ernest Hemingway schätzte." }
       }
     }
   ],
@@ -406,8 +411,8 @@
     {
       "id": "exp-1",
       "precio": "45,00 €",
-      "nombreBodega": "Bodegas Heredad Mayor",
-      "urlBodega": "https://www.heredadmayor-ejemplo.com/enoturismo",
+      "nombreBodega": "Bodegas Franco-Españolas",
+      "urlBodega": "https://www.francoespanolas.com/enoturismo/",
       "i18n": {
         "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos." },
         "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting of 4 prestigious wines paired with artisan cheeses and Iberian meats." },
@@ -418,37 +423,37 @@
     {
       "id": "exp-2",
       "precio": "65,00 €",
-      "nombreBodega": "Viñedos del Silencio",
-      "urlBodega": "https://www.vinedosdelsilencio-ejemplo.com/visitas",
+      "nombreBodega": "Bodegas Muga",
+      "urlBodega": "https://www.bodegasmuga.com/visitas/",
       "i18n": {
-        "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 por Viñas Viejas", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas más singulares, explicación del terruño y aperitivo campestre con cata al aire libre." },
-        "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition through Old Vines", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across our most scenic plots, in-depth terroir explanations and a country picnic with open-air tasting." },
-        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 parmi les Vieilles Vignes", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers nos parcelles emblématiques, découverte géologique du terroir et pique-nique champêtre avec dégustation." },
-        "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour durch alte Weinberge", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch unsere spektakulärsten Parzellen mit Terroir-Erklärungen und rustikalem Picknick unter freiem Himmel." }
+        "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 y Visita a Tonelería", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas del Barrio de la Estación, demostración de tonelería artesanal y cata comentada con almuerzo campero." },
+        "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition & Cooperage Tour", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across Station District plots, artisanal cooperage demonstration and guided tasting with country lunch." },
+        "fr": { "banner": "Balade dans le Vignoble", "titulo": "Circuit en 4x4 et Visite de Tonellerie", "duracion": "Durée : 3h 30m · En extérieur", "desc": "Aventure à travers les parcelles du quartier de la Gare, démonstration de tonnellerie y dégustation avec pique-nique." },
+        "de": { "banner": "Weinberg-Tour", "titulo": "4x4-Geländetour & Küfer-Führung", "duracion": "Dauer: 3h 30m · Im Freien", "desc": "Entdeckungstour durch die Lagen von Haro, Einblicke in die Küferwerkstatt und Verkostung mit deftigem Imbiss." }
       }
     },
     {
       "id": "exp-3",
       "precio": "95,00 €",
-      "nombreBodega": "Finca Altos del Ebro",
-      "urlBodega": "https://www.altosdelebro-ejemplo.com/experiencias",
+      "nombreBodega": "Bodegas Marqués de Murrieta",
+      "urlBodega": "https://marquesdemurrieta.com/enoturismo/",
       "i18n": {
-        "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación & Maridaje", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica de 6 pases creada por chefs locales, maridada con las añadas más exclusivas de nuestra bodega." },
-        "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu & Wine Pairing", "duracion": "Lunch or Dinner · Private Salon", "desc": "6-course gastronomic tasting menu crafted by local master chefs, matched with our winery's rarest reserve vintages." },
-        "fr": { "banner": "Accord d'Auteur", "titulo": "Menu Dégustation & Accord Mets-Vins", "duracion": "Déjeuner ou Dîner · Salon Privé", "desc": "Menu d'exception en 6 temps signé par des chefs réputés, sublimé par les plus grands millésimes de notre réserve." },
-        "de": { "banner": "Gourmet-Pairing", "titulo": "Degustationsmenü & Weinbegleitung", "duracion": "Mittag- oder Abendessen · Privatsalon", "desc": "6-Gänge-Gourmetmenü renommierter Spitzenköche, abgestimmt auf die erlesensten Jahrgänge unserer Schatzkammer." }
+        "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación en el Castillo de Ygay", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica exclusiva en el histórico Castillo de Ygay maridada con las cosechas más laureadas de la bodega." },
+        "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu at Ygay Castle", "duracion": "Lunch or Dinner · Private Salon", "desc": "Exclusive gastronomic experience inside the historic Ygay Castle paired with the winery's top award-winning vintages." },
+        "fr": { "banner": "Accord d'Auteur", "titulo": "Menu Dégustation au Château Ygay", "duracion": "Déjeuner ou Dîner · Salon Privé", "desc": "Expérience gastronomique exclusive dans el Château Ygay historique sublimée par les plus grands millésimes." },
+        "de": { "banner": "Gourmet-Pairing", "titulo": "Degustationsmenü auf Schloss Ygay", "duracion": "Mittag- oder Abendessen · Privatsalon", "desc": "Exklusives Gourmet-Erlebnis im historischen Schloss Ygay, abgestimmt auf die höchstprämierten Jahrgänge." }
       }
     },
     {
       "id": "exp-4",
       "precio": "120,00 €",
-      "nombreBodega": "Castillo de San Asensio",
-      "urlBodega": "https://www.sanasensio-ejemplo.com/taller-enologia",
+      "nombreBodega": "Vivanco (Cultura del Vino)",
+      "urlBodega": "https://vivancoculturadelvino.es/es/enoturismo/",
       "i18n": {
-        "es": { "banner": "Curso Enología", "titulo": "Taller de Coupage e Iniciación al Enólogo", "duracion": "Duración: 4h 00m · Incluye botella propia", "desc": "Aprende el arte de ensamblar varietales, crea tu propia mezcla personalizada y embotéllala con tu propia etiqueta." },
-        "en": { "banner": "Winemaking Masterclass", "titulo": "Blending Workshop & Winemaker Experience", "duracion": "Duration: 4h 00m · Custom bottle included", "desc": "Master the art of varietal blending, craft your unique custom blend and bottle it with your personalized label." },
-        "fr": { "banner": "Atelier Enologie", "titulo": "Atelier Assemblage et Initiatoin à l'Enologie", "duracion": "Durée : 4h 00m · Bouteille sur mesure incluse", "desc": "Découvrez l'art de l'assemblage des cépages, créez votre cuvée sur-mesure y repartes avec votre bouteille personnalisée." },
-        "de": { "banner": "Winzer-Workshop", "titulo": "Cuvée-Blending & Masterclass", "duracion": "Dauer: 4h 00m · Eigenes Etikett inkl.", "desc": "Lernen Sie das Mischen verschiedener Rebsorten, kreieren Sie Ihre eigene Cuvée und füllen Sie Ihre persönliche Flasche ab." }
+        "es": { "banner": "Curso Enología", "titulo": "Entrada al Museo del Vino y Taller de Cata", "duracion": "Duración: 4h 00m · Incluye visita al Museo", "desc": "Recorrido por el museo de la cultura del vino mejor del mundo y máster clase de cata sensorial impartida por sumilleres." },
+        "en": { "banner": "Winemaking Masterclass", "titulo": "Wine Museum Tour & Tasting Workshop", "duracion": "Duration: 4h 00m · Museum entry included", "desc": "Guided tour through the world's best wine museum followed by a sensory tasting masterclass led by professional sommelier." },
+        "fr": { "banner": "Atelier Enologie", "titulo": "Visite du Musée du Vin et Atelier Dégustation", "duracion": "Durée : 4h 00m · Entrée Musée incluse", "desc": "Découvrez le meilleur musée de la culture du vin au monde suivi d'un atelier de dégustation sensorielle." },
+        "de": { "banner": "Winzer-Workshop", "titulo": "Weinmuseum-Führung & Sensorik-Seminar", "duracion": "Dauer: 4h 00m · Museumseintritt inkl.", "desc": "Führung durch das weltbeste Weinmuseum samt anschliessendem Sensorik-Seminar unter Leitung eines Sommeliers." }
       }
     }
   ],

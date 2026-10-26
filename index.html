@@ -368,6 +368,38 @@
             </p>
         </div>
     </div>
+    <!-- Modal Popup de Newsletter con Descuento -->
+<div id="newsletter-modal" class="newsletter-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="newsletter-title" aria-describedby="newsletter-desc">
+    <div class="newsletter-card-modal">
+        <button type="button" id="btn-close-newsletter" class="newsletter-close-btn" aria-label="Cerrar ventana de newsletter">&times;</button>
+        
+        <div class="newsletter-content">
+            <span class="hero-tag">Club WineShop</span>
+            <h2 id="newsletter-title" class="newsletter-title">¡Consigue un 10% de dto!</h2>
+            <p id="newsletter-desc" class="newsletter-text">
+                Suscríbete a nuestra newsletter para recibir ofertas exclusivas, novedades sobre añadas limitadas y un cupón inmediato para tu primera compra.
+            </p>
+
+            <form id="newsletter-form" class="newsletter-form" novalidate>
+                <div class="form-group">
+                    <label for="newsletter-email" class="sr-only">Correo electrónico</label>
+                    <input type="email" id="newsletter-email" placeholder="Introduce tu correo electrónico" required>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="newsletter-privacy" required>
+                        <span>Acepto la <a href="html/politica_privacidad.html" target="_blank" style="color: inherit;">política de privacidad</a></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Suscribirme y obtener 10% dto.</button>
+            </form>
+
+            <button type="button" id="btn-skip-newsletter" class="newsletter-skip-link">No gracias, prefiero no ahorrar</button>
+        </div>
+    </div>
+</div>
 
     <script src="js/main.js"></script>
 </body>

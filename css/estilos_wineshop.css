@@ -1095,3 +1095,106 @@ body.modal-open {
         display: none;
     }
 }
+/* ==========================================================================
+   MODAL POPUP NEWSLETTER
+   ========================================================================== */
+
+.newsletter-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaciado-20);
+    z-index: 9998;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+}
+
+.newsletter-modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.newsletter-card-modal {
+    background: var(--color-blanco);
+    border: 2px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 40px 32px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: var(--sombra-modal);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.newsletter-modal-overlay.hidden .newsletter-card-modal {
+    transform: scale(0.95);
+}
+
+.newsletter-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--color-neutro-oscuro);
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.newsletter-close-btn:hover {
+    color: var(--color-primario-bordeos);
+}
+
+.newsletter-title {
+    font-family: var(--font-titulos);
+    color: var(--color-primario-bordeos);
+    font-size: 2rem;
+    margin: 8px 0 12px 0;
+    line-height: 1.2;
+}
+
+.newsletter-text {
+    font-size: 0.95rem;
+    color: var(--color-neutro-gris);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.newsletter-form .form-group {
+    margin-bottom: 16px;
+}
+
+.newsletter-form .checkbox-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.newsletter-skip-link {
+    background: none;
+    border: none;
+    color: var(--color-gris-700);
+    font-size: 0.85rem;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 16px;
+    display: inline-block;
+}
+
+.newsletter-skip-link:hover {
+    color: var(--color-neutro-oscuro);
+}

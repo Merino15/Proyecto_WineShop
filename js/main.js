@@ -491,8 +491,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         aplicarTraducciones();
         
         iniciarVerificacionEdad();
+        iniciarNewsletterPopup(); // <--- Añadir aquí
         iniciarCarruselHero();
-        iniciarCarruselResenas(); // <--- Añadir aquí
+        iniciarCarruselResenas();
         
         renderizarVinos("destacados-grid", true);
         renderizarVinos("catalogo-grid", false);
@@ -503,6 +504,63 @@ document.addEventListener("DOMContentLoaded", async () => {
         actualizarBadgeCarrito();
     }
 });
+/**
+ * Control del Modal Popup de Newsletter
+ */
+function iniciarNewsletterPopup() {
+    const modal = document.getElementById("newsletter-modal");
+    if (!modal) return;
+
+    const btnClose = document.getElementById("btn-close-newsletter");
+    const btnSkip = document.getElementById("btn-skip-newsletter");
+    const form = document.getElementById("newsletter-form");
+
+    // Verificar si el usuario ya interactuó o se suscribió previamente
+    const yaInteractuado = localStorage.getItem("wineshop_newsletter_dismissed");
+
+    if (!yaInteractuado) {
+        // Retardo de 3.5 segundos para mostrar el modal sin ser agresivo
+        setTimeout(() => {
+            const ageModal = document.getElementById("age-gate-modal");
+            const ageModalAbierto = ageModal && !ageModal.classList.contains("hidden");
+
+            // Solo se muestra si el usuario ya superó el control de edad
+            if (!ageModalAbierto) {
+                modal.classList.remove("hidden");
+            }
+        }, 3500);
+    }
+
+    function cerrarModal() {
+        modal.classList.add("hidden");
+        localStorage.setItem("wineshop_newsletter_dismissed", "true");
+    }
+
+    if (btnClose) btnClose.addEventListener("click", cerrarModal);
+    if (btnSkip) btnSkip.addEventListener("click", cerrarModal);
+
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById("newsletter-email");
+            const privacyCheckbox = document.getElementById("newsletter-privacy");
+
+            if (!emailInput.value || !emailInput.checkValidity()) {
+                mostrarToast("Introduce un correo electrónico válido.");
+                return;
+            }
+
+            if (!privacyCheckbox.checked) {
+                mostrarToast("Debes aceptar la política de privacidad.");
+                return;
+            }
+
+            cerrarModal();
+            mostrarToast("¡Gracias por suscribirte! Revisa tu email para tu 10% dto.");
+            announceToScreenReader("Suscripción a la newsletter realizada con éxito.");
+        });
+    }
+}
 /**
  * Carrusel de Reseñas / Testimonios
  */

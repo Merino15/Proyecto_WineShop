@@ -807,11 +807,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         renderizarVinos("destacados-grid", true);
         
-        // Comprobamos si estamos en la página del catálogo para activar los nuevos filtros
+        // Comprobación para páginas específicas
         if (document.getElementById("search-input") || document.getElementById("type-select")) {
             iniciarFiltrosCatalogo();
         } else {
             renderizarVinos("catalogo-grid", false);
+        }
+
+        // <--- Activa la carga del detalle si estamos en producto.html --->
+        if (window.location.pathname.includes("producto.html")) {
+            iniciarDetalleProducto();
         }
         
         renderizarBodegas("bodegas-grid");
@@ -915,4 +920,69 @@ function renderizarVinosFiltrados(contenedorId, listaVinos) {
     });
 
     asignarEventosTarjetas(contenedor);
+}
+/**
+ * Carga y renderiza los detalles del producto en producto.html
+ */
+function iniciarDetalleProducto() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const vinoId = urlParams.get("id");
+    
+    if (!vinoId || !appData || !appData.vinos) return;
+
+    const vino = appData.vinos.find(v => v.id === vinoId);
+    if (!vino) {
+        const titleEl = document.querySelector("h1");
+        if (titleEl) titleEl.textContent = "Producto no encontrado";
+        return;
+    }
+
+    const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
+    const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
+
+    // Rellenar Nombre
+    const titleEl = document.querySelector("h1");
+    if (titleEl) titleEl.textContent = vino.nombre;
+
+    // Rellenar Precio
+    const priceEl = document.querySelector(".product-price, [id*='precio'], h2 + p, .wine-price");
+    if (priceEl) priceEl.textContent = vino.precio;
+
+    // Rellenar Descripción / Detalles
+    const descEl = document.querySelector(".product-desc, .body-regular");
+    if (descEl) descEl.textContent = traduccion.desc || "";
+
+    // Rellenar Imagen principal
+    const imgEl = document.querySelector(".product-img-wrap img, .card-img, main img");
+    if (imgEl) {
+        imgEl.src = imgPath;
+        imgEl.alt = vino.nombre;
+    }
+
+    // Especificaciones técnicas (si existen en el HTML de producto.html)
+    const specGrape = document.getElementById("spec-grape") || document.querySelector(".spec-grape");
+    if (specGrape) specGrape.textContent = traduccion.grape || "-";
+
+    const specAging = document.getElementById("spec-aging") || document.querySelector(".spec-aging");
+    if (specAging) specAging.textContent = traduccion.aging || "-";
+
+    const specAlcohol = document.getElementById("spec-alcohol") || document.querySelector(".spec-alcohol");
+    if (specAlcohol) specAlcohol.textContent = vino.alcohol || "-";
+
+    const specTemp = document.getElementById("spec-temp") || document.querySelector(".spec-temp");
+    if (specTemp) specTemp.textContent = vino.temp || "-";
+
+    // Botón de añadir al carrito en la vista de detalle
+    const btnAddCart = document.querySelector(".btn-add-cart, button[class*='cart']");
+    if (btnAddCart) {
+        // Evitar duplicar listeners clonando el botón o asignando directamente
+        btnAddCart.replaceWith(btnAddCart.cloneNode(true));
+        const newBtn = document.querySelector(".btn-add-cart, button[class*='cart']");
+        
+        newBtn.addEventListener("click", () => {
+            const inputQty = document.querySelector("input[type='number'], .quantity-input");
+            const cantidad = inputQty ? parseInt(inputQty.value) || 1 : 1;
+            agregarAlCarrito(vino, cantidad);
+        });
+    }
 }

@@ -1,6 +1,6 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
- * Soporta renderizado dinámico, internacionalización, gestión de carrito y favoritos[cite: 14, 15].
+ * Soporta renderizado dinámico, internacionalización, gestión de carrito, favoritos y redirección de enoturismo a bodegas.
  */
 
 let appData = null;
@@ -56,7 +56,7 @@ function aplicarTraducciones() {
 }
 
 /**
- * Renderizado Dinámico de Vinos (Destacados y Catálogo Completo)[cite: 14, 15]
+ * Renderizado Dinámico de Vinos (Destacados y Catálogo Completo)
  */
 function renderizarVinos(contenedorId, soloDestacados = false) {
     const contenedor = document.getElementById(contenedorId);
@@ -113,7 +113,7 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
 }
 
 /**
- * Renderizado de Bodegas[cite: 14, 21]
+ * Renderizado de Bodegas
  */
 function renderizarBodegas(contenedorId) {
     const contenedor = document.getElementById(contenedorId);
@@ -139,7 +139,7 @@ function renderizarBodegas(contenedorId) {
 }
 
 /**
- * Renderizado de Experiencias de Enoturismo[cite: 14]
+ * Renderizado de Experiencias de Enoturismo con Redirección Externa a Bodegas
  */
 function renderizarExperiencias(contenedorId) {
     const contenedor = document.getElementById(contenedorId);
@@ -154,13 +154,30 @@ function renderizarExperiencias(contenedorId) {
         article.className = "wine-card";
         article.style.padding = "var(--espaciado-24)";
 
+        const enlaceUrl = exp.urlBodega || `${basePath}html/bodegas.html`;
+
         article.innerHTML = `
             <span class="hero-tag">${traduccion.banner || 'Enoturismo'}</span>
             <h3 class="wine-name">${traduccion.titulo || 'Experiencia'}</h3>
-            <p style="font-weight: 700; margin-bottom: 8px;">${traduccion.duracion || ''}</p>
+            <p style="font-weight: 700; color: var(--color-secundario-oro); margin-bottom: 6px;">
+                Organizado por: ${exp.nombreBodega || 'Bodega Asociada'}
+            </p>
+            <p style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">${traduccion.duracion || ''}</p>
             <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
             <p class="wine-price">${exp.precio} <small style="font-size: 0.9rem; font-weight: 400;">${dicc.per_person || '/ persona'}</small></p>
-            <button type="button" class="btn btn-primary btn-full">${dicc.btn_reservar || 'Reservar Experiencia'}</button>
+            
+            <a href="${enlaceUrl}" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn btn-primary btn-full"
+               aria-label="${traduccion.titulo} - ${dicc.btn_reservar_bodega || 'Reservar en la web de la bodega'} (abre en nueva pestaña)">
+                ${dicc.btn_reservar_bodega || 'Reservar en la web de la bodega'}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
         `;
         contenedor.appendChild(article);
     });
@@ -233,7 +250,7 @@ function asignarEventosTarjetas(contenedor) {
 }
 
 /**
- * Gestión de Carrito de Compras (LocalStorage)[cite: 23]
+ * Gestión de Carrito de Compras (LocalStorage)
  */
 function agregarAlCarrito(vino, cantidad = 1) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
@@ -267,7 +284,7 @@ function actualizarBadgeCarrito() {
 }
 
 /**
- * Autenticación y Gestión de Usuario Activo[cite: 14, 23]
+ * Autenticación y Gestión de Usuario Activo
  */
 function obtenerUsuarioActivo() {
     return JSON.parse(localStorage.getItem(USER_STORAGE_KEY)) || null;

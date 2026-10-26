@@ -406,6 +406,8 @@
     {
       "id": "exp-1",
       "precio": "45,00 €",
+      "nombreBodega": "Bodegas Heredad Mayor",
+      "urlBodega": "https://www.heredadmayor-ejemplo.com/enoturismo",
       "i18n": {
         "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos." },
         "en": { "banner": "Signature Tasting", "titulo": "Premium Tasting & Historic Cellars", "duracion": "Duration: 2h 30m · Small groups", "desc": "Tour through 19th-century underground cellars with guided tasting of 4 prestigious wines paired with artisan cheeses and Iberian meats." },
@@ -416,6 +418,8 @@
     {
       "id": "exp-2",
       "precio": "65,00 €",
+      "nombreBodega": "Viñedos del Silencio",
+      "urlBodega": "https://www.vinedosdelsilencio-ejemplo.com/visitas",
       "i18n": {
         "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 por Viñas Viejas", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas más singulares, explicación del terruño y aperitivo campestre con cata al aire libre." },
         "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition through Old Vines", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across our most scenic plots, in-depth terroir explanations and a country picnic with open-air tasting." },
@@ -426,6 +430,8 @@
     {
       "id": "exp-3",
       "precio": "95,00 €",
+      "nombreBodega": "Finca Altos del Ebro",
+      "urlBodega": "https://www.altosdelebro-ejemplo.com/experiencias",
       "i18n": {
         "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación & Maridaje", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica de 6 pases creada por chefs locales, maridada con las añadas más exclusivas de nuestra bodega." },
         "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu & Wine Pairing", "duracion": "Lunch or Dinner · Private Salon", "desc": "6-course gastronomic tasting menu crafted by local master chefs, matched with our winery's rarest reserve vintages." },
@@ -436,6 +442,8 @@
     {
       "id": "exp-4",
       "precio": "120,00 €",
+      "nombreBodega": "Castillo de San Asensio",
+      "urlBodega": "https://www.sanasensio-ejemplo.com/taller-enologia",
       "i18n": {
         "es": { "banner": "Curso Enología", "titulo": "Taller de Coupage e Iniciación al Enólogo", "duracion": "Duración: 4h 00m · Incluye botella propia", "desc": "Aprende el arte de ensamblar varietales, crea tu propia mezcla personalizada y embotéllala con tu propia etiqueta." },
         "en": { "banner": "Winemaking Masterclass", "titulo": "Blending Workshop & Winemaker Experience", "duracion": "Duration: 4h 00m · Custom bottle included", "desc": "Master the art of varietal blending, craft your unique custom blend and bottle it with your personalized label." },
@@ -454,6 +462,9 @@
       "precio_label": "Precio: ",
       "btn_ver_vinos": "Ver sus vinos",
       "btn_reservar": "Reservar Experiencia",
+      "btn_reservar_bodega": "Reservar en la web de la bodega",
+      "exp_title": "Experiencias y Enoturismo",
+      "exp_desc": "Descubre las mejores actividades enoturísticas organizadas por nuestras bodegas asociadas. Te redirigiremos directamente a su web oficial para gestionar tu reserva.",
       "per_person": "/ persona",
       "fav_remove_aria": "Quitar de favoritos",
       "results_text": "vinos encontrados",
@@ -473,6 +484,9 @@
       "precio_label": "Price: ",
       "btn_ver_vinos": "View wines",
       "btn_reservar": "Book Experience",
+      "btn_reservar_bodega": "Book on winery website",
+      "exp_title": "Experiences & Wine Tourism",
+      "exp_desc": "Discover wine tourism activities organized by our partner wineries. You will be redirected to their official booking page.",
       "per_person": "/ person",
       "fav_remove_aria": "Remove from favorites",
       "results_text": "wines found",
@@ -492,6 +506,9 @@
       "precio_label": "Prix : ",
       "btn_ver_vinos": "Voir leurs vins",
       "btn_reservar": "Réserver l'Expérience",
+      "btn_reservar_bodega": "Réserver sur le site du domaine",
+      "exp_title": "Expériences & Œnotourisme",
+      "exp_desc": "Découvrez les activités œnotouristiques organisées par nos domaines partenaires. Vous serez redirigé vers leur site officiel.",
       "per_person": "/ personne",
       "fav_remove_aria": "Retirer des favoris",
       "results_text": "vins trouvés",
@@ -511,6 +528,9 @@
       "precio_label": "Preis: ",
       "btn_ver_vinos": "Deren Weine ansehen",
       "btn_reservar": "Erlebnis buchen",
+      "btn_reservar_bodega": "Auf der Weingut-Website buchen",
+      "exp_title": "Erlebnisse & Weintourismus",
+      "exp_desc": "Entdecken Sie Weinerlebnisse unserer Partner-Weingüter. Sie werden zur Buchung direkt auf deren offizielle Website weitergeleitet.",
       "per_person": "/ Person",
       "fav_remove_aria": "Aus Favoriten entfernen",
       "results_text": "Weine gefunden",

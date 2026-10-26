@@ -923,6 +923,8 @@ function renderizarVinosFiltrados(contenedorId, listaVinos) {
 }
 /**
  * Carga y renderiza los detalles del producto en producto.html
+ *//**
+ * Carga y renderiza los detalles del producto en producto.html
  */
 function iniciarDetalleProducto() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -932,7 +934,7 @@ function iniciarDetalleProducto() {
 
     const vino = appData.vinos.find(v => v.id === vinoId);
     if (!vino) {
-        const titleEl = document.querySelector("h1");
+        const titleEl = document.getElementById("detail-title");
         if (titleEl) titleEl.textContent = "Producto no encontrado";
         return;
     }
@@ -940,49 +942,66 @@ function iniciarDetalleProducto() {
     const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
     const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
 
-    // Rellenar Nombre
-    const titleEl = document.querySelector("h1");
+    // Volcar datos en los IDs correctos de producto.html
+    const titleEl = document.getElementById("detail-title");
     if (titleEl) titleEl.textContent = vino.nombre;
 
-    // Rellenar Precio
-    const priceEl = document.querySelector(".product-price, [id*='precio'], h2 + p, .wine-price");
+    const priceEl = document.getElementById("detail-price");
     if (priceEl) priceEl.textContent = vino.precio;
 
-    // Rellenar Descripción / Detalles
-    const descEl = document.querySelector(".product-desc, .body-regular");
+    const descEl = document.getElementById("detail-desc");
     if (descEl) descEl.textContent = traduccion.desc || "";
 
-    // Rellenar Imagen principal
-    const imgEl = document.querySelector(".product-img-wrap img, .card-img, main img");
-    if (imgEl) {
+    const vintageEl = document.getElementById("detail-vintage");
+    if (vintageEl) vintageEl.textContent = traduccion.vintage || "D.O.Ca. Rioja";
+
+    const grapeEl = document.getElementById("detail-grape");
+    if (grapeEl) grapeEl.textContent = traduccion.grape || "-";
+
+    const agingEl = document.getElementById("detail-aging");
+    if (agingEl) agingEl.textContent = traduccion.aging || "-";
+
+    const alcoholEl = document.getElementById("detail-alcohol");
+    if (alcoholEl) alcoholEl.textContent = vino.alcohol || "-";
+
+    const tempEl = document.getElementById("detail-temp");
+    if (tempEl) tempEl.textContent = vino.temp || "-";
+
+    // Manejo de imagen real vs Modelo 3D
+    const imgEl = document.getElementById("detail-img");
+    const modelEl = document.getElementById("detail-model");
+    if (imgEl && vino.imagen) {
         imgEl.src = imgPath;
-        imgEl.alt = vino.nombre;
+        imgEl.style.display = "block";
+        if (modelEl) modelEl.style.display = "none"; // Oculta el modelo 3D por defecto para mostrar la foto real en alta definición
     }
 
-    // Especificaciones técnicas (si existen en el HTML de producto.html)
-    const specGrape = document.getElementById("spec-grape") || document.querySelector(".spec-grape");
-    if (specGrape) specGrape.textContent = traduccion.grape || "-";
+    // Botones de cantidad (- y +)
+    const btnMinus = document.getElementById("qty-minus");
+    const btnPlus = document.getElementById("qty-plus");
+    const inputQty = document.getElementById("product-quantity");
 
-    const specAging = document.getElementById("spec-aging") || document.querySelector(".spec-aging");
-    if (specAging) specAging.textContent = traduccion.aging || "-";
+    if (btnMinus && btnPlus && inputQty) {
+        btnMinus.onclick = () => {
+            let val = parseInt(inputQty.value) || 1;
+            if (val > 1) inputQty.value = val - 1;
+        };
+        btnPlus.onclick = () => {
+            let val = parseInt(inputQty.value) || 1;
+            if (val < 99) inputQty.value = val + 1;
+        };
+    }
 
-    const specAlcohol = document.getElementById("spec-alcohol") || document.querySelector(".spec-alcohol");
-    if (specAlcohol) specAlcohol.textContent = vino.alcohol || "-";
-
-    const specTemp = document.getElementById("spec-temp") || document.querySelector(".spec-temp");
-    if (specTemp) specTemp.textContent = vino.temp || "-";
-
-    // Botón de añadir al carrito en la vista de detalle
-    const btnAddCart = document.querySelector(".btn-add-cart, button[class*='cart']");
+    // Botón de añadir al carrito
+    const btnAddCart = document.getElementById("btn-add-detail");
     if (btnAddCart) {
-        // Evitar duplicar listeners clonando el botón o asignando directamente
         btnAddCart.replaceWith(btnAddCart.cloneNode(true));
-        const newBtn = document.querySelector(".btn-add-cart, button[class*='cart']");
+        const newBtn = document.getElementById("btn-add-detail");
         
         newBtn.addEventListener("click", () => {
-            const inputQty = document.querySelector("input[type='number'], .quantity-input");
             const cantidad = inputQty ? parseInt(inputQty.value) || 1 : 1;
             agregarAlCarrito(vino, cantidad);
         });
     }
+
 }

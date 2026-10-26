@@ -1309,3 +1309,67 @@ fieldset:disabled .form-input {
         text-align: center;
     }
 }
+/* ==========================================================================
+   Selector de Cantidad y Botón de Compra
+   ========================================================================== */
+.product-actions-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-16);
+    margin-top: var(--espaciado-24);
+    flex-wrap: wrap;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-borde);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 48px;
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 100%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primario-bordeos);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.qty-btn:hover {
+    background-color: rgba(91, 14, 45, 0.08);
+}
+
+.quantity-input {
+    width: 50px;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-neutro-oscuro);
+    background: transparent;
+    -moz-appearance: textfield;
+}
+
+/* Ocultar las flechas feas por defecto de los inputs numéricos */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.product-actions-wrapper .btn {
+    flex: 1;
+    min-width: 200px;
+}

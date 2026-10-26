@@ -1054,3 +1054,59 @@ body.modal-open {
         min-height: auto;
     }
 }
+/* ==========================================================================
+   Navegación Breadcrumb / Enlace de Retorno
+   ========================================================================== */
+.breadcrumb-nav {
+    margin: var(--espaciado-16) 0;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+    color: var(--color-primario-hover);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Estilos de Panel de Datos Personales y Formulario Editable
+   ========================================================================== */
+.form-input {
+    width: 100%;
+    padding: var(--espaciado-12) var(--espaciado-16);
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    color: var(--color-neutro-oscuro);
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-borde);
+    border-radius: 6px;
+    min-height: 48px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Estilos para el estado deshabilitado del formulario */
+fieldset:disabled .form-input {
+    background-color: var(--color-neutro-claro);
+    color: var(--color-neutro-gris);
+    border-color: var(--color-borde);
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+/* Redefinición de variables neutras secundarias si no existen */
+:root {
+    --color-neutro-calido-100: #F9F6F0;
+    --color-neutro-calido-300: #E6E0D2;
+    --color-neutro-calido-500: #D0C8B8;
+    --color-gris-900: #1A1A1A;
+    --color-secundario-dorado-claro: #D4AF37;
+}

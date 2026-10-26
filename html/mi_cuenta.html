@@ -586,6 +586,44 @@
 
             container.innerHTML = html;
         }
+        // Lógica para habilitar/deshabilitar la edición del formulario de datos
+const btnToggleEdit = document.getElementById('btn-toggle-edit');
+const btnCancelEdit = document.getElementById('btn-cancel-edit');
+const fieldsetDatos = document.getElementById('fieldset-datos');
+const actionButtons = document.getElementById('action-buttons-edit');
+
+if (btnToggleEdit && fieldsetDatos && actionButtons) {
+    btnToggleEdit.addEventListener('click', () => {
+        const isDisabled = fieldsetDatos.hasAttribute('disabled');
+        if (isDisabled) {
+            fieldsetDatos.removeAttribute('disabled');
+            actionButtons.style.display = 'flex';
+            btnToggleEdit.style.display = 'none';
+        }
+    });
+}
+
+if (btnCancelEdit && fieldsetDatos && actionButtons) {
+    btnCancelEdit.addEventListener('click', () => {
+        fieldsetDatos.setAttribute('disabled', 'true');
+        actionButtons.style.display = 'none';
+        btnToggleEdit.style.display = 'inline-block';
+        
+        // Restaurar valores originales
+        const usuario = obtenerUsuarioActivo();
+        if (usuario) {
+            document.getElementById('edit-nombre').value = usuario.nombre || '';
+            document.getElementById('edit-email').value = usuario.email || '';
+            document.getElementById('edit-telefono').value = usuario.telefono || '';
+            document.getElementById('edit-nacimiento').value = usuario.fechaNacimiento || '';
+            document.getElementById('edit-dni').value = usuario.dni || '';
+            document.getElementById('edit-direccion').value = usuario.direccion || '';
+            document.getElementById('edit-ciudad').value = usuario.ciudad || '';
+            document.getElementById('edit-cp').value = usuario.codigoPostal || '';
+            document.getElementById('edit-provincia').value = usuario.provincia || '';
+        }
+    });
+}
     </script>
 </body>
 </html>

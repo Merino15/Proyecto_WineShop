@@ -150,12 +150,16 @@
             </div>
         </section>
 
-        <!-- Hero Principal -->
-        <section class="hero-section" aria-labelledby="hero-heading">
+       <!-- Carrusel Hero Accesible (Promociones y Destacados) -->
+<section class="hero-carousel-section" aria-roledescription="carrusel" aria-label="Promociones y novedades de WineShop">
+    <div class="carousel-wrapper">
+
+        <!-- Diapositiva 1: Reserva D.O.Ca. Rioja -->
+        <div class="carousel-slide active" role="group" aria-roledescription="diapositiva" aria-label="1 de 3">
             <div class="container hero-grid">
                 <div class="hero-text">
                     <span class="hero-tag" data-i18n="hero_tag">D.O.Ca. Rioja Reserva</span>
-                    <h1 id="hero-heading" class="hero-title" data-i18n="hero_title">La Esencia de la Tierra en Cada Copa</h1>
+                    <h1 class="hero-title" data-i18n="hero_title">La Esencia de la Tierra en Cada Copa</h1>
                     <p class="hero-subtitle" data-i18n="hero_subtitle">Descubre caldos criados en barricas de roble e historias centenarias de nuestras bodegas seleccionadas en Logroño y la Rioja Alta.</p>
                     <div class="hero-actions">
                         <a href="html/catalogo.html" class="btn btn-primary" data-i18n="btn_explorar">Explorar Catálogo</a>
@@ -165,7 +169,7 @@
                 <div class="hero-3d-wrapper">
                     <model-viewer 
                         src="models/wine_bottle.glb" 
-                        alt="Botella de vino Rioja en vista tridimensional interactiva" 
+                        alt="Botella de vino Rioja Reserva en 3D" 
                         auto-rotate 
                         camera-controls 
                         shadow-intensity="1" 
@@ -174,7 +178,77 @@
                     </model-viewer>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- Diapositiva 2: Enoturismo y Rutas por Bodegas -->
+        <div class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <span class="hero-tag">Enoturismo Exclusivo</span>
+                    <h2 class="hero-title">Visita las Bodegas Centenarias de La Rioja</h2>
+                    <p class="hero-subtitle">Sumérgete en la cultura del vino con rutas en 4x4 por viñedos viejos, catas comentadas en calados históricos y maridajes de autor.</p>
+                    <div class="hero-actions">
+                        <a href="html/experiencias.html" class="btn btn-primary">Ver Experiencias</a>
+                        <a href="html/bodegas.html" class="btn btn-secondary">Conocer Bodegas</a>
+                    </div>
+                </div>
+                <div class="hero-3d-wrapper">
+                    <model-viewer 
+                        src="models/wine_bottle.glb" 
+                        alt="Botella de vino de autor en 3D" 
+                        auto-rotate 
+                        camera-controls 
+                        shadow-intensity="1" 
+                        class="hero-model"
+                        ar>
+                    </model-viewer>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 3: Promoción Envíos Gratis -->
+        <div class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <span class="hero-tag">Promoción Especial</span>
+                    <h2 class="hero-title">Envío Gratuito en Pedidos Superiores a 50 €</h2>
+                    <p class="hero-subtitle">Recibe tus vinos Crianza, Reserva y Gran Reserva en 24-48 horas con embalaje térmico de máxima protección directo a tu domicilio.</p>
+                    <div class="hero-actions">
+                        <a href="html/catalogo.html" class="btn btn-primary">Comprar Vinos</a>
+                        <a href="html/login.html" class="btn btn-secondary">Crear Cuenta</a>
+                    </div>
+                </div>
+                <div class="hero-3d-wrapper">
+                    <model-viewer 
+                        src="models/wine_bottle.glb" 
+                        alt="Selección de vinos con envío directo" 
+                        auto-rotate 
+                        camera-controls 
+                        shadow-intensity="1" 
+                        class="hero-model"
+                        ar>
+                    </model-viewer>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botones de Navegación Flechas -->
+    <button type="button" class="carousel-arrow prev" aria-label="Diapositiva anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button type="button" class="carousel-arrow next" aria-label="Siguiente diapositiva">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <!-- Puntos de Indicación (Dots) -->
+    <div class="carousel-indicators" role="tablist" aria-label="Seleccionar diapositiva">
+        <button type="button" class="dot active" role="tab" aria-selected="true" aria-label="Ir a diapositiva 1"></button>
+        <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ir a diapositiva 2"></button>
+        <button type="button" class="dot" role="tab" aria-selected="false" aria-label="Ir a diapositiva 3"></button>
+    </div>
+</section>
 
         <!-- Sección de Vinos Destacados -->
         <section class="section-padding" aria-labelledby="featured-heading">

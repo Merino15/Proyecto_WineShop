@@ -1,6 +1,7 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
- * Soporta renderizado dinámico, internacionalización, gestión de carrito, favoritos y redirección de enoturismo a bodegas.
+ * Incluye carrusel Hero interactivo, gestión de catálogo 3D, bodegas con enlaces externos,
+ * enoturismo, carrito de compras, favoritos e internacionalización (es, en, fr, de).
  */
 
 let appData = null;
@@ -53,6 +54,79 @@ function aplicarTraducciones() {
             elem.textContent = dicc[key];
         }
     });
+}
+
+/**
+ * Carrusel Hero Interactivo y Accesible
+ */
+function iniciarCarruselHero() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-indicators .dot');
+    const btnPrev = document.querySelector('.carousel-arrow.prev');
+    const btnNext = document.querySelector('.carousel-arrow.next');
+    const carouselSection = document.querySelector('.hero-carousel-section');
+    
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.remove('active');
+            dots[currentIndex].setAttribute('aria-selected', 'false');
+        }
+
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides[currentIndex].classList.add('active');
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.add('active');
+            dots[currentIndex].setAttribute('aria-selected', 'true');
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        timer = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 6000);
+    }
+
+    function stopAutoplay() {
+        if (timer) clearInterval(timer);
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+            startAutoplay();
+        });
+    }
+
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+            startAutoplay();
+        });
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            goToSlide(idx);
+            startAutoplay();
+        });
+    });
+
+    if (carouselSection) {
+        carouselSection.addEventListener('mouseenter', stopAutoplay);
+        carouselSection.addEventListener('mouseleave', startAutoplay);
+        carouselSection.addEventListener('focusin', stopAutoplay);
+        carouselSection.addEventListener('focusout', startAutoplay);
+    }
+
+    startAutoplay();
 }
 
 /**
@@ -128,11 +202,21 @@ function renderizarBodegas(contenedorId) {
         article.className = "wine-card";
         article.style.padding = "var(--espaciado-24)";
 
+        const enlaceBodega = bodega.url || `${basePath}html/catalogo.html`;
+
         article.innerHTML = `
             <h3 class="wine-name">${bodega.nombre}</h3>
             <p class="hero-tag" style="margin-bottom: 8px;">${traduccion.subtitulo || ''}</p>
             <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
-            <a href="${basePath}html/catalogo.html" class="btn btn-secondary">${dicc.btn_ver_vinos || 'Ver sus vinos'}</a>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="${basePath}html/catalogo.html" class="btn btn-secondary" style="flex: 1;">${dicc.btn_ver_vinos || 'Ver sus vinos'}</a>
+                ${bodega.url ? `
+                    <a href="${bodega.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1;">
+                        Web Oficial 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 6px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                ` : ''}
+            </div>
         `;
         contenedor.appendChild(article);
     });
@@ -359,6 +443,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarIdioma();
         aplicarTraducciones();
         
+        iniciarCarruselHero();
         renderizarVinos("destacados-grid", true);
         renderizarVinos("catalogo-grid", false);
         renderizarBodegas("bodegas-grid");

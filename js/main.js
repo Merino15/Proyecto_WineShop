@@ -804,17 +804,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         iniciarCarruselHero();
         iniciarCarruselResenas();
+        iniciarBannerAnuncios(); // <--- Añadir aquí
         
         renderizarVinos("destacados-grid", true);
         
-        // Comprobación para páginas específicas
         if (document.getElementById("search-input") || document.getElementById("type-select")) {
             iniciarFiltrosCatalogo();
         } else {
             renderizarVinos("catalogo-grid", false);
         }
 
-        // <--- Activa la carga del detalle si estamos en producto.html --->
         if (window.location.pathname.includes("producto.html")) {
             iniciarDetalleProducto();
         }
@@ -1004,4 +1003,20 @@ function iniciarDetalleProducto() {
         });
     }
 
+}
+
+/**
+ * Carrusel de Mensajes del Banner Superior (Anuncios)
+ */
+function iniciarBannerAnuncios() {
+    const items = document.querySelectorAll('.announcement-item');
+    if (!items.length) return;
+
+    let currentIndex = 0;
+
+    setInterval(() => {
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].classList.add('active');
+    }, 4500);
 }

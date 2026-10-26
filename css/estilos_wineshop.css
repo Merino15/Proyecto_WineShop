@@ -1110,3 +1110,202 @@ fieldset:disabled .form-input {
     --color-gris-900: #1A1A1A;
     --color-secundario-dorado-claro: #D4AF37;
 }
+
+/* ==========================================================================
+   NUEVA BARRA DE FILTROS DEL CATÁLOGO (REDISEÑO PREMIUM)
+   ========================================================================== */
+
+.catalog-filters-section {
+    margin-bottom: var(--espaciado-32);
+}
+
+.catalog-filters-bar {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: var(--sombra-card);
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.5fr auto;
+    gap: 20px;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primario-bordeos);
+}
+
+.filter-control {
+    width: 100%;
+    height: 46px;
+    min-height: 46px;
+    padding: 8px 14px;
+    border: 1.5px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: var(--color-neutro-claro);
+    font-family: var(--font-cuerpo);
+    font-size: 0.95rem;
+    color: var(--color-neutro-oscuro);
+    transition: all 0.2s ease;
+}
+
+.filter-control:focus {
+    border-color: var(--color-primario-bordeos);
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 3px rgba(91, 14, 45, 0.12);
+}
+
+/* Input con Icono */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon .search-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--color-neutro-gris);
+    pointer-events: none;
+}
+
+.input-with-icon .filter-control {
+    padding-left: 42px;
+}
+
+/* Slider de Precio Personalizado (Estilo Vino / Bordeos) */
+.price-label-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-badge {
+    background-color: rgba(91, 14, 45, 0.1);
+    color: var(--color-primario-bordeos);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.custom-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--color-borde);
+    outline: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Track / Slider Thumb Webkit (Chrome, Edge, Safari) */
+.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-primario-bordeos);
+    border: 3px solid var(--color-blanco);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.custom-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Track / Slider Thumb Firefox */
+.custom-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-primario-bordeos);
+    border: 3px solid var(--color-blanco);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+/* Botón de Limpiar y Contador */
+.filter-actions-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.results-chip {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-neutro-gris);
+    white-space: nowrap;
+}
+
+.btn-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 46px;
+    padding: 0 16px;
+    background-color: transparent;
+    border: 1.5px solid var(--color-primario-bordeos);
+    color: var(--color-primario-bordeos);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-reset:hover {
+    background-color: var(--color-primario-bordeos);
+    color: var(--color-blanco);
+}
+
+/* Adaptación Responsiva para Tables y Móviles */
+@media (max-width: 1024px) {
+    .catalog-filters-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .filter-actions-wrap {
+        grid-column: span 2;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 640px) {
+    .catalog-filters-bar {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .filter-actions-wrap {
+        grid-column: span 1;
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .btn-reset {
+        justify-content: center;
+    }
+
+    .results-chip {
+        text-align: center;
+    }
+}

@@ -62,38 +62,51 @@
         <h1 class="section-title">Catálogo de Vinos D.O.Ca. Rioja</h1>
         <p class="section-subtitle" style="text-align: center; margin-bottom: var(--espaciado-32);">Filtra por variedad, tipo de vino y rango de precio.</p>
 
-        <!-- Panel Multifiltro Accesible -->
-        <section class="filter-panel" aria-label="Filtros de búsqueda de vinos">
-            <div class="filter-grid">
-                <div class="filter-group">
-                    <label for="wine-search" class="filter-label">Buscar por nombre o variedad:</label>
-                    <input type="text" id="wine-search" class="filter-input" placeholder="Ej. Reserva, Tempranillo, Crianza...">
-                </div>
-
-                <div class="filter-group">
-                    <label for="wine-type" class="filter-label">Tipo de Vino:</label>
-                    <select id="wine-type" class="filter-select">
-                        <option value="todos">Todos los tipos</option>
-                        <option value="tinto">Tinto</option>
-                        <option value="blanco">Blanco</option>
-                        <option value="rosado">Rosado</option>
-                        <option value="espumoso">Espumoso</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label for="price-range" class="filter-label">Precio máximo: <strong id="price-val">60 €</strong></label>
-                    <div class="range-wrap">
-                        <input type="range" id="price-range" class="filter-range" min="5" max="60" step="1" value="60">
-                    </div>
-                </div>
+       <!-- Barra de Filtros Rediseñada -->
+<section class="catalog-filters-section" aria-label="Filtros del catálogo">
+    <form id="filter-form" class="catalog-filters-bar" onsubmit="event.preventDefault();">
+        
+        <!-- Buscador -->
+        <div class="filter-group filter-search">
+            <label for="search-input" class="filter-label">Buscar vino o variedad</label>
+            <div class="input-with-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="search-input" class="filter-control" placeholder="Ej. Reserva, Tempranillo, Crianza...">
             </div>
+        </div>
 
-            <div class="results-bar">
-                <span id="results-count">Mostrando vinos...</span>
-                <button type="button" id="btn-reset-filters" class="btn btn-secondary" style="padding: 6px 16px; min-height: 38px;">Limpiar filtros</button>
+        <!-- Selector Tipo de Vino -->
+        <div class="filter-group filter-select-wrap">
+            <label for="type-select" class="filter-label">Tipo de Vino</label>
+            <select id="type-select" class="filter-control">
+                <option value="todos">Todos los tipos</option>
+                <option value="tinto">Tinto</option>
+                <option value="blanco">Blanco</option>
+                <option value="rosado">Rosado</option>
+                <option value="espumoso">Espumoso</option>
+            </select>
+        </div>
+
+        <!-- Rango de Precio Personalizado -->
+        <div class="filter-group filter-price-wrap">
+            <div class="price-label-header">
+                <label for="price-range" class="filter-label">Precio máximo</label>
+                <span id="price-value" class="price-badge">210.00 €</span>
             </div>
-        </section>
+            <input type="range" id="price-range" class="custom-range" min="10" max="250" step="5" value="210">
+        </div>
+
+        <!-- Acciones: Contador + Limpiar -->
+        <div class="filter-actions-wrap">
+            <span id="results-counter" class="results-chip">13 vinos encontrados</span>
+            <button type="button" id="btn-reset-filters" class="btn-reset">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                Limpiar
+            </button>
+        </div>
+
+    </form>
+</section>
 
         <div id="catalogo-grid" class="products-grid" role="region" aria-label="Lista de vinos disponibles"></div>
     </main>

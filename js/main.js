@@ -806,7 +806,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarCarruselResenas();
         
         renderizarVinos("destacados-grid", true);
-        renderizarVinos("catalogo-grid", false);
+        
+        // Comprobamos si estamos en la página del catálogo para activar los nuevos filtros
+        if (document.getElementById("search-input") || document.getElementById("type-select")) {
+            iniciarFiltrosCatalogo();
+        } else {
+            renderizarVinos("catalogo-grid", false);
+        }
+        
         renderizarBodegas("bodegas-grid");
         renderizarExperiencias("experiencias-grid");
         
@@ -814,3 +821,98 @@ document.addEventListener("DOMContentLoaded", async () => {
         actualizarBadgeCarrito();
     }
 });
+/**
+ * Inicializa la lógica interactiva de filtrado del catálogo
+ */
+function iniciarFiltrosCatalogo() {
+    const inputSearch = document.getElementById("search-input");
+    const selectType = document.getElementById("type-select");
+    const rangePrice = document.getElementById("price-range");
+    const labelPrice = document.getElementById("price-value");
+    const resultsCounter = document.getElementById("results-counter");
+    const btnReset = document.getElementById("btn-reset-filters");
+
+    if (!rangePrice || !appData || !appData.vinos) return;
+
+    function aplicarFiltros() {
+        const texto = (inputSearch?.value || "").toLowerCase().trim();
+        const tipo = selectType?.value || "todos";
+        const maxPrecio = parseFloat(rangePrice.value);
+
+        if (labelPrice) {
+            labelPrice.textContent = `${maxPrecio.toFixed(2)} €`;
+        }
+
+        const filtrados = appData.vinos.filter(vino => {
+            const coincideTexto = vino.nombre.toLowerCase().includes(texto) || 
+                                 (vino.i18n && vino.i18n.es && vino.i18n.es.desc.toLowerCase().includes(texto));
+            const coincideTipo = (tipo === "todos") || (vino.tipo === tipo);
+            const coincidePrecio = vino.precioNum <= maxPrecio;
+
+            return coincideTexto && coincideTipo && coincidePrecio;
+        });
+
+        if (resultsCounter) {
+            resultsCounter.textContent = `${filtrados.length} vino(s) encontrado(s)`;
+        }
+
+        renderizarVinosFiltrados("catalogo-grid", filtrados);
+    }
+
+    if (inputSearch) inputSearch.addEventListener("input", aplicarFiltros);
+    if (selectType) selectType.addEventListener("change", aplicarFiltros);
+    if (rangePrice) rangePrice.addEventListener("input", aplicarFiltros);
+
+    if (btnReset) {
+        btnReset.addEventListener("click", () => {
+            if (inputSearch) inputSearch.value = "";
+            if (selectType) selectType.value = "todos";
+            if (rangePrice) rangePrice.value = rangePrice.max;
+            aplicarFiltros();
+        });
+    }
+
+    // Ejecutar filtro inicial
+    aplicarFiltros();
+}
+
+function renderizarVinosFiltrados(contenedorId, listaVinos) {
+    const contenedor = document.getElementById(contenedorId);
+    if (!contenedor) return;
+
+    contenedor.innerHTML = "";
+
+    if (listaVinos.length === 0) {
+        contenedor.innerHTML = `<p class="body-regular" style="grid-column: 1/-1; text-align: center; padding: 40px 0;">No hay vinos que coincidan con los filtros seleccionados.</p>`;
+        return;
+    }
+
+    listaVinos.forEach(vino => {
+        const isFav = getFavoritos().includes(vino.id);
+        const article = document.createElement("article");
+        article.className = "wine-card";
+        article.setAttribute("data-id", vino.id);
+        
+        article.innerHTML = `
+            <div class="card-img-wrap">
+                <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" aria-label="Favoritos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </button>
+                <img src="${vino.imagen}" alt="${vino.nombre}" class="card-img" loading="lazy">
+            </div>
+            <div class="wine-info">
+                <h3 class="wine-name">
+                    <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
+                </h3>
+                <p class="body-regular" style="margin-bottom: 12px;">${vino.i18n?.es?.desc || ''}</p>
+                <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">Añadir al carrito</button>
+            </div>
+        `;
+        contenedor.appendChild(article);
+    });
+
+    asignarEventosTarjetas(contenedor);
+}

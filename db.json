@@ -424,7 +424,7 @@
       "id": "exp-2",
       "precio": "65,00 €",
       "nombreBodega": "Bodegas Muga",
-      "urlBodega": "https://www.bodegasmuga.com/visitas/",
+      "urlBodega": "https://www.bodegasmuga.com/enoturismo-rioja/",
       "i18n": {
         "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 y Visita a Tonelería", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas del Barrio de la Estación, demostración de tonelería artesanal y cata comentada con almuerzo campero." },
         "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition & Cooperage Tour", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across Station District plots, artisanal cooperage demonstration and guided tasting with country lunch." },
@@ -436,7 +436,7 @@
       "id": "exp-3",
       "precio": "95,00 €",
       "nombreBodega": "Bodegas Marqués de Murrieta",
-      "urlBodega": "https://marquesdemurrieta.com/enoturismo/",
+      "urlBodega": "https://marquesdemurrieta.com/reserva/",
       "i18n": {
         "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación en el Castillo de Ygay", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica exclusiva en el histórico Castillo de Ygay maridada con las cosechas más laureadas de la bodega." },
         "en": { "banner": "Signature Pairing", "titulo": "Tasting Menu at Ygay Castle", "duracion": "Lunch or Dinner · Private Salon", "desc": "Exclusive gastronomic experience inside the historic Ygay Castle paired with the winery's top award-winning vintages." },

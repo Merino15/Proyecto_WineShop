@@ -168,7 +168,7 @@ function iniciarCarruselHero() {
 }
 
 /**
- * Renderizado Dinámico de Vinos (Destacados y Catálogo Completo)
+ * Renderizado Dinámico de Vinos con Imagen Real
  */
 function renderizarVinos(contenedorId, soloDestacados = false) {
     const contenedor = document.getElementById(contenedorId);
@@ -190,7 +190,7 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
     vinos.forEach(vino => {
         const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
         const isFav = getFavoritos().includes(vino.id);
-        const modelPath = vino.modelo.includes('/') ? vino.modelo : `models/${vino.modelo}`;
+        const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen || 'img/hero/banner-1.jpg'}`;
 
         const article = document.createElement("article");
         article.className = "wine-card";
@@ -199,7 +199,7 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
         article.setAttribute("data-price", vino.precioNum);
         
         article.innerHTML = `
-            <div class="model-container">
+            <div class="card-img-wrap">
                 <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" 
                         aria-label="${isFav ? (dicc.fav_remove_aria || 'Quitar de favoritos') : 'Añadir a favoritos'}" 
                         aria-pressed="${isFav}">
@@ -207,15 +207,15 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
                         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                     </svg>
                 </button>
-                <model-viewer src="${basePath}${modelPath}" alt="${vino.nombre}" touch-action="pan-y" shadow-intensity="1" camera-controls disable-zoom class="wine-3d-model"></model-viewer>
+                <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
             </div>
             <div class="wine-info">
                 <h3 class="wine-name">
                     <a href="${basePath}html/producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
                 </h3>
-                <p class="body-regular">${traduccion.desc || ''}</p>
-                <p class="wine-price"><span class="sr-only">${dicc.precio_label || 'Precio:'}</span> ${vino.precio}</p>
-                <button type="button" class="btn btn-primary btn-full btn-add-cart">${dicc.btn_carrito || 'Añadir al carrito'}</button>
+                <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
+                <p class="wine-price" style="margin-top: auto;"><span class="sr-only">${dicc.precio_label || 'Precio:'}</span> ${vino.precio}</p>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>
             </div>
         `;
         contenedor.appendChild(article);

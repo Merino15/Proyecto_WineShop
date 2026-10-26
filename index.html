@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WineShop | Vinos Premium Rioja & Enoturismo Exclusivo</title>
-    
-    <!-- Guardián de Verificación de Edad -->
-    <script>
-        if (sessionStorage.getItem('wineshop_mayor_edad') !== 'true') {
-            window.location.replace('verificacion_edad.html');
-        }
-    </script>
 
     <meta name="description" content="Descubre vinos premium de Rioja con denominación de origen, visitas guiadas a bodegas históricas y catas exclusivas. Compra online con envío garantizado.">
     <meta name="keywords" content="vino rioja, comprar vino online, bodegas rioja, enoturismo, cata de vinos, vino tinto reserva">
@@ -245,6 +238,32 @@
             </nav>
         </div>
     </footer>
+
+    <!-- Modal de Verificación de Edad con Fondo Borroso (Backdrop Blur) -->
+    <div id="age-gate-modal" class="age-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="age-modal-title" aria-describedby="age-modal-desc">
+        <div class="age-card-modal">
+            <img src="img/transparent-logo.png" alt="WineShop Vinos Premium" class="age-logo" width="180">
+            
+            <h2 id="age-modal-title" class="age-title">¿Eres mayor de edad?</h2>
+            
+            <p id="age-modal-desc" class="age-text">
+                Debes tener al menos 18 años para acceder a WineShop y descubrir nuestra selección de vinos D.O.Ca. Rioja.
+            </p>
+
+            <div class="age-actions">
+                <button type="button" id="btn-confirm-mayor" class="btn btn-primary btn-full">
+                    Sí, tengo 18 años o más
+                </button>
+                <button type="button" id="btn-confirm-menor" class="btn btn-secondary btn-full">
+                    No, soy menor de 18 años
+                </button>
+            </div>
+
+            <p class="age-notice">
+                Al acceder confirmas que cumples con la edad legal de consumo de alcohol en tu país de residencia.
+            </p>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>

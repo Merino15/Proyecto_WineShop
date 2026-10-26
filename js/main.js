@@ -1,7 +1,8 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
- * Incluye carrusel Hero interactivo, gestión de catálogo 3D, bodegas con imágenes y enlaces externos,
- * enoturismo, carrito de compras, favoritos e internacionalización (es, en, fr, de).
+ * Incluye carrusel Hero interactivo, verificación de edad flotante con desenfoque de fondo,
+ * catálogo 3D, bodegas con imágenes y enlaces externos, enoturismo, carrito de compras, 
+ * favoritos e internacionalización (es, en, fr, de).
  */
 
 let appData = null;
@@ -54,6 +55,43 @@ function aplicarTraducciones() {
             elem.textContent = dicc[key];
         }
     });
+}
+
+/**
+ * Control del Modal de Verificación de Edad con Desenfoque de Fondo
+ */
+function iniciarVerificacionEdad() {
+    const modal = document.getElementById("age-gate-modal");
+    if (!modal) return;
+
+    const btnMayor = document.getElementById("btn-confirm-mayor");
+    const btnMenor = document.getElementById("btn-confirm-menor");
+
+    const esMayor = sessionStorage.getItem("wineshop_mayor_edad") === "true";
+
+    if (esMayor) {
+        modal.classList.add("hidden");
+        document.body.classList.remove("modal-open");
+    } else {
+        modal.classList.remove("hidden");
+        document.body.classList.add("modal-open");
+    }
+
+    if (btnMayor) {
+        btnMayor.addEventListener("click", () => {
+            sessionStorage.setItem("wineshop_mayor_edad", "true");
+            modal.classList.add("hidden");
+            document.body.classList.remove("modal-open");
+            announceToScreenReader("Verificación de edad completada. Acceso permitido a WineShop.");
+        });
+    }
+
+    if (btnMenor) {
+        btnMenor.addEventListener("click", () => {
+            const redirectUrl = isSubdir ? "juego_menores.html" : "html/juego_menores.html";
+            window.location.href = redirectUrl;
+        });
+    }
 }
 
 /**
@@ -452,6 +490,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarIdioma();
         aplicarTraducciones();
         
+        iniciarVerificacionEdad();
         iniciarCarruselHero();
         renderizarVinos("destacados-grid", true);
         renderizarVinos("catalogo-grid", false);

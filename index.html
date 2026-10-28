@@ -53,9 +53,6 @@
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
     ></script>
 
-    <!-- Motor GEO (Datos Estructurados para Motores de Búsqueda y LLMs) -->
-    <script src="js/geo.js" defer></script>
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -88,25 +85,6 @@
       aria-atomic="true"
     ></div>
 
-    <!-- Banner Superior Dinámico de Avisos / Promociones -->
-    <div class="announcement-bar" role="region" aria-label="Avisos y Promociones">
-      <div class="container announcement-container">
-        <div class="announcement-slider">
-          <span class="announcement-item active"
-            >📦 Envíos rápidos y seguros a Logroño y toda La Rioja</span
-          >
-          <span class="announcement-item"
-            >✨ ¡10% de descuento en tu primera compra suscribiéndote!</span
-          >
-          <span class="announcement-item"
-            >🍷 Descubre nuestras experiencias de enoturismo y catas
-            exclusivas</span
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- Cabecera y Navegación Principal -->
     <header class="site-header" id="header">
       <div class="container header-container">
         <a href="index.html" class="logo-link" aria-label="WineShop - Inicio">
@@ -252,7 +230,29 @@
     </header>
 
     <main id="contenido-principal" tabindex="-1">
-      <!-- Carrusel Hero Accesible -->
+      <!-- Banner Superior Dinámico (Anuncio / Promociones) -->
+      <div
+        class="announcement-bar"
+        role="region"
+        aria-label="Avisos y Promociones"
+      >
+        <div class="container announcement-container">
+          <div class="announcement-slider">
+            <span class="announcement-item active"
+              >📦 Envíos rápidos y seguros a Logroño y toda La Rioja</span
+            >
+            <span class="announcement-item"
+              >✨ ¡10% de descuento en tu primera compra suscribiéndote!</span
+            >
+            <span class="announcement-item"
+              >🍷 Descubre nuestras experiencias de enoturismo y catas
+              exclusivas</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrusel Hero Accesible (Promociones y Destacados) -->
       <section
         class="hero-carousel-section"
         aria-roledescription="carrusel"
@@ -458,7 +458,7 @@
         </div>
       </section>
 
-      <!-- Selección Destacada -->
+      <!-- Selección Destacada (última sección de productos) -->
       <section class="section-padding" aria-labelledby="featured-heading">
         <div class="container">
           <div class="section-header">
@@ -487,130 +487,237 @@
         </div>
       </section>
 
-      <!-- Sección de Opiniones Verificadas (Diseño Compacto y Fiable) -->
+      <!-- Sección Carrusel de Reseñas / Testimonios -->
       <section
         class="testimonials-section section-padding"
         aria-labelledby="testimonials-heading"
       >
         <div class="container">
-          <div class="reviews-header">
-            <h2 id="testimonials-heading" class="section-title-compact">
-              Opiniones Verificadas
+          <div class="section-header">
+            <h2 id="testimonials-heading" class="section-title">
+              Lo que dicen nuestros clientes
             </h2>
-            <div class="reviews-rating-badge">
-              <span class="stars-gold" aria-hidden="true">★★★★★</span>
-              <span class="rating-score">4.9 / 5</span>
-              <span class="rating-count"
-                >• Basado en +320 compras en La Rioja y España</span
-              >
-            </div>
+            <p
+              class="section-subtitle"
+              style="text-align: center; margin-bottom: var(--espaciado-32)"
+            >
+              Experiencias reales de amantes del vino y apasionados del
+              enoturismo.
+            </p>
           </div>
 
-          <div class="reviews-grid">
-            <article class="review-card">
-              <div class="review-card-header">
-                <div class="stars-gold" aria-label="5 de 5 estrellas">
-                  ★★★★★
-                </div>
-                <span class="badge-verified">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Compra verificada
-                </span>
-              </div>
-              <p class="review-text">
-                "El envío a Logroño llegó en menos de 24 horas con una
-                protección térmica impecable. El corcho y la temperatura del
-                vino estaban perfectos."
-              </p>
-              <div class="review-author-info">
-                <strong class="review-author-name">Marta Salgado</strong>
-                <span class="review-product-tag"
-                  >Compró: Muga Prado Enea Gran Reserva</span
-                >
-              </div>
-            </article>
+          <div class="testimonials-carousel-wrapper">
+            <button
+              type="button"
+              class="carousel-arrow prev-testimonial"
+              aria-label="Reseña anterior"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
 
-            <article class="review-card">
-              <div class="review-card-header">
-                <div class="stars-gold" aria-label="5 de 5 estrellas">
+            <div class="testimonials-slider">
+              <!-- Reseña 1 -->
+              <article class="testimonial-card active">
+                <div
+                  class="testimonial-stars"
+                  aria-label="Valoración: 5 de 5 estrellas"
+                >
                   ★★★★★
                 </div>
-                <span class="badge-verified">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Reserva verificada
-                </span>
-              </div>
-              <p class="review-text">
-                "Reservamos la cata con maridaje en los calados subterráneos
-                desde la web. Una experiencia inolvidable y la atención en
-                bodega fue de diez."
-              </p>
-              <div class="review-author-info">
-                <strong class="review-author-name">Javier Otazu</strong>
-                <span class="review-product-tag"
-                  >Experiencia: Cata en Calado Histórico</span
-                >
-              </div>
-            </article>
+                <blockquote class="testimonial-quote">
+                  "El envío de los Reserva a Logroño llegó en menos de 24 horas
+                  y con un embalaje térmico impecable. La selección de Rioja que
+                  tienen es sencillamente de otro nivel."
+                </blockquote>
+                <div class="testimonial-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+                    alt="Foto de Marta Salgado"
+                    class="author-avatar"
+                  />
+                  <div>
+                    <strong class="author-name">Marta Salgado</strong>
+                    <span class="author-role"
+                      >Sommelier y clienta habitual</span
+                    >
+                  </div>
+                </div>
+              </article>
 
-            <article class="review-card">
-              <div class="review-card-header">
-                <div class="stars-gold" aria-label="5 de 5 estrellas">
+              <!-- Reseña 2 -->
+              <article class="testimonial-card">
+                <div
+                  class="testimonial-stars"
+                  aria-label="Valoración: 5 de 5 estrellas"
+                >
                   ★★★★★
                 </div>
-                <span class="badge-verified">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Compra verificada
-                </span>
-              </div>
-              <p class="review-text">
-                "Comprar vinos de edición limitada por internet siempre da
-                cierto reparo, pero el empaquetado seguro y el seguimiento
-                fueron impecables."
-              </p>
-              <div class="review-author-info">
-                <strong class="review-author-name">Carmen Izquierdo</strong>
-                <span class="review-product-tag"
-                  >Compró: Reserva Especial 2018</span
+                <blockquote class="testimonial-quote">
+                  "Reservamos la cata en calados históricos a través de la web
+                  para nuestro aniversario. Una experiencia inolvidable con un
+                  trato inmejorable, repetiremos seguro."
+                </blockquote>
+                <div class="testimonial-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
+                    alt="Foto de Javier Otazu"
+                    class="author-avatar"
+                  />
+                  <div>
+                    <strong class="author-name">Javier Otazu</strong>
+                    <span class="author-role">Entusiasta del enoturismo</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Reseña 3 -->
+              <article class="testimonial-card">
+                <div
+                  class="testimonial-stars"
+                  aria-label="Valoración: 5 de 5 estrellas"
                 >
-              </div>
-            </article>
+                  ★★★★★
+                </div>
+                <blockquote class="testimonial-quote">
+                  "Me sorprendió gratamente poder examinar las botellas antes de
+                  comprar. Compré un Gran Reserva Prado Enea para una cena
+                  familiar y fue un rotundo éxito."
+                </blockquote>
+                <div class="testimonial-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80"
+                    alt="Foto de Carmen Izquierdo"
+                    class="author-avatar"
+                  />
+                  <div>
+                    <strong class="author-name">Carmen Izquierdo</strong>
+                    <span class="author-role">Coleccionista de vinos</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Reseña 4 (Nueva) -->
+              <article class="testimonial-card">
+                <div
+                  class="testimonial-stars"
+                  aria-label="Valoración: 5 de 5 estrellas"
+                >
+                  ★★★★★
+                </div>
+                <blockquote class="testimonial-quote">
+                  "Descubrí el Crianza ecológico de Vivanco gracias a sus
+                  recomendaciones. El empaquetado térmico y los detalles en la
+                  entrega hacen que sea mi tienda online de confianza."
+                </blockquote>
+                <div class="testimonial-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80"
+                    alt="Foto de Alberto Ramos"
+                    class="author-avatar"
+                  />
+                  <div>
+                    <strong class="author-name">Alberto Ramos</strong>
+                    <span class="author-role">Aficionado a la gastronomía</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Reseña 5 (Nueva) -->
+              <article class="testimonial-card">
+                <div
+                  class="testimonial-stars"
+                  aria-label="Valoración: 5 de 5 estrellas"
+                >
+                  ★★★★★
+                </div>
+                <blockquote class="testimonial-quote">
+                  "Comprar un Castillo Ygay para una celebración especial daba
+                  cierto respeto, pero el seguimiento del pedido y la
+                  presentación de la botella superaron mis expectativas."
+                </blockquote>
+                <div class="testimonial-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80"
+                    alt="Foto de Sofía Morales"
+                    class="author-avatar"
+                  />
+                  <div>
+                    <strong class="author-name">Sofía Morales</strong>
+                    <span class="author-role">Catadora en formación</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <button
+              type="button"
+              class="carousel-arrow next-testimonial"
+              aria-label="Siguiente reseña"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div
+            class="testimonials-indicators"
+            role="tablist"
+            aria-label="Seleccionar reseña"
+          >
+            <button
+              type="button"
+              class="dot active"
+              role="tab"
+              aria-selected="true"
+              aria-label="Ver reseña 1"
+            ></button>
+            <button
+              type="button"
+              class="dot"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ver reseña 2"
+            ></button>
+            <button
+              type="button"
+              class="dot"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ver reseña 3"
+            ></button>
+            <button
+              type="button"
+              class="dot"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ver reseña 4"
+            ></button>
+            <button
+              type="button"
+              class="dot"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ver reseña 5"
+            ></button>
           </div>
         </div>
       </section>
@@ -641,7 +748,7 @@
       </div>
     </footer>
 
-    <!-- Modal de Verificación de Edad -->
+    <!-- Modal de Verificación de Edad con Fondo Borroso (Backdrop Blur) -->
     <div
       id="age-gate-modal"
       class="age-modal-overlay hidden"
@@ -688,8 +795,7 @@
         </p>
       </div>
     </div>
-
-    <!-- Modal Popup de Newsletter -->
+    <!-- Modal Popup de Newsletter con Descuento -->
     <div
       id="newsletter-modal"
       class="newsletter-modal-overlay hidden"

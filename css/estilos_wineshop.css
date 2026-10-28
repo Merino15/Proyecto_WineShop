@@ -1561,3 +1561,127 @@ fieldset:disabled .form-input {
     border-radius: 6px !important;
     cursor: pointer !important;
 }
+
+/* ==========================================================================
+   SECCIÓN DE RESEÑAS VERIFICADAS (COMPACTA Y DE ALTA CONFIANZA)
+   ========================================================================== */
+
+.testimonials-section {
+    background-color: var(--color-blanco);
+    border-top: 2px solid var(--color-borde);
+    border-bottom: 2px solid var(--color-borde);
+}
+
+.reviews-header {
+    text-align: center;
+    margin-bottom: var(--espaciado-24);
+}
+
+.section-title-compact {
+    font-family: var(--font-titulos);
+    color: var(--color-primario-bordeos);
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.reviews-rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.stars-gold {
+    color: var(--color-secundario-oro);
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.rating-score {
+    font-weight: 700;
+    color: var(--color-neutro-oscuro);
+}
+
+.rating-count {
+    color: var(--color-neutro-gris);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaciado-20);
+}
+
+.review-card {
+    background: var(--color-neutro-claro);
+    border: 1.5px solid var(--color-borde);
+    border-radius: 8px;
+    padding: var(--espaciado-20);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card);
+}
+
+.review-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.badge-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.review-text {
+    font-family: var(--font-cuerpo);
+    font-size: 0.925rem;
+    font-style: italic;
+    color: var(--color-neutro-oscuro);
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.review-author-info {
+    border-top: 1px solid var(--color-borde);
+    padding-top: 10px;
+    margin-top: auto;
+}
+
+.review-author-name {
+    display: block;
+    color: var(--color-primario-bordeos);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.review-product-tag {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-neutro-gris);
+    margin-top: 2px;
+}
+
+/* Adaptación Responsiva */
+@media (max-width: 960px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}

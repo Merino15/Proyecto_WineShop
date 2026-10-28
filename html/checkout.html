@@ -23,6 +23,7 @@
         .summary-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: var(--espaciado-8) 0;
             border-bottom: 1px solid var(--color-borde);
         }
@@ -41,6 +42,7 @@
 <body>
 
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+    <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
     <header class="site-header">
         <div class="container header-container">
@@ -56,7 +58,7 @@
     </header>
 
     <main id="contenido-principal" class="container section-padding" tabindex="-1">
-        <h1 class="section-title">Finalizar Pedido</h1>
+        <h1 class="section-title" style="text-align: left;">Finalizar Pedido</h1>
 
         <div class="checkout-grid">
             <form id="form-checkout" class="auth-card" style="max-width: 100%;" novalidate>
@@ -66,7 +68,7 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--espaciado-16); margin-bottom: var(--espaciado-16);">
                         <div class="form-group" style="margin:0;">
                             <label for="co-nombre">Nombre Completo *</label>
-                            <input type="text" id="co-nombre" required>
+                            <input type="text" id="co-nombre" required autocomplete="name">
                         </div>
                         <div class="form-group" style="margin:0;">
                             <label for="co-dni">DNI / NIF *</label>
@@ -76,21 +78,21 @@
 
                     <div class="form-group">
                         <label for="co-direccion">Dirección Completa *</label>
-                        <input type="text" id="co-direccion" placeholder="Calle, número, piso" required>
+                        <input type="text" id="co-direccion" placeholder="Calle, número, piso" required autocomplete="street-address">
                     </div>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--espaciado-16);">
                         <div class="form-group" style="margin:0;">
                             <label for="co-cp">C.P. *</label>
-                            <input type="text" id="co-cp" required>
+                            <input type="text" id="co-cp" required autocomplete="postal-code">
                         </div>
                         <div class="form-group" style="margin:0;">
                             <label for="co-ciudad">Ciudad *</label>
-                            <input type="text" id="co-ciudad" required>
+                            <input type="text" id="co-ciudad" required autocomplete="address-level2">
                         </div>
                         <div class="form-group" style="margin:0;">
                             <label for="co-provincia">Provincia *</label>
-                            <input type="text" id="co-provincia" required>
+                            <input type="text" id="co-provincia" required autocomplete="address-level1">
                         </div>
                     </div>
                 </fieldset>
@@ -115,6 +117,7 @@
 
             <aside class="order-summary-box" aria-labelledby="summary-title">
                 <h2 id="summary-title" style="font-family: var(--font-titulos); font-size: 1.5rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">Resumen del Pedido</h2>
+                
                 <div id="checkout-items-list"></div>
                 
                 <div style="margin-top: var(--espaciado-16);">
@@ -135,10 +138,39 @@
         </div>
     </main>
 
+    <!-- Modal de Confirmación para Eliminar Producto -->
+    <div id="confirm-modal-overlay" class="confirm-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+        <div class="confirm-modal-card">
+            <div class="confirm-modal-icon">🍷</div>
+            <h3 id="confirm-modal-title" class="confirm-modal-title">¿Eliminar del carrito?</h3>
+            <p id="confirm-modal-text" class="confirm-modal-text">¿Estás seguro de que deseas quitar este vino de tu pedido?</p>
+            
+            <div class="confirm-modal-actions">
+                <button type="button" id="btn-modal-cancel" class="btn btn-secondary">Cancelar</button>
+                <button type="button" id="btn-modal-confirm" class="btn btn-primary" style="background-color: #D32F2F; border-color: #D32F2F;">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
+                <p class="body-regular">© 2026 WineShop. Todos los derechos reservados.</p>
+            </div>
+            <nav class="footer-links">
+                <a href="politica_privacidad.html">Política de Privacidad</a>
+                <a href="declaracion_accesibilidad.html">Declaración de Accesibilidad</a>
+            </nav>
+        </div>
+    </footer>
+
     <script src="../js/main.js"></script>
     <script>
+        let itemPendienteEliminar = null;
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Autocompletar datos si hay sesión activa
+            // Autocompletar datos personales si existe una sesión activa
             const usuario = obtenerUsuarioActivo();
             if (usuario) {
                 if (document.getElementById('co-nombre')) document.getElementById('co-nombre').value = usuario.nombre || '';
@@ -149,10 +181,34 @@
                 if (document.getElementById('co-provincia')) document.getElementById('co-provincia').value = usuario.provincia || '';
             }
 
-            // Renderizar la lista del resumen con botones +, - y eliminar
+            // Cargar items del resumen
             renderizarResumenCheckout();
 
-            // Gestionar el envío del formulario
+            // Configurar botones del modal de confirmación
+            const btnCancel = document.getElementById('btn-modal-cancel');
+            const btnConfirm = document.getElementById('btn-modal-confirm');
+
+            if (btnCancel) btnCancel.addEventListener('click', cerrarModalConfirmacion);
+
+            if (btnConfirm) {
+                btnConfirm.addEventListener('click', () => {
+                    if (itemPendienteEliminar !== null) {
+                        let carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
+                        const idx = itemPendienteEliminar.index;
+                        const nombre = itemPendienteEliminar.nombre;
+
+                        carrito.splice(idx, 1);
+                        localStorage.setItem('wineshop_carrito_items', JSON.stringify(carrito));
+                        
+                        if (typeof actualizarBadgeCarrito === 'function') actualizarBadgeCarrito();
+                        renderizarResumenCheckout();
+                        if (typeof mostrarToast === 'function') mostrarToast(`Se ha eliminado "${nombre}" del carrito`);
+                    }
+                    cerrarModalConfirmacion();
+                });
+            }
+
+            // Gestionar la confirmación de la compra
             const formCheckout = document.getElementById('form-checkout');
             if (formCheckout) {
                 formCheckout.addEventListener('submit', (e) => {
@@ -163,14 +219,14 @@
                         return;
                     }
                     localStorage.removeItem('wineshop_carrito_items');
-                    actualizarBadgeCarrito();
+                    if (typeof actualizarBadgeCarrito === 'function') actualizarBadgeCarrito();
                     mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
                     setTimeout(() => { window.location.href = '../index.html'; }, 1500);
                 });
             }
         });
 
-        // Función para renderizar dinámicamente los productos y botones en Checkout
+        // Renderiza el resumen lateral con botones de cantidad visibles y botón de eliminar
         function renderizarResumenCheckout() {
             const container = document.getElementById('checkout-items-list');
             if (!container) return;
@@ -192,7 +248,6 @@
                                 <span style="font-size: 0.85rem; color: var(--color-neutro-gris);">${item.precioNum.toFixed(2)} € / ud.</span>
                             </div>
 
-                            <!-- Selector con Ancho Ajustado para Ver los Números -->
                             <div class="quantity-selector">
                                 <button type="button" class="qty-btn btn-checkout-minus" data-index="${index}" aria-label="Reducir cantidad">-</button>
                                 <input type="number" class="quantity-input" value="${item.cantidad}" readonly aria-label="Cantidad de ${item.nombre}">
@@ -201,7 +256,6 @@
 
                             <span style="font-weight: 700; min-width: 65px; text-align: right;">${totalItem.toFixed(2)} €</span>
 
-                            <!-- Botón Eliminar con Confirmación -->
                             <button type="button" class="btn-checkout-remove" data-index="${index}" aria-label="Eliminar producto" style="background: none; border: none; color: #D32F2F; cursor: pointer; font-size: 1.1rem; padding: 2px 4px;">&times;</button>
                         </div>
                     `;
@@ -214,7 +268,7 @@
             if (document.getElementById('co-envio')) document.getElementById('co-envio').textContent = gastosEnvio === 0 ? 'Gratis' : `${gastosEnvio.toFixed(2)} €`;
             if (document.getElementById('co-total')) document.getElementById('co-total').textContent = `${(subtotal + gastosEnvio).toFixed(2)} €`;
 
-            // Asignar Eventos a los botones
+            // Asignar eventos a los botones
             container.querySelectorAll('.btn-checkout-minus').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = parseInt(btn.getAttribute('data-index'));
@@ -237,29 +291,37 @@
             });
         }
 
-        // Modifica las cantidades y solicita confirmación antes de eliminar
+        // Modifica cantidades y activa el modal de confirmación si la cantidad llega a 0 o se intenta eliminar
         function modificarItemCheckout(index, cambio) {
             let carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
             if (!carrito[index]) return;
 
             const producto = carrito[index];
 
-            // Si se intenta bajar de 1 o pulsar en la X de eliminar
             if (cambio === -999 || (producto.cantidad === 1 && cambio === -1)) {
-                const confirmar = confirm(`¿Deseas eliminar "${producto.nombre}" del carrito?`);
-                if (confirmar) {
-                    carrito.splice(index, 1);
-                    if (typeof mostrarToast === 'function') mostrarToast(`Se ha eliminado "${producto.nombre}" del carrito`);
-                } else {
-                    return; // Si el usuario cancela la eliminación, mantenemos el producto intacto
-                }
+                itemPendienteEliminar = { index, nombre: producto.nombre };
+                mostrarModalConfirmacion(`¿Estás seguro de que deseas eliminar "${producto.nombre}" de tu pedido?`);
             } else {
                 producto.cantidad += cambio;
+                localStorage.setItem('wineshop_carrito_items', JSON.stringify(carrito));
+                if (typeof actualizarBadgeCarrito === 'function') actualizarBadgeCarrito();
+                renderizarResumenCheckout();
             }
+        }
 
-            localStorage.setItem('wineshop_carrito_items', JSON.stringify(carrito));
-            if (typeof actualizarBadgeCarrito === 'function') actualizarBadgeCarrito();
-            renderizarResumenCheckout();
+        function mostrarModalConfirmacion(mensaje) {
+            const modal = document.getElementById('confirm-modal-overlay');
+            const texto = document.getElementById('confirm-modal-text');
+            if (!modal) return;
+
+            if (texto) texto.textContent = mensaje;
+            modal.classList.remove('hidden');
+        }
+
+        function cerrarModalConfirmacion() {
+            const modal = document.getElementById('confirm-modal-overlay');
+            if (modal) modal.classList.add('hidden');
+            itemPendienteEliminar = null;
         }
     </script>
 </body>

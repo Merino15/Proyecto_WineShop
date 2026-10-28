@@ -1473,3 +1473,82 @@ fieldset:disabled .form-input {
 .order-summary-box .qty-btn:hover {
     background-color: rgba(91, 14, 45, 0.08);
 }
+
+/* ==========================================================================
+   MODAL DE CONFIRMACIÓN RECHULÓN (PREMIUM)
+   ========================================================================== */
+
+.confirm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaciado-20);
+    z-index: 10001;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+}
+
+.confirm-modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.confirm-modal-card {
+    background: var(--color-blanco);
+    border: 2px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 32px 28px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--sombra-modal);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.confirm-modal-overlay.hidden .confirm-modal-card {
+    transform: scale(0.92);
+}
+
+.confirm-modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.confirm-modal-title {
+    font-family: var(--font-titulos);
+    color: var(--color-primario-bordeos);
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.confirm-modal-text {
+    font-size: 0.95rem;
+    color: var(--color-neutro-gris);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.confirm-modal-actions .btn {
+    flex: 1;
+    min-height: 44px;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+}

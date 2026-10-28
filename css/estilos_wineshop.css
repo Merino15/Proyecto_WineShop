@@ -1422,20 +1422,54 @@ fieldset:disabled .form-input {
     visibility: visible;
     transform: translateY(0);
 }
-
-/* Ajustes para el selector de cantidad en el resumen de Checkout */
+/* Corrección de visibilidad de los números en el selector de cantidad del checkout */
 .order-summary-box .quantity-selector {
     display: inline-flex;
     align-items: center;
     border: 1.5px solid var(--color-borde);
-    border-radius: 4px;
-    background: var(--color-blanco);
+    border-radius: 6px;
+    background-color: var(--color-blanco);
+    height: 36px;
+    min-width: 95px;
     overflow: hidden;
 }
 
 .order-summary-box .quantity-input {
+    width: 38px !important;
+    height: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    text-align: center !important;
+    font-family: var(--font-cuerpo) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: var(--color-neutro-oscuro) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -moz-appearance: textfield;
+}
+
+.order-summary-box .quantity-input::-webkit-outer-spin-button,
+.order-summary-box .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.order-summary-box .qty-btn {
+    width: 28px;
+    height: 100%;
+    background: none;
     border: none;
-    background: transparent;
-    text-align: center;
+    font-size: 1.1rem;
     font-weight: 700;
+    color: var(--color-primario-bordeos);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.order-summary-box .qty-btn:hover {
+    background-color: rgba(91, 14, 45, 0.08);
 }

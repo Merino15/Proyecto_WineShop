@@ -1,7 +1,8 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
  * Incluye verificación de edad, newsletter popup, login / mi_cuenta con sesión activa,
- * carrusel hero, carrusel de reseñas, carrito de compras, favoritos e i18n.
+ * carrusel hero, carrusel de reseñas, banner de anuncios, carrito de compras con control de cantidad,
+ * favoritos dinámicos, vista de detalle de producto e i18n.
  */
 
 let appData = null;
@@ -489,7 +490,23 @@ function iniciarCarruselResenas() {
 }
 
 /**
- * Renderizado Dinámico de Vinos con Imagen Real
+ * Carrusel de Mensajes del Banner Superior (Anuncios)
+ */
+function iniciarBannerAnuncios() {
+    const items = document.querySelectorAll('.announcement-item');
+    if (!items.length) return;
+
+    let currentIndex = 0;
+
+    setInterval(() => {
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].classList.add('active');
+    }, 4500);
+}
+
+/**
+ * Renderizado Dinámico de Vinos
  */
 function renderizarVinos(contenedorId, soloDestacados = false) {
     const contenedor = document.getElementById(contenedorId);
@@ -626,7 +643,346 @@ function renderizarExperiencias(contenedorId) {
 }
 
 /**
- * Gestión de Favoritos
+ * Inicializa la lógica interactiva de filtrado del catálogo
+ */
+function iniciarFiltrosCatalogo() {
+    const inputSearch = document.getElementById("search-input");
+    const selectType = document.getElementById("type-select");
+    const rangePrice = document.getElementById("price-range");
+    const labelPrice = document.getElementById("price-value");
+    const resultsCounter = document.getElementById("results-counter");
+    const btnReset = document.getElementById("btn-reset-filters");
+
+    if (!rangePrice || !appData || !appData.vinos) return;
+
+    function aplicarFiltros() {
+        const texto = (inputSearch?.value || "").toLowerCase().trim();
+        const tipo = selectType?.value || "todos";
+        const maxPrecio = parseFloat(rangePrice.value);
+
+        if (labelPrice) {
+            labelPrice.textContent = `${maxPrecio.toFixed(2)} €`;
+        }
+
+        const filtrados = appData.vinos.filter(vino => {
+            const coincideTexto = vino.nombre.toLowerCase().includes(texto) || 
+                                 (vino.i18n && vino.i18n.es && vino.i18n.es.desc.toLowerCase().includes(texto));
+            const coincideTipo = (tipo === "todos") || (vino.tipo === tipo);
+            const coincidePrecio = vino.precioNum <= maxPrecio;
+
+            return coincideTexto && coincideTipo && coincidePrecio;
+        });
+
+        if (resultsCounter) {
+            resultsCounter.textContent = `${filtrados.length} vino(s) encontrado(s)`;
+        }
+
+        renderizarVinosFiltrados("catalogo-grid", filtrados);
+    }
+
+    if (inputSearch) inputSearch.addEventListener("input", aplicarFiltros);
+    if (selectType) selectType.addEventListener("change", aplicarFiltros);
+    if (rangePrice) rangePrice.addEventListener("input", aplicarFiltros);
+
+    if (btnReset) {
+        btnReset.addEventListener("click", () => {
+            if (inputSearch) inputSearch.value = "";
+            if (selectType) selectType.value = "todos";
+            if (rangePrice) rangePrice.value = rangePrice.max;
+            aplicarFiltros();
+        });
+    }
+
+    aplicarFiltros();
+}
+
+function renderizarVinosFiltrados(contenedorId, listaVinos) {
+    const contenedor = document.getElementById(contenedorId);
+    if (!contenedor) return;
+
+    contenedor.innerHTML = "";
+
+    if (listaVinos.length === 0) {
+        contenedor.innerHTML = `<p class="body-regular" style="grid-column: 1/-1; text-align: center; padding: 40px 0;">No hay vinos que coincidan con los filtros seleccionados.</p>`;
+        return;
+    }
+
+    listaVinos.forEach(vino => {
+        const isFav = getFavoritos().includes(vino.id);
+        const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
+
+        const article = document.createElement("article");
+        article.className = "wine-card";
+        article.setAttribute("data-id", vino.id);
+        
+        article.innerHTML = `
+            <div class="card-img-wrap">
+                <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" aria-label="Favoritos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </button>
+                <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
+            </div>
+            <div class="wine-info">
+                <h3 class="wine-name">
+                    <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
+                </h3>
+                <p class="body-regular" style="margin-bottom: 12px;">${vino.i18n?.es?.desc || ''}</p>
+                <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">Añadir al carrito</button>
+            </div>
+        `;
+        contenedor.appendChild(article);
+    });
+
+    asignarEventosTarjetas(contenedor);
+}
+
+/**
+ * Carga y renderiza los detalles del producto en producto.html
+ */
+function iniciarDetalleProducto() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const vinoId = urlParams.get("id");
+    
+    if (!vinoId || !appData || !appData.vinos) return;
+
+    const vino = appData.vinos.find(v => v.id === vinoId);
+    if (!vino) {
+        const titleEl = document.getElementById("detail-title");
+        if (titleEl) titleEl.textContent = "Producto no encontrado";
+        return;
+    }
+
+    const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
+    const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
+
+    const titleEl = document.getElementById("detail-title");
+    if (titleEl) titleEl.textContent = vino.nombre;
+
+    const priceEl = document.getElementById("detail-price");
+    if (priceEl) priceEl.textContent = vino.precio;
+
+    const descEl = document.getElementById("detail-desc");
+    if (descEl) descEl.textContent = traduccion.desc || "";
+
+    const vintageEl = document.getElementById("detail-vintage");
+    if (vintageEl) vintageEl.textContent = traduccion.vintage || "D.O.Ca. Rioja";
+
+    const grapeEl = document.getElementById("detail-grape");
+    if (grapeEl) grapeEl.textContent = traduccion.grape || "-";
+
+    const agingEl = document.getElementById("detail-aging");
+    if (agingEl) agingEl.textContent = traduccion.aging || "-";
+
+    const alcoholEl = document.getElementById("detail-alcohol");
+    if (alcoholEl) alcoholEl.textContent = vino.alcohol || "-";
+
+    const tempEl = document.getElementById("detail-temp");
+    if (tempEl) tempEl.textContent = vino.temp || "-";
+
+    const imgEl = document.getElementById("detail-img");
+    const modelEl = document.getElementById("detail-model");
+    if (imgEl && vino.imagen) {
+        imgEl.src = imgPath;
+        imgEl.style.display = "block";
+        if (modelEl) modelEl.style.display = "none";
+    }
+
+    const btnMinus = document.getElementById("qty-minus");
+    const btnPlus = document.getElementById("qty-plus");
+    const inputQty = document.getElementById("product-quantity");
+
+    if (btnMinus && btnPlus && inputQty) {
+        btnMinus.onclick = () => {
+            let val = parseInt(inputQty.value) || 1;
+            if (val > 1) inputQty.value = val - 1;
+        };
+        btnPlus.onclick = () => {
+            let val = parseInt(inputQty.value) || 1;
+            if (val < 99) inputQty.value = val + 1;
+        };
+    }
+
+    const btnAddCart = document.getElementById("btn-add-detail");
+    if (btnAddCart) {
+        btnAddCart.replaceWith(btnAddCart.cloneNode(true));
+        const newBtn = document.getElementById("btn-add-detail");
+        
+        newBtn.addEventListener("click", () => {
+            const cantidad = inputQty ? parseInt(inputQty.value) || 1 : 1;
+            agregarAlCarrito(vino, cantidad);
+        });
+    }
+}
+
+/**
+ * Renderizado de la lista de Vinos Favoritos (para favoritos.html)
+ */
+function renderizarPaginaFavoritos() {
+    const contenedorGrid = document.getElementById("favoritos-grid");
+    const contenedorVacio = document.getElementById("favoritos-vacio");
+    
+    if (!contenedorGrid || !appData || !appData.vinos) return;
+
+    const idsFavoritos = getFavoritos();
+    const vinosFavoritos = appData.vinos.filter(vino => idsFavoritos.includes(vino.id));
+
+    if (vinosFavoritos.length === 0) {
+        contenedorGrid.innerHTML = "";
+        if (contenedorVacio) contenedorVacio.style.display = "block";
+        return;
+    }
+
+    if (contenedorVacio) contenedorVacio.style.display = "none";
+    contenedorGrid.innerHTML = "";
+
+    vinosFavoritos.forEach(vino => {
+        const dicc = appData.i18n[currentLang] || appData.i18n["es"];
+        const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
+        const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
+
+        const article = document.createElement("article");
+        article.className = "wine-card";
+        article.setAttribute("data-id", vino.id);
+
+        article.innerHTML = `
+            <div class="card-img-wrap">
+                <button type="button" class="btn-fav-card active" aria-label="Quitar de favoritos" aria-pressed="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </button>
+                <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
+            </div>
+            <div class="wine-info">
+                <h3 class="wine-name">
+                    <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
+                </h3>
+                <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
+                <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">Añadir al carrito</button>
+            </div>
+        `;
+
+        const btnFav = article.querySelector(".btn-fav-card");
+        if (btnFav) {
+            btnFav.addEventListener("click", () => {
+                let favs = getFavoritos().filter(id => id !== vino.id);
+                setFavoritos(favs);
+                mostrarToast(`${vino.nombre} eliminado de favoritos`);
+                renderizarPaginaFavoritos();
+            });
+        }
+
+        const btnCart = article.querySelector(".btn-add-cart");
+        if (btnCart) {
+            btnCart.addEventListener("click", () => {
+                agregarAlCarrito(vino);
+            });
+        }
+
+        contenedorGrid.appendChild(article);
+    });
+}
+
+/**
+ * Renderizado y Control de Cantidades en el Carrito
+ */
+function renderizarCarritoCompleto() {
+    const contenedorItems = document.getElementById("carrito-items-lista") || document.getElementById("cart-items-container");
+    const totalElemento = document.getElementById("carrito-total-precio") || document.getElementById("cart-total-price");
+    
+    if (!contenedorItems) return;
+
+    let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+
+    if (carrito.length === 0) {
+        contenedorItems.innerHTML = `<p class="body-regular" style="padding: 20px 0;">Tu carrito está vacío.</p>`;
+        if (totalElemento) totalElemento.textContent = "0,00 €";
+        return;
+    }
+
+    let html = "";
+    let totalAcumulado = 0;
+
+    carrito.forEach((item, index) => {
+        const subtotal = item.precioNum * item.cantidad;
+        totalAcumulado += subtotal;
+
+        html += `
+            <div class="cart-item-row" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--color-borde);">
+                <div style="flex: 1;">
+                    <strong style="color: var(--color-primario-bordeos); font-size: 1.05rem; display: block;">${item.nombre}</strong>
+                    <span style="color: var(--color-neutro-gris); font-size: 0.9rem;">${item.precioNum.toFixed(2)} € / ud.</span>
+                </div>
+
+                <div class="quantity-selector" style="height: 38px;">
+                    <button type="button" class="qty-btn btn-cart-minus" data-index="${index}" aria-label="Reducir cantidad">-</button>
+                    <input type="number" class="quantity-input" value="${item.cantidad}" readonly style="width: 36px; font-size: 0.95rem;">
+                    <button type="button" class="qty-btn btn-cart-plus" data-index="${index}" aria-label="Aumentar cantidad">+</button>
+                </div>
+
+                <div style="text-align: right; min-width: 80px;">
+                    <strong style="font-size: 1.05rem;">${subtotal.toFixed(2)} €</strong>
+                </div>
+
+                <button type="button" class="btn-cart-remove" data-index="${index}" style="background: none; border: none; color: #D32F2F; cursor: pointer; font-size: 1.2rem; padding: 4px;" aria-label="Eliminar producto">&times;</button>
+            </div>
+        `;
+    });
+
+    contenedorItems.innerHTML = html;
+    if (totalElemento) totalElemento.textContent = `${totalAcumulado.toFixed(2)} €`;
+
+    contenedorItems.querySelectorAll(".btn-cart-minus").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-index"));
+            modificarCantidadCarrito(idx, -1);
+        });
+    });
+
+    contenedorItems.querySelectorAll(".btn-cart-plus").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-index"));
+            modificarCantidadCarrito(idx, 1);
+        });
+    });
+
+    contenedorItems.querySelectorAll(".btn-cart-remove").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-index"));
+            eliminarItemCarrito(idx);
+        });
+    });
+}
+
+function modificarCantidadCarrito(index, cambio) {
+    let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+    if (!carrito[index]) return;
+
+    carrito[index].cantidad += cambio;
+
+    if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+    }
+
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
+    actualizarBadgeCarrito();
+    renderizarCarritoCompleto();
+}
+
+function eliminarItemCarrito(index) {
+    let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+    carrito.splice(index, 1);
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
+    actualizarBadgeCarrito();
+    renderizarCarritoCompleto();
+}
+
+/**
+ * Gestión de Favoritos (Storage)
  */
 function getFavoritos() {
     return JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY)) || [];
@@ -690,7 +1046,7 @@ function asignarEventosTarjetas(contenedor) {
 }
 
 /**
- * Gestión de Carrito
+ * Gestión de Carrito (Storage)
  */
 function agregarAlCarrito(vino, cantidad = 1) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
@@ -804,9 +1160,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         iniciarCarruselHero();
         iniciarCarruselResenas();
-        iniciarBannerAnuncios(); // <--- Añadir aquí
+        iniciarBannerAnuncios();
         
         renderizarVinos("destacados-grid", true);
+        
+        if (window.location.pathname.includes("favoritos.html") || document.getElementById("favoritos-grid")) {
+            renderizarPaginaFavoritos();
+        }
+
+        if (window.location.pathname.includes("checkout.html") || document.getElementById("carrito-items-lista")) {
+            renderizarCarritoCompleto();
+        }
         
         if (document.getElementById("search-input") || document.getElementById("type-select")) {
             iniciarFiltrosCatalogo();
@@ -825,198 +1189,3 @@ document.addEventListener("DOMContentLoaded", async () => {
         actualizarBadgeCarrito();
     }
 });
-/**
- * Inicializa la lógica interactiva de filtrado del catálogo
- */
-function iniciarFiltrosCatalogo() {
-    const inputSearch = document.getElementById("search-input");
-    const selectType = document.getElementById("type-select");
-    const rangePrice = document.getElementById("price-range");
-    const labelPrice = document.getElementById("price-value");
-    const resultsCounter = document.getElementById("results-counter");
-    const btnReset = document.getElementById("btn-reset-filters");
-
-    if (!rangePrice || !appData || !appData.vinos) return;
-
-    function aplicarFiltros() {
-        const texto = (inputSearch?.value || "").toLowerCase().trim();
-        const tipo = selectType?.value || "todos";
-        const maxPrecio = parseFloat(rangePrice.value);
-
-        if (labelPrice) {
-            labelPrice.textContent = `${maxPrecio.toFixed(2)} €`;
-        }
-
-        const filtrados = appData.vinos.filter(vino => {
-            const coincideTexto = vino.nombre.toLowerCase().includes(texto) || 
-                                 (vino.i18n && vino.i18n.es && vino.i18n.es.desc.toLowerCase().includes(texto));
-            const coincideTipo = (tipo === "todos") || (vino.tipo === tipo);
-            const coincidePrecio = vino.precioNum <= maxPrecio;
-
-            return coincideTexto && coincideTipo && coincidePrecio;
-        });
-
-        if (resultsCounter) {
-            resultsCounter.textContent = `${filtrados.length} vino(s) encontrado(s)`;
-        }
-
-        renderizarVinosFiltrados("catalogo-grid", filtrados);
-    }
-
-    if (inputSearch) inputSearch.addEventListener("input", aplicarFiltros);
-    if (selectType) selectType.addEventListener("change", aplicarFiltros);
-    if (rangePrice) rangePrice.addEventListener("input", aplicarFiltros);
-
-    if (btnReset) {
-        btnReset.addEventListener("click", () => {
-            if (inputSearch) inputSearch.value = "";
-            if (selectType) selectType.value = "todos";
-            if (rangePrice) rangePrice.value = rangePrice.max;
-            aplicarFiltros();
-        });
-    }
-
-    // Ejecutar filtro inicial
-    aplicarFiltros();
-}
-
-function renderizarVinosFiltrados(contenedorId, listaVinos) {
-    const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) return;
-
-    contenedor.innerHTML = "";
-
-    if (listaVinos.length === 0) {
-        contenedor.innerHTML = `<p class="body-regular" style="grid-column: 1/-1; text-align: center; padding: 40px 0;">No hay vinos que coincidan con los filtros seleccionados.</p>`;
-        return;
-    }
-
-    listaVinos.forEach(vino => {
-        const isFav = getFavoritos().includes(vino.id);
-        const article = document.createElement("article");
-        article.className = "wine-card";
-        article.setAttribute("data-id", vino.id);
-        
-        article.innerHTML = `
-            <div class="card-img-wrap">
-                <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" aria-label="Favoritos">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
-                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                    </svg>
-                </button>
-                <img src="${vino.imagen}" alt="${vino.nombre}" class="card-img" loading="lazy">
-            </div>
-            <div class="wine-info">
-                <h3 class="wine-name">
-                    <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
-                </h3>
-                <p class="body-regular" style="margin-bottom: 12px;">${vino.i18n?.es?.desc || ''}</p>
-                <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
-                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">Añadir al carrito</button>
-            </div>
-        `;
-        contenedor.appendChild(article);
-    });
-
-    asignarEventosTarjetas(contenedor);
-}
-/**
- * Carga y renderiza los detalles del producto en producto.html
- *//**
- * Carga y renderiza los detalles del producto en producto.html
- */
-function iniciarDetalleProducto() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const vinoId = urlParams.get("id");
-    
-    if (!vinoId || !appData || !appData.vinos) return;
-
-    const vino = appData.vinos.find(v => v.id === vinoId);
-    if (!vino) {
-        const titleEl = document.getElementById("detail-title");
-        if (titleEl) titleEl.textContent = "Producto no encontrado";
-        return;
-    }
-
-    const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
-    const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
-
-    // Volcar datos en los IDs correctos de producto.html
-    const titleEl = document.getElementById("detail-title");
-    if (titleEl) titleEl.textContent = vino.nombre;
-
-    const priceEl = document.getElementById("detail-price");
-    if (priceEl) priceEl.textContent = vino.precio;
-
-    const descEl = document.getElementById("detail-desc");
-    if (descEl) descEl.textContent = traduccion.desc || "";
-
-    const vintageEl = document.getElementById("detail-vintage");
-    if (vintageEl) vintageEl.textContent = traduccion.vintage || "D.O.Ca. Rioja";
-
-    const grapeEl = document.getElementById("detail-grape");
-    if (grapeEl) grapeEl.textContent = traduccion.grape || "-";
-
-    const agingEl = document.getElementById("detail-aging");
-    if (agingEl) agingEl.textContent = traduccion.aging || "-";
-
-    const alcoholEl = document.getElementById("detail-alcohol");
-    if (alcoholEl) alcoholEl.textContent = vino.alcohol || "-";
-
-    const tempEl = document.getElementById("detail-temp");
-    if (tempEl) tempEl.textContent = vino.temp || "-";
-
-    // Manejo de imagen real vs Modelo 3D
-    const imgEl = document.getElementById("detail-img");
-    const modelEl = document.getElementById("detail-model");
-    if (imgEl && vino.imagen) {
-        imgEl.src = imgPath;
-        imgEl.style.display = "block";
-        if (modelEl) modelEl.style.display = "none"; // Oculta el modelo 3D por defecto para mostrar la foto real en alta definición
-    }
-
-    // Botones de cantidad (- y +)
-    const btnMinus = document.getElementById("qty-minus");
-    const btnPlus = document.getElementById("qty-plus");
-    const inputQty = document.getElementById("product-quantity");
-
-    if (btnMinus && btnPlus && inputQty) {
-        btnMinus.onclick = () => {
-            let val = parseInt(inputQty.value) || 1;
-            if (val > 1) inputQty.value = val - 1;
-        };
-        btnPlus.onclick = () => {
-            let val = parseInt(inputQty.value) || 1;
-            if (val < 99) inputQty.value = val + 1;
-        };
-    }
-
-    // Botón de añadir al carrito
-    const btnAddCart = document.getElementById("btn-add-detail");
-    if (btnAddCart) {
-        btnAddCart.replaceWith(btnAddCart.cloneNode(true));
-        const newBtn = document.getElementById("btn-add-detail");
-        
-        newBtn.addEventListener("click", () => {
-            const cantidad = inputQty ? parseInt(inputQty.value) || 1 : 1;
-            agregarAlCarrito(vino, cantidad);
-        });
-    }
-
-}
-
-/**
- * Carrusel de Mensajes del Banner Superior (Anuncios)
- */
-function iniciarBannerAnuncios() {
-    const items = document.querySelectorAll('.announcement-item');
-    if (!items.length) return;
-
-    let currentIndex = 0;
-
-    setInterval(() => {
-        items[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % items.length;
-        items[currentIndex].classList.add('active');
-    }, 4500);
-}

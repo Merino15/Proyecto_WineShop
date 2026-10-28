@@ -138,50 +138,120 @@
     <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Autocompletar datos si hay sesión activa
             const usuario = obtenerUsuarioActivo();
             if (usuario) {
-                document.getElementById('co-nombre').value = usuario.nombre || '';
-                document.getElementById('co-dni').value = usuario.dni || '';
-                document.getElementById('co-direccion').value = usuario.direccion || '';
-                document.getElementById('co-cp').value = usuario.codigoPostal || '';
-                document.getElementById('co-ciudad').value = usuario.ciudad || '';
-                document.getElementById('co-provincia').value = usuario.provincia || '';
+                if (document.getElementById('co-nombre')) document.getElementById('co-nombre').value = usuario.nombre || '';
+                if (document.getElementById('co-dni')) document.getElementById('co-dni').value = usuario.dni || '';
+                if (document.getElementById('co-direccion')) document.getElementById('co-direccion').value = usuario.direccion || '';
+                if (document.getElementById('co-cp')) document.getElementById('co-cp').value = usuario.codigoPostal || '';
+                if (document.getElementById('co-ciudad')) document.getElementById('co-ciudad').value = usuario.ciudad || '';
+                if (document.getElementById('co-provincia')) document.getElementById('co-provincia').value = usuario.provincia || '';
             }
 
-            const carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
+            // Renderizar la lista del resumen con botones +, - y eliminar
+            renderizarResumenCheckout();
+
+            // Gestionar el envío del formulario
+            const formCheckout = document.getElementById('form-checkout');
+            if (formCheckout) {
+                formCheckout.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
+                    if (carrito.length === 0) {
+                        mostrarToast("El carrito está vacío");
+                        return;
+                    }
+                    localStorage.removeItem('wineshop_carrito_items');
+                    actualizarBadgeCarrito();
+                    mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
+                    setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+                });
+            }
+        });
+
+        // Función para renderizar dinámicamente los productos y los botones del carrito en Checkout
+        function renderizarResumenCheckout() {
             const container = document.getElementById('checkout-items-list');
+            if (!container) return;
+
+            const carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
             let subtotal = 0;
 
             if (carrito.length === 0) {
-                container.innerHTML = '<p class="body-regular">No hay productos en el carrito.</p>';
+                container.innerHTML = '<p class="body-regular" style="padding: 12px 0;">No hay productos en el carrito.</p>';
             } else {
-                container.innerHTML = carrito.map(item => {
-                    subtotal += item.precioNum * item.cantidad;
+                container.innerHTML = carrito.map((item, index) => {
+                    const totalItem = item.precioNum * item.cantidad;
+                    subtotal += totalItem;
+
                     return `
-                        <div class="summary-row">
-                            <span>${item.nombre} (x${item.cantidad})</span>
-                            <span>${(item.precioNum * item.cantidad).toFixed(2)} €</span>
+                        <div class="summary-row" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 0;">
+                            <div style="flex: 1;">
+                                <strong style="display: block; font-size: 0.95rem; color: var(--color-primario-bordeos);">${item.nombre}</strong>
+                                <span style="font-size: 0.85rem; color: var(--color-neutro-gris);">${item.precioNum.toFixed(2)} € / ud.</span>
+                            </div>
+
+                            <!-- Selector para Aumentar y Reducir Cantidad -->
+                            <div class="quantity-selector" style="height: 32px;">
+                                <button type="button" class="qty-btn btn-checkout-minus" data-index="${index}" aria-label="Reducir cantidad" style="width: 28px; font-size: 1rem;">-</button>
+                                <input type="number" class="quantity-input" value="${item.cantidad}" readonly style="width: 28px; font-size: 0.9rem;">
+                                <button type="button" class="qty-btn btn-checkout-plus" data-index="${index}" aria-label="Aumentar cantidad" style="width: 28px; font-size: 1rem;">+</button>
+                            </div>
+
+                            <span style="font-weight: 700; min-width: 65px; text-align: right;">${totalItem.toFixed(2)} €</span>
+
+                            <!-- Botón Eliminar -->
+                            <button type="button" class="btn-checkout-remove" data-index="${index}" aria-label="Eliminar producto" style="background: none; border: none; color: #D32F2F; cursor: pointer; font-size: 1.1rem; padding: 2px 4px;">&times;</button>
                         </div>
                     `;
                 }).join('');
             }
 
+            // Recalcular Totales
             const gastosEnvio = subtotal > 50 || subtotal === 0 ? 0 : 4.95;
-            document.getElementById('co-subtotal').textContent = `${subtotal.toFixed(2)} €`;
-            document.getElementById('co-envio').textContent = gastosEnvio === 0 ? 'Gratis' : `${gastosEnvio.toFixed(2)} €`;
-            document.getElementById('co-total').textContent = `${(subtotal + gastosEnvio).toFixed(2)} €`;
+            if (document.getElementById('co-subtotal')) document.getElementById('co-subtotal').textContent = `${subtotal.toFixed(2)} €`;
+            if (document.getElementById('co-envio')) document.getElementById('co-envio').textContent = gastosEnvio === 0 ? 'Gratis' : `${gastosEnvio.toFixed(2)} €`;
+            if (document.getElementById('co-total')) document.getElementById('co-total').textContent = `${(subtotal + gastosEnvio).toFixed(2)} €`;
 
-            document.getElementById('form-checkout').addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (carrito.length === 0) {
-                    mostrarToast("El carrito está vacío");
-                    return;
-                }
-                localStorage.removeItem('wineshop_carrito_items');
-                mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
-                setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+            // Asignar Eventos a los botones
+            container.querySelectorAll('.btn-checkout-minus').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.getAttribute('data-index'));
+                    modificarItemCheckout(idx, -1);
+                });
             });
-        });
+
+            container.querySelectorAll('.btn-checkout-plus').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.getAttribute('data-index'));
+                    modificarItemCheckout(idx, 1);
+                });
+            });
+
+            container.querySelectorAll('.btn-checkout-remove').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.getAttribute('data-index'));
+                    modificarItemCheckout(idx, -999); // Eliminar
+                });
+            });
+        }
+
+        // Modifica las cantidades y actualiza la vista
+        function modificarItemCheckout(index, cantidad) {
+            let carrito = JSON.parse(localStorage.getItem('wineshop_carrito_items')) || [];
+            if (!carrito[index]) return;
+
+            carrito[index].cantidad += cantidad;
+
+            if (carrito[index].cantidad <= 0 || cantidad === -999) {
+                carrito.splice(index, 1);
+            }
+
+            localStorage.setItem('wineshop_carrito_items', JSON.stringify(carrito));
+            if (typeof actualizarBadgeCarrito === 'function') actualizarBadgeCarrito();
+            renderizarResumenCheckout();
+        }
     </script>
 </body>
 </html>

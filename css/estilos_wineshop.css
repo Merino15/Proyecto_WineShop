@@ -1422,3 +1422,20 @@ fieldset:disabled .form-input {
     visibility: visible;
     transform: translateY(0);
 }
+
+/* Ajustes para el selector de cantidad en el resumen de Checkout */
+.order-summary-box .quantity-selector {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--color-borde);
+    border-radius: 4px;
+    background: var(--color-blanco);
+    overflow: hidden;
+}
+
+.order-summary-box .quantity-input {
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: 700;
+}

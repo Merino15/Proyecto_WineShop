@@ -1,8 +1,8 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
  * Incluye verificación de edad, newsletter popup, login / mi_cuenta con sesión activa,
- * carrusel hero, carrusel de reseñas, banner de anuncios, carrito de compras con control de cantidad,
- * favoritos dinámicos, vista de detalle de producto e i18n.
+ * carrusel hero, carrusel de reseñas dinámico desde db.json, banner de anuncios,
+ * carrito de compras, favoritos dinámicos, vista de detalle de producto e i18n.
  */
 
 let appData = null;
@@ -425,7 +425,52 @@ function iniciarCarruselHero() {
 }
 
 /**
- * Carrusel de Reseñas / Testimonios
+ * RENDERIZADO DINÁMICO DE RESEÑAS DESDE db.json
+ */
+function renderizarResenas() {
+    const slider = document.querySelector(".testimonials-slider");
+    const indicatorsWrap = document.querySelector(".testimonials-indicators");
+    
+    if (!slider || !appData || !appData.resenas) return;
+
+    // Generar tarjetas de reseñas
+    slider.innerHTML = appData.resenas.map((resena, index) => {
+        const estrellasStr = "★".repeat(resena.estrellas || 5);
+        return `
+            <article class="testimonial-card ${index === 0 ? 'active' : ''}">
+                <div class="testimonial-stars" aria-label="Valoración: ${resena.estrellas || 5} de 5 estrellas">
+                    ${estrellasStr}
+                </div>
+                <blockquote class="testimonial-quote">
+                    "${resena.comentario}"
+                </blockquote>
+                <div class="testimonial-author">
+                    <img src="${resena.avatar}" alt="Foto de ${resena.nombre}" class="author-avatar" />
+                    <div>
+                        <strong class="author-name">${resena.nombre}</strong>
+                        <span class="author-role">${resena.rol}</span>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
+
+    // Generar botones de puntos para el carrusel
+    if (indicatorsWrap) {
+        indicatorsWrap.innerHTML = appData.resenas.map((_, index) => `
+            <button
+                type="button"
+                class="dot ${index === 0 ? 'active' : ''}"
+                role="tab"
+                aria-selected="${index === 0 ? 'true' : 'false'}"
+                aria-label="Ver reseña ${index + 1}"
+            ></button>
+        `).join("");
+    }
+}
+
+/**
+ * Carrusel de Reseñas / Testimonios (Conectado a elementos dinámicos)
  */
 function iniciarCarruselResenas() {
     const slides = document.querySelectorAll('.testimonial-card');
@@ -818,7 +863,7 @@ function iniciarDetalleProducto() {
 }
 
 /**
- * Renderizado de la lista de Vinos Favoritos (para favoritos.html)
+ * Renderizado de la lista de Vinos Favoritos
  */
 function renderizarPaginaFavoritos() {
     const contenedorGrid = document.getElementById("favoritos-grid");
@@ -839,7 +884,6 @@ function renderizarPaginaFavoritos() {
     contenedorGrid.innerHTML = "";
 
     vinosFavoritos.forEach(vino => {
-        const dicc = appData.i18n[currentLang] || appData.i18n["es"];
         const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
         const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
 
@@ -1159,7 +1203,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarMiCuenta();
         
         iniciarCarruselHero();
+
+        // 1. Inyectar las reseñas desde la base de datos (db.json)
+        renderizarResenas();
+
+        // 2. Inicializar los eventos del carrusel sobre las reseñas inyectadas
         iniciarCarruselResenas();
+
         iniciarBannerAnuncios();
         
         renderizarVinos("destacados-grid", true);

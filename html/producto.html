@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Detalle del Vino | WineShop Rioja</title>
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -38,7 +38,7 @@
         }
         @media (max-width: 868px) {
             .product-detail-grid { grid-template-columns: 1fr; }
-            .product-gallery { height: 350px; }
+            .product-gallery { height: 320px; }
         }
     </style>
 </head>
@@ -50,7 +50,10 @@
     <header class="site-header">
         <div class="container header-container">
             <a href="../index.html" class="logo-link" aria-label="WineShop - Inicio">
-                <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium" class="logo" width="160" height="50">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="../img/logo-dibujo.svg">
+                    <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium" class="logo" width="160" height="50">
+                </picture>
             </a>
             <nav class="main-nav" aria-label="Navegación secundaria">
                 <ul>
@@ -59,14 +62,14 @@
             </nav>
             <div class="header-actions">
                 <a href="favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     <span class="badge-count" id="header-fav-count" aria-hidden="true"></span>
                 </a>
                 <a href="login.html" class="btn-icon" aria-label="Mi Cuenta e Iniciar Sesión">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </a>
                 <a href="checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
                 </a>
             </div>
@@ -75,9 +78,10 @@
 
     <main id="contenido-principal" class="container section-padding" tabindex="-1">
         <div class="product-detail-grid">
-            <!-- Contenedor multimedia: Visor 3D y foto real conmutables -->
-            <div class="product-gallery" role="region" aria-label="Galería e inspección 3D del producto">
-                <model-viewer id="detail-model" src="../models/wine_bottle.glb" alt="Modelo interactivo 3D de la botella de vino" auto-rotate camera-controls shadow-intensity="1" style="width: 100%; height: 100%; position: absolute; top:0; left:0;"></model-viewer>
+            <div class="product-gallery" role="region" aria-label="Galería interactiva 3D del vino">
+                <model-viewer id="detail-model" src="../models/wine_bottle.glb" poster="../img/bottle-poster.webp" alt="Modelo 3D de la botella de vino" auto-rotate camera-controls touch-action="pan-y" shadow-intensity="1" style="width: 100%; height: 100%; position: absolute; top:0; left:0;">
+                    <img src="../img/bottle-poster.webp" alt="Botella de vino" slot="poster" class="fallback-img">
+                </model-viewer>
                 <img id="detail-img" src="" alt="Fotografía del vino seleccionado" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top:0; left:0; background: var(--color-neutro-claro); display: none;" />
             </div>
 
@@ -100,11 +104,11 @@
                     <div class="quantity-selector">
                         <button type="button" class="qty-btn" id="qty-minus" aria-label="Disminuir cantidad">-</button>
                         <label for="product-quantity" class="sr-only">Cantidad de botellas</label>
-                        <input type="number" id="product-quantity" class="quantity-input" value="1" min="1" max="99" aria-label="Cantidad de botellas">
+                        <input type="number" id="product-quantity" class="quantity-input" value="1" min="1" max="99" aria-label="Cantidad">
                         <button type="button" class="qty-btn" id="qty-plus" aria-label="Aumentar cantidad">+</button>
                     </div>
                     
-                    <button type="button" id="btn-add-detail" class="btn btn-primary btn-full btn-add-cart">Añadir al Carrito</button>
+                    <button type="button" id="btn-add-detail" class="btn btn-primary btn-full-mobile btn-add-cart">Añadir al Carrito</button>
                 </div>
             </div>
         </div>
@@ -123,6 +127,6 @@
         </div>
     </footer>
 
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js" defer></script>
 </body>
 </html>

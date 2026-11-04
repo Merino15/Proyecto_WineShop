@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>WineShop | Vinos Premium Rioja & Enoturismo Exclusivo</title>
 
     <meta
@@ -89,9 +89,7 @@
       <div class="container header-container">
         <a href="index.html" class="logo-link" aria-label="WineShop - Inicio">
           <picture>
-            <!-- Logo simplificado (solo dibujo) para dispositivos móviles -->
             <source media="(max-width: 768px)" srcset="img/logo-dibujo.svg" />
-            <!-- Logo completo para pantallas de escritorio -->
             <img
               src="img/transparent-logo.png"
               alt="WineShop Vinos Premium"
@@ -111,8 +109,8 @@
         >
           <span class="sr-only">Menú</span>
           <svg
-            width="24"
-            height="24"
+            width="28"
+            height="28"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -157,10 +155,10 @@
               >Seleccionar idioma</label
             >
             <select id="custom-lang-select" class="lang-select">
-              <option value="es">ES - Español</option>
-              <option value="en">EN - English</option>
-              <option value="fr">FR - Français</option>
-              <option value="de">DE - Deutsch</option>
+              <option value="es">ES</option>
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+              <option value="de">DE</option>
             </select>
           </div>
 
@@ -243,7 +241,6 @@
     </header>
 
     <main id="contenido-principal" tabindex="-1">
-      <!-- Banner Superior Dinámico -->
       <div
         class="announcement-bar"
         role="region"
@@ -265,14 +262,12 @@
         </div>
       </div>
 
-      <!-- Carrusel Hero Accesible -->
       <section
         class="hero-carousel-section"
         aria-roledescription="carrusel"
         aria-label="Promociones y novedades de WineShop"
       >
         <div class="carousel-wrapper">
-          <!-- Diapositiva 1 -->
           <div
             class="carousel-slide active"
             role="group"
@@ -295,13 +290,13 @@
                 <div class="hero-actions">
                   <a
                     href="html/catalogo.html"
-                    class="btn btn-primary"
+                    class="btn btn-primary btn-full-mobile"
                     data-i18n="btn_explorar"
                     >Explorar Catálogo</a
                   >
                   <a
                     href="html/experiencias.html"
-                    class="btn btn-secondary"
+                    class="btn btn-secondary btn-full-mobile"
                     data-i18n="btn_experiencias"
                     >Reservar Cata</a
                   >
@@ -310,19 +305,21 @@
               <div class="hero-3d-wrapper">
                 <model-viewer
                   src="models/wine_bottle.glb"
+                  poster="img/bottle-poster.webp"
                   alt="Vista interactiva 3D de botella de vino Rioja Reserva"
                   auto-rotate
                   camera-controls
+                  touch-action="pan-y"
                   shadow-intensity="1"
                   class="hero-model"
                   ar
                 >
+                  <img src="img/bottle-poster.webp" alt="Botella Rioja Reserva" slot="poster" class="fallback-img" />
                 </model-viewer>
               </div>
             </div>
           </div>
 
-          <!-- Diapositiva 2 -->
           <div
             class="carousel-slide"
             role="group"
@@ -341,10 +338,10 @@
                   autor.
                 </p>
                 <div class="hero-actions">
-                  <a href="html/experiencias.html" class="btn btn-primary"
+                  <a href="html/experiencias.html" class="btn btn-primary btn-full-mobile"
                     >Ver Experiencias</a
                   >
-                  <a href="html/bodegas.html" class="btn btn-secondary"
+                  <a href="html/bodegas.html" class="btn btn-secondary btn-full-mobile"
                     >Conocer Bodegas</a
                   >
                 </div>
@@ -352,19 +349,21 @@
               <div class="hero-3d-wrapper">
                 <model-viewer
                   src="models/wine_bottle.glb"
+                  poster="img/bottle-poster.webp"
                   alt="Vista interactiva 3D de botella de vino de autor"
                   auto-rotate
                   camera-controls
+                  touch-action="pan-y"
                   shadow-intensity="1"
                   class="hero-model"
                   ar
                 >
+                  <img src="img/bottle-poster.webp" alt="Botella Vino de Autor" slot="poster" class="fallback-img" />
                 </model-viewer>
               </div>
             </div>
           </div>
 
-          <!-- Diapositiva 3 -->
           <div
             class="carousel-slide"
             role="group"
@@ -383,10 +382,10 @@
                   domicilio.
                 </p>
                 <div class="hero-actions">
-                  <a href="html/catalogo.html" class="btn btn-primary"
+                  <a href="html/catalogo.html" class="btn btn-primary btn-full-mobile"
                     >Comprar Vinos</a
                   >
-                  <a href="html/login.html" class="btn btn-secondary"
+                  <a href="html/login.html" class="btn btn-secondary btn-full-mobile"
                     >Crear Cuenta</a
                   >
                 </div>
@@ -394,13 +393,16 @@
               <div class="hero-3d-wrapper">
                 <model-viewer
                   src="models/wine_bottle.glb"
+                  poster="img/bottle-poster.webp"
                   alt="Vista interactiva 3D de selección de vinos con envío directo"
                   auto-rotate
                   camera-controls
+                  touch-action="pan-y"
                   shadow-intensity="1"
                   class="hero-model"
                   ar
                 >
+                  <img src="img/bottle-poster.webp" alt="Selección de vinos" slot="poster" class="fallback-img" />
                 </model-viewer>
               </div>
             </div>
@@ -475,7 +477,6 @@
         </div>
       </section>
 
-      <!-- Selección Destacada -->
       <section class="section-padding" aria-labelledby="featured-heading">
         <div class="container">
           <div class="section-header">
@@ -504,7 +505,6 @@
         </div>
       </section>
 
-      <!-- Sección Reseñas / Testimonios (Cargadas Dinámicamente) -->
       <section
         class="testimonials-section section-padding"
         aria-labelledby="testimonials-heading"
@@ -544,7 +544,6 @@
               </svg>
             </button>
 
-            <!-- Contenedor dinámico de reseñas cargadas desde db.json -->
             <div class="testimonials-slider"></div>
 
             <button
@@ -568,7 +567,6 @@
             </button>
           </div>
 
-          <!-- Indicadores de puntos (generados dinámicamente) -->
           <div
             class="testimonials-indicators"
             role="tablist"
@@ -590,7 +588,7 @@
           />
           <p
             class="body-regular"
-            style="color: #f8fafc !important"
+            style="color: #f8fafc !important;"
             data-i18n="footer_copy"
           >
             © 2026 WineShop. Todos los derechos reservados.
@@ -607,7 +605,6 @@
       </div>
     </footer>
 
-    <!-- Modal de Verificación de Edad -->
     <div
       id="age-gate-modal"
       class="age-modal-overlay hidden"
@@ -655,7 +652,6 @@
       </div>
     </div>
 
-    <!-- Modal Popup de Newsletter -->
     <div
       id="newsletter-modal"
       class="newsletter-modal-overlay hidden"
@@ -731,6 +727,6 @@
       </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>

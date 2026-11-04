@@ -2,50 +2,108 @@
 <html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Declaración de Accesibilidad | WineShop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Declaración de Accesibilidad AAA | WineShop Rioja</title>
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
 </head>
 <body>
 
-    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+    <a href="#contenido-principal" class="skip-link" data-i18n="skip_to_content">Saltar al contenido principal</a>
 
-    <header class="site-header">
+    <header class="site-header" id="header">
         <div class="container header-container">
-            <a href="../index.html" class="logo-link" aria-label="WineShop - Inicio">
-                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="logo" width="160" height="50">
+            <a href="../index.html" class="logo-link" aria-label="WineShop - Volver a inicio">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="../img/logo-dibujo.svg">
+                    <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium" class="logo" width="160" height="50">
+                </picture>
             </a>
+
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav-list" aria-label="Abrir menú de navegación">
+                <svg class="nav-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+            
+            <nav class="main-nav" id="main-nav-list" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html" data-i18n="nav_inicio">Inicio</a></li>
+                    <li><a href="catalogo.html" data-i18n="nav_catalogo">Catálogo de Vinos</a></li>
+                    <li><a href="bodegas.html" data-i18n="nav_bodegas">Bodegas</a></li>
+                    <li><a href="experiencias.html" data-i18n="nav_experiencias">Experiencias</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="custom-lang-wrap">
+                    <label for="custom-lang-select" class="sr-only">Seleccionar idioma</label>
+                    <select id="custom-lang-select" class="lang-select">
+                        <option value="es">ES</option>
+                        <option value="en">EN</option>
+                    </select>
+                </div>
+
+                <a href="favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <span class="badge-count" id="header-fav-count" aria-hidden="true"></span>
+                </a>
+
+                <a href="login.html" class="btn-icon" aria-label="Mi Cuenta e Iniciar Sesión">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+
+                <a href="checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
+                </a>
+            </div>
         </div>
     </header>
 
-    <main id="contenido-principal" class="container section-padding" tabindex="-1">
-        <a href="../index.html" class="back-link">← Volver al inicio</a>
+    <main id="contenido-principal" class="container product-page-container" tabindex="-1">
+        <nav class="breadcrumb-nav" aria-label="Migas de pan">
+            <a href="../index.html" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Volver al inicio</span>
+            </a>
+        </nav>
 
-        <article class="legal-card">
-            <h1>Declaración de Accesibilidad WCAG 2.1 AAA</h1>
-            <p class="body-regular" style="margin-bottom: var(--espaciado-24);"><strong>WineShop</strong> se compromete a hacer accesible su sitio web de conformidad con el Real Decreto 1112/2018 y las pautas internacionales <strong>WCAG 2.1 Nivel AAA</strong>.</p>
-            
-            <h2>Medidas Adaptadas</h2>
-            <ul>
-                <li>Contraste cromático superior a 7:1 en textos e interfaces clave.</li>
-                <li>Navegación completa por teclado con anillos de foco visibles de 3px.</li>
-                <li>Modelos 3D e imágenes suplementadas con descripciones y texto alternativo.</li>
-                <li>Estructura semántica HTML5 enriquecida con atributos ARIA y regiones de anuncio dinámico (`aria-live`).</li>
-            </ul>
+        <article class="legal-content-card" style="background: #ffffff; padding: var(--espaciado-32); border-radius: 8px; border: 2px solid var(--color-neutro-calido-500);">
+            <h1 class="product-title-large" style="margin-bottom: var(--espaciado-16);">Declaración de Accesibilidad Web (WCAG 2.1)</h1>
+            <p class="body-regular" style="color: var(--color-gris-700); margin-bottom: var(--espaciado-24);"><em>Compromiso con el nivel de conformidad AAA en la plataforma WineShop</em></p>
 
-            <h2>Contacto y Sugerencias</h2>
-            <p class="body-regular">Si encuentras alguna barrera de accesibilidad, puedes notificárnoslo enviando un correo a <a href="mailto:accesibilidad@wineshop.es" style="color: var(--color-primario-bordeos); font-weight: 700;">accesibilidad@wineshop.es</a>.</p>
+            <section style="margin-bottom: var(--espaciado-24);">
+                <h2>1. Estado de Conformidad</h2>
+                <p class="body-regular">
+                    WineShop está firmemente comprometido con hacer accesible su sitio web de conformidad con el Real Decreto 1112/2018 y las pautas WCAG 2.1 en sus niveles AA y AAA.
+                </p>
+            </section>
+
+            <section style="margin-bottom: var(--espaciado-24);">
+                <h2>2. Características de Accesibilidad Implementadas</h2>
+                <ul style="padding-left: 20px; margin-top: 8px;" class="body-regular">
+                    <li>Contraste cromático superior a 7:1 en textos principales.</li>
+                    <li>Navegación completa e intuitiva por teclado con anillos de foco visibles.</li>
+                    <li>Semántica ARIA en carruseles, ventanas modales, diálogos y regiones dinámicas.</li>
+                    <li>Soporte para lectores de pantalla con etiquetado explícito y anuncios en tiempo real.</li>
+                    <li>Modo de movimiento reducido según preferencias del sistema operativo.</li>
+                </ul>
+            </section>
         </article>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container footer-container">
-            <div class="footer-brand">
-                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
-                <p class="body-regular">© 2026 WineShop. Todos los derechos reservados.</p>
-            </div>
+            <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
+            <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
+            <nav class="footer-links" aria-label="Enlaces legales">
+                <a href="politica_privacidad.html" data-i18n="footer_privacy">Política de Privacidad</a>
+                <a href="terminos_condiciones.html" data-i18n="footer_terms">Términos y Condiciones</a>
+                <a href="declaracion_accesibilidad.html" aria-current="page" data-i18n="footer_a11y">Declaración de Accesibilidad</a>
+            </nav>
         </div>
     </footer>
 
+    <script src="../js/main.js" defer></script>
 </body>
 </html>

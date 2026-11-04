@@ -1,139 +1,126 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Acceso Restringido - Zona Arcade | WineShop</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/estilos_wineshop.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/estilos_wineshop.css">
 
     <style>
-      .arcade-screen {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--color-neutro-calido-100);
-        padding: var(--espaciado-24);
-      }
+        .arcade-screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-neutro-calido-100);
+            padding: var(--espaciado-24);
+        }
 
-      .arcade-container {
-        background-color: #ffffff;
-        padding: var(--espaciado-32);
-        border-radius: 12px;
-        box-shadow: var(--sombra-modal);
-        max-width: 860px;
-        width: 100%;
-        text-align: center;
-        border: 2px solid var(--color-neutro-calido-500);
-      }
+        .arcade-container {
+            background-color: #FFFFFF;
+            padding: var(--espaciado-32);
+            border-radius: 12px;
+            box-shadow: var(--sombra-modal);
+            max-width: 860px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid var(--color-neutro-calido-500);
+        }
 
-      .arcade-title {
-        color: var(--color-primario-bordeos);
-        font-size: 2rem;
-        margin-bottom: var(--espaciado-8);
-      }
+        .arcade-title {
+            color: var(--color-primario-bordeos);
+            font-size: 2rem;
+            margin-bottom: var(--espaciado-8);
+        }
 
-      .arcade-subtitle {
-        color: var(--color-gris-700);
-        margin-bottom: var(--espaciado-24);
-      }
+        .arcade-subtitle {
+            color: var(--color-gris-700);
+            margin-bottom: var(--espaciado-24);
+        }
 
-      .canvas-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        border: 2px solid var(--color-primario-bordeos);
-        border-radius: 8px;
-        background-color: #faf8f5;
-        overflow: hidden;
-      }
+        .canvas-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid var(--color-primario-bordeos);
+            border-radius: 8px;
+            background-color: #FAF8F5;
+            overflow: hidden;
+        }
 
-      #gameCanvas {
-        display: block;
-        width: 100%;
-        height: auto;
-        touch-action: manipulation;
-      }
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            touch-action: manipulation;
+        }
 
-      .arcade-instructions {
-        margin-top: var(--espaciado-16);
-        font-size: 1rem;
-        color: var(--color-gris-900);
-        display: flex;
-        justify-content: center;
-        gap: var(--espaciado-24);
-        flex-wrap: wrap;
-        font-weight: 600;
-      }
+        .arcade-instructions {
+            margin-top: var(--espaciado-16);
+            font-size: 1rem;
+            color: var(--color-gris-900);
+            display: flex;
+            justify-content: center;
+            gap: var(--espaciado-24);
+            flex-wrap: wrap;
+            font-weight: 600;
+        }
 
-      .arcade-instructions kbd {
-        background-color: var(--color-neutro-calido-300);
-        padding: 4px 10px;
-        border-radius: 4px;
-        border: 1px solid var(--color-gris-300);
-        font-weight: 700;
-        color: var(--color-gris-900);
-      }
+        .arcade-instructions kbd {
+            background-color: var(--color-neutro-calido-300);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--color-borde);
+            font-weight: 700;
+            color: var(--color-gris-900);
+        }
 
-      .arcade-score-bar {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 var(--espaciado-8);
-        margin-bottom: var(--espaciado-8);
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: var(--color-primario-bordeos);
-      }
+        .arcade-score-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 var(--espaciado-8);
+            margin-bottom: var(--espaciado-8);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-primario-bordeos);
+        }
     </style>
-  </head>
-  <body>
-    <a href="#contenido-principal" class="skip-link"
-      >Saltar al juego interactivo</a
-    >
+</head>
+<body>
+
+    <a href="#contenido-principal" class="skip-link">Saltar al juego interactivo</a>
 
     <main id="contenido-principal" class="arcade-screen" tabindex="-1">
-      <div class="arcade-container">
-        <h1 class="arcade-title">Acceso Solo Para Mayores de 18</h1>
-        <p class="body-regular arcade-subtitle">
-          Aún no puedes catar nuestros vinos, ¡pero puedes esquivarlos en esta
-          taberna!
-        </p>
+        <div class="arcade-container">
+            <h1 class="arcade-title">Acceso Solo Para Mayores de 18</h1>
+            <p class="body-regular arcade-subtitle">
+                Aún no puedes catar nuestros vinos, ¡pero puedes esquivarlos en esta taberna!
+            </p>
 
-        <div class="arcade-score-bar">
-          <span>Puntos: <span id="scoreText">0</span></span>
-          <span>Récord: <span id="hiScoreText">0</span></span>
-        </div>
+            <div class="arcade-score-bar">
+                <span>Puntos: <span id="scoreText">0</span></span>
+                <span>Récord: <span id="hiScoreText">0</span></span>
+            </div>
 
-        <div class="canvas-wrapper">
-          <canvas
-            id="gameCanvas"
-            width="800"
-            height="260"
-            role="img"
-            aria-label="Juego interactivo 2D de esquivar botellas de vino y latas. Usa la barra espaciadora para saltar y flecha abajo para agacharte."
-          >
-            Tu navegador no soporta el lienzo de juego. Usa las teclas flecha
-            arriba o espacio para saltar obstáculos.
-          </canvas>
-        </div>
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas" width="800" height="260" role="img" aria-label="Juego interactivo 2D de esquivar botellas de vino y latas. Usa la barra espaciadora para saltar y flecha abajo para agacharte.">
+                    Tu navegador no soporta el lienzo de juego. Usa las teclas flecha arriba o espacio para saltar obstáculos.
+                </canvas>
+            </div>
 
-        <div class="arcade-instructions">
-          <span
-            >Saltar: <kbd>ESPACIO</kbd> / <kbd>↑</kbd> o Toque en pantalla</span
-          >
-          <span>Agacharse: <kbd>↓</kbd> o <kbd>S</kbd></span>
+            <div class="arcade-instructions">
+                <span>Saltar: <kbd>ESPACIO</kbd> / <kbd>↑</kbd> o Toque en pantalla</span>
+                <span>Agacharse: <kbd>↓</kbd> o <kbd>S</kbd></span>
+            </div>
         </div>
-      </div>
     </main>
+
     <script src="../js/arcade.js" defer></script>
-  </body>
+</body>
 </html>

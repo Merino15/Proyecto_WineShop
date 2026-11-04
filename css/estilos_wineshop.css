@@ -1336,3 +1336,8 @@ body.modal-open {
     height: 300px;
   }
 }
+.site-header .logo {
+    height: 45px !important; /* Ajusta este valor según prefieras */
+    width: auto !important;
+    max-height: none !important;
+}

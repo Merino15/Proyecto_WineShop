@@ -1,46 +1,4 @@
 {
-  "resenas": [
-  {
-    "id": "res-1",
-    "nombre": "Marta Salgado",
-    "rol": "Sommelier y clienta habitual",
-    "estrellas": 5,
-    "comentario": "El envío de los Reserva a Logroño llegó en menos de 24 horas y con un embalaje térmico impecable. La selección de Rioja que tienen es sencillamente de otro nivel.",
-    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
-  },
-  {
-    "id": "res-2",
-    "nombre": "Javier Otazu",
-    "rol": "Entusiasta del enoturismo",
-    "estrellas": 5,
-    "comentario": "Reservamos la cata en calados históricos a través de la web para nuestro aniversario. Una experiencia inolvidable con un trato inmejorable, repetiremos seguro.",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
-  },
-  {
-    "id": "res-3",
-    "nombre": "Carmen Izquierdo",
-    "rol": "Coleccionista de vinos",
-    "estrellas": 5,
-    "comentario": "Me sorprendió gratamente poder examinar las botellas antes de comprar. Compré un Gran Reserva Prado Enea para una cena familiar y fue un rotundo éxito.",
-    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80"
-  },
-  {
-    "id": "res-4",
-    "nombre": "Alberto Ramos",
-    "rol": "Aficionado a la gastronomía",
-    "estrellas": 5,
-    "comentario": "Descubrí el Crianza ecológico de Vivanco gracias a sus recomendaciones. El empaquetado térmico y los detalles en la entrega hacen que sea mi tienda online de confianza.",
-    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80"
-  },
-  {
-    "id": "res-5",
-    "nombre": "Sofía Morales",
-    "rol": "Catadora en formación",
-    "estrellas": 5,
-    "comentario": "Comprar un Castillo Ygay para una celebración especial daba cierto respeto, pero el seguimiento del pedido y la presentación de la botella superaron mis expectativas.",
-    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80"
-  }
-],
   "usuarios": [
     {
       "id": "usr-1",

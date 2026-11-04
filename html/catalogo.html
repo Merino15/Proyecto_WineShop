@@ -62,51 +62,46 @@
         <h1 class="section-title">Catálogo de Vinos D.O.Ca. Rioja</h1>
         <p class="section-subtitle" style="text-align: center; margin-bottom: var(--espaciado-32);">Filtra por variedad, tipo de vino y rango de precio.</p>
 
-       <!-- Barra de Filtros Rediseñada -->
-<section class="catalog-filters-section" aria-label="Filtros del catálogo">
-    <form id="filter-form" class="catalog-filters-bar" onsubmit="event.preventDefault();">
-        
-        <!-- Buscador -->
-        <div class="filter-group filter-search">
-            <label for="search-input" class="filter-label">Buscar vino o variedad</label>
-            <div class="input-with-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="search-input" class="filter-control" placeholder="Ej. Reserva, Tempranillo, Crianza...">
-            </div>
-        </div>
+        <section class="catalog-filters-section" aria-label="Filtros del catálogo">
+            <form id="filter-form" class="catalog-filters-bar" onsubmit="event.preventDefault();">
+                
+                <div class="filter-group filter-search">
+                    <label for="search-input" class="filter-label">Buscar vino o variedad</label>
+                    <div class="input-with-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="search-input" class="filter-control" placeholder="Ej. Reserva, Tempranillo, Crianza...">
+                    </div>
+                </div>
 
-        <!-- Selector Tipo de Vino -->
-        <div class="filter-group filter-select-wrap">
-            <label for="type-select" class="filter-label">Tipo de Vino</label>
-            <select id="type-select" class="filter-control">
-                <option value="todos">Todos los tipos</option>
-                <option value="tinto">Tinto</option>
-                <option value="blanco">Blanco</option>
-                <option value="rosado">Rosado</option>
-                <option value="espumoso">Espumoso</option>
-            </select>
-        </div>
+                <div class="filter-group filter-select-wrap">
+                    <label for="type-select" class="filter-label">Tipo de Vino</label>
+                    <select id="type-select" class="filter-control">
+                        <option value="todos">Todos los tipos</option>
+                        <option value="tinto">Tinto</option>
+                        <option value="blanco">Blanco</option>
+                        <option value="rosado">Rosado</option>
+                        <option value="espumoso">Espumoso</option>
+                    </select>
+                </div>
 
-        <!-- Rango de Precio Personalizado -->
-        <div class="filter-group filter-price-wrap">
-            <div class="price-label-header">
-                <label for="price-range" class="filter-label">Precio máximo</label>
-                <span id="price-value" class="price-badge">210.00 €</span>
-            </div>
-            <input type="range" id="price-range" class="custom-range" min="10" max="250" step="5" value="210">
-        </div>
+                <div class="filter-group filter-price-wrap">
+                    <div class="price-label-header">
+                        <label for="price-range" class="filter-label">Precio máximo</label>
+                        <span id="price-value" class="price-badge">210.00 €</span>
+                    </div>
+                    <input type="range" id="price-range" class="custom-range" min="10" max="250" step="5" value="210">
+                </div>
 
-        <!-- Acciones: Contador + Limpiar -->
-        <div class="filter-actions-wrap">
-            <span id="results-counter" class="results-chip">13 vinos encontrados</span>
-            <button type="button" id="btn-reset-filters" class="btn-reset">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                Limpiar
-            </button>
-        </div>
+                <div class="filter-actions-wrap">
+                    <span id="results-counter" class="results-chip" aria-live="polite">13 vinos encontrados</span>
+                    <button type="button" id="btn-reset-filters" class="btn-reset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        Limpiar
+                    </button>
+                </div>
 
-    </form>
-</section>
+            </form>
+        </section>
 
         <div id="catalogo-grid" class="products-grid" role="region" aria-label="Lista de vinos disponibles"></div>
     </main>
@@ -127,22 +122,23 @@
     <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById("wine-search");
-            const typeSelect = document.getElementById("wine-type");
+            const searchInput = document.getElementById("search-input");
+            const typeSelect = document.getElementById("type-select");
             const priceRange = document.getElementById("price-range");
-            const priceVal = document.getElementById("price-val");
-            const resultsCount = document.getElementById("results-count");
+            const priceVal = document.getElementById("price-value");
+            const resultsCount = document.getElementById("results-counter");
             const btnReset = document.getElementById("btn-reset-filters");
 
             const aplicarFiltros = () => {
-                const query = searchInput.value.toLowerCase().trim();
-                const tipo = typeSelect.value;
-                const maxPrice = parseFloat(priceRange.value);
-                priceVal.textContent = `${maxPrice.toFixed(2)} €`;
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+                const tipo = typeSelect ? typeSelect.value : "todos";
+                const maxPrice = priceRange ? parseFloat(priceRange.value) : 250;
+                if (priceVal) priceVal.textContent = `${maxPrice.toFixed(2)} €`;
 
                 let visibles = 0;
                 document.querySelectorAll("#catalogo-grid .wine-card").forEach(card => {
-                    const nombre = card.querySelector(".wine-name").textContent.toLowerCase();
+                    const nombreEl = card.querySelector(".wine-name");
+                    const nombre = nombreEl ? nombreEl.textContent.toLowerCase() : "";
                     const cardTipo = card.getAttribute("data-type");
                     const precio = parseFloat(card.getAttribute("data-price")) || 0;
 
@@ -158,7 +154,7 @@
                     }
                 });
 
-                resultsCount.textContent = `${visibles} vino(s) encontrado(s)`;
+                if (resultsCount) resultsCount.textContent = `${visibles} vino(s) encontrado(s)`;
             };
 
             if (searchInput) searchInput.addEventListener("input", aplicarFiltros);
@@ -167,9 +163,9 @@
 
             if (btnReset) {
                 btnReset.addEventListener("click", () => {
-                    searchInput.value = "";
-                    typeSelect.value = "todos";
-                    priceRange.value = 60;
+                    if (searchInput) searchInput.value = "";
+                    if (typeSelect) typeSelect.value = "todos";
+                    if (priceRange) priceRange.value = 210;
                     aplicarFiltros();
                 });
             }

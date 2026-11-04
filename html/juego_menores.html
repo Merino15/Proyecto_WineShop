@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
 
     <style>
@@ -95,7 +94,9 @@
 </head>
 <body>
 
-    <main class="arcade-screen">
+    <a href="#contenido-principal" class="skip-link">Saltar al juego interactivo</a>
+
+    <main id="contenido-principal" class="arcade-screen" tabindex="-1">
         <div class="arcade-container">
             <h1 class="arcade-title">Acceso Solo Para Mayores de 18</h1>
             <p class="body-regular arcade-subtitle">
@@ -108,7 +109,9 @@
             </div>
 
             <div class="canvas-wrapper">
-                <canvas id="gameCanvas" width="800" height="260"></canvas>
+                <canvas id="gameCanvas" width="800" height="260" role="img" aria-label="Juego interactivo 2D de esquivar botellas de vino y latas. Usa la barra espaciadora para saltar y flecha abajo para agacharte.">
+                    Tu navegador no soporta el lienzo de juego. Usa las teclas flecha arriba o espacio para saltar obstáculos.
+                </canvas>
             </div>
 
             <div class="arcade-instructions">

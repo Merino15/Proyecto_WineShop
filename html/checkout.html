@@ -42,30 +42,13 @@
     </style>
   </head>
   <body>
-    <a href="#contenido-principal" class="skip-link"
-      >Saltar al contenido principal</a
-    >
-    <div
-      id="live-announcer"
-      class="sr-only"
-      aria-live="polite"
-      aria-atomic="true"
-    ></div>
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+    <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
     <header class="site-header">
       <div class="container header-container">
-        <a
-          href="../index.html"
-          class="logo-link"
-          aria-label="WineShop - Inicio"
-        >
-          <img
-            src="../img/transparent-logo.png"
-            alt="WineShop Vinos Premium"
-            class="logo"
-            width="160"
-            height="50"
-          />
+        <a href="../index.html" class="logo-link" aria-label="WineShop - Inicio">
+          <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium" class="logo" width="160" height="50" />
         </a>
         <nav class="main-nav" aria-label="Navegación secundaria">
           <ul>
@@ -75,144 +58,60 @@
       </div>
     </header>
 
-    <main
-      id="contenido-principal"
-      class="container section-padding"
-      tabindex="-1"
-    >
+    <main id="contenido-principal" class="container section-padding" tabindex="-1">
       <h1 class="section-title" style="text-align: left">Finalizar Pedido</h1>
 
       <div class="checkout-grid">
-        <form
-          id="form-checkout"
-          class="auth-card"
-          style="max-width: 100%"
-          novalidate
-        >
+        <form id="form-checkout" class="auth-card" style="max-width: 100%" novalidate>
           <fieldset style="border: none; margin-bottom: var(--espaciado-24)">
-            <legend
-              style="
-                font-family: var(--font-titulos);
-                font-size: 1.4rem;
-                color: var(--color-primario-bordeos);
-                margin-bottom: var(--espaciado-16);
-              "
-            >
+            <legend style="font-family: var(--font-titulos); font-size: 1.4rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">
               1. Datos de Envío
             </legend>
 
-            <div
-              style="
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: var(--espaciado-16);
-                margin-bottom: var(--espaciado-16);
-              "
-            >
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--espaciado-16); margin-bottom: var(--espaciado-16);">
               <div class="form-group" style="margin: 0">
                 <label for="co-nombre">Nombre Completo *</label>
-                <input
-                  type="text"
-                  id="co-nombre"
-                  required
-                  autocomplete="name"
-                />
+                <input type="text" id="co-nombre" required autocomplete="name" />
               </div>
               <div class="form-group" style="margin: 0">
                 <label for="co-dni">DNI / NIF *</label>
-                <input
-                  type="text"
-                  id="co-dni"
-                  placeholder="12345678Z"
-                  required
-                />
+                <input type="text" id="co-dni" placeholder="12345678Z" required />
               </div>
             </div>
 
             <div class="form-group">
               <label for="co-direccion">Dirección Completa *</label>
-              <input
-                type="text"
-                id="co-direccion"
-                placeholder="Calle, número, piso"
-                required
-                autocomplete="street-address"
-              />
+              <input type="text" id="co-direccion" placeholder="Calle, número, piso" required autocomplete="street-address" />
             </div>
 
-            <div
-              style="
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: var(--espaciado-16);
-              "
-            >
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--espaciado-16);">
               <div class="form-group" style="margin: 0">
                 <label for="co-cp">C.P. *</label>
-                <input
-                  type="text"
-                  id="co-cp"
-                  required
-                  autocomplete="postal-code"
-                />
+                <input type="text" id="co-cp" required autocomplete="postal-code" />
               </div>
               <div class="form-group" style="margin: 0">
                 <label for="co-ciudad">Ciudad *</label>
-                <input
-                  type="text"
-                  id="co-ciudad"
-                  required
-                  autocomplete="address-level2"
-                />
+                <input type="text" id="co-ciudad" required autocomplete="address-level2" />
               </div>
               <div class="form-group" style="margin: 0">
                 <label for="co-provincia">Provincia *</label>
-                <input
-                  type="text"
-                  id="co-provincia"
-                  required
-                  autocomplete="address-level1"
-                />
+                <input type="text" id="co-provincia" required autocomplete="address-level1" />
               </div>
             </div>
           </fieldset>
 
           <fieldset style="border: none; margin-bottom: var(--espaciado-24)">
-            <legend
-              style="
-                font-family: var(--font-titulos);
-                font-size: 1.4rem;
-                color: var(--color-primario-bordeos);
-                margin-bottom: var(--espaciado-16);
-              "
-            >
+            <legend style="font-family: var(--font-titulos); font-size: 1.4rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">
               2. Método de Pago
             </legend>
 
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
-                gap: var(--espaciado-12);
-              "
-            >
+            <div style="display: flex; flex-direction: column; gap: var(--espaciado-12);">
               <label class="checkbox-label" style="min-height: 44px">
-                <input
-                  type="radio"
-                  name="pago"
-                  value="tarjeta"
-                  checked
-                  style="width: 20px; height: 20px"
-                />
+                <input type="radio" name="pago" value="tarjeta" checked style="width: 20px; height: 20px" />
                 Tarjeta de Crédito / Débito (Bizum disponible)
               </label>
               <label class="checkbox-label" style="min-height: 44px">
-                <input
-                  type="radio"
-                  name="pago"
-                  value="transferencia"
-                  style="width: 20px; height: 20px"
-                />
+                <input type="radio" name="pago" value="transferencia" style="width: 20px; height: 20px" />
                 Transferencia Bancaria Directa
               </label>
             </div>
@@ -224,15 +123,7 @@
         </form>
 
         <aside class="order-summary-box" aria-labelledby="summary-title">
-          <h2
-            id="summary-title"
-            style="
-              font-family: var(--font-titulos);
-              font-size: 1.5rem;
-              color: var(--color-primario-bordeos);
-              margin-bottom: var(--espaciado-16);
-            "
-          >
+          <h2 id="summary-title" style="font-family: var(--font-titulos); font-size: 1.5rem; color: var(--color-primario-bordeos); margin-bottom: var(--espaciado-16);">
             Resumen del Pedido
           </h2>
 
@@ -256,13 +147,7 @@
       </div>
     </main>
 
-    <!-- Modal de Confirmación Centrado -->
-    <div
-      id="confirm-modal-overlay"
-      class="confirm-modal-overlay hidden"
-      role="dialog"
-      aria-modal="true"
-    >
+    <div id="confirm-modal-overlay" class="confirm-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title" aria-describedby="confirm-modal-text">
       <div class="confirm-modal-card">
         <h3 id="confirm-modal-title" class="confirm-modal-title">
           ¿Eliminar del carrito?
@@ -275,41 +160,22 @@
           <button type="button" id="btn-modal-cancel" class="btn btn-secondary">
             Cancelar
           </button>
-          <button
-            type="button"
-            id="btn-modal-confirm"
-            class="btn btn-primary"
-            style="
-              background-color: #d32f2f !important;
-              border-color: #d32f2f !important;
-              color: #ffffff !important;
-            "
-          >
+          <button type="button" id="btn-modal-confirm" class="btn btn-primary" style="background-color: #d32f2f !important; border-color: #d32f2f !important; color: #ffffff !important;">
             Eliminar
           </button>
         </div>
       </div>
     </div>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
       <div class="container footer-container">
         <div class="footer-brand">
-          <img
-            src="../img/transparent-logo.png"
-            alt="WineShop Logotipo"
-            class="footer-logo"
-            width="140"
-            height="44"
-          />
-          <p class="body-regular">
-            © 2026 WineShop. Todos los derechos reservados.
-          </p>
+          <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44" />
+          <p class="body-regular">© 2026 WineShop. Todos los derechos reservados.</p>
         </div>
-        <nav class="footer-links">
+        <nav class="footer-links" aria-label="Enlaces legales">
           <a href="politica_privacidad.html">Política de Privacidad</a>
-          <a href="declaracion_accesibilidad.html"
-            >Declaración de Accesibilidad</a
-          >
+          <a href="declaracion_accesibilidad.html">Declaración de Accesibilidad</a>
         </nav>
       </div>
     </footer>
@@ -319,74 +185,52 @@
       let itemPendienteEliminar = null;
 
       document.addEventListener("DOMContentLoaded", () => {
-        // Autocompletar datos personales si existe una sesión activa
         const usuario = obtenerUsuarioActivo();
         if (usuario) {
-          if (document.getElementById("co-nombre"))
-            document.getElementById("co-nombre").value = usuario.nombre || "";
-          if (document.getElementById("co-dni"))
-            document.getElementById("co-dni").value = usuario.dni || "";
-          if (document.getElementById("co-direccion"))
-            document.getElementById("co-direccion").value =
-              usuario.direccion || "";
-          if (document.getElementById("co-cp"))
-            document.getElementById("co-cp").value = usuario.codigoPostal || "";
-          if (document.getElementById("co-ciudad"))
-            document.getElementById("co-ciudad").value = usuario.ciudad || "";
-          if (document.getElementById("co-provincia"))
-            document.getElementById("co-provincia").value =
-              usuario.provincia || "";
+          if (document.getElementById("co-nombre")) document.getElementById("co-nombre").value = usuario.nombre || "";
+          if (document.getElementById("co-dni")) document.getElementById("co-dni").value = usuario.dni || "";
+          if (document.getElementById("co-direccion")) document.getElementById("co-direccion").value = usuario.direccion || "";
+          if (document.getElementById("co-cp")) document.getElementById("co-cp").value = usuario.codigoPostal || "";
+          if (document.getElementById("co-ciudad")) document.getElementById("co-ciudad").value = usuario.ciudad || "";
+          if (document.getElementById("co-provincia")) document.getElementById("co-provincia").value = usuario.provincia || "";
         }
 
-        // Cargar items del resumen
         renderizarResumenCheckout();
 
-        // Configurar botones del modal de confirmación
         const btnCancel = document.getElementById("btn-modal-cancel");
         const btnConfirm = document.getElementById("btn-modal-confirm");
 
-        if (btnCancel)
-          btnCancel.addEventListener("click", cerrarModalConfirmacion);
+        if (btnCancel) btnCancel.addEventListener("click", cerrarModalConfirmacion);
 
         if (btnConfirm) {
           btnConfirm.addEventListener("click", () => {
             if (itemPendienteEliminar !== null) {
-              let carrito =
-                JSON.parse(localStorage.getItem("wineshop_carrito_items")) ||
-                [];
+              let carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
               const idx = itemPendienteEliminar.index;
               const nombre = itemPendienteEliminar.nombre;
 
               carrito.splice(idx, 1);
-              localStorage.setItem(
-                "wineshop_carrito_items",
-                JSON.stringify(carrito),
-              );
+              localStorage.setItem("wineshop_carrito_items", JSON.stringify(carrito));
 
-              if (typeof actualizarBadgeCarrito === "function")
-                actualizarBadgeCarrito();
+              if (typeof actualizarBadgeCarrito === "function") actualizarBadgeCarrito();
               renderizarResumenCheckout();
-              if (typeof mostrarToast === "function")
-                mostrarToast(`Se ha eliminado "${nombre}" del carrito`);
+              if (typeof mostrarToast === "function") mostrarToast(`Se ha eliminado "${nombre}" del carrito`);
             }
             cerrarModalConfirmacion();
           });
         }
 
-        // Gestionar la confirmación de la compra
         const formCheckout = document.getElementById("form-checkout");
         if (formCheckout) {
           formCheckout.addEventListener("submit", (e) => {
             e.preventDefault();
-            const carrito =
-              JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
+            const carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
             if (carrito.length === 0) {
               mostrarToast("El carrito está vacío");
               return;
             }
             localStorage.removeItem("wineshop_carrito_items");
-            if (typeof actualizarBadgeCarrito === "function")
-              actualizarBadgeCarrito();
+            if (typeof actualizarBadgeCarrito === "function") actualizarBadgeCarrito();
             mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
             setTimeout(() => {
               window.location.href = "../index.html";
@@ -395,59 +239,46 @@
         }
       });
 
-      // Renderiza el resumen lateral con botones de cantidad visibles y botón de eliminar
       function renderizarResumenCheckout() {
         const container = document.getElementById("checkout-items-list");
         if (!container) return;
 
-        const carrito =
-          JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
+        const carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
         let subtotal = 0;
 
         if (carrito.length === 0) {
-          container.innerHTML =
-            '<p class="body-regular" style="padding: 12px 0;">No hay productos en el carrito.</p>';
+          container.innerHTML = '<p class="body-regular" style="padding: 12px 0;">No hay productos en el carrito.</p>';
         } else {
-          container.innerHTML = carrito
-            .map((item, index) => {
+          container.innerHTML = carrito.map((item, index) => {
               const totalItem = item.precioNum * item.cantidad;
               subtotal += totalItem;
 
               return `
-                        <div class="summary-row" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 0;">
-                            <div style="flex: 1; min-width: 120px;">
-                                <strong style="display: block; font-size: 0.95rem; color: var(--color-primario-bordeos);">${item.nombre}</strong>
-                                <span style="font-size: 0.85rem; color: var(--color-neutro-gris);">${item.precioNum.toFixed(2)} € / ud.</span>
-                            </div>
+                <div class="summary-row" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 0;">
+                    <div style="flex: 1; min-width: 120px;">
+                        <strong style="display: block; font-size: 0.95rem; color: var(--color-primario-bordeos);">${item.nombre}</strong>
+                        <span style="font-size: 0.85rem; color: var(--color-neutro-gris);">${item.precioNum.toFixed(2)} € / ud.</span>
+                    </div>
 
-                            <div class="quantity-selector">
-                                <button type="button" class="qty-btn btn-checkout-minus" data-index="${index}" aria-label="Reducir cantidad">-</button>
-                                <input type="number" class="quantity-input" value="${item.cantidad}" readonly aria-label="Cantidad de ${item.nombre}">
-                                <button type="button" class="qty-btn btn-checkout-plus" data-index="${index}" aria-label="Aumentar cantidad">+</button>
-                            </div>
+                    <div class="quantity-selector">
+                        <button type="button" class="qty-btn btn-checkout-minus" data-index="${index}" aria-label="Reducir cantidad">-</button>
+                        <input type="number" class="quantity-input" value="${item.cantidad}" readonly aria-label="Cantidad de ${item.nombre}">
+                        <button type="button" class="qty-btn btn-checkout-plus" data-index="${index}" aria-label="Aumentar cantidad">+</button>
+                    </div>
 
-                            <span style="font-weight: 700; min-width: 65px; text-align: right;">${totalItem.toFixed(2)} €</span>
+                    <span style="font-weight: 700; min-width: 65px; text-align: right;">${totalItem.toFixed(2)} €</span>
 
-                            <button type="button" class="btn-checkout-remove" data-index="${index}" aria-label="Eliminar producto" style="background: none; border: none; color: #D32F2F; cursor: pointer; font-size: 1.1rem; padding: 2px 4px;">&times;</button>
-                        </div>
-                    `;
-            })
-            .join("");
+                    <button type="button" class="btn-checkout-remove" data-index="${index}" aria-label="Eliminar producto ${item.nombre}" style="background: none; border: none; color: #D32F2F; cursor: pointer; font-size: 1.1rem; padding: 2px 4px;">&times;</button>
+                </div>
+              `;
+            }).join("");
         }
 
-        // Recalcular Totales
         const gastosEnvio = subtotal > 50 || subtotal === 0 ? 0 : 4.95;
-        if (document.getElementById("co-subtotal"))
-          document.getElementById("co-subtotal").textContent =
-            `${subtotal.toFixed(2)} €`;
-        if (document.getElementById("co-envio"))
-          document.getElementById("co-envio").textContent =
-            gastosEnvio === 0 ? "Gratis" : `${gastosEnvio.toFixed(2)} €`;
-        if (document.getElementById("co-total"))
-          document.getElementById("co-total").textContent =
-            `${(subtotal + gastosEnvio).toFixed(2)} €`;
+        if (document.getElementById("co-subtotal")) document.getElementById("co-subtotal").textContent = `${subtotal.toFixed(2)} €`;
+        if (document.getElementById("co-envio")) document.getElementById("co-envio").textContent = gastosEnvio === 0 ? "Gratis" : `${gastosEnvio.toFixed(2)} €`;
+        if (document.getElementById("co-total")) document.getElementById("co-total").textContent = `${(subtotal + gastosEnvio).toFixed(2)} €`;
 
-        // Asignar eventos a los botones
         container.querySelectorAll(".btn-checkout-minus").forEach((btn) => {
           btn.addEventListener("click", () => {
             const idx = parseInt(btn.getAttribute("data-index"));
@@ -470,27 +301,19 @@
         });
       }
 
-      // Modifica cantidades y activa el modal de confirmación si la cantidad llega a 0 o se intenta eliminar
       function modificarItemCheckout(index, cambio) {
-        let carrito =
-          JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
+        let carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
         if (!carrito[index]) return;
 
         const producto = carrito[index];
 
         if (cambio === -999 || (producto.cantidad === 1 && cambio === -1)) {
           itemPendienteEliminar = { index, nombre: producto.nombre };
-          mostrarModalConfirmacion(
-            `¿Estás seguro de que deseas eliminar "${producto.nombre}" de tu pedido?`,
-          );
+          mostrarModalConfirmacion(`¿Estás seguro de que deseas eliminar "${producto.nombre}" de tu pedido?`);
         } else {
           producto.cantidad += cambio;
-          localStorage.setItem(
-            "wineshop_carrito_items",
-            JSON.stringify(carrito),
-          );
-          if (typeof actualizarBadgeCarrito === "function")
-            actualizarBadgeCarrito();
+          localStorage.setItem("wineshop_carrito_items", JSON.stringify(carrito));
+          if (typeof actualizarBadgeCarrito === "function") actualizarBadgeCarrito();
           renderizarResumenCheckout();
         }
       }

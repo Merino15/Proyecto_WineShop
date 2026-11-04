@@ -2,15 +2,17 @@
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
  * Incluye verificación de edad, newsletter popup, login / mi_cuenta con sesión activa,
  * carrusel hero, carrusel de reseñas dinámico desde db.json, banner de anuncios,
- * carrito de compras, favoritos dinámicos, vista de detalle de producto e i18n.
+ * carrito de compras, favoritos dinámicos, vista de detalle de producto e i18n persistente.
  */
 
-let appData = null;
-let currentLang = "es";
-
+const LANG_STORAGE_KEY = "wineshop_idioma";
 const CART_STORAGE_KEY = "wineshop_carrito_items";
 const FAVORITES_STORAGE_KEY = "wineshop_favoritos";
 const USER_STORAGE_KEY = "wineshop_usuario_activo";
+
+// Carga el idioma guardado previamente o usa 'es' por defecto
+let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || "es";
+let appData = null;
 
 // Determina si la ejecución se encuentra en la raíz o en el subdirectorio /html/
 const isSubdir = window.location.pathname.includes("/html/");
@@ -42,17 +44,35 @@ function announceToScreenReader(message) {
 }
 
 /**
- * Aplicación de Traducciones DOM según el Idioma Activo
+ * Aplicación Completa de Traducciones DOM según el Idioma Activo
+ * Soporta textContent (data-i18n), placeholder (data-i18n-placeholder) y aria-label (data-i18n-aria)
  */
 function aplicarTraducciones() {
     if (!appData || !appData.i18n) return;
 
     const dicc = appData.i18n[currentLang] || appData.i18n["es"];
 
+    // 1. Traducir textos normales
     document.querySelectorAll("[data-i18n]").forEach(elem => {
         const key = elem.getAttribute("data-i18n");
         if (dicc[key]) {
             elem.textContent = dicc[key];
+        }
+    });
+
+    // 2. Traducir placeholders de inputs y buscadores
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(elem => {
+        const key = elem.getAttribute("data-i18n-placeholder");
+        if (dicc[key]) {
+            elem.setAttribute("placeholder", dicc[key]);
+        }
+    });
+
+    // 3. Traducir atributos accesibles aria-label
+    document.querySelectorAll("[data-i18n-aria]").forEach(elem => {
+        const key = elem.getAttribute("data-i18n-aria");
+        if (dicc[key]) {
+            elem.setAttribute("aria-label", dicc[key]);
         }
     });
 }
@@ -77,7 +97,6 @@ function actualizarEnlaceUsuario() {
         }
     });
 
-    // Redirecciones automáticas según si hay o no sesión activa
     const path = window.location.pathname;
     if (usuario && path.includes("login.html")) {
         window.location.href = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
@@ -179,7 +198,7 @@ function iniciarNewsletterPopup() {
 }
 
 /**
- * Gestión de Autenticación (Login, Registro y Alternancia de Pestañas)
+ * Gestión de Autenticación
  */
 function iniciarAutenticacion() {
     const tabLogin = document.getElementById("tab-login");
@@ -295,13 +314,12 @@ function iniciarAutenticacion() {
 }
 
 /**
- * Inicialización de la vista Mi Cuenta (Actualizada y sincronizada con el HTML)
+ * Inicialización de la vista Mi Cuenta
  */
 function iniciarMiCuenta() {
     const usuario = obtenerUsuarioActivo();
     if (!usuario) return;
 
-    // 1. Cargar datos del usuario en la cabecera e inputs
     const displayNameEl = document.getElementById("user-display-name");
     const displayEmailEl = document.getElementById("user-display-email");
     const avatarBadgeEl = document.querySelector(".user-avatar-badge");
@@ -330,7 +348,6 @@ function iniciarMiCuenta() {
     if (inputDni) inputDni.value = usuario.dni || "";
     if (inputDireccion) inputDireccion.value = usuario.direccion || "";
 
-    // 2. Control de pestañas (Datos Personales / Historial de Pedidos)
     const btnTabDatos = document.getElementById("btn-tab-datos");
     const btnTabPedidos = document.getElementById("btn-tab-pedidos");
     const secDatos = document.getElementById("sec-datos-personales");
@@ -356,7 +373,6 @@ function iniciarMiCuenta() {
         });
     }
 
-    // 3. Edición y guardado de datos personales
     const btnToggleEdit = document.getElementById("btn-toggle-edit");
     const fieldsetDetails = document.getElementById("fieldset-user-details");
     const btnSaveDetails = document.getElementById("btn-save-details");
@@ -401,7 +417,6 @@ function iniciarMiCuenta() {
         });
     }
 
-    // 4. Cierre de sesión
     const btnLogout = document.getElementById("btn-logout");
     if (btnLogout) {
         btnLogout.addEventListener("click", () => {
@@ -446,7 +461,7 @@ function renderizarPedidosUsuario(usuarioId) {
 }
 
 /**
- * Carrusel Hero Interactivo y Accesible
+ * Carrusel Hero Interactivo
  */
 function iniciarCarruselHero() {
     const slides = document.querySelectorAll('.carousel-slide');
@@ -517,7 +532,7 @@ function iniciarCarruselHero() {
 }
 
 /**
- * RENDERIZADO DINÁMICO DE RESEÑAS DESDE db.json
+ * Renderizado de Reseñas desde db.json
  */
 function renderizarResenas() {
     const slider = document.querySelector(".testimonials-slider");
@@ -560,7 +575,7 @@ function renderizarResenas() {
 }
 
 /**
- * Carrusel de Reseñas / Testimonios (Conectado a elementos dinámicos)
+ * Carrusel de Reseñas
  */
 function iniciarCarruselResenas() {
     const slides = document.querySelectorAll('.testimonial-card');
@@ -625,7 +640,7 @@ function iniciarCarruselResenas() {
 }
 
 /**
- * Carrusel de Mensajes del Banner Superior (Anuncios)
+ * Carrusel de Anuncios Superior
  */
 function iniciarBannerAnuncios() {
     const items = document.querySelectorAll('.announcement-item');
@@ -800,16 +815,18 @@ function iniciarFiltrosCatalogo() {
         }
 
         const filtrados = appData.vinos.filter(vino => {
+            const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
             const coincideTexto = vino.nombre.toLowerCase().includes(texto) || 
-                                 (vino.i18n && vino.i18n.es && vino.i18n.es.desc.toLowerCase().includes(texto));
+                                 (traduccion.desc && traduccion.desc.toLowerCase().includes(texto));
             const coincideTipo = (tipo === "todos") || (vino.tipo === tipo);
             const coincidePrecio = vino.precioNum <= maxPrecio;
 
             return coincideTexto && coincideTipo && coincidePrecio;
         });
 
+        const dicc = appData.i18n[currentLang] || appData.i18n["es"];
         if (resultsCounter) {
-            resultsCounter.textContent = `${filtrados.length} vino(s) encontrado(s)`;
+            resultsCounter.textContent = `${filtrados.length} ${dicc.results_text || 'vino(s) encontrado(s)'}`;
         }
 
         renderizarVinosFiltrados("catalogo-grid", filtrados);
@@ -836,13 +853,15 @@ function renderizarVinosFiltrados(contenedorId, listaVinos) {
     if (!contenedor) return;
 
     contenedor.innerHTML = "";
+    const dicc = appData.i18n[currentLang] || appData.i18n["es"];
 
     if (listaVinos.length === 0) {
-        contenedor.innerHTML = `<p class="body-regular" style="grid-column: 1/-1; text-align: center; padding: 40px 0;">No hay vinos que coincidan con los filtros seleccionados.</p>`;
+        contenedor.innerHTML = `<p class="body-regular" style="grid-column: 1/-1; text-align: center; padding: 40px 0;">${dicc.no_wines_found || 'No hay vinos que coincidan con los filtros seleccionados.'}</p>`;
         return;
     }
 
     listaVinos.forEach(vino => {
+        const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
         const isFav = getFavoritos().includes(vino.id);
         const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
 
@@ -863,9 +882,9 @@ function renderizarVinosFiltrados(contenedorId, listaVinos) {
                 <h3 class="wine-name">
                     <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
                 </h3>
-                <p class="body-regular" style="margin-bottom: 12px;">${vino.i18n?.es?.desc || ''}</p>
+                <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
                 <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
-                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">Añadir al carrito</button>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>
             </div>
         `;
         contenedor.appendChild(article);
@@ -963,6 +982,7 @@ function renderizarPaginaFavoritos() {
 
     const idsFavoritos = getFavoritos();
     const vinosFavoritos = appData.vinos.filter(vino => idsFavoritos.includes(vino.id));
+    const dicc = appData.i18n[currentLang] || appData.i18n["es"];
 
     if (vinosFavoritos.length === 0) {
         contenedorGrid.innerHTML = "";
@@ -996,7 +1016,7 @@ function renderizarPaginaFavoritos() {
                 </h3>
                 <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
                 <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
-                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">Añadir al carrito</button>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>
             </div>
         `;
 
@@ -1116,7 +1136,7 @@ function eliminarItemCarrito(index) {
 }
 
 /**
- * Gestión de Favoritos (Storage)
+ * Gestión de Favoritos
  */
 function getFavoritos() {
     return JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY)) || [];
@@ -1180,7 +1200,7 @@ function asignarEventosTarjetas(contenedor) {
 }
 
 /**
- * Gestión de Carrito (Storage)
+ * Gestión de Carrito
  */
 function agregarAlCarrito(vino, cantidad = 1) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
@@ -1242,20 +1262,51 @@ function mostrarToast(mensaje) {
 }
 
 /**
- * Control de Selector de Idioma
+ * Re-renderizado Unificado al cambiar de Idioma
+ */
+function actualizarYRenderizarTodo() {
+    aplicarTraducciones();
+
+    if (document.getElementById("destacados-grid")) {
+        renderizarVinos("destacados-grid", true);
+    }
+    if (document.getElementById("catalogo-grid")) {
+        if (document.getElementById("search-input") || document.getElementById("type-select")) {
+            iniciarFiltrosCatalogo();
+        } else {
+            renderizarVinos("catalogo-grid", false);
+        }
+    }
+    if (document.getElementById("bodegas-grid")) {
+        renderizarBodegas("bodegas-grid");
+    }
+    if (document.getElementById("experiencias-grid")) {
+        renderizarExperiencias("experiencias-grid");
+    }
+    if (document.getElementById("favoritos-grid")) {
+        renderizarPaginaFavoritos();
+    }
+    if (window.location.pathname.includes("producto.html")) {
+        iniciarDetalleProducto();
+    }
+    if (window.location.pathname.includes("checkout.html") || document.getElementById("carrito-items-lista")) {
+        renderizarCarritoCompleto();
+    }
+}
+
+/**
+ * Control del Selector de Idioma con Persistencia
  */
 function iniciarIdioma() {
     const select = document.getElementById("custom-lang-select");
     if (select) {
+        select.value = currentLang;
         select.addEventListener("change", (e) => {
             currentLang = e.target.value;
+            localStorage.setItem(LANG_STORAGE_KEY, currentLang);
             document.documentElement.lang = currentLang;
             
-            aplicarTraducciones();
-            renderizarVinos("destacados-grid", true);
-            renderizarVinos("catalogo-grid", false);
-            renderizarBodegas("bodegas-grid");
-            renderizarExperiencias("experiencias-grid");
+            actualizarYRenderizarTodo();
         });
     }
 }
@@ -1279,13 +1330,13 @@ function iniciarMenuMobile() {
  * Inicialización Global en DOMContentLoaded
  */
 document.addEventListener("DOMContentLoaded", async () => {
+    document.documentElement.lang = currentLang;
+
     iniciarMenuMobile();
     await loadDatabase();
     
     if (appData) {
         iniciarIdioma();
-        aplicarTraducciones();
-        
         actualizarEnlaceUsuario();
         iniciarVerificacionEdad();
         iniciarNewsletterPopup();
@@ -1293,38 +1344,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarMiCuenta();
         
         iniciarCarruselHero();
-
-        // 1. Inyectar las reseñas desde la base de datos (db.json)
         renderizarResenas();
-
-        // 2. Inicializar los eventos del carrusel sobre las reseñas inyectadas
         iniciarCarruselResenas();
-
         iniciarBannerAnuncios();
         
-        renderizarVinos("destacados-grid", true);
-        
-        if (window.location.pathname.includes("favoritos.html") || document.getElementById("favoritos-grid")) {
-            renderizarPaginaFavoritos();
-        }
+        actualizarYRenderizarTodo();
 
-        if (window.location.pathname.includes("checkout.html") || document.getElementById("carrito-items-lista")) {
-            renderizarCarritoCompleto();
-        }
-        
-        if (document.getElementById("search-input") || document.getElementById("type-select")) {
-            iniciarFiltrosCatalogo();
-        } else {
-            renderizarVinos("catalogo-grid", false);
-        }
-
-        if (window.location.pathname.includes("producto.html")) {
-            iniciarDetalleProducto();
-        }
-        
-        renderizarBodegas("bodegas-grid");
-        renderizarExperiencias("experiencias-grid");
-        
         actualizarBadgeFavoritos();
         actualizarBadgeCarrito();
     }

@@ -295,26 +295,113 @@ function iniciarAutenticacion() {
 }
 
 /**
- * Inicialización de la vista Mi Cuenta
+ * Inicialización de la vista Mi Cuenta (Actualizada y sincronizada con el HTML)
  */
 function iniciarMiCuenta() {
     const usuario = obtenerUsuarioActivo();
     if (!usuario) return;
 
-    const avatarEl = document.getElementById("user-avatar");
-    const nombreEl = document.getElementById("user-name");
-    const emailEl = document.getElementById("user-email");
-    const dniEl = document.getElementById("user-dni");
-    const telEl = document.getElementById("user-phone");
-    const dirEl = document.getElementById("user-address");
+    // 1. Cargar datos del usuario en la cabecera e inputs
+    const displayNameEl = document.getElementById("user-display-name");
+    const displayEmailEl = document.getElementById("user-display-email");
+    const avatarBadgeEl = document.querySelector(".user-avatar-badge");
 
-    if (avatarEl && usuario.avatar) avatarEl.src = usuario.avatar;
-    if (nombreEl) nombreEl.textContent = usuario.nombre;
-    if (emailEl) emailEl.textContent = usuario.email;
-    if (dniEl) dniEl.textContent = usuario.dni || "No especificado";
-    if (telEl) telEl.textContent = usuario.telefono || "No especificado";
-    if (dirEl) dirEl.textContent = usuario.direccion ? `${usuario.direccion}, ${usuario.ciudad || ''}` : "No especificada";
+    if (displayNameEl) displayNameEl.textContent = usuario.nombre || "Usuario";
+    if (displayEmailEl) displayEmailEl.textContent = usuario.email || "";
+    if (avatarBadgeEl && usuario.nombre) {
+        const iniciales = usuario.nombre
+            .split(" ")
+            .map(n => n[0])
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+        avatarBadgeEl.textContent = iniciales || "U";
+    }
 
+    const inputNombre = document.getElementById("acc-nombre");
+    const inputEmail = document.getElementById("acc-email");
+    const inputTelefono = document.getElementById("acc-telefono");
+    const inputDni = document.getElementById("acc-dni");
+    const inputDireccion = document.getElementById("acc-direccion");
+
+    if (inputNombre) inputNombre.value = usuario.nombre || "";
+    if (inputEmail) inputEmail.value = usuario.email || "";
+    if (inputTelefono) inputTelefono.value = usuario.telefono || "";
+    if (inputDni) inputDni.value = usuario.dni || "";
+    if (inputDireccion) inputDireccion.value = usuario.direccion || "";
+
+    // 2. Control de pestañas (Datos Personales / Historial de Pedidos)
+    const btnTabDatos = document.getElementById("btn-tab-datos");
+    const btnTabPedidos = document.getElementById("btn-tab-pedidos");
+    const secDatos = document.getElementById("sec-datos-personales");
+    const secPedidos = document.getElementById("sec-historial-pedidos");
+
+    if (btnTabDatos && btnTabPedidos && secDatos && secPedidos) {
+        btnTabDatos.addEventListener("click", () => {
+            secDatos.classList.remove("hidden");
+            secPedidos.classList.add("hidden");
+            btnTabDatos.style.backgroundColor = "var(--color-primario-bordeos)";
+            btnTabDatos.style.color = "var(--color-blanco)";
+            btnTabPedidos.style.backgroundColor = "";
+            btnTabPedidos.style.color = "";
+        });
+
+        btnTabPedidos.addEventListener("click", () => {
+            secPedidos.classList.remove("hidden");
+            secDatos.classList.add("hidden");
+            btnTabPedidos.style.backgroundColor = "var(--color-primario-bordeos)";
+            btnTabPedidos.style.color = "var(--color-blanco)";
+            btnTabDatos.style.backgroundColor = "";
+            btnTabDatos.style.color = "";
+        });
+    }
+
+    // 3. Edición y guardado de datos personales
+    const btnToggleEdit = document.getElementById("btn-toggle-edit");
+    const fieldsetDetails = document.getElementById("fieldset-user-details");
+    const btnSaveDetails = document.getElementById("btn-save-details");
+    const formDetails = document.getElementById("form-user-details");
+
+    if (btnToggleEdit && fieldsetDetails && btnSaveDetails) {
+        btnToggleEdit.addEventListener("click", () => {
+            const isDisabled = fieldsetDetails.hasAttribute("disabled");
+            if (isDisabled) {
+                fieldsetDetails.removeAttribute("disabled");
+                btnSaveDetails.classList.remove("hidden");
+                btnToggleEdit.textContent = "❌ Cancelar Edición";
+            } else {
+                fieldsetDetails.setAttribute("disabled", "true");
+                btnSaveDetails.classList.add("hidden");
+                btnToggleEdit.textContent = "✏️ Editar Datos";
+            }
+        });
+    }
+
+    if (formDetails) {
+        formDetails.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            usuario.nombre = inputNombre?.value.trim() || usuario.nombre;
+            usuario.email = inputEmail?.value.trim() || usuario.email;
+            usuario.telefono = inputTelefono?.value.trim() || "";
+            usuario.dni = inputDni?.value.trim() || "";
+            usuario.direccion = inputDireccion?.value.trim() || "";
+
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(usuario));
+
+            if (fieldsetDetails) fieldsetDetails.setAttribute("disabled", "true");
+            if (btnSaveDetails) btnSaveDetails.classList.add("hidden");
+            if (btnToggleEdit) btnToggleEdit.textContent = "✏️ Editar Datos";
+
+            if (displayNameEl) displayNameEl.textContent = usuario.nombre;
+            if (displayEmailEl) displayEmailEl.textContent = usuario.email;
+
+            mostrarToast("Datos actualizados correctamente.");
+            announceToScreenReader("Datos de usuario actualizados.");
+        });
+    }
+
+    // 4. Cierre de sesión
     const btnLogout = document.getElementById("btn-logout");
     if (btnLogout) {
         btnLogout.addEventListener("click", () => {
@@ -329,8 +416,11 @@ function iniciarMiCuenta() {
     renderizarPedidosUsuario(usuario.id);
 }
 
+/**
+ * Renderizado del Historial de Pedidos
+ */
 function renderizarPedidosUsuario(usuarioId) {
-    const contenedor = document.getElementById("pedidos-lista");
+    const contenedor = document.getElementById("orders-list") || document.getElementById("pedidos-lista");
     if (!contenedor || !appData) return;
 
     const misPedidos = (appData.pedidos || []).filter(p => p.usuarioId === usuarioId || usuarioId.startsWith("usr-local"));
@@ -341,15 +431,17 @@ function renderizarPedidosUsuario(usuarioId) {
     }
 
     contenedor.innerHTML = misPedidos.map(p => `
-        <div style="background: var(--color-blanco); border: 2px solid var(--color-borde); border-radius: 8px; margin-bottom: 16px; padding: 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-borde); padding-bottom: 10px; margin-bottom: 12px;">
-                <strong>${p.id}</strong>
-                <span style="background: var(--color-primario-bordeos); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">${p.estado}</span>
+        <article class="order-card-history">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-borde); padding-bottom: 12px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                <div>
+                    <strong style="color: var(--color-primario-bordeos);">Pedido #${p.id}</strong>
+                    <span class="body-regular" style="font-size: 0.85rem; display: block;">${p.fecha}</span>
+                </div>
+                <span style="background-color: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem;">${p.estado}</span>
             </div>
-            <p><strong>Fecha:</strong> ${p.fecha}</p>
-            <p><strong>Método de pago:</strong> ${p.metodoPago}</p>
-            <p><strong>Total:</strong> <strong style="color: var(--color-primario-bordeos);">${p.total}</strong></p>
-        </div>
+            <p class="body-regular" style="margin-bottom: 8px;">Método de pago: ${p.metodoPago}</p>
+            <strong style="font-size: 1.1rem; color: var(--color-neutro-oscuro);">Total: ${p.total}</strong>
+        </article>
     `).join("");
 }
 
@@ -433,7 +525,6 @@ function renderizarResenas() {
     
     if (!slider || !appData || !appData.resenas) return;
 
-    // Generar tarjetas de reseñas
     slider.innerHTML = appData.resenas.map((resena, index) => {
         const estrellasStr = "★".repeat(resena.estrellas || 5);
         return `
@@ -455,7 +546,6 @@ function renderizarResenas() {
         `;
     }).join("");
 
-    // Generar botones de puntos para el carrusel
     if (indicatorsWrap) {
         indicatorsWrap.innerHTML = appData.resenas.map((_, index) => `
             <button

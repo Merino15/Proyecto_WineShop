@@ -36,13 +36,16 @@
   --espaciado-40: 2.5rem;
   --espaciado-64: 4rem;
 
-  /* Sombras */
+  /* Sombras y Efectos */
   --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.08);
   --sombra-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
   --sombra-modal: 0 16px 48px rgba(0, 0, 0, 0.3);
+  --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset Accesible y Contención de Pantalla */
+/* ==========================================================================
+   RESET ACCESIBLE & LAYOUT DE PANTALLA (STICKY FOOTER)
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -68,9 +71,24 @@ body {
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
   max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Adaptación para Preferencias de Movimiento Reducido (WCAG AAA) */
+main {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  margin-top: auto;
+  background-color: var(--color-neutro-oscuro);
+  color: var(--color-blanco);
+  padding: var(--espaciado-40) 0;
+  padding-bottom: calc(var(--espaciado-40) + env(safe-area-inset-bottom));
+}
+
+/* Movimiento Reducido (WCAG AAA) */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -85,12 +103,13 @@ body {
   }
 }
 
-/* Ocultación de Elementos */
+/* ==========================================================================
+   CLASES UTILITARIAS Y ACCESIBILIDAD (FOCO AAA & SKIP-LINK)
+   ========================================================================== */
 .hidden {
   display: none !important;
 }
 
-/* Indicador de Foco AAA Universal (Alta visibilidad en fondos claros y oscuros) */
 :focus-visible {
   outline: 3px solid var(--color-primario-bordeos) !important;
   outline-offset: 3px !important;
@@ -110,7 +129,6 @@ body {
   border: 0;
 }
 
-/* Skip Link para navegación por teclado */
 .skip-link {
   position: absolute;
   top: -100px;
@@ -129,7 +147,6 @@ body {
   top: 1rem;
 }
 
-/* Layout General */
 .container {
   width: 100%;
   max-width: 1240px;
@@ -141,7 +158,6 @@ body {
   padding: var(--espaciado-40) 0;
 }
 
-/* Enlaces de Retorno y Breadcrumbs */
 .breadcrumb-nav {
   margin: var(--espaciado-16) 0;
 }
@@ -164,7 +180,9 @@ body {
   text-decoration: underline;
 }
 
-/* Cabecera y Navegación */
+/* ==========================================================================
+   CABECERA & NAVEGACIÓN
+   ========================================================================== */
 .site-header {
   background-color: var(--color-blanco);
   border-bottom: 2px solid var(--color-borde);
@@ -221,7 +239,20 @@ body {
   gap: var(--espaciado-16);
 }
 
-/* Formulación Global e Inputs Accesibles (Solución para Zoom en iOS) */
+.lang-select {
+  border: 1.5px solid var(--color-borde);
+  background: var(--color-blanco);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--color-neutro-oscuro);
+}
+
+/* ==========================================================================
+   FORMULARIO Y ENTRADAS (PREVENCIÓN ZOOM EN IOS)
+   ========================================================================== */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -233,7 +264,7 @@ textarea,
   width: 100%;
   padding: var(--espaciado-12) var(--espaciado-16);
   font-family: var(--font-cuerpo);
-  font-size: 16px !important; /* Previene zoom automático al hacer foco en iOS Safari */
+  font-size: 16px !important; /* Previene el zoom automático en iOS Safari */
   color: var(--color-neutro-oscuro);
   background-color: var(--color-blanco);
   border: 2px solid var(--color-borde);
@@ -241,9 +272,7 @@ textarea,
   min-height: 48px;
   -webkit-appearance: none;
   appearance: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus,
@@ -292,7 +321,9 @@ fieldset:disabled .form-input {
   cursor: pointer;
 }
 
-/* Botones Accesibles */
+/* ==========================================================================
+   BOTONES Y CONTROLES
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -383,14 +414,61 @@ fieldset:disabled .form-input {
   justify-content: center;
 }
 
-/* Carrusel Hero Dinámico */
+/* ==========================================================================
+   BANNER DE ANUNCIOS SUPERIOR
+   ========================================================================== */
+.announcement-bar {
+  background-color: var(--color-primario-bordeos);
+  color: var(--color-blanco);
+  padding: 10px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.announcement-container {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announcement-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.announcement-item {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.announcement-item.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   CARRUSEL HERO PRINCIPAL
+   ========================================================================== */
 .hero-carousel-section {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    var(--color-neutro-claro) 100%
-  );
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-neutro-claro) 100%);
   border-bottom: 2px solid var(--color-borde);
   overflow: hidden;
 }
@@ -409,9 +487,7 @@ fieldset:disabled .form-input {
   height: 100%;
   opacity: 0;
   visibility: hidden;
-  transition:
-    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0.6s ease;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
   padding: var(--espaciado-64) 0;
   display: flex;
   align-items: center;
@@ -477,7 +553,7 @@ fieldset:disabled .form-input {
 .hero-model {
   width: 100%;
   height: 100%;
-  touch-action: pan-y; /* Permite scroll vertical táctil sobre el modelo 3D */
+  touch-action: pan-y;
 }
 
 .fallback-img {
@@ -511,12 +587,8 @@ fieldset:disabled .form-input {
   border-color: var(--color-primario-bordeos);
 }
 
-.carousel-arrow.prev {
-  left: 24px;
-}
-.carousel-arrow.next {
-  right: 24px;
-}
+.carousel-arrow.prev { left: 24px; }
+.carousel-arrow.next { right: 24px; }
 
 .carousel-indicators {
   position: absolute;
@@ -545,188 +617,11 @@ fieldset:disabled .form-input {
   border-radius: 12px;
 }
 
-/* Imágenes y Encuadre Multimedia */
-.card-img-wrap {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  position: relative;
-  background-color: var(--color-neutro-claro);
-  border-bottom: 2px solid var(--color-borde);
-}
-
-.card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-}
-
-.wine-card:hover .card-img {
-  transform: scale(1.06);
-}
-
-.badge-overlay {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: rgba(91, 14, 45, 0.9);
-  color: var(--color-blanco);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 5;
-}
-
-/* Modales Flotantes Adaptables */
-.age-modal-overlay,
-.newsletter-modal-overlay,
-.confirm-modal-overlay {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-color: rgba(26, 26, 26, 0.65) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: var(--espaciado-20) !important;
-  z-index: 99999 !important;
-  opacity: 1;
-  visibility: visible;
-  transition:
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0.3s ease;
-}
-
-.age-modal-overlay.hidden,
-.newsletter-modal-overlay.hidden,
-.confirm-modal-overlay.hidden {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  display: none !important;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-.age-card-modal,
-.newsletter-card-modal,
-.confirm-modal-card {
-  background: var(--color-blanco) !important;
-  border: 2px solid var(--color-borde) !important;
-  border-radius: 12px !important;
-  padding: 32px 24px !important;
-  max-width: 480px !important;
-  width: 100% !important;
-  max-height: 90vh !important;
-  overflow-y: auto !important;
-  text-align: center !important;
-  box-shadow: var(--sombra-modal) !important;
-  transform: scale(1);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.newsletter-close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: var(--color-neutro-oscuro);
-  cursor: pointer;
-  line-height: 1;
-  padding: 4px;
-  border-radius: 4px;
-}
-
-.newsletter-close-btn:hover {
-  color: var(--color-primario-bordeos);
-}
-
-.newsletter-title,
-.age-title,
-.confirm-modal-title {
-  font-family: var(--font-titulos);
-  color: var(--color-primario-bordeos);
-  font-size: 1.8rem;
-  margin: 8px 0 12px 0;
-  line-height: 1.2;
-}
-
-.newsletter-text,
-.age-text,
-.confirm-modal-text {
-  font-size: 0.95rem;
-  color: var(--color-neutro-gris);
-  margin-bottom: 24px;
-  line-height: 1.5;
-}
-
-.confirm-modal-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-.confirm-modal-actions .btn {
-  flex: 1;
-  min-height: 44px;
-}
-
-/* Tarjeta de Autenticación / Login */
-.auth-container {
-  max-width: 480px;
-  margin: var(--espaciado-32) auto;
-}
-
-.auth-card {
-  background-color: var(--color-blanco);
-  border: 2px solid var(--color-borde);
-  border-radius: 12px;
-  padding: var(--espaciado-32);
-  box-shadow: var(--sombra-card);
-}
-
-.auth-tabs {
-  display: flex;
-  border-bottom: 2px solid var(--color-borde);
-  margin-bottom: var(--espaciado-32);
-}
-
-.tab-btn {
-  flex: 1;
-  padding: var(--espaciado-12) var(--espaciado-16);
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  font-family: var(--font-cuerpo);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--color-neutro-gris);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: -2px;
-}
-
-.tab-btn.active {
-  color: var(--color-primario-bordeos);
-  border-bottom-color: var(--color-primario-bordeos);
-}
-
-/* Grid de Productos */
-.products-grid {
+/* ==========================================================================
+   TARJETAS DE PRODUCTOS Y CUADRÍCULA
+   ========================================================================== */
+.products-grid,
+.wine-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--espaciado-32);
@@ -735,19 +630,42 @@ body.modal-open {
 .wine-card {
   background-color: var(--color-blanco);
   border: 2px solid var(--color-borde);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-shadow: var(--sombra-card);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .wine-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--sombra-hover);
+}
+
+.card-img-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-neutro-claro);
+  border-bottom: 2px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.wine-card:hover .card-img {
+  transform: scale(1.06);
 }
 
 .btn-fav-card {
@@ -765,12 +683,29 @@ body.modal-open {
   cursor: pointer;
   z-index: 10;
   color: var(--color-neutro-oscuro);
+  transition: var(--transicion-suave);
 }
 
-.btn-fav-card.active {
+.btn-fav-card.active,
+.btn-fav-card:hover {
   color: var(--color-primario-bordeos);
   border-color: var(--color-primario-bordeos);
-  background-color: rgba(91, 14, 45, 0.1);
+  background-color: rgba(91, 14, 45, 0.08);
+}
+
+.badge-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(91, 14, 45, 0.9);
+  color: var(--color-blanco);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 5;
 }
 
 .wine-info {
@@ -794,7 +729,9 @@ body.modal-open {
   margin: var(--espaciado-12) 0;
 }
 
-/* Rediseño de la Barra de Filtros del Catálogo */
+/* ==========================================================================
+   FILTROS DEL CATÁLOGO
+   ========================================================================== */
 .catalog-filters-section {
   margin-bottom: var(--espaciado-32);
 }
@@ -930,57 +867,271 @@ body.modal-open {
   color: var(--color-blanco);
 }
 
-/* Banner de Anuncios */
-.announcement-bar {
-  background-color: var(--color-primario-bordeos);
-  color: var(--color-blanco);
-  padding: 10px 0;
-  font-size: 0.9rem;
-  font-weight: 600;
+/* ==========================================================================
+   CARRUSEL DE RESEÑAS Y TESTIMONIOS
+   ========================================================================== */
+.testimonials-section {
+  position: relative;
+  background-color: var(--color-blanco);
+  border-top: 2px solid var(--color-borde);
+  border-bottom: 2px solid var(--color-borde);
+  padding: var(--espaciado-48) 0;
+}
+
+.testimonials-slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 220px;
+}
+
+.testimonial-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: var(--espaciado-20);
+}
+
+.testimonial-card.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+}
+
+.testimonial-stars {
+  color: var(--color-secundario-oro);
+  font-size: 1.4rem;
+  margin-bottom: var(--espaciado-12);
+}
+
+.testimonial-quote {
+  font-family: var(--font-titulos);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-neutro-oscuro);
+  margin-bottom: var(--espaciado-20);
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-12);
+}
+
+.author-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primario-bordeos);
+}
+
+.author-name {
+  display: block;
+  font-weight: 700;
+  color: var(--color-primario-bordeos);
+}
+
+.author-role {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-neutro-gris);
+}
+
+.testimonials-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: var(--espaciado-24);
+}
+
+.testimonials-indicators .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primario-bordeos);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.testimonials-indicators .dot.active {
+  background: var(--color-primario-bordeos);
+  width: 28px;
+  border-radius: 10px;
+}
+
+/* ==========================================================================
+   PANEL DE USUARIO & MI CUENTA
+   ========================================================================== */
+.auth-container {
+  max-width: 480px;
+  margin: var(--espaciado-32) auto;
+}
+
+.auth-card {
+  background-color: var(--color-blanco);
+  border: 2px solid var(--color-borde);
+  border-radius: 12px;
+  padding: var(--espaciado-32);
+  box-shadow: var(--sombra-card);
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--color-borde);
+  margin-bottom: var(--espaciado-32);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: var(--espaciado-12) var(--espaciado-16);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: var(--font-cuerpo);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-neutro-gris);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -2px;
+}
+
+.tab-btn.active {
+  color: var(--color-primario-bordeos);
+  border-bottom-color: var(--color-primario-bordeos);
+}
+
+.user-dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--espaciado-32);
+  margin-top: var(--espaciado-24);
+}
+
+.user-avatar-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-primario-bordeos);
+  color: var(--color-blanco);
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+}
+
+.user-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-8);
+}
+
+.order-card-history {
+  background: var(--color-blanco);
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  padding: var(--espaciado-20);
+  margin-bottom: var(--espaciado-16);
+  box-shadow: var(--sombra-card);
+}
+
+/* ==========================================================================
+   MODALES FLOTANTES ACCESIBLES
+   ========================================================================== */
+.age-modal-overlay,
+.newsletter-modal-overlay,
+.confirm-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(26, 26, 26, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: var(--espaciado-20) !important;
+  z-index: 99999 !important;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+}
+
+.age-modal-overlay.hidden,
+.newsletter-modal-overlay.hidden,
+.confirm-modal-overlay.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+body.modal-open {
   overflow: hidden;
 }
 
-.announcement-container {
-  position: relative;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.age-card-modal,
+.newsletter-card-modal,
+.confirm-modal-card {
+  background: var(--color-blanco) !important;
+  border: 2px solid var(--color-borde) !important;
+  border-radius: 12px !important;
+  padding: 32px 24px !important;
+  max-width: 480px !important;
+  width: 100% !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  text-align: center !important;
+  box-shadow: var(--sombra-modal) !important;
 }
 
-.announcement-slider {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.announcement-item {
+.newsletter-close-btn {
   position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(6px);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease,
-    visibility 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-neutro-oscuro);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
 }
 
-.announcement-item.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.newsletter-title,
+.age-title,
+.confirm-modal-title {
+  font-family: var(--font-titulos);
+  color: var(--color-primario-bordeos);
+  font-size: 1.8rem;
+  margin: 8px 0 12px 0;
+  line-height: 1.2;
 }
 
-/* Selector de Cantidad */
+.newsletter-text,
+.age-text,
+.confirm-modal-text {
+  font-size: 0.95rem;
+  color: var(--color-neutro-gris);
+  margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   CARRITO Y SELECTORES DE CANTIDAD
+   ========================================================================== */
 .product-actions-wrapper {
   display: flex;
   align-items: center;
@@ -1025,15 +1176,38 @@ body.modal-open {
   background: transparent;
 }
 
-/* Pie de Página */
-.site-footer {
-  background-color: var(--color-neutro-oscuro);
-  color: var(--color-blanco);
-  padding: var(--espaciado-40) 0;
-  padding-bottom: calc(var(--espaciado-40) + env(safe-area-inset-bottom));
-  margin-top: var(--espaciado-64);
+/* ==========================================================================
+   NOTIFICACIONES FLOTANTES (TOAST)
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+.toast {
+  background: var(--color-neutro-oscuro);
+  color: var(--color-blanco);
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  font-weight: 600;
+  animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
 .footer-container {
   display: flex;
   justify-content: space-between;
@@ -1065,9 +1239,8 @@ body.modal-open {
 }
 
 /* ==========================================================================
-   MEDIA QUERIES RESPONSIVAS (MÓVIL, TABLET Y ESCRITORIO)
+   MEDIA QUERIES RESPONSIVAS (TABLET Y MÓVIL)
    ========================================================================== */
-
 @media (max-width: 1024px) {
   .catalog-filters-bar {
     grid-template-columns: 1fr 1fr;
@@ -1103,6 +1276,10 @@ body.modal-open {
   .main-nav ul {
     flex-direction: column;
     gap: var(--espaciado-16);
+  }
+
+  .user-dashboard-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-grid {

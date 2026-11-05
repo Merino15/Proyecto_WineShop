@@ -340,7 +340,7 @@
       "id": "exp-1",
       "precio": "45,00 €",
       "nombreBodega": "Bodegas Franco-Españolas",
-      "urlBodega": "https://www.francoespanolas.com/enoturismo/",
+      "urlBodega": "https://www.francoespanolas.com/visitas/",
       "imagen": "https://img.europapress.es/fotoweb/fotonoticia_20200614134210_640.jpg",
       "i18n": {
         "es": { "banner": "Cata Singular", "titulo": "Cata Premium y Calados Históricos", "duracion": "Duración: 2h 30m · Grupos reducidos", "desc": "Recorrido por bodegas subterráneas del siglo XIX con cata comentada de 4 vinos de alta gama acompañados de quesos e ibéricos." },
@@ -353,7 +353,7 @@
       "id": "exp-2",
       "precio": "65,00 €",
       "nombreBodega": "Bodegas Muga",
-      "urlBodega": "https://www.bodegasmuga.com/visitas/",
+      "urlBodega": "https://www.bodegasmuga.com/enoturismo-rioja/",
       "imagen": "https://www.jorgeordonezselections.com/media/BodegasMuga-large/bodegasmuga-winery-images-026.jpg",
       "i18n": {
         "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 y Visita a Tonelería", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas del Barrio de la Estación, demostración de tonelería artesanal y cata comentada con almuerzo campero." },
@@ -366,7 +366,7 @@
       "id": "exp-3",
       "precio": "95,00 €",
       "nombreBodega": "Bodegas Marqués de Murrieta",
-      "urlBodega": "https://marquesdemurrieta.com/enoturismo/",
+      "urlBodega": "https://reservasenoturismo.marquesdemurrieta.com/reserva/visitas?_gl=1*14o6oe1*_gcl_au*MjAwOTI5Nzg1My4xNzkzMDM1Mjg5",
       "imagen": "https://cdn.shopify.com/s/files/1/0413/0232/7459/files/GASTRONOMIA_MDM_3_600x600.jpg?v=1756803127",
       "i18n": {
         "es": { "banner": "Maridaje de Autor", "titulo": "Menú Degustación en el Castillo de Ygay", "duracion": "Comida o Cena · Salón Privado", "desc": "Experiencia gastronómica exclusiva en el histórico Castillo de Ygay maridada con las cosechas más laureadas de la bodega." },
@@ -392,7 +392,7 @@
       "id": "exp-5",
       "precio": "35,00 €",
       "nombreBodega": "CVNE",
-      "urlBodega": "https://www.cvne.com/enoturismo/",
+      "urlBodega": "https://cvne.com/visitas-home/",
       "imagen": "https://i.blogs.es/46abf9/nave-eiffel-la-rioja-bodega/1200_900.jpeg",
       "i18n": {
         "es": { "banner": "Arquitectura & Vino", "titulo": "Recorrido por la Nave Eiffel y Cata de Reservas", "duracion": "Duración: 1h 45m · Guía especializado", "desc": "Descubre la mítica arquitectura del estudio Eiffel en Haro y degusta los icónicos vinos Cune y Gran Reserva." },
@@ -405,7 +405,7 @@
       "id": "exp-6",
       "precio": "55,00 €",
       "nombreBodega": "Bodegas Ramón Bilbao",
-      "urlBodega": "https://bodegasramonbilbao.com/enoturismo/",
+      "urlBodega": "https://bodegasramonbilbao.com/visitanos/",
       "imagen": "https://www.haro.org/recursos/bodegas/photo_bodega_2.jpg",
       "i18n": {
         "es": { "banner": "Aventura Enológica", "titulo": "Experiencia Sensorial 'El Viaje del Vino'", "duracion": "Duración: 2h 00m · Sala audiovisual", "desc": "Un recorrido inmersivo por la geografía riojana con catas a ciegas y combinación de aromas de roble y uva." },
@@ -418,7 +418,7 @@
       "id": "exp-7",
       "precio": "80,00 €",
       "nombreBodega": "R. López de Heredia Viña Tondonia",
-      "urlBodega": "https://www.lopezdeheredia.com/visitas/",
+      "urlBodega": "https://www.lopezdeheredia.com/spanish/visitas/visitas.html",
       "imagen": "https://afar.brightspotcdn.com/dims4/default/160556e/2147483647/strip/true/crop/1300x867%2B0%2B0/resize/1440x960%21/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F06%2Fb7%2Fb97b0d8a9049bb67931186f69cf6%2Foriginal-haro-lopez-de-heredia-rkf48c-alamy.jpg",
       "i18n": {
         "es": { "banner": "Tradición Viva", "titulo": "Visita Exclusiva a la Tonelería y Calados Viejos", "duracion": "Duración: 2h 30m · Grupo VIP max 8 pers.", "desc": "Adéntrate en los subterráneos centenarios junto al río Ebro y conoce el oficio artesanal de los maestros toneleros." },
@@ -431,7 +431,7 @@
       "id": "exp-8",
       "precio": "40,00 €",
       "nombreBodega": "Bodegas Bilbaínas (Viña Pomal)",
-      "urlBodega": "https://www.vinapomal.com/enoturismo/",
+      "urlBodega": "https://www.15bodegas.com/enoturismo",
       "imagen": "https://www.huleymantel.com/uploads/s1/34/43/68/diseno-sin-titulo-2022-06-13t113614-196.png",
       "i18n": {
         "es": { "banner": "Origen Haro", "titulo": "Cata Maridada de Viña Pomal y Aperitivo", "duracion": "Duración: 2h 00m · Terraza viñedo", "desc": "Degustación de tres varietales emblemáticos de la casa maridados con embutidos Riojanos de alta calidad." },

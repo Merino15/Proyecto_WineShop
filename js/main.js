@@ -1,7 +1,7 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
  * Incluye verificación de edad, newsletter popup, login / mi_cuenta con sesión activa,
- * carrusel hero, carrusel de reseñas dinámico desde db.json, banner de anuncios,
+ * carrusel hero, carrusel de reseñas dinámico traducido desde db.json, banner de anuncios,
  * carrito de compras, favoritos dinámicos, vista de detalle de producto e i18n persistente.
  */
 
@@ -17,6 +17,14 @@ let appData = null;
 // Determina si la ejecución se encuentra en la raíz o en el subdirectorio /html/
 const isSubdir = window.location.pathname.includes("/html/");
 const basePath = isSubdir ? "../" : "./";
+
+/**
+ * Obtiene la ruta ajustada para páginas HTML según la ubicación actual
+ * @param {string} page - Nombre del archivo html (ej: "producto.html")
+ */
+function getPagePath(page) {
+    return isSubdir ? page : `html/${page}`;
+}
 
 /**
  * Carga Asíncrona de Base de Datos JSON
@@ -84,9 +92,7 @@ function actualizarEnlaceUsuario() {
     const usuario = obtenerUsuarioActivo();
     const userLinks = document.querySelectorAll('a[href*="login.html"], a[href*="mi_cuenta.html"]');
     
-    const targetPage = usuario 
-        ? (isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html")
-        : (isSubdir ? "login.html" : "html/login.html");
+    const targetPage = usuario ? getPagePath("mi_cuenta.html") : getPagePath("login.html");
 
     userLinks.forEach(link => {
         link.href = targetPage;
@@ -99,9 +105,9 @@ function actualizarEnlaceUsuario() {
 
     const path = window.location.pathname;
     if (usuario && path.includes("login.html")) {
-        window.location.href = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
+        window.location.href = getPagePath("mi_cuenta.html");
     } else if (!usuario && path.includes("mi_cuenta.html")) {
-        window.location.href = isSubdir ? "login.html" : "html/login.html";
+        window.location.href = getPagePath("login.html");
     }
 }
 
@@ -136,8 +142,7 @@ function iniciarVerificacionEdad() {
 
     if (btnMenor) {
         btnMenor.addEventListener("click", () => {
-            const redirectUrl = isSubdir ? "juego_menores.html" : "html/juego_menores.html";
-            window.location.href = redirectUrl;
+            window.location.href = getPagePath("juego_menores.html");
         });
     }
 }
@@ -249,7 +254,7 @@ function iniciarAutenticacion() {
             announceToScreenReader(`Sesión iniciada como ${usuarioEncontrado.nombre}`);
             
             setTimeout(() => {
-                window.location.href = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
+                window.location.href = getPagePath("mi_cuenta.html");
             }, 1000);
         } else {
             mostrarToast("Correo electrónico o contraseña incorrectos.");
@@ -308,7 +313,7 @@ function iniciarAutenticacion() {
         announceToScreenReader("Cuenta creada con éxito.");
 
         setTimeout(() => {
-            window.location.href = isSubdir ? "mi_cuenta.html" : "html/mi_cuenta.html";
+            window.location.href = getPagePath("mi_cuenta.html");
         }, 1000);
     });
 }
@@ -532,7 +537,7 @@ function iniciarCarruselHero() {
 }
 
 /**
- * Renderizado de Reseñas desde db.json
+ * Renderizado de Reseñas desde db.json con Soporte Multilenguaje Completo
  */
 function renderizarResenas() {
     const slider = document.querySelector(".testimonials-slider");
@@ -541,20 +546,28 @@ function renderizarResenas() {
     if (!slider || !appData || !appData.resenas) return;
 
     slider.innerHTML = appData.resenas.map((resena, index) => {
+        // Extraer los datos i18n del idioma actual o usar fallback
+        const i18nResena = (resena.i18n && resena.i18n[currentLang]) 
+            ? resena.i18n[currentLang] 
+            : (resena.i18n ? resena.i18n["es"] : {});
+
+        const comentario = i18nResena.comentario || resena.comentario || "";
+        const rol = i18nResena.rol || resena.rol || "";
         const estrellasStr = "★".repeat(resena.estrellas || 5);
+
         return `
             <article class="testimonial-card ${index === 0 ? 'active' : ''}">
                 <div class="testimonial-stars" aria-label="Valoración: ${resena.estrellas || 5} de 5 estrellas">
                     ${estrellasStr}
                 </div>
                 <blockquote class="testimonial-quote">
-                    "${resena.comentario}"
+                    "${comentario}"
                 </blockquote>
                 <div class="testimonial-author">
-                    <img src="${resena.avatar}" alt="Foto de ${resena.nombre}" class="author-avatar" />
+                    <img src="${resena.avatar}" alt="Foto de ${resena.nombre}" class="author-avatar" loading="lazy" />
                     <div>
                         <strong class="author-name">${resena.nombre}</strong>
-                        <span class="author-role">${resena.rol}</span>
+                        <span class="author-role">${rol}</span>
                     </div>
                 </div>
             </article>
@@ -574,6 +587,9 @@ function renderizarResenas() {
     }
 }
 
+// Timer global para el carrusel de reseñas para evitar intervalos duplicados
+let resenasTimer = null;
+
 /**
  * Carrusel de Reseñas
  */
@@ -586,10 +602,9 @@ function iniciarCarruselResenas() {
     if (!slides.length) return;
 
     let currentIndex = 0;
-    let timer = null;
 
     function goToSlide(index) {
-        slides[currentIndex].classList.remove('active');
+        slides[currentIndex]?.classList.remove('active');
         if (dots[currentIndex]) {
             dots[currentIndex].classList.remove('active');
             dots[currentIndex].setAttribute('aria-selected', 'false');
@@ -597,7 +612,7 @@ function iniciarCarruselResenas() {
 
         currentIndex = (index + slides.length) % slides.length;
 
-        slides[currentIndex].classList.add('active');
+        slides[currentIndex]?.classList.add('active');
         if (dots[currentIndex]) {
             dots[currentIndex].classList.add('active');
             dots[currentIndex].setAttribute('aria-selected', 'true');
@@ -606,34 +621,34 @@ function iniciarCarruselResenas() {
 
     function startAutoplay() {
         stopAutoplay();
-        timer = setInterval(() => {
+        resenasTimer = setInterval(() => {
             goToSlide(currentIndex + 1);
         }, 5500);
     }
 
     function stopAutoplay() {
-        if (timer) clearInterval(timer);
+        if (resenasTimer) clearInterval(resenasTimer);
     }
 
     if (btnNext) {
-        btnNext.addEventListener('click', () => {
+        btnNext.onclick = () => {
             goToSlide(currentIndex + 1);
             startAutoplay();
-        });
+        };
     }
 
     if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
+        btnPrev.onclick = () => {
             goToSlide(currentIndex - 1);
             startAutoplay();
-        });
+        };
     }
 
     dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
+        dot.onclick = () => {
             goToSlide(idx);
             startAutoplay();
-        });
+        };
     });
 
     startAutoplay();
@@ -689,7 +704,7 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
         article.innerHTML = `
             <div class="card-img-wrap">
                 <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" 
-                        aria-label="${isFav ? (dicc.fav_remove_aria || 'Quitar de favoritos') : 'Añadir a favoritos'}" 
+                        aria-label="${isFav ? 'Quitar de favoritos' : 'Añadir a favoritos'}" 
                         aria-pressed="${isFav}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
                         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
@@ -699,7 +714,7 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
             </div>
             <div class="wine-info">
                 <h3 class="wine-name">
-                    <a href="${basePath}html/producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
+                    <a href="${getPagePath('producto.html')}?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
                 </h3>
                 <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
                 <p class="wine-price" style="margin-top: auto;"><span class="sr-only">${dicc.precio_label || 'Precio:'}</span> ${vino.precio}</p>
@@ -738,7 +753,7 @@ function renderizarBodegas(contenedorId) {
                 <p class="hero-tag" style="margin-bottom: 8px;">${traduccion.subtitulo || ''}</p>
                 <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto;">
-                    <a href="${basePath}html/catalogo.html" class="btn btn-secondary" style="flex: 1;">${dicc.btn_ver_vinos || 'Ver sus vinos'}</a>
+                    <a href="${getPagePath('catalogo.html')}" class="btn btn-secondary" style="flex: 1;">${dicc.btn_ver_vinos || 'Ver sus vinos'}</a>
                     ${bodega.url ? `
                         <a href="${bodega.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1;">
                             Web Oficial
@@ -766,7 +781,7 @@ function renderizarExperiencias(contenedorId) {
         const article = document.createElement("article");
         article.className = "wine-card";
 
-        const enlaceUrl = exp.urlBodega || `${basePath}html/bodegas.html`;
+        const enlaceUrl = exp.urlBodega || getPagePath("bodegas.html");
         const imgPath = exp.imagen.startsWith('http') ? exp.imagen : `${basePath}${exp.imagen}`;
 
         article.innerHTML = `
@@ -871,7 +886,7 @@ function renderizarVinosFiltrados(contenedorId, listaVinos) {
         
         article.innerHTML = `
             <div class="card-img-wrap">
-                <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" aria-label="Favoritos">
+                <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" aria-label="Favoritos" aria-pressed="${isFav}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
                         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                     </svg>
@@ -1285,6 +1300,10 @@ function actualizarYRenderizarTodo() {
     }
     if (document.getElementById("favoritos-grid")) {
         renderizarPaginaFavoritos();
+    }
+    if (document.querySelector(".testimonials-slider")) {
+        renderizarResenas();
+        iniciarCarruselResenas();
     }
     if (window.location.pathname.includes("producto.html")) {
         iniciarDetalleProducto();

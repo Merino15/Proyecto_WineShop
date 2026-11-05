@@ -6,19 +6,36 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    
-    <link rel="icon" type="image/png" href="../img/transparent-logo.png">
+    <meta
+      name="description"
+      content="WineShop Rioja - Catálogo completo de vinos D.O.Ca. Rioja, filtros por tipo, variedad y precio."
+    />
     <title>Catálogo Completo de Vinos | WineShop Rioja</title>
+
+    <!-- Preload de hoja de estilos crítica -->
+    <link rel="preload" href="../css/estilos_wineshop.css" as="style" />
     <link rel="stylesheet" href="../css/estilos_wineshop.css" />
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
-    ></script>
+
+    <!-- Favicon e iconos para navegadores escritorio y móviles -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../img/favicon.png"
+    />
+    <link rel="apple-touch-icon" href="../img/favicon.png" />
+
+    <!-- Carga diferida de scripts sin bloqueo de renderizado -->
+    <script src="../js/main.js" defer></script>
   </head>
   <body>
+    <!-- Enlace accesible de salto al contenido -->
     <a href="#contenido-principal" class="skip-link" data-i18n="skip_to_content"
       >Saltar al contenido principal</a
     >
+
+    <!-- Indicador accesible para lectores de pantalla -->
     <div
       id="live-announcer"
       class="sr-only"
@@ -26,6 +43,7 @@
       aria-atomic="true"
     ></div>
 
+    <!-- Cabecera principal -->
     <header class="site-header">
       <div class="container header-container">
         <a
@@ -34,20 +52,21 @@
           aria-label="WineShop - Inicio"
         >
           <picture>
-            <source
-              media="(max-width: 768px)"
-              srcset="../img/logo-dibujo.svg"
-            />
+            <!-- En móviles se muestra ../img/favicon.png adaptado al header -->
+            <source media="(max-width: 768px)" srcset="../img/favicon.png" />
+            <!-- En pantallas grandes se mantiene el logotipo horizontal completo -->
             <img
               src="../img/transparent-logo.png"
               alt="WineShop Vinos Premium"
               class="logo"
               width="160"
               height="50"
+              fetchpriority="high"
             />
           </picture>
         </a>
 
+        <!-- Botón menú hamburguesa para móvil -->
         <button
           type="button"
           class="nav-toggle"
@@ -69,6 +88,7 @@
           </svg>
         </button>
 
+        <!-- Menú de navegación principal -->
         <nav
           class="main-nav"
           id="main-nav-list"
@@ -93,38 +113,25 @@
           </ul>
         </nav>
 
+        <!-- Acciones de cabecera -->
         <div class="header-actions">
           <div class="custom-lang-wrap">
             <label for="custom-lang-select" class="sr-only"
               >Seleccionar idioma</label
             >
-            <!-- Selector de idioma (DEBE tener exactamente este ID) -->
-            <select id="custom-lang-select" aria-label="Seleccionar idioma">
+            <select id="custom-lang-select" class="lang-select">
               <option value="es">ES</option>
               <option value="en">EN</option>
               <option value="fr">FR</option>
               <option value="de">DE</option>
             </select>
-
-            <!-- Enlaces del menú con data-i18n -->
-            <a href="../index.html" data-i18n="nav_inicio">Inicio</a>
-            <a href="catalogo.html" data-i18n="nav_catalogo"
-              >Catálogo de Vinos</a
-            >
-
-            <!-- Buscador con data-i18n-placeholder -->
-            <input
-              type="text"
-              id="search-input"
-              data-i18n-placeholder="search_placeholder"
-              placeholder="Buscar vino..."
-            />
           </div>
 
           <a
             href="favoritos.html"
             class="btn-icon"
             aria-label="Ver mis vinos favoritos"
+            data-i18n-aria="nav_favoritos"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +158,7 @@
             href="login.html"
             class="btn-icon"
             aria-label="Mi Cuenta e Iniciar Sesión"
+            data-i18n-aria="nav_cuenta"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -196,12 +204,15 @@
       </div>
     </header>
 
+    <!-- Contenido principal -->
     <main
       id="contenido-principal"
       class="container section-padding"
       tabindex="-1"
     >
-      <h1 class="section-title">Catálogo de Vinos D.O.Ca. Rioja</h1>
+      <h1 class="section-title" data-i18n="nav_catalogo">
+        Catálogo de Vinos D.O.Ca. Rioja
+      </h1>
       <p
         class="section-subtitle"
         style="text-align: center; margin-bottom: var(--espaciado-32)"
@@ -209,6 +220,7 @@
         Filtra por variedad, tipo de vino y rango de precio.
       </p>
 
+      <!-- Sección de Filtros -->
       <section
         class="catalog-filters-section"
         aria-label="Filtros del catálogo"
@@ -218,8 +230,12 @@
           class="catalog-filters-bar"
           onsubmit="event.preventDefault()"
         >
+          <!-- Buscador por texto -->
           <div class="filter-group filter-search">
-            <label for="search-input" class="filter-label"
+            <label
+              for="search-input"
+              class="filter-label"
+              data-i18n="filter_label_type"
               >Buscar vino o variedad</label
             >
             <div class="input-with-icon">
@@ -241,28 +257,43 @@
                 type="text"
                 id="search-input"
                 class="filter-control"
-                placeholder="Ej. Reserva, Tempranillo, Crianza..."
+                data-i18n-placeholder="search_placeholder"
+                placeholder="Buscar por nombre o descripción..."
               />
             </div>
           </div>
 
+          <!-- Selector de tipo -->
           <div class="filter-group filter-select-wrap">
-            <label for="type-select" class="filter-label">Tipo de Vino</label>
+            <label
+              for="type-select"
+              class="filter-label"
+              data-i18n="filter_label_type"
+              >Tipo de Vino</label
+            >
             <select id="type-select" class="filter-control">
-              <option value="todos">Todos los tipos</option>
-              <option value="tinto">Tinto</option>
-              <option value="blanco">Blanco</option>
-              <option value="rosado">Rosado</option>
-              <option value="espumoso">Espumoso</option>
+              <option value="todos" data-i18n="filter_all">
+                Todos los tipos
+              </option>
+              <option value="tinto" data-i18n="filter_red">Tinto</option>
+              <option value="blanco" data-i18n="filter_white">Blanco</option>
+              <option value="rosado" data-i18n="filter_rose">Rosado</option>
+              <option value="espumoso" data-i18n="filter_sparkling">
+                Espumoso
+              </option>
             </select>
           </div>
 
+          <!-- Rango de precio -->
           <div class="filter-group filter-price-wrap">
             <div class="price-label-header">
-              <label for="price-range" class="filter-label"
+              <label
+                for="price-range"
+                class="filter-label"
+                data-i18n="filter_label_price"
                 >Precio máximo</label
               >
-              <span id="price-value" class="price-badge">210.00 €</span>
+              <span id="price-value" class="price-badge">250.00 €</span>
             </div>
             <input
               type="range"
@@ -271,15 +302,23 @@
               min="10"
               max="250"
               step="5"
-              value="210"
+              value="250"
             />
           </div>
 
+          <!-- Contador de resultados y botón reset -->
           <div class="filter-actions-wrap">
-            <span id="results-counter" class="results-chip" aria-live="polite"
-              >13 vinos encontrados</span
+            <span
+              id="results-counter"
+              class="results-chip"
+              aria-live="polite"
+            ></span>
+            <button
+              type="button"
+              id="btn-reset-filters"
+              class="btn-reset"
+              data-i18n="btn_reset"
             >
-            <button type="button" id="btn-reset-filters" class="btn-reset">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -293,12 +332,13 @@
                 <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                 <path d="M3 3v5h5" />
               </svg>
-              Limpiar
+              Limpiar Filtros
             </button>
           </div>
         </form>
       </section>
 
+      <!-- Cuadrícula de productos -->
       <div
         id="catalogo-grid"
         class="products-grid"
@@ -307,6 +347,7 @@
       ></div>
     </main>
 
+    <!-- Pie de página -->
     <footer class="site-footer" role="contentinfo">
       <div class="container footer-container">
         <div class="footer-brand">
@@ -316,6 +357,7 @@
             class="footer-logo"
             width="140"
             height="44"
+            loading="lazy"
           />
           <p class="body-regular" data-i18n="footer_copy">
             © 2026 WineShop. Todos los derechos reservados.
@@ -331,8 +373,5 @@
         </nav>
       </div>
     </footer>
-
-    <script src="../js/main.js" defer></script>
-    <script src="../js/catalogo.js" defer></script>
   </body>
 </html>

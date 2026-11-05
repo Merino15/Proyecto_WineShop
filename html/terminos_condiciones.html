@@ -3,34 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="WineShop Rioja - Términos y condiciones de uso, venta de bebidas alcohólicas y contratación de servicios.">
     <title>Términos y Condiciones | WineShop Rioja</title>
-    <meta name="description" content="Términos y condiciones de uso, venta de bebidas alcohólicas y contratación de experiencias en WineShop.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Preload de hoja de estilos crítica -->
+    <link rel="preload" href="../css/estilos_wineshop.css" as="style">
     <link rel="stylesheet" href="../css/estilos_wineshop.css">
-    
-    <link rel="icon" type="image/png" href="../img/transparent-logo.png">
+
+    <!-- Favicon e iconos para navegadores escritorio y móviles -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon.png">
+    <link rel="apple-touch-icon" href="../img/favicon.png">
+
+    <!-- Carga diferida del script sin bloqueo de renderizado -->
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
 
+    <!-- Enlace accesible de salto al contenido -->
     <a href="#contenido-principal" class="skip-link" data-i18n="skip_to_content">Saltar al contenido principal</a>
 
+    <!-- Indicador accesible para lectores de pantalla -->
+    <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Cabecera principal -->
     <header class="site-header" id="header">
         <div class="container header-container">
             <a href="../index.html" class="logo-link" aria-label="WineShop - Volver a la página de inicio">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="../img/logo-dibujo.svg">
-                    <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium & Enoturismo" class="logo" width="160" height="50">
+                    <!-- En móviles se muestra ../img/favicon.png adaptado al header -->
+                    <source media="(max-width: 768px)" srcset="../img/favicon.png">
+                    <!-- En pantallas grandes se mantiene el logotipo horizontal completo -->
+                    <img src="../img/transparent-logo.png" alt="WineShop Vinos Premium & Enoturismo" class="logo" width="160" height="50" fetchpriority="high">
                 </picture>
             </a>
 
+            <!-- Botón menú hamburguesa para móvil -->
             <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav-list" aria-label="Abrir menú de navegación">
-                <svg class="nav-toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <span class="sr-only">Menú</span>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
             
+            <!-- Menú de navegación principal -->
             <nav class="main-nav" id="main-nav-list" aria-label="Navegación principal">
                 <ul>
                     <li><a href="../index.html" data-i18n="nav_inicio">Inicio</a></li>
@@ -40,67 +56,79 @@
                 </ul>
             </nav>
 
+            <!-- Acciones de cabecera -->
             <div class="header-actions">
                 <div class="custom-lang-wrap">
                     <label for="custom-lang-select" class="sr-only">Seleccionar idioma</label>
                     <select id="custom-lang-select" class="lang-select">
                         <option value="es">ES</option>
                         <option value="en">EN</option>
+                        <option value="fr">FR</option>
+                        <option value="de">DE</option>
                     </select>
                 </div>
 
-                <a href="favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <a href="favoritos.html" class="btn-icon" aria-label="Ver mis vinos favoritos" data-i18n-aria="nav_favoritos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
                     <span class="badge-count" id="header-fav-count" aria-hidden="true"></span>
                 </a>
 
-                <a href="login.html" class="btn-icon" aria-label="Mi Cuenta e Iniciar Sesión">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <a href="login.html" class="btn-icon" aria-label="Mi Cuenta e Iniciar Sesión" data-i18n-aria="nav_cuenta">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
                 </a>
 
                 <a href="checkout.html" class="btn-icon cart-btn" aria-label="Abrir carrito de compras">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
                     <span class="badge-count" id="header-cart-count" aria-hidden="true">0</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <main id="contenido-principal" class="container product-page-container" tabindex="-1">
+    <!-- Contenido principal -->
+    <main id="contenido-principal" class="container section-padding" tabindex="-1">
         <nav class="breadcrumb-nav" aria-label="Migas de pan">
             <a href="../index.html" class="btn-back">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m15 18-6-6 6-6"/>
+                </svg>
                 <span>Volver al inicio</span>
             </a>
         </nav>
 
-        <article class="legal-content-card" style="background: #ffffff; padding: var(--espaciado-32); border-radius: 8px; border: 2px solid var(--color-neutro-calido-500);">
-            <h1 class="product-title-large" style="margin-bottom: var(--espaciado-16);">Términos y Condiciones de Uso y Venta</h1>
-            <p class="body-regular" style="color: var(--color-gris-700); margin-bottom: var(--espaciado-24);"><em>Última actualización: 2026</em></p>
+        <article class="legal-content-card" style="background: var(--color-blanco); padding: var(--espaciado-32); border-radius: 8px; border: 2px solid var(--color-borde); box-shadow: var(--sombra-card);">
+            <h1 class="section-title" style="text-align: left; margin-bottom: var(--espaciado-16);" data-i18n="footer_terms">Términos y Condiciones de Uso y Venta</h1>
+            <p class="body-regular" style="color: var(--color-neutro-gris); margin-bottom: var(--espaciado-24);"><em>Última actualización: 2026</em></p>
 
             <section style="margin-bottom: var(--espaciado-24);">
-                <h2>1. Prohibición de Venta a Menores de Edad (+18)</h2>
+                <h2 style="font-family: var(--font-titulos); color: var(--color-primario-bordeos); margin-bottom: 8px;">1. Prohibición de Venta a Menores de Edad (+18)</h2>
                 <p class="body-regular">
                     De conformidad con la legislación española (Ley 11/2010 y normativas autonómicas), la venta y suministro de bebidas alcohólicas a menores de 18 años está estrictamente prohibida. Al realizar un pedido en WineShop, el usuario declara formalmente ser mayor de 18 años.
                 </p>
             </section>
 
             <section style="margin-bottom: var(--espaciado-24);">
-                <h2>2. Precios e Impuestos</h2>
+                <h2 style="font-family: var(--font-titulos); color: var(--color-primario-bordeos); margin-bottom: 8px;">2. Precios e Impuestos</h2>
                 <p class="body-regular">
                     Todos los precios mostrados en el catálogo incluyen el Impuesto sobre el Valor Añadido (IVA) correspondiente en España. Los gastos de envío se calcularán y desglosarán antes de la tramitación final del pedido.
                 </p>
             </section>
 
             <section style="margin-bottom: var(--espaciado-24);">
-                <h2>3. Envíos y Entregas</h2>
+                <h2 style="font-family: var(--font-titulos); color: var(--color-primario-bordeos); margin-bottom: 8px;">3. Envíos y Entregas</h2>
                 <p class="body-regular">
                     Los envíos de botellas se realizan mediante transporte especializado en logística vitivinícola con embalaje de protección anti-rotura. El plazo medio de entrega en la península es de 24 a 72 horas laborables.
                 </p>
             </section>
 
             <section style="margin-bottom: var(--espaciado-24);">
-                <h2>4. Derecho de Desistimiento y Devoluciones</h2>
+                <h2 style="font-family: var(--font-titulos); color: var(--color-primario-bordeos); margin-bottom: 8px;">4. Derecho de Desistimiento y Devoluciones</h2>
                 <p class="body-regular">
                     El cliente dispone de un plazo de 14 días naturales desde la recepción del producto para ejercitar su derecho de desistimiento, siempre que las botellas se conserven en su embalaje original, sin abrir y en perfectas condiciones.
                 </p>
@@ -108,18 +136,19 @@
         </article>
     </main>
 
+    <!-- Pie de página -->
     <footer class="site-footer" role="contentinfo">
         <div class="container footer-container">
-            <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44">
-            <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
+            <div class="footer-brand">
+                <img src="../img/transparent-logo.png" alt="WineShop Logotipo" class="footer-logo" width="140" height="44" loading="lazy">
+                <p class="body-regular" data-i18n="footer_copy">© 2026 WineShop. Todos los derechos reservados.</p>
+            </div>
             <nav class="footer-links" aria-label="Enlaces legales">
                 <a href="politica_privacidad.html" data-i18n="footer_privacy">Política de Privacidad</a>
-                <a href="terminos_condiciones.html" aria-current="page" data-i18n="footer_terms">Términos y Condiciones</a>
                 <a href="declaracion_accesibilidad.html" data-i18n="footer_a11y">Declaración de Accesibilidad</a>
             </nav>
         </div>
     </footer>
 
-    <script src="../js/main.js" defer></script>
 </body>
 </html>

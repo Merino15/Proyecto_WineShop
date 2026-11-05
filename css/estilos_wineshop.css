@@ -34,6 +34,7 @@
   --espaciado-24: 1.5rem;
   --espaciado-32: 2rem;
   --espaciado-40: 2.5rem;
+  --espaciado-48: 3rem;
   --espaciado-64: 4rem;
 
   /* Sombras y Efectos */
@@ -204,11 +205,17 @@ main {
   align-items: center;
 }
 
-.logo,
-.footer-logo {
-  height: auto;
-  max-height: 50px;
+.site-header .logo {
+  height: 45px;
   width: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.footer-logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
 }
 
 .main-nav ul {
@@ -401,17 +408,37 @@ fieldset:disabled .form-input {
   padding: 2px;
 }
 
+/* Botón Menú Hamburguesa Móvil */
 .nav-toggle {
   display: none;
-  background: none;
-  border: 2px solid var(--color-neutro-oscuro);
-  border-radius: 4px;
+  background: transparent;
+  border: 2px solid var(--color-primario-bordeos);
+  color: var(--color-primario-bordeos);
+  border-radius: 6px;
   padding: 8px;
   cursor: pointer;
   min-width: 44px;
   min-height: 44px;
   align-items: center;
   justify-content: center;
+  transition: var(--transicion-suave);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle svg {
+  stroke: var(--color-primario-bordeos);
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  background-color: rgba(91, 14, 45, 0.08);
+  border-color: var(--color-primario-hover);
+  color: var(--color-primario-hover);
+}
+
+.nav-toggle:hover svg,
+.nav-toggle:focus-visible svg {
+  stroke: var(--color-primario-hover);
 }
 
 /* ==========================================================================
@@ -1335,9 +1362,4 @@ body.modal-open {
   .hero-3d-wrapper {
     height: 300px;
   }
-}
-.site-header .logo {
-    height: 45px !important; /* Ajusta este valor según prefieras */
-    width: auto !important;
-    max-height: none !important;
 }

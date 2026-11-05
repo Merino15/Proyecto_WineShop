@@ -396,7 +396,9 @@
       "imagen": "https://i.blogs.es/46abf9/nave-eiffel-la-rioja-bodega/1200_900.jpeg",
       "i18n": {
         "es": { "banner": "Arquitectura & Vino", "titulo": "Recorrido por la Nave Eiffel y Cata de Reservas", "duracion": "Duración: 1h 45m · Guía especializado", "desc": "Descubre la mítica arquitectura del estudio Eiffel en Haro y degusta los icónicos vinos Cune y Gran Reserva." },
-        "en": { "banner": "Architecture & Wine", "titulo": "Eiffel Cellar Tour & Reserve Tasting", "duracion": "Duration: 1h 45m · Specialist guide", "desc": "Discover iconic Eiffel architecture in Haro and taste Cune and Gran Reserva wines." }
+        "en": { "banner": "Architecture & Wine", "titulo": "Eiffel Cellar Tour & Reserve Tasting", "duracion": "Duration: 1h 45m · Specialist guide", "desc": "Discover iconic Eiffel architecture in Haro and taste Cune and Gran Reserva wines." },
+        "fr": { "banner": "Architecture & Vin", "titulo": "Visite du Chai Eiffel et Dégustation", "duracion": "Durée : 1h 45m · Guide spécialisé", "desc": "Découvrez l'architecture mythique du studio Eiffel à Haro et dégustez les vins iconiques Cune." },
+        "de": { "banner": "Architektur & Wein", "titulo": "Eiffel-Halle Führung & Reserve-Verkostung", "duracion": "Dauer: 1h 45m · Spezialisierter Führer", "desc": "Entdecken Sie die ikonische Eiffel-Architektur in Haro und verkosten Sie legendäre Cune-Weine." }
       }
     },
     {
@@ -407,7 +409,9 @@
       "imagen": "https://www.internationalwinechallenge.com/filestore/jpg/IWC%202025/Canopy/Issue152/RB-tour.jpg",
       "i18n": {
         "es": { "banner": "Aventura Enológica", "titulo": "Experiencia Sensorial 'El Viaje del Vino'", "duracion": "Duración: 2h 00m · Sala audiovisual", "desc": "Un recorrido inmersivo por la geografía riojana con catas a ciegas y combinación de aromas de roble y uva." },
-        "en": { "banner": "Wine Adventure", "titulo": "'The Wine Journey' Sensory Tasting", "duracion": "Duration: 2h 00m · Immersive room", "desc": "An immersive journey through Rioja terroir with blind tastings and aromatic pairing." }
+        "en": { "banner": "Wine Adventure", "titulo": "'The Wine Journey' Sensory Tasting", "duracion": "Duration: 2h 00m · Immersive room", "desc": "An immersive journey through Rioja terroir with blind tastings and aromatic pairing." },
+        "fr": { "banner": "Aventure Œnologique", "titulo": "Expérience Sensorielle 'Le Voyage du Vin'", "duracion": "Durée : 2h 00m · Salle immersive", "desc": "Un voyage immersif à travers le terroir de La Rioja avec dégustations à aveugle." },
+        "de": { "banner": "Wein-Abenteuer", "titulo": "Sensorik-Erlebnis 'Die Reise des Weins'", "duracion": "Dauer: 2h 00m · Immersiver Raum", "desc": "Eine immersive Reise durch das Rioja-Terroir mit Blindverkostungen." }
       }
     },
     {
@@ -418,7 +422,9 @@
       "imagen": "https://afar.brightspotcdn.com/dims4/default/160556e/2147483647/strip/true/crop/1300x867%2B0%2B0/resize/1440x960%21/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F06%2Fb7%2Fb97b0d8a9049bb67931186f69cf6%2Foriginal-haro-lopez-de-heredia-rkf48c-alamy.jpg",
       "i18n": {
         "es": { "banner": "Tradición Viva", "titulo": "Visita Exclusiva a la Tonelería y Calados Viejos", "duracion": "Duración: 2h 30m · Grupo VIP max 8 pers.", "desc": "Adéntrate en los subterráneos centenarios junto al río Ebro y conoce el oficio artesanal de los maestros toneleros." },
-        "en": { "banner": "Living Tradition", "titulo": "Exclusive Cooperage & Ancient Cellar Tour", "duracion": "Duration: 2h 30m · VIP group max 8", "desc": "Step into underground cellars along the Ebro River and discover traditional barrel making." }
+        "en": { "banner": "Living Tradition", "titulo": "Exclusive Cooperage & Ancient Cellar Tour", "duracion": "Duration: 2h 30m · VIP group max 8", "desc": "Step into underground cellars along the Ebro River and discover traditional barrel making." },
+        "fr": { "banner": "Tradition Vivante", "titulo": "Visite Exclusive Tonnellerie et Anciennes Caves", "duracion": "Durée : 2h 30m · Groupe VIP max 8 pers.", "desc": "Pénétrez dans les caves centenaires le long de l'Èbre et découvrez la fabrication de fûts." },
+        "de": { "banner": "Lebendige Tradition", "titulo": "Exklusive Küfer- & Historische Kellerführung", "duracion": "Dauer: 2h 30m · VIP-Gruppe max. 8 Pers.", "desc": "Tauchen Sie ein in jahrhundertealte Gewölbekeller am Ebro und entdecken Sie das Küferhandwerk." }
       }
     },
     {
@@ -429,7 +435,9 @@
       "imagen": "https://www.huleymantel.com/uploads/s1/34/43/68/diseno-sin-titulo-2022-06-13t113614-196.png",
       "i18n": {
         "es": { "banner": "Origen Haro", "titulo": "Cata Maridada de Viña Pomal y Aperitivo", "duracion": "Duración: 2h 00m · Terraza viñedo", "desc": "Degustación de tres varietales emblemáticos de la casa maridados con embutidos Riojanos de alta calidad." },
-        "en": { "banner": "Haro Heritage", "titulo": "Viña Pomal Paired Tasting & Tapas", "duracion": "Duration: 2h 00m · Vineyard terrace", "desc": "Tasting of three flagship varietals paired with traditional Riojan cured meats." }
+        "en": { "banner": "Haro Heritage", "titulo": "Viña Pomal Paired Tasting & Tapas", "duracion": "Duration: 2h 00m · Vineyard terrace", "desc": "Tasting of three flagship varietals paired with traditional Riojan cured meats." },
+        "fr": { "banner": "Origine Haro", "titulo": "Dégustation Accordée Viña Pomal et Tapas", "duracion": "Durée : 2h 00m · Terrasse vignoble", "desc": "Dégustation de trois cépages emblématiques accompagnés de charcuteries locales de la Rioja." },
+        "de": { "banner": "Herkunft Haro", "titulo": "Viña Pomal Verkostung & Rioja-Aperitif", "duracion": "Dauer: 2h 00m · Weinberg-Terrasse", "desc": "Verkostung von drei legendären Rebsorten kombiniert mit feinen Spezialitäten aus La Rioja." }
       }
     }
   ],
@@ -447,7 +455,9 @@
       "temp": "16°C - 18°C",
       "i18n": {
         "es": { "desc": "Tempranillo, intenso, elegante y estructurado con notas de fruta negra madura y especias.", "vintage": "D.O.Ca. Rioja · Cosecha 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 meses en barrica de roble francés" },
-        "en": { "desc": "Tempranillo, intense, elegant and structured with notes of ripe dark fruit and spices.", "vintage": "D.O.Ca. Rioja · 2018 Vintage", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 months in French oak" }
+        "en": { "desc": "Tempranillo, intense, elegant and structured with notes of ripe dark fruit and spices.", "vintage": "D.O.Ca. Rioja · 2018 Vintage", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 months in French oak" },
+        "fr": { "desc": "Tempranillo intense, élégant et structuré aux notes de fruits noirs mûrs et d'épices.", "vintage": "D.O.Ca. Rioja · Millésime 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 mois en fût de chêne français" },
+        "de": { "desc": "Tempranillo, intensiv, elegant und strukturiert mit Noten von reifen dunklen Früchten und Gewürzen.", "vintage": "D.O.Ca. Rioja · Jahrgang 2018", "grape": "Tempranillo 95%, Graciano 5%", "aging": "24 Monate in französischer Eiche" }
       }
     },
     {
@@ -463,7 +473,9 @@
       "temp": "16°C - 17°C",
       "i18n": {
         "es": { "desc": "Aromas a roble tostado, ciruela pasa, vainilla y frutos rojos silvestres.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 meses en barrica" },
-        "en": { "desc": "Aromas of toasted oak, plum, vanilla and wild berries.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 months in barrel" }
+        "en": { "desc": "Aromas of toasted oak, plum, vanilla and wild berries.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 months in barrel" },
+        "fr": { "desc": "Arômes de chêne grillé, pruneau, vanille et fruits rouges sauvages.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 mois en fût" },
+        "de": { "desc": "Aromen von gerösteter Eiche, Pflaume, Vanille und wilden Roten Beeren.", "vintage": "AOC Bordeaux Supérieur", "grape": "Cabernet Sauvignon 70%, Merlot 30%", "aging": "18 Monate im Holzfass" }
       }
     },
     {
@@ -479,7 +491,9 @@
       "temp": "10°C - 12°C",
       "i18n": {
         "es": { "desc": "Viura fresca, notas cítricas, matices florales y sutil fondo azahar y miel.", "vintage": "D.O.Ca. Rioja · Selección Especial", "grape": "Viura 85%, Malvasía 15%", "aging": "6 meses sobre lías finas" },
-        "en": { "desc": "Fresh Viura with citrus, delicate florals and subtle honey notes.", "vintage": "D.O.Ca. Rioja · Special Selection", "grape": "Viura 85%, Malvasía 15%", "aging": "6 months on fine lees" }
+        "en": { "desc": "Fresh Viura with citrus, delicate florals and subtle honey notes.", "vintage": "D.O.Ca. Rioja · Special Selection", "grape": "Viura 85%, Malvasía 15%", "aging": "6 months on fine lees" },
+        "fr": { "desc": "Viura fraîche, notes d'agrumes, nuances florales et touche délicate de miel.", "vintage": "D.O.Ca. Rioja · Sélection Spéciale", "grape": "Viura 85%, Malvasía 15%", "aging": "6 mois sur lies fines" },
+        "de": { "desc": "Frischer Viura, Zitrusnoten, zarte Blüten und feine Honignuancen.", "vintage": "D.O.Ca. Rioja · Spezial-Selektion", "grape": "Viura 85%, Malvasía 15%", "aging": "6 Monate auf der Feinhefe" }
       }
     },
     {
@@ -495,7 +509,9 @@
       "temp": "6°C - 8°C",
       "i18n": {
         "es": { "desc": "Burbuja fina y persistente con bouquet cremoso, ideal para celebraciones y mariscos.", "vintage": "Método Tradicional D.O.Ca. Rioja", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 meses en calado subterráneo" },
-        "en": { "desc": "Persistent fine bubbles with a creamy bouquet, ideal for celebrations.", "vintage": "Traditional Method D.O.Ca. Rioja", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 months in cellar" }
+        "en": { "desc": "Persistent fine bubbles with a creamy bouquet, ideal for celebrations.", "vintage": "Traditional Method D.O.Ca. Rioja", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 months in cellar" },
+        "fr": { "desc": "Bulles fines et persistantes au bouquet crémeux, idéal pour les grands événements.", "vintage": "Méthode Traditionnelle D.O.Ca. Rioja", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 mois en cave souterraine" },
+        "de": { "desc": "Feine und anhaltende Perlage mit cremigem Bouquet, ideal für besondere Anlässe.", "vintage": "Traditionelle Methode D.O.Ca. Rioja", "grape": "Chardonnay 60%, Pinot Noir 40%", "aging": "30 Monate im Gewölbekeller" }
       }
     },
     {
@@ -511,7 +527,9 @@
       "temp": "16°C - 18°C",
       "i18n": {
         "es": { "desc": "Icono de La Rioja. Expresivo, balsámico, con taninos pulidos y final persistente.", "vintage": "D.O.Ca. Rioja · Cosecha 2019", "grape": "Tempranillo 93%, Graciano 7%", "aging": "24 meses en roble americano" },
-        "en": { "desc": "Icon of Rioja. Expressive, balsamic, with polished tannins and long finish.", "vintage": "D.O.Ca. Rioja · 2019 Vintage", "grape": "Tempranillo 93%, Graciano 7%", "aging": "24 months in American oak" }
+        "en": { "desc": "Icon of Rioja. Expressive, balsamic, with polished tannins and long finish.", "vintage": "D.O.Ca. Rioja · 2019 Vintage", "grape": "Tempranillo 93%, Graciano 7%", "aging": "24 months in American oak" },
+        "fr": { "desc": "Icône de La Rioja. Expressif, balsamique, aux tanins fondus et finale soutenue.", "vintage": "D.O.Ca. Rioja · Millésime 2019", "grape": "Tempranillo 93%, Graciano 7%", "aging": "24 mois en chêne américain" },
+        "de": { "desc": "Ikonenwein aus La Rioja. Ausdrucksstark, balsamisch mit geschmeidigen Tanninen.", "vintage": "D.O.Ca. Rioja · Jahrgang 2019", "grape": "Tempranillo 93%, Graciano 7%", "aging": "24 Monate in amerikanischer Eiche" }
       }
     },
     {
@@ -527,7 +545,9 @@
       "temp": "8°C - 10°C",
       "i18n": {
         "es": { "desc": "Garnacha suave, sutil, aromática con matices de frambuesa fresca y muy refrescante.", "vintage": "Prensado Directo", "grape": "Garnacha 80%, Tempranillo Blanco 20%", "aging": "Joven" },
-        "en": { "desc": "Smooth Grenache, subtle, aromatic with fresh raspberry notes and refreshing finish.", "vintage": "Direct Press", "grape": "Grenache 80%, White Tempranillo 20%", "aging": "Young" }
+        "en": { "desc": "Smooth Grenache, subtle, aromatic with fresh raspberry notes and refreshing finish.", "vintage": "Direct Press", "grape": "Grenache 80%, White Tempranillo 20%", "aging": "Young" },
+        "fr": { "desc": "Grenache doux, subtil, aromatique aux notes de framboise fraîche très rafraîchissant.", "vintage": "Pressurage Direct", "grape": "Grenache 80%, Tempranillo Blanc 20%", "aging": "Jeune" },
+        "de": { "desc": "Sanfter Grenache, subtil und aromatisch mit frischen Himbeernoten.", "vintage": "Direktpressung", "grape": "Grenache 80%, Weißer Tempranillo 20%", "aging": "Junger Wein" }
       }
     },
     {
@@ -543,7 +563,9 @@
       "temp": "17°C - 19°C",
       "i18n": {
         "es": { "desc": "Gran Reserva de leyenda. Complejo, especiado, elegante y de infinita capacidad de guarda.", "vintage": "D.O.Ca. Rioja · Cosecha 2016", "grape": "Tempranillo 80%, Garnacha 10%, Mazuelo 5%, Graciano 5%", "aging": "36 meses en barrica" },
-        "en": { "desc": "Legendary Gran Reserva. Complex, spicy, elegant with endless aging potential.", "vintage": "D.O.Ca. Rioja · 2016 Vintage", "grape": "Tempranillo 80%, Grenache 10%, Mazuelo 5%, Graciano 5%", "aging": "36 months in barrel" }
+        "en": { "desc": "Legendary Gran Reserva. Complex, spicy, elegant with endless aging potential.", "vintage": "D.O.Ca. Rioja · 2016 Vintage", "grape": "Tempranillo 80%, Grenache 10%, Mazuelo 5%, Graciano 5%", "aging": "36 months in barrel" },
+        "fr": { "desc": "Gran Reserva mythique. Complexe, épicé, élégant avec un potentiel de garde exceptionnel.", "vintage": "D.O.Ca. Rioja · Millésime 2016", "grape": "Tempranillo 80%, Grenache 10%, Mazuelo 5%, Graciano 5%", "aging": "36 mois en fût" },
+        "de": { "desc": "Legendärer Gran Reserva. Komplex, würzig, elegant mit außergewöhnlichem Reifepotenzial.", "vintage": "D.O.Ca. Rioja · Jahrgang 2016", "grape": "Tempranillo 80%, Grenache 10%, Mazuelo 5%, Graciano 5%", "aging": "36 Monate im Holzfass" }
       }
     },
     {
@@ -559,7 +581,9 @@
       "temp": "7°C - 9°C",
       "i18n": {
         "es": { "desc": "Fresco, herbáceo, con intenso aroma a fruta de la pasión y volumen envolvente en boca.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 meses sobre lías" },
-        "en": { "desc": "Fresh, herbaceous, with intense passion fruit notes and great mouthfeel.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 months on lees" }
+        "en": { "desc": "Fresh, herbaceous, with intense passion fruit notes and great mouthfeel.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 months on lees" },
+        "fr": { "desc": "Frais, herbacé, aux arômes intenses de fruit de la passion et belle rondeur.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 mois sur lies" },
+        "de": { "desc": "Frisch, krautig, mit intensivem Passionsfrucht-Aroma und wunderbarer Struktur.", "vintage": "D.O. Rueda", "grape": "Verdejo 100%", "aging": "4 Monate auf der Hefelagerung" }
       }
     },
     {
@@ -575,7 +599,9 @@
       "temp": "15°C - 17°C",
       "i18n": {
         "es": { "desc": "Intenso color violeta, notas de pimienta negra, violetas y marcada acidez natural.", "vintage": "Edición Limitada Viñedo Singular", "grape": "Graciano 100%", "aging": "14 meses en roble francés" },
-        "en": { "desc": "Deep violet color, notes of black pepper, flowers and crisp natural acidity.", "vintage": "Single Vineyard Limited Edition", "grape": "Graciano 100%", "aging": "14 months in French oak" }
+        "en": { "desc": "Deep violet color, notes of black pepper, flowers and crisp natural acidity.", "vintage": "Single Vineyard Limited Edition", "grape": "Graciano 100%", "aging": "14 months in French oak" },
+        "fr": { "desc": "Robe violette intense, notes de poivre noir, de violette et acidité naturelle remarquable.", "vintage": "Édition Limitée Vignoble Unique", "grape": "Graciano 100%", "aging": "14 mois en chêne français" },
+        "de": { "desc": "Tiefes Violett, Noten von schwarzem Pfeffer, Veilchen und frischer natürlicher Säure.", "vintage": "Einzellage Limitierte Edition", "grape": "Graciano 100%", "aging": "14 Monate in französischer Eiche" }
       }
     },
     {
@@ -591,7 +617,9 @@
       "temp": "11°C - 13°C",
       "i18n": {
         "es": { "desc": "Blanco complejo, untuoso, con toques de mantequilla, tostados y frutos secos.", "vintage": "Añada Excepcional", "grape": "Chardonnay 100%", "aging": "18 meses en barrica nueva" },
-        "en": { "desc": "Complex, unctuous white wine with buttery, toasted oak and nut notes.", "vintage": "Exceptional Vintage", "grape": "Chardonnay 100%", "aging": "18 months in new oak" }
+        "en": { "desc": "Complex, unctuous white wine with buttery, toasted oak and nut notes.", "vintage": "Exceptional Vintage", "grape": "Chardonnay 100%", "aging": "18 months in new oak" },
+        "fr": { "desc": "Blanc complexe et onctueux aux nuances beurrées, toastées et de fruits secs.", "vintage": "Millésime Exceptionnel", "grape": "Chardonnay 100%", "aging": "18 mois en fût neuf" },
+        "de": { "desc": "Komplexer, cremiger Weißwein mit Nuancen von Butter, Röstnoten und Nüssen.", "vintage": "Außergewöhnlicher Jahrgang", "grape": "Chardonnay 100%", "aging": "18 Monate in neuer Eiche" }
       }
     },
     {
@@ -607,7 +635,9 @@
       "temp": "17°C - 19°C",
       "i18n": {
         "es": { "desc": "Vino mítico de CVNE. Elegancia suprema, aromas a regaliz, cuero, tabaco y fruta compotada.", "vintage": "D.O.Ca. Rioja · Cosecha 2014", "grape": "Tempranillo 85%, Graciano 10%, Mazuelo 5%", "aging": "24 meses en barrica y 36 en botella" },
-        "en": { "desc": "Mythical wine from CVNE. Supreme elegance, aromas of liquorice, leather and compote fruit.", "vintage": "D.O.Ca. Rioja · 2014 Vintage", "grape": "Tempranillo 85%, Graciano 10%, Mazuelo 5%", "aging": "24 months in oak, 36 in bottle" }
+        "en": { "desc": "Mythical wine from CVNE. Supreme elegance, aromas of liquorice, leather and compote fruit.", "vintage": "D.O.Ca. Rioja · 2014 Vintage", "grape": "Tempranillo 85%, Graciano 10%, Mazuelo 5%", "aging": "24 months in oak, 36 in bottle" },
+        "fr": { "desc": "Vin mythique de CVNE. Élégance suprême, arômes de réglisse, cuir et fruits compotés.", "vintage": "D.O.Ca. Rioja · Millésime 2014", "grape": "Tempranillo 85%, Graciano 10%, Mazuelo 5%", "aging": "24 mois en fût et 36 en bouteille" },
+        "de": { "desc": "Legendärer Wein von CVNE. Höchste Eleganz mit Aromen von Lakritz, Leder und reifer Frucht.", "vintage": "D.O.Ca. Rioja · Jahrgang 2014", "grape": "Tempranillo 85%, Graciano 10%, Mazuelo 5%", "aging": "24 Monate im Fass und 36 in der Flasche" }
       }
     },
     {
@@ -623,7 +653,9 @@
       "temp": "15°C - 17°C",
       "i18n": {
         "es": { "desc": "Moderno y frutal. Crianza en barricas de roble francés y americano de tostado medio.", "vintage": "D.O.Ca. Rioja · 2020", "grape": "Tempranillo 100%", "aging": "14 meses en barrica" },
-        "en": { "desc": "Modern and fruity. Aged in medium-toast French and American oak barrels.", "vintage": "D.O.Ca. Rioja · 2020", "grape": "Tempranillo 100%", "aging": "14 months in barrel" }
+        "en": { "desc": "Modern and fruity. Aged in medium-toast French and American oak barrels.", "vintage": "D.O.Ca. Rioja · 2020", "grape": "Tempranillo 100%", "aging": "14 months in barrel" },
+        "fr": { "desc": "Moderne et fruité. Élevé en fûts de chêne français et américain.", "vintage": "D.O.Ca. Rioja · 2020", "grape": "Tempranillo 100%", "aging": "14 mois en fût" },
+        "de": { "desc": "Modern und fruchtbetont. Ausbau in mittelstark gerösteten Eichenfässern.", "vintage": "D.O.Ca. Rioja · 2020", "grape": "Tempranillo 100%", "aging": "14 Monate im Holzfass" }
       }
     },
     {
@@ -639,7 +671,9 @@
       "temp": "18°C - 19°C",
       "i18n": {
         "es": { "desc": "Considerado el mejor vino tinto del mundo por Wine Spectator (100 puntos Parker).", "vintage": "D.O.Ca. Rioja · Cosecha 2011", "grape": "Tempranillo 84%, Mazuelo 16%", "aging": "28 meses en barricas de roble francés" },
-        "en": { "desc": "Awarded World's Best Red Wine by Wine Spectator (100 Parker points).", "vintage": "D.O.Ca. Rioja · 2011 Vintage", "grape": "Tempranillo 84%, Mazuelo 16%", "aging": "28 months in French oak" }
+        "en": { "desc": "Awarded World's Best Red Wine by Wine Spectator (100 Parker points).", "vintage": "D.O.Ca. Rioja · 2011 Vintage", "grape": "Tempranillo 84%, Mazuelo 16%", "aging": "28 months in French oak" },
+        "fr": { "desc": "Sacré meilleur vin rouge du monde par Wine Spectator (100 points Parker).", "vintage": "D.O.Ca. Rioja · Millésime 2011", "grape": "Tempranillo 84%, Mazuelo 16%", "aging": "28 mois en fût de chêne français" },
+        "de": { "desc": "Von Wine Spectator zum besten Rotwein der Welt gekürt (100 Parker-Punkte).", "vintage": "D.O.Ca. Rioja · Jahrgang 2011", "grape": "Tempranillo 84%, Mazuelo 16%", "aging": "28 Monate in französischer Eiche" }
       }
     },
     {
@@ -655,7 +689,9 @@
       "temp": "15°C - 16°C",
       "i18n": {
         "es": { "desc": "Un clásico imprescindible de Haro. Notas florales, fruta roja madura y toque de regaliz.", "vintage": "D.O.Ca. Rioja · Cosecha 2021", "grape": "Tempranillo 100%", "aging": "12 meses en roble americano" },
-        "en": { "desc": "An essential classic from Haro. Floral notes, ripe red fruit and liquorice hint.", "vintage": "D.O.Ca. Rioja · 2021 Vintage", "grape": "Tempranillo 100%", "aging": "12 months in American oak" }
+        "en": { "desc": "An essential classic from Haro. Floral notes, ripe red fruit and liquorice hint.", "vintage": "D.O.Ca. Rioja · 2021 Vintage", "grape": "Tempranillo 100%", "aging": "12 months in American oak" },
+        "fr": { "desc": "Un classique incontournable d'Haro. Notes florales, fruits rouges mûrs et réglisse.", "vintage": "D.O.Ca. Rioja · Millésime 2021", "grape": "Tempranillo 100%", "aging": "12 mois en chêne américain" },
+        "de": { "desc": "Ein unverzichtbarer Klassiker aus Haro. Blumige Noten, reife rote Früchte und Lakritz.", "vintage": "D.O.Ca. Rioja · Jahrgang 2021", "grape": "Tempranillo 100%", "aging": "12 Monate in amerikanischer Eiche" }
       }
     },
     {
@@ -671,7 +707,9 @@
       "temp": "17°C - 18°C",
       "i18n": {
         "es": { "desc": "Icono del estilo clásico riojano. Seco, sedoso, complejo y extraordinariamente fino.", "vintage": "D.O.Ca. Rioja · Cosecha 2011", "grape": "Tempranillo 75%, Garnacho 15%, Graciano 5%, Mazuelo 5%", "aging": "6 años en barrica artesanal" },
-        "en": { "desc": "Iconic classic Rioja style. Dry, silky, complex and extraordinarily refined.", "vintage": "D.O.Ca. Rioja · 2011 Vintage", "grape": "Tempranillo 75%, Grenache 15%, Graciano 5%, Mazuelo 5%", "aging": "6 years in craft oak barrels" }
+        "en": { "desc": "Iconic classic Rioja style. Dry, silky, complex and extraordinarily refined.", "vintage": "D.O.Ca. Rioja · 2011 Vintage", "grape": "Tempranillo 75%, Grenache 15%, Graciano 5%, Mazuelo 5%", "aging": "6 years in craft oak barrels" },
+        "fr": { "desc": "Icone du style traditionnel riojan. Sec, soyeux, complexe et d'une finesse remarquable.", "vintage": "D.O.Ca. Rioja · Millésime 2011", "grape": "Tempranillo 75%, Grenache 15%, Graciano 5%, Mazuelo 5%", "aging": "6 ans en fût artisanal" },
+        "de": { "desc": "Ikonenwein des klassischen Rioja-Stils. Trocken, seidig, komplex und außergewöhnlich fein.", "vintage": "D.O.Ca. Rioja · Jahrgang 2011", "grape": "Tempranillo 75%, Grenache 15%, Graciano 5%, Mazuelo 5%", "aging": "6 Jahre im handgefertigten Fass" }
       }
     }
   ],
@@ -679,52 +717,140 @@
     {
       "id": "res-1",
       "nombre": "Marta Salgado",
-      "rol": "Sommelier y clienta habitual",
       "estrellas": 5,
-      "comentario": "El envío de los Reserva a Logroño llegó en menos de 24 horas y con un embalaje térmico impecable. La selección de Rioja que tienen es sencillamente de otro nivel.",
-      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80",
+      "i18n": {
+        "es": {
+          "rol": "Sommelier y clienta habitual",
+          "comentario": "El envío de los Reserva a Logroño llegó en menos de 24 horas y con un embalaje térmico impecable. La selección de Rioja que tienen es sencillamente de otro nivel."
+        },
+        "en": {
+          "rol": "Sommelier & frequent buyer",
+          "comentario": "The Reserva delivery to Logroño arrived in less than 24 hours with flawless thermal packaging. Their Rioja selection is simply next level."
+        },
+        "fr": {
+          "rol": "Sommelière et cliente régulière",
+          "comentario": "La livraison des Reserva à Logroño est arrivée en moins de 24h avec un emballage thermique impeccable. Une sélection de Rioja exceptionnelle."
+        },
+        "de": {
+          "rol": "Sommelière und Stammkundin",
+          "comentario": "Die Lieferung der Reserva-Weine nach Logroño kam in unter 24 Stunden mit perfekter Thermoverpackung an. Die Rioja-Auswahl ist fantastisch."
+        }
+      }
     },
     {
       "id": "res-2",
       "nombre": "Javier Otazu",
-      "rol": "Entusiasta del enoturismo",
       "estrellas": 5,
-      "comentario": "Reservamos la cata en calados históricos a través de la web para nuestro aniversario. Una experiencia inolvidable con un trato inmejorable, repetiremos seguro.",
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80",
+      "i18n": {
+        "es": {
+          "rol": "Entusiasta del enoturismo",
+          "comentario": "Reservamos la cata en calados históricos a través de la web para nuestro aniversario. Una experiencia inolvidable con un trato inmejorable, repetiremos seguro."
+        },
+        "en": {
+          "rol": "Wine tourism enthusiast",
+          "comentario": "We booked the historical cellar tasting online for our anniversary. An unforgettable experience with top-tier service, we will definitely return."
+        },
+        "fr": {
+          "rol": "Enthousiaste d'œnotourisme",
+          "comentario": "Nous avons réservé la dégustation dans les caves historiques pour notre anniversaire. Une expérience inoubliable et un service irréprochable."
+        },
+        "de": {
+          "rol": "Weintourismus-Enthusiast",
+          "comentario": "Wir haben die Verkostung in den historischen Gewölbekellern online für unseren Jahrestag gebucht. Ein unvergessliches Erlebnis mit fantastischem Service."
+        }
+      }
     },
     {
       "id": "res-3",
       "nombre": "Carmen Izquierdo",
-      "rol": "Coleccionista de vinos",
       "estrellas": 5,
-      "comentario": "Me sorprendió gratamente poder examinar las botellas antes de comprar. Compré un Gran Reserva Prado Enea para una cena familiar y fue un rotundo éxito.",
-      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80"
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80",
+      "i18n": {
+        "es": {
+          "rol": "Coleccionista de vinos",
+          "comentario": "Me sorprendió gratamente poder examinar las botellas antes de comprar. Compré un Gran Reserva Prado Enea para una cena familiar y fue un rotundo éxito."
+        },
+        "en": {
+          "rol": "Wine collector",
+          "comentario": "I was pleasantly surprised to examine the bottles in detail before buying. Bought a Gran Reserva Prado Enea for a family dinner and it was a huge success."
+        },
+        "fr": {
+          "rol": "Collectionneuse de vins",
+          "comentario": "Ravie de pouvoir examiner les bouteilles avant d'acheter. J'ai commandé un Gran Reserva Prado Enea pour un dîner de famille et ce fut un succès parfait."
+        },
+        "de": {
+          "rol": "Weinsammlerin",
+          "comentario": "Sehr positiv überrascht von den detaillierten Flaschenansichten vor dem Kauf. Ich habe einen Gran Reserva Prado Enea gekauft – ein absoluter Erfolg."
+        }
+      }
     },
     {
       "id": "res-4",
       "nombre": "Alberto Ramos",
-      "rol": "Aficionado a la gastronomía",
       "estrellas": 5,
-      "comentario": "Descubrí el Crianza ecológico de Vivanco gracias a sus recomendaciones. El empaquetado térmico y los detalles en la entrega hacen que sea mi tienda online de confianza.",
-      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80"
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80",
+      "i18n": {
+        "es": {
+          "rol": "Aficionado a la gastronomía",
+          "comentario": "Descubrí el Crianza ecológico de Vivanco gracias a sus recomendaciones. El empaquetado térmico y los detalles en la entrega hacen que sea mi tienda online de confianza."
+        },
+        "en": {
+          "rol": "Food & wine lover",
+          "comentario": "Discovered Vivanco's organic Crianza thanks to their recommendations. Thermal packaging and careful delivery make this my go-to online store."
+        },
+        "fr": {
+          "rol": "Amateur de gastronomie",
+          "comentario": "J'ai découvert le Crianza biologique de Vivanco grâce à leurs conseils. L'emballage thermique et le soin apporté en font ma boutique en ligne préférée."
+        },
+        "de": {
+          "rol": "Feinschmecker",
+          "comentario": "Habe den Bio-Crianza von Vivanco durch die Empfehlungen entdeckt. Thermoverpackung und sorgfältiger Versand machen dies zu meinem Lieblings-Onlineshop."
+        }
+      }
     },
     {
       "id": "res-5",
       "nombre": "Sofía Morales",
-      "rol": "Catadora en formación",
       "estrellas": 5,
-      "comentario": "Comprar un Castillo Ygay para una celebración especial daba cierto respeto, pero el seguimiento del pedido y la presentación de la botella superaron mis expectativas.",
-      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80"
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80",
+      "i18n": {
+        "es": {
+          "rol": "Catadora en formación",
+          "comentario": "Comprar un Castillo Ygay para una celebración especial daba cierto respeto, pero el seguimiento del pedido y la presentación de la botella superaron mis expectativas."
+        },
+        "en": {
+          "rol": "Trainee taster",
+          "comentario": "Buying a Castillo Ygay for a special celebration felt like a big deal, but order tracking and bottle presentation exceeded all expectations."
+        },
+        "fr": {
+          "rol": "Dégustatrice en formation",
+          "comentario": "Acheter un Castillo Ygay pour une occasion spéciale était impressionnant, mais le suivi et la présentation ont dépassé mes attentes."
+        },
+        "de": {
+          "rol": "Nachwuchs-Verkosterin",
+          "comentario": "Der Kauf eines Castillo Ygay für ein besonderes Fest war aufregend, aber Lieferverfolgung und Präsentation haben meine Erwartungen übertroffen."
+        }
+      }
     }
   ],
   "i18n": {
     "es": {
+      "skip_to_content": "Saltar al contenido principal",
       "nav_inicio": "Inicio",
       "nav_catalogo": "Catálogo de Vinos",
       "nav_bodegas": "Bodegas",
       "nav_experiencias": "Experiencias",
       "nav_favoritos": "Mis Favoritos",
       "nav_cuenta": "Mi Cuenta",
+      "hero_tag": "D.O.Ca. Rioja Reserva",
+      "hero_title": "La Esencia de la Tierra en Cada Copa",
+      "hero_subtitle": "Descubre caldos criados en barricas de roble e historias centenarias de nuestras bodegas seleccionadas en Logroño y la Rioja Alta.",
+      "btn_explorar": "Explorar Catálogo",
+      "btn_experiencias": "Reservar Cata",
+      "destacados_titulo": "Selección Destacada",
+      "destacados_sub": "Botellas premiadas con valoraciones superiores a 95 puntos Peñín.",
       "search_placeholder": "Buscar por nombre o descripción...",
       "filter_label_type": "Tipo de Vino",
       "filter_label_price": "Precio Máximo",
@@ -742,18 +868,49 @@
       "btn_reservar_bodega": "Reservar en la web de la bodega",
       "reviews_title": "Lo que dicen nuestros clientes",
       "reviews_subtitle": "Opiniones reales de amantes del vino y sumilleres.",
+      "bodegas_title": "Bodegas de La Rioja",
+      "bodegas_subtitle": "Conoce a las casas históricas y productores de autor de nuestra tierra.",
+      "cart_title": "Tu Carrito de Compras",
+      "btn_checkout": "Proceder al Pago",
+      "cart_total": "Total a pagar:",
+      "fav_title": "Mis Vinos Favoritos",
+      "fav_empty": "Aún no has guardado ningún vino en tus favoritos.",
+      "auth_login_tab": "Iniciar Sesión",
+      "auth_register_tab": "Crear Cuenta",
+      "auth_email": "Correo electrónico",
+      "auth_password": "Contraseña",
+      "auth_confirm_password": "Confirmar contraseña",
+      "auth_name": "Nombre completo",
+      "auth_accept_terms": "Acepto la",
+      "auth_btn_login": "Acceder a mi cuenta",
+      "auth_btn_register": "Crear mi cuenta",
+      "arcade_title": "Acceso Solo Para Mayores de 18",
+      "arcade_subtitle": "Aún no puedes catar nuestros vinos, ¡pero puedes esquivarlos en esta taberna!",
+      "arcade_score": "Puntos:",
+      "arcade_record": "Récord:",
+      "arcade_jump": "Saltar:",
+      "arcade_duck": "Agacharse:",
+      "arcade_touch": "o Toque en pantalla",
       "footer_copy": "© 2026 WineShop. Todos los derechos reservados.",
       "footer_privacy": "Política de Privacidad",
       "footer_terms": "Términos y Condiciones",
       "footer_a11y": "Declaración de Accesibilidad"
     },
     "en": {
+      "skip_to_content": "Skip to main content",
       "nav_inicio": "Home",
       "nav_catalogo": "Wine Catalog",
       "nav_bodegas": "Wineries",
       "nav_experiencias": "Experiences",
       "nav_favoritos": "My Favorites",
       "nav_cuenta": "My Account",
+      "hero_tag": "D.O.Ca. Rioja Reserve",
+      "hero_title": "The Essence of the Land in Every Glass",
+      "hero_subtitle": "Discover oak-aged fine wines and centuries-old stories from our selected wineries in Logroño and Rioja Alta.",
+      "btn_explorar": "Explore Catalog",
+      "btn_experiencias": "Book a Tasting",
+      "destacados_titulo": "Featured Selection",
+      "destacados_sub": "Award-winning bottles rated above 95 Peñín points.",
       "search_placeholder": "Search by name or description...",
       "filter_label_type": "Wine Type",
       "filter_label_price": "Max Price",
@@ -771,18 +928,49 @@
       "btn_reservar_bodega": "Book on winery website",
       "reviews_title": "What Our Customers Say",
       "reviews_subtitle": "Real feedback from wine lovers and sommeliers.",
+      "bodegas_title": "Wineries of La Rioja",
+      "bodegas_subtitle": "Meet historical wineries and artisan producers from our region.",
+      "cart_title": "Your Shopping Cart",
+      "btn_checkout": "Proceed to Checkout",
+      "cart_total": "Total amount:",
+      "fav_title": "My Favorite Wines",
+      "fav_empty": "You haven't saved any wines to your favorites yet.",
+      "auth_login_tab": "Sign In",
+      "auth_register_tab": "Create Account",
+      "auth_email": "Email address",
+      "auth_password": "Password",
+      "auth_confirm_password": "Confirm password",
+      "auth_name": "Full name",
+      "auth_accept_terms": "I accept the",
+      "auth_btn_login": "Log in to my account",
+      "auth_btn_register": "Create my account",
+      "arcade_title": "18+ Access Only",
+      "arcade_subtitle": "You can't taste our wines yet, but you can dodge them in this tavern!",
+      "arcade_score": "Score:",
+      "arcade_record": "High Score:",
+      "arcade_jump": "Jump:",
+      "arcade_duck": "Crouch:",
+      "arcade_touch": "or Touch screen",
       "footer_copy": "© 2026 WineShop. All rights reserved.",
       "footer_privacy": "Privacy Policy",
       "footer_terms": "Terms & Conditions",
       "footer_a11y": "Accessibility Statement"
     },
     "fr": {
+      "skip_to_content": "Aller au contenu principal",
       "nav_inicio": "Accueil",
       "nav_catalogo": "Catalogue de Vins",
       "nav_bodegas": "Domaines",
       "nav_experiencias": "Expériences",
       "nav_favoritos": "Mes Favoris",
       "nav_cuenta": "Mon Compte",
+      "hero_tag": "D.O.Ca. Rioja Reserva",
+      "hero_title": "L'Essence de la Terre dans Chaque Verre",
+      "hero_subtitle": "Découvrez des vins élevés en fût de chêne et des histoires centenaires de nos domaines sélectionnés à Logroño et Rioja Alta.",
+      "btn_explorar": "Explorer le Catalogue",
+      "btn_experiencias": "Réserver une Dégustation",
+      "destacados_titulo": "Sélection En Vedette",
+      "destacados_sub": "Bouteilles primées obtenant plus de 95 points Peñín.",
       "search_placeholder": "Rechercher par nom ou description...",
       "filter_label_type": "Type de Vin",
       "filter_label_price": "Prix Maximum",
@@ -793,25 +981,56 @@
       "filter_sparkling": "Pétillant",
       "btn_reset": "Réinitialiser",
       "results_text": "vins trouvés",
-      "no_wines_found": "Aucun vin ne correspond aux critères seleccionnés.",
+      "no_wines_found": "Aucun vin ne correspond aux critères sélectionnés.",
       "btn_carrito": "Ajouter au panier",
       "precio_label": "Prix : ",
       "btn_ver_vinos": "Voir leurs vins",
       "btn_reservar_bodega": "Réserver sur le site du domaine",
       "reviews_title": "Ce que disent nos clients",
       "reviews_subtitle": "Avis authentiques d'amateurs de vin et sommeliers.",
+      "bodegas_title": "Domaines de La Rioja",
+      "bodegas_subtitle": "Découvrez les domaines historiques et viticulteurs d'auteur de notre région.",
+      "cart_title": "Votre Panier",
+      "btn_checkout": "Procéder au Paiement",
+      "cart_total": "Total à payer :",
+      "fav_title": "Mes Vins Favoris",
+      "fav_empty": "Vous n'avez encore ajouté aucun vin à vos favoris.",
+      "auth_login_tab": "Se Connecter",
+      "auth_register_tab": "Créer un Compte",
+      "auth_email": "Adresse e-mail",
+      "auth_password": "Mot de passe",
+      "auth_confirm_password": "Confirmer le mot de passe",
+      "auth_name": "Nom complet",
+      "auth_accept_terms": "J'accepte la",
+      "auth_btn_login": "Accéder à mon compte",
+      "auth_btn_register": "Créer mon compte",
+      "arcade_title": "Accès Réservé aux Plus de 18 Ans",
+      "arcade_subtitle": "Vous ne pouvez pas encore déguster nos vins, mais vous pouvez les esquiver dans cette taverne !",
+      "arcade_score": "Score :",
+      "arcade_record": "Meilleur score :",
+      "arcade_jump": "Sauter :",
+      "arcade_duck": "S'accroupir :",
+      "arcade_touch": "ou Écran tactile",
       "footer_copy": "© 2026 WineShop. Tous droits réservés.",
       "footer_privacy": "Politique de Confidentialité",
       "footer_terms": "Conditions Générales",
       "footer_a11y": "Déclaration d'Accessibilité"
     },
     "de": {
+      "skip_to_content": "Zum Hauptinhalt springen",
       "nav_inicio": "Startseite",
       "nav_catalogo": "Weinkatalog",
       "nav_bodegas": "Weingüter",
       "nav_experiencias": "Erlebnisse",
       "nav_favoritos": "Meine Favoriten",
       "nav_cuenta": "Mein Konto",
+      "hero_tag": "D.O.Ca. Rioja Reserva",
+      "hero_title": "Die Essenz des Landes in Jedem Glas",
+      "hero_subtitle": "Entdecken Sie in Eichenfässern gereifte Weine und jahrhundertealte Geschichten unserer ausgewählten Weingüter in Logroño und Rioja Alta.",
+      "btn_explorar": "Katalog Erkunden",
+      "btn_experiencias": "Verkostung Buchen",
+      "destacados_titulo": "Ausgewählte Weine",
+      "destacados_sub": "Prämierte Flaschen mit über 95 Peñín-Punkten.",
       "search_placeholder": "Suche nach Name oder Beschreibung...",
       "filter_label_type": "Weinart",
       "filter_label_price": "Maximalpreis",
@@ -829,6 +1048,29 @@
       "btn_reservar_bodega": "Auf Weingut-Website buchen",
       "reviews_title": "Was unsere Kunden sagen",
       "reviews_subtitle": "Echte Bewertungen von Weinliebhabern und Sommeliers.",
+      "bodegas_title": "Weingüter von La Rioja",
+      "bodegas_subtitle": "Lernen Sie historische Weingüter und handwerkliche Winzer unserer Region kennen.",
+      "cart_title": "Ihr Warenkorb",
+      "btn_checkout": "Zur Kasse",
+      "cart_total": "Gesamtsumme:",
+      "fav_title": "Meine Lieblingsweine",
+      "fav_empty": "Sie haben noch keine Weine zu Ihren Favoriten hinzugefügt.",
+      "auth_login_tab": "Anmelden",
+      "auth_register_tab": "Konto Erstellen",
+      "auth_email": "E-Mail-Adresse",
+      "auth_password": "Passwort",
+      "auth_confirm_password": "Passwort bestätigen",
+      "auth_name": "Vollständiger Name",
+      "auth_accept_terms": "Ich akzeptiere die",
+      "auth_btn_login": "In mein Konto einloggen",
+      "auth_btn_register": "Mein Konto erstellen",
+      "arcade_title": "Zutritt erst ab 18 Jahren",
+      "arcade_subtitle": "Sie können unsere Weine noch nicht verkosten, aber Sie können ihnen in dieser Taverne ausweichen!",
+      "arcade_score": "Punkte:",
+      "arcade_record": "Rekord:",
+      "arcade_jump": "Springen:",
+      "arcade_duck": "Dücken:",
+      "arcade_touch": "oder Bildschirm antippen",
       "footer_copy": "© 2026 WineShop. Alle Rechte vorbehalten.",
       "footer_privacy": "Datenschutz",
       "footer_terms": "AGB",

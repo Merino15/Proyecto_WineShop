@@ -40,14 +40,42 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formCheckout) {
     formCheckout.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      // Validación de los datos de envío
+      const nombre = document.getElementById("co-nombre")?.value.trim();
+      const dni = document.getElementById("co-dni")?.value.trim();
+      const direccion = document.getElementById("co-direccion")?.value.trim();
+      const cp = document.getElementById("co-cp")?.value.trim();
+      const ciudad = document.getElementById("co-ciudad")?.value.trim();
+      const provincia = document.getElementById("co-provincia")?.value.trim();
+
+      if (!nombre || !dni || !direccion || !cp || !ciudad || !provincia) {
+        if (typeof mostrarToast === "function") {
+          mostrarToast("Por favor, completa todos los datos de envío obligatorios.");
+        } else {
+          alert("Por favor, completa todos los datos de envío obligatorios.");
+        }
+        return; // Detiene la ejecución para no tramitar el pedido
+      }
+
+      // Validación del carrito vací­o
       const carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
       if (carrito.length === 0) {
-        mostrarToast("El carrito está vacío");
+        if (typeof mostrarToast === "function") {
+          mostrarToast("El carrito está vacío");
+        } else {
+          alert("El carrito está vacío");
+        }
         return;
       }
+
+      // Procesamiento del pedido
       localStorage.removeItem("wineshop_carrito_items");
       if (typeof actualizarBadgeCarrito === "function") actualizarBadgeCarrito();
-      mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
+      if (typeof mostrarToast === "function") {
+        mostrarToast("¡Pedido realizado con éxito! Gracias por tu compra.");
+      }
+      
       setTimeout(() => {
         window.location.href = "../index.html";
       }, 1500);

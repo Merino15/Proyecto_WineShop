@@ -176,10 +176,13 @@
 
             <!-- Contenido Principal del Panel de Usuario -->
             <section class="auth-card" style="max-width: 100%; padding: var(--espaciado-32);">
+                <!-- H1 principal permanente en el DOM -->
+                <h1 class="sr-only" data-i18n="account_page_title">Panel de Usuario - WineShop Rioja</h1>
+
                 <!-- Formulario de Datos Personales -->
                 <div id="sec-datos-personales">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--espaciado-24); flex-wrap: wrap; gap: var(--espaciado-12);">
-                        <h1 style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); margin: 0;">Mis Datos Personales</h1>
+                        <h2 style="font-family: var(--font-titulos); font-size: 1.8rem; color: var(--color-primario-bordeos); margin: 0;">Mis Datos Personales</h2>
                         <button type="button" id="btn-toggle-edit" class="btn btn-secondary" style="min-height: 40px; padding: 8px 16px;">
                             ✏️ Editar Datos
                         </button>

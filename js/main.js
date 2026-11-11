@@ -713,9 +713,9 @@ function renderizarVinos(contenedorId, soloDestacados = false) {
                 <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
             </div>
             <div class="wine-info">
-                <h3 class="wine-name">
+                <h2 class="wine-name">
                     <a href="${getPagePath('producto.html')}?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
-                </h3>
+                </h2>
                 <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
                 <p class="wine-price" style="margin-top: auto;"><span class="sr-only">${dicc.precio_label || 'Precio:'}</span> ${vino.precio}</p>
                 <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>

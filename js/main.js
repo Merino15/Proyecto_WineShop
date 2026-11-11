@@ -537,7 +537,7 @@ function iniciarCarruselHero() {
 }
 
 /**
- * Renderizado de Reseñas desde db.json con Soporte Multilenguaje Completo
+ * Renderizado de Reseñas desde db.json con Soporte Multilenguaje Completo y Atributos Accesibles ARIA
  */
 function renderizarResenas() {
     const slider = document.querySelector(".testimonials-slider");
@@ -546,7 +546,6 @@ function renderizarResenas() {
     if (!slider || !appData || !appData.resenas) return;
 
     slider.innerHTML = appData.resenas.map((resena, index) => {
-        // Extraer los datos i18n del idioma actual o usar fallback
         const i18nResena = (resena.i18n && resena.i18n[currentLang]) 
             ? resena.i18n[currentLang] 
             : (resena.i18n ? resena.i18n["es"] : {});
@@ -556,9 +555,9 @@ function renderizarResenas() {
         const estrellasStr = "★".repeat(resena.estrellas || 5);
 
         return `
-            <article class="testimonial-card ${index === 0 ? 'active' : ''}">
-                <div class="testimonial-stars" aria-label="Valoración: ${resena.estrellas || 5} de 5 estrellas">
-                    ${estrellasStr}
+            <article id="testimonial-panel-${index + 1}" role="tabpanel" aria-labelledby="tab-testimonial-${index + 1}" class="testimonial-card ${index === 0 ? 'active' : ''}">
+                <div class="testimonial-stars" role="img" aria-label="Valoración: ${resena.estrellas || 5} de 5 estrellas">
+                    <span aria-hidden="true">${estrellasStr}</span>
                 </div>
                 <blockquote class="testimonial-quote">
                     "${comentario}"
@@ -578,10 +577,12 @@ function renderizarResenas() {
         indicatorsWrap.innerHTML = appData.resenas.map((_, index) => `
             <button
                 type="button"
+                id="tab-testimonial-${index + 1}"
                 class="dot ${index === 0 ? 'active' : ''}"
                 role="tab"
                 aria-selected="${index === 0 ? 'true' : 'false'}"
-                aria-label="Ver reseña ${index + 1}"
+                aria-controls="testimonial-panel-${index + 1}"
+                aria-label="Ver opinión ${index + 1} de ${appData.resenas.length}"
             ></button>
         `).join("");
     }

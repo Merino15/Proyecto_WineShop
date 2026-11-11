@@ -247,7 +247,7 @@ main {
 }
 
 .lang-select {
-  border: 1.5px solid var(--color-borde);
+  border: 1.5px solid var(--color-gris-700);
   background: var(--color-blanco);
   padding: 6px 10px;
   border-radius: 6px;
@@ -628,6 +628,7 @@ fieldset:disabled .form-input {
 }
 
 .carousel-indicators .dot {
+  position: relative;
   width: 14px;
   height: 14px;
   border-radius: 50%;
@@ -636,6 +637,18 @@ fieldset:disabled .form-input {
   cursor: pointer;
   padding: 0;
   transition: all 0.3s ease;
+}
+
+.carousel-indicators .dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .carousel-indicators .dot.active {
@@ -700,7 +713,7 @@ fieldset:disabled .form-input {
   top: 12px;
   right: 12px;
   background: var(--color-blanco);
-  border: 2px solid var(--color-borde);
+  border: 1.5px solid var(--color-gris-700);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -794,7 +807,7 @@ fieldset:disabled .form-input {
   height: 46px;
   min-height: 46px;
   padding: 8px 14px;
-  border: 1.5px solid var(--color-borde);
+  border: 1.5px solid var(--color-gris-700);
   border-radius: 8px;
   background-color: var(--color-neutro-claro);
   font-family: var(--font-cuerpo);
@@ -895,7 +908,7 @@ fieldset:disabled .form-input {
 }
 
 /* ==========================================================================
-   CARRUSEL DE RESEÑAS Y TESTIMONIOS
+   CARRUSEL DE RESEÑAS Y TESTIMONIOS (WCAG 2.5.8 TARGET SIZE ACCESIBLE)
    ========================================================================== */
 .testimonials-section {
   position: relative;
@@ -974,11 +987,12 @@ fieldset:disabled .form-input {
 .testimonials-indicators {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: var(--espaciado-24);
 }
 
 .testimonials-indicators .dot {
+  position: relative;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -986,6 +1000,20 @@ fieldset:disabled .form-input {
   background: transparent;
   cursor: pointer;
   padding: 0;
+  transition: all 0.3s ease;
+}
+
+/* Pseudo-elemento transparente para cumplir WCAG 2.5.8 (Target Size >= 24x24px) */
+.testimonials-indicators .dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .testimonials-indicators .dot.active {

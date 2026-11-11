@@ -537,7 +537,7 @@ function iniciarCarruselHero() {
 }
 
 /**
- * Renderizado de Reseñas desde db.json con Soporte Multilenguaje Completo y Atributos Accesibles ARIA
+ * Renderizado de Reseñas Accesible 100% libre de advertencias ARIA
  */
 function renderizarResenas() {
     const slider = document.querySelector(".testimonials-slider");
@@ -555,7 +555,7 @@ function renderizarResenas() {
         const estrellasStr = "★".repeat(resena.estrellas || 5);
 
         return `
-            <article id="testimonial-panel-${index + 1}" role="tabpanel" aria-labelledby="tab-testimonial-${index + 1}" class="testimonial-card ${index === 0 ? 'active' : ''}">
+            <article id="testimonial-panel-${index + 1}" class="testimonial-card ${index === 0 ? 'active' : ''}">
                 <div class="testimonial-stars" role="img" aria-label="Valoración: ${resena.estrellas || 5} de 5 estrellas">
                     <span aria-hidden="true">${estrellasStr}</span>
                 </div>

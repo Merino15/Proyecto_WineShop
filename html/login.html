@@ -94,54 +94,61 @@
     <!-- Contenido principal -->
     <main id="contenido-principal" tabindex="-1" class="section-padding">
         <div class="container">
+            <!-- Encabezado h1 imprescindible para accesibilidad WCAG -->
+            <h1 class="sr-only" data-i18n="auth_page_title">Acceso y Registro de Usuario - WineShop</h1>
+
             <div class="auth-container">
                 <div class="auth-card">
                     
-                    <!-- Pestanias de acceso / registro -->
+                    <!-- Pestañas de acceso / registro -->
                     <div class="auth-tabs" role="tablist" aria-label="Opciones de acceso">
-                        <button type="button" id="tab-login" class="tab-btn active" role="tab" aria-selected="true" aria-controls="form-login" data-i18n="auth_login_tab">Iniciar Sesión</button>
-                        <button type="button" id="tab-register" class="tab-btn" role="tab" aria-selected="false" aria-controls="form-register" data-i18n="auth_register_tab">Crear Cuenta</button>
+                        <button type="button" id="tab-login" class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-login" data-i18n="auth_login_tab">Iniciar Sesión</button>
+                        <button type="button" id="tab-register" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-register" data-i18n="auth_register_tab">Crear Cuenta</button>
                     </div>
 
-                    <!-- Formulario Iniciar Sesion -->
-                    <form id="form-login" class="auth-form" role="tabpanel" aria-labelledby="tab-login" novalidate>
-                        <div class="form-group">
-                            <label for="login-email" data-i18n="auth_email">Correo electrónico</label>
-                            <input type="email" id="login-email" class="filter-control" placeholder="ejemplo@wineshop.es" required autocomplete="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="login-password" data-i18n="auth_password">Contraseña</label>
-                            <input type="password" id="login-password" class="filter-control" placeholder="••••••••" required autocomplete="current-password">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full" data-i18n="auth_btn_login">Acceder a mi cuenta</button>
-                    </form>
+                    <!-- Panel Iniciar Sesion (Contenedor div neutro accesible) -->
+                    <div id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+                        <form id="form-login" class="auth-form" novalidate>
+                            <div class="form-group">
+                                <label for="login-email" data-i18n="auth_email">Correo electrónico</label>
+                                <input type="email" id="login-email" class="filter-control" placeholder="ejemplo@wineshop.es" required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password" data-i18n="auth_password">Contraseña</label>
+                                <input type="password" id="login-password" class="filter-control" placeholder="••••••••" required autocomplete="current-password">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full" data-i18n="auth_btn_login">Acceder a mi cuenta</button>
+                        </form>
+                    </div>
 
-                    <!-- Formulario Crear Cuenta -->
-                    <form id="form-register" class="auth-form hidden" role="tabpanel" aria-labelledby="tab-register" novalidate>
-                        <div class="form-group">
-                            <label for="reg-nombre" data-i18n="auth_name">Nombre completo</label>
-                            <input type="text" id="reg-nombre" class="filter-control" placeholder="Tu nombre y apellidos" required autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-email" data-i18n="auth_email">Correo electrónico</label>
-                            <input type="email" id="reg-email" class="filter-control" placeholder="ejemplo@wineshop.es" required autocomplete="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-password" data-i18n="auth_password">Contraseña</label>
-                            <input type="password" id="reg-password" class="filter-control" placeholder="Mínimo 6 caracteres" required autocomplete="new-password">
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-confirm-password" data-i18n="auth_confirm_password">Confirmar contraseña</label>
-                            <input type="password" id="reg-confirm-password" class="filter-control" placeholder="Repite tu contraseña" required autocomplete="new-password">
-                        </div>
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="reg-terms" required>
-                                <span><span data-i18n="auth_accept_terms">Acepto la</span> <a href="politica_privacidad.html" target="_blank" rel="noopener noreferrer" data-i18n="footer_privacy">Política de Privacidad</a></span>
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full" data-i18n="auth_btn_register">Crear mi cuenta</button>
-                    </form>
+                    <!-- Panel Crear Cuenta (Contenedor div neutro accesible) -->
+                    <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" class="hidden">
+                        <form id="form-register" class="auth-form" novalidate>
+                            <div class="form-group">
+                                <label for="reg-nombre" data-i18n="auth_name">Nombre completo</label>
+                                <input type="text" id="reg-nombre" class="filter-control" placeholder="Tu nombre y apellidos" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-email" data-i18n="auth_email">Correo electrónico</label>
+                                <input type="email" id="reg-email" class="filter-control" placeholder="ejemplo@wineshop.es" required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-password" data-i18n="auth_password">Contraseña</label>
+                                <input type="password" id="reg-password" class="filter-control" placeholder="Mínimo 6 caracteres" required autocomplete="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-confirm-password" data-i18n="auth_confirm_password">Confirmar contraseña</label>
+                                <input type="password" id="reg-confirm-password" class="filter-control" placeholder="Repite tu contraseña" required autocomplete="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="reg-terms" required>
+                                    <span><span data-i18n="auth_accept_terms">Acepto la</span> <a href="politica_privacidad.html" target="_blank" rel="noopener noreferrer" data-i18n="footer_privacy">Política de Privacidad</a></span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full" data-i18n="auth_btn_register">Crear mi cuenta</button>
+                        </form>
+                    </div>
 
                 </div>
             </div>

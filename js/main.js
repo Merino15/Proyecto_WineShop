@@ -749,7 +749,7 @@ function renderizarBodegas(contenedorId) {
                 <img src="${imgPath}" alt="Instalaciones de ${bodega.nombre}" class="card-img" loading="lazy">
             </div>
             <div class="wine-info">
-                <h3 class="wine-name">${bodega.nombre}</h3>
+                <h2 class="wine-name">${bodega.nombre}</h2>
                 <p class="hero-tag" style="margin-bottom: 8px;">${traduccion.subtitulo || ''}</p>
                 <p class="body-regular" style="margin-bottom: 16px;">${traduccion.desc || ''}</p>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto;">
@@ -790,7 +790,7 @@ function renderizarExperiencias(contenedorId) {
                 <img src="${imgPath}" alt="${traduccion.titulo || 'Experiencia'}" class="card-img" loading="lazy">
             </div>
             <div class="wine-info">
-                <h3 class="wine-name">${traduccion.titulo || 'Experiencia'}</h3>
+                <h2 class="wine-name">${traduccion.titulo || 'Experiencia'}</h2>
                 <p style="font-weight: 700; color: var(--color-secundario-oro); margin-bottom: 6px;">
                     Organizado por: ${exp.nombreBodega || 'Bodega Asociada'}
                 </p>
@@ -894,9 +894,9 @@ function renderizarVinosFiltrados(contenedorId, listaVinos) {
                 <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
             </div>
             <div class="wine-info">
-                <h3 class="wine-name">
+                <h2 class="wine-name">
                     <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
-                </h3>
+                </h2>
                 <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
                 <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
                 <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>
@@ -1026,9 +1026,9 @@ function renderizarPaginaFavoritos() {
                 <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
             </div>
             <div class="wine-info">
-                <h3 class="wine-name">
+                <h2 class="wine-name">
                     <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
-                </h3>
+                </h2>
                 <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
                 <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
                 <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>

@@ -2,7 +2,7 @@
   "usuarios": [
     {
       "id": "usr-1",
-      "nombre": "Víctor Merino Matarí",
+      "nombre": "admin",
       "email": "demo@wineshop.es",
       "password": "password123",
       "telefono": "+34 600 123 456",

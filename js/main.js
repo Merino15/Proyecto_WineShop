@@ -110,40 +110,63 @@ function actualizarEnlaceUsuario() {
         window.location.href = getPagePath("login.html");
     }
 }
-
 /**
- * Control del Modal de Verificación de Edad con Desenfoque de Fondo
+ * Control Global de Verificación de Edad y Bloqueo de Navegación para Menores
  */
 function iniciarVerificacionEdad() {
+    // Leemos el estado persistente ("true", "false" o null si es la 1ª vez)
+    const estadoEdad = localStorage.getItem("wineshop_mayor_edad");
+    const pathActual = window.location.pathname;
+    const esPaginaJuego = pathActual.includes("juego_menores.html");
+    const esIndex = pathActual.endsWith("index.html") || pathActual.endsWith("/");
+
+    // 1. BLOQUEO TOTAL: Si declaró ser menor, se le fuerza a quedarse en el juego
+    if (estadoEdad === "false") {
+        if (!esPaginaJuego) {
+            window.location.href = getPagePath("juego_menores.html");
+        }
+        return; // Detener cualquier otra ejecución
+    }
+
+    // 2. REDIRECCIÓN A PORTADA: Si no ha verificado e intenta entrar a una página interna directamente
+    if (!estadoEdad && !esIndex && !esPaginaJuego) {
+        window.location.href = isSubdir ? "../index.html" : "index.html";
+        return;
+    }
+
+    // 3. GESTIÓN DEL MODAL EN INDEX.HTML
     const modal = document.getElementById("age-gate-modal");
     if (!modal) return;
 
     const btnMayor = document.getElementById("btn-confirm-mayor");
     const btnMenor = document.getElementById("btn-confirm-menor");
 
-    const esMayor = sessionStorage.getItem("wineshop_mayor_edad") === "true";
-
-    if (esMayor) {
+    // Si ya confirmó que es mayor de edad, ocultar modal
+    if (estadoEdad === "true") {
         modal.classList.add("hidden");
         document.body.classList.remove("modal-open");
     } else {
+        // Primera visita: Mostrar modal
         modal.classList.remove("hidden");
         document.body.classList.add("modal-open");
     }
 
+    // Evento: Al hacer clic en "Soy mayor de edad"
     if (btnMayor) {
-        btnMayor.addEventListener("click", () => {
-            sessionStorage.setItem("wineshop_mayor_edad", "true");
+        btnMayor.onclick = () => {
+            localStorage.setItem("wineshop_mayor_edad", "true");
             modal.classList.add("hidden");
             document.body.classList.remove("modal-open");
-            announceToScreenReader("Verificación de edad completada. Acceso permitido a WineShop.");
-        });
+            announceToScreenReader("Verificación de edad completada. Acceso permitido.");
+        };
     }
 
+    // Evento: Al hacer clic en "No soy mayor de edad"
     if (btnMenor) {
-        btnMenor.addEventListener("click", () => {
+        btnMenor.onclick = () => {
+            localStorage.setItem("wineshop_mayor_edad", "false");
             window.location.href = getPagePath("juego_menores.html");
-        });
+        };
     }
 }
 

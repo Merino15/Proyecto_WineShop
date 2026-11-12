@@ -535,12 +535,13 @@ fieldset:disabled .form-input {
   align-items: center;
 }
 
-/* Reemplaza la regla .hero-tag existente por esta */
+/* css/estilos_wineshop.css */
 .hero-tag,
 .products-grid .hero-tag,
-#bodegas-grid .hero-tag {
+#bodegas-grid .hero-tag,
+#detail-vintage {
   display: inline-block;
-  color: #7a5009; /* Garantiza ratio > 7:1 en WCAG AAA */
+  color: #000000; /* Ratio 19:1 sobre fondo beige (#f9f6f0) y blanco (#ffffff) */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;

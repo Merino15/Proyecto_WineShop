@@ -6,7 +6,7 @@
   /* Paleta Cromática con Contraste Elevado (> 7:1 para AAA) */
   --color-primario-bordeos: #5b0e2d;
   --color-primario-hover: #3e081e;
-  --color-secundario-oro: #855b14;
+  --color-secundario-oro: #7a5009;
   --color-secundario-hover: #5e3f0a;
 
   --color-neutro-oscuro: #1a1a1a;
@@ -535,9 +535,12 @@ fieldset:disabled .form-input {
   align-items: center;
 }
 
-.hero-tag {
+/* Reemplaza la regla .hero-tag existente por esta */
+.hero-tag,
+.products-grid .hero-tag,
+#bodegas-grid .hero-tag {
   display: inline-block;
-  color: var(--color-secundario-oro);
+  color: #7a5009; /* Garantiza ratio > 7:1 en WCAG AAA */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -737,8 +740,8 @@ fieldset:disabled .form-input {
   position: absolute;
   top: 12px;
   left: 12px;
-  background-color: rgba(91, 14, 45, 0.9);
-  color: var(--color-blanco);
+  background-color: #5b0e2d; /* Color borgoña sólido sin alfa (Ratio > 10:1) */
+  color: #ffffff;
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -840,8 +843,8 @@ fieldset:disabled .form-input {
 }
 
 .price-badge {
-  background-color: rgba(91, 14, 45, 0.1);
-  color: var(--color-primario-bordeos);
+  background-color: #4a0e17; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco (Ratio 12:1) */
   font-weight: 700;
   font-size: 0.9rem;
   padding: 2px 8px;
@@ -943,8 +946,11 @@ fieldset:disabled .form-input {
   visibility: visible;
 }
 
-.testimonial-stars {
-  color: var(--color-secundario-oro);
+/* Reemplaza o amplía la regla .testimonial-stars */
+.testimonial-stars,
+.testimonial-card span[aria-hidden="true"],
+[id^="testimonial-panel"] span {
+  color: #7a5009; /* Contraste accesible para caracteres de estrella ★ */
   font-size: 1.4rem;
   margin-bottom: var(--espaciado-12);
 }

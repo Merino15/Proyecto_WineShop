@@ -1,4 +1,5 @@
 let itemPendienteEliminar = null;
+let ultimoBotonEnfocado = null; // Variable para recordar qué botón abrió el modal
 
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = obtenerUsuarioActivo();
@@ -16,23 +17,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCancel = document.getElementById("btn-modal-cancel");
   const btnConfirm = document.getElementById("btn-modal-confirm");
 
-  if (btnCancel) btnCancel.addEventListener("click", cerrarModalConfirmacion);
+  if (btnCancel) {
+    btnCancel.addEventListener("click", () => cerrarModalConfirmacion(false));
+  }
 
   if (btnConfirm) {
     btnConfirm.addEventListener("click", () => {
+      let idxEliminado = null;
+
       if (itemPendienteEliminar !== null) {
         let carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
-        const idx = itemPendienteEliminar.index;
+        idxEliminado = itemPendienteEliminar.index;
         const nombre = itemPendienteEliminar.nombre;
 
-        carrito.splice(idx, 1);
+        carrito.splice(idxEliminado, 1);
         localStorage.setItem("wineshop_carrito_items", JSON.stringify(carrito));
 
         if (typeof actualizarBadgeCarrito === "function") actualizarBadgeCarrito();
         renderizarResumenCheckout();
         if (typeof mostrarToast === "function") mostrarToast(`Se ha eliminado "${nombre}" del carrito`);
       }
-      cerrarModalConfirmacion();
+      
+      // Cerrar modal indicando que SÍ se eliminó para recolocar el foco
+      cerrarModalConfirmacion(true, idxEliminado);
     });
   }
 
@@ -55,10 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           alert("Por favor, completa todos los datos de envío obligatorios.");
         }
-        return; // Detiene la ejecución para no tramitar el pedido
+        return;
       }
 
-      // Validación del carrito vací­o
+      // Validación del carrito vacío
       const carrito = JSON.parse(localStorage.getItem("wineshop_carrito_items")) || [];
       if (carrito.length === 0) {
         if (typeof mostrarToast === "function") {
@@ -162,17 +169,87 @@ function modificarItemCheckout(index, cambio) {
   }
 }
 
+/**
+ * Muestra el modal asignando foco inicial y activando trampa de foco (WCAG AAA)
+ */
 function mostrarModalConfirmacion(mensaje) {
   const modal = document.getElementById("confirm-modal-overlay");
   const texto = document.getElementById("confirm-modal-text");
+  const btnCancel = document.getElementById("btn-modal-cancel");
+  
   if (!modal) return;
+
+  // 1. Guardar el elemento enfocado antes de abrir el modal
+  ultimoBotonEnfocado = document.activeElement;
 
   if (texto) texto.textContent = mensaje;
   modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+
+  // 2. Mover el foco inicial al botón Cancelar
+  if (btnCancel) {
+    setTimeout(() => btnCancel.focus(), 50);
+  }
+
+  // 3. Trampa de foco (Focus Trap)
+  modal.onkeydown = function (e) {
+    if (e.key === "Escape") {
+      cerrarModalConfirmacion(false);
+      return;
+    }
+
+    if (e.key === "Tab") {
+      const focusables = modal.querySelectorAll("button");
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        last.focus();
+        e.preventDefault();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        first.focus();
+        e.preventDefault();
+      }
+    }
+  };
 }
 
-function cerrarModalConfirmacion() {
+/**
+ * Cierra el modal y gestiona la recolocación del foco
+ */
+function cerrarModalConfirmacion(seElimino = false, idxEliminado = null) {
   const modal = document.getElementById("confirm-modal-overlay");
-  if (modal) modal.classList.add("hidden");
+  if (!modal) return;
+
+  modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+  modal.onkeydown = null;
   itemPendienteEliminar = null;
+
+  const container = document.getElementById("checkout-items-list");
+
+  if (seElimino) {
+    // Si se eliminó el producto, el botón original desapareció. Recolocamos el foco:
+    const botonesRestantes = container ? container.querySelectorAll(".btn-checkout-remove") : [];
+
+    if (botonesRestantes.length > 0) {
+      // Enfocar el botón de borrar de la misma posición (o la última disponible)
+      const nuevoIdx = Math.min(idxEliminado !== null ? idxEliminado : 0, botonesRestantes.length - 1);
+      botonesRestantes[nuevoIdx].focus();
+    } else {
+      // Si el carrito quedó vacío, enfocar el mensaje descriptivo
+      const mensajeVacio = container ? container.querySelector("p") : null;
+      if (mensajeVacio) {
+        mensajeVacio.setAttribute("tabindex", "-1");
+        mensajeVacio.focus();
+      }
+    }
+  } else {
+    // Si se canceló, devolver el foco al botón exacto que abrió el modal
+    if (ultimoBotonEnfocado && typeof ultimoBotonEnfocado.focus === "function") {
+      ultimoBotonEnfocado.focus();
+    }
+  }
 }

@@ -1113,29 +1113,74 @@ function renderizarCarritoCompleto() {
     });
 }
 
+/**
+ * Modifica la cantidad de un producto en el carrito manteniendo el foco accesible
+ */
 function modificarCantidadCarrito(index, cambio) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
     if (!carrito[index]) return;
 
     carrito[index].cantidad += cambio;
 
-    if (carrito[index].cantidad <= 0) {
+    const seElimino = carrito[index].cantidad <= 0;
+    if (seElimino) {
         carrito.splice(index, 1);
     }
 
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
     actualizarBadgeCarrito();
     renderizarCarritoCompleto();
+
+    // Restablecer foco accesible si el producto se eliminó al reducir a 0
+    if (seElimino) {
+        gestionarFocoTrasEliminacion(index, carrito.length);
+    }
 }
 
+/**
+ * Elimina un producto del carrito y gestiona la devolución del foco accesible (WCAG AAA)
+ */
 function eliminarItemCarrito(index) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+    const vinoEliminado = carrito[index]?.nombre;
+    
     carrito.splice(index, 1);
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
+    
     actualizarBadgeCarrito();
     renderizarCarritoCompleto();
+
+    if (vinoEliminado) {
+        announceToScreenReader(`${vinoEliminado} eliminado del carrito.`);
+    }
+
+    // Restablecer el foco al siguiente elemento disponible o al mensaje de carrito vacío
+    gestionarFocoTrasEliminacion(index, carrito.length);
 }
 
+/**
+ * Función auxiliar para relocalizar el foco sin romper la navegación por teclado
+ */
+function gestionarFocoTrasEliminacion(indexEliminado, totalItemsRestantes) {
+    const contenedorItems = document.getElementById("carrito-items-lista") || document.getElementById("cart-items-container");
+    if (!contenedorItems) return;
+
+    if (totalItemsRestantes === 0) {
+        // 1. Si el carrito quedó vacío, enfocar el mensaje descriptivo
+        const mensajeVacio = contenedorItems.querySelector("p");
+        if (mensajeVacio) {
+            mensajeVacio.setAttribute("tabindex", "-1");
+            mensajeVacio.focus();
+        }
+    } else {
+        // 2. Si quedan productos, enfocar el botón de borrar de la posición equivalente
+        const botonesBorrar = contenedorItems.querySelectorAll(".btn-cart-remove");
+        const nuevoIndex = Math.min(indexEliminado, botonesBorrar.length - 1);
+        if (botonesBorrar[nuevoIndex]) {
+            botonesBorrar[nuevoIndex].focus();
+        }
+    }
+}
 /**
  * Gestión de Favoritos
  */

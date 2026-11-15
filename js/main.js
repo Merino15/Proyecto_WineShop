@@ -1377,6 +1377,59 @@ function iniciarMenuMobile() {
 }
 
 /**
+ * Banner de Cookies Accesible (RGPD / LSSI-CE / AEPD)
+ * Inyección dinámica en el DOM con botones simétricos y persistencia en localStorage.
+ */
+function iniciarBannerCookies() {
+    const consentimiento = localStorage.getItem("wineshop_cookies_consent");
+    if (consentimiento) return; // Si el usuario ya aceptó o rechazó, no se muestra
+
+    // Crear la estructura del banner flotante
+    const banner = document.createElement("aside");
+    banner.id = "cookie-banner";
+    banner.className = "cookie-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-label", "Gestión de cookies y privacidad");
+    banner.setAttribute("aria-describedby", "cookie-banner-text");
+
+    banner.innerHTML = `
+        <div class="cookie-banner-container">
+            <p id="cookie-banner-text" class="cookie-banner-text">
+                Utilizamos cookies propias y de terceros para garantizar el funcionamiento del sitio web, analizar la navegación y mejorar tu experiencia. Puedes aceptar todas las cookies o rechazar las no necesarias. Consulta nuestra <a href="${getPagePath('politica_privacidad.html')}" style="color: #ffffff; text-decoration: underline;">Política de Privacidad</a>.
+            </p>
+            <div class="cookie-banner-actions">
+                <button type="button" id="btn-cookies-accept" class="btn btn-primary" style="flex: 1; min-height: 44px;">
+                    Aceptar todas
+                </button>
+                <button type="button" id="btn-cookies-reject" class="btn btn-secondary" style="flex: 1; min-height: 44px; color: #ffffff; border-color: #ffffff;">
+                    Rechazar no necesarias
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    // Evento Aceptar
+    document.getElementById("btn-cookies-accept")?.addEventListener("click", () => {
+        localStorage.setItem("wineshop_cookies_consent", "accepted");
+        banner.remove();
+        if (typeof announceToScreenReader === "function") {
+            announceToScreenReader("Cookies aceptadas.");
+        }
+    });
+
+    // Evento Rechazar
+    document.getElementById("btn-cookies-reject")?.addEventListener("click", () => {
+        localStorage.setItem("wineshop_cookies_consent", "rejected");
+        banner.remove();
+        if (typeof announceToScreenReader === "function") {
+            announceToScreenReader("Cookies no necesarias rechazadas.");
+        }
+    });
+}
+
+/**
  * Inicialización Global en DOMContentLoaded
  */
 document.addEventListener("DOMContentLoaded", async () => {
@@ -1392,7 +1445,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarNewsletterPopup();
         iniciarAutenticacion();
         iniciarMiCuenta();
-        
+        iniciarBannerCookies();
         iniciarCarruselHero();
         renderizarResenas();
         iniciarCarruselResenas();

@@ -1,7 +1,9 @@
 /**
  * WINESHOP - MOTOR PRINCIPAL JS ACCESIBLE Y DINÁMICO
- * Gestiona el estado global (idioma, carrito, favoritos, sesión), verificación de edad (WCAG AAA),
- * banner de cookies (RGPD/AEPD), carruseles generales e i18n persistente.
+ * Incluye verificación de edad con trampa de foco accesible (Focus Trap WCAG AAA),
+ * newsletter popup, login / mi_cuenta con sesión activa, carrusel hero, carrusel de reseñas dinámico
+ * traducido desde db.json, banner de anuncios, carrito de compras, favoritos dinámicos,
+ * vista de detalle de producto e i18n persistente.
  */
 
 const LANG_STORAGE_KEY = "wineshop_idioma";
@@ -52,12 +54,14 @@ function announceToScreenReader(message) {
 
 /**
  * Aplicación Completa de Traducciones DOM según el Idioma Activo
+ * Soporta textContent (data-i18n), placeholder (data-i18n-placeholder) y aria-label (data-i18n-aria)
  */
 function aplicarTraducciones() {
     if (!appData || !appData.i18n) return;
 
     const dicc = appData.i18n[currentLang] || appData.i18n["es"];
 
+    // 1. Traducir textos normales
     document.querySelectorAll("[data-i18n]").forEach(elem => {
         const key = elem.getAttribute("data-i18n");
         if (dicc[key]) {
@@ -65,6 +69,7 @@ function aplicarTraducciones() {
         }
     });
 
+    // 2. Traducir placeholders de inputs y buscadores
     document.querySelectorAll("[data-i18n-placeholder]").forEach(elem => {
         const key = elem.getAttribute("data-i18n-placeholder");
         if (dicc[key]) {
@@ -72,6 +77,7 @@ function aplicarTraducciones() {
         }
     });
 
+    // 3. Traducir atributos accesibles aria-label
     document.querySelectorAll("[data-i18n-aria]").forEach(elem => {
         const key = elem.getAttribute("data-i18n-aria");
         if (dicc[key]) {
@@ -108,6 +114,7 @@ function actualizarEnlaceUsuario() {
 
 /**
  * Control Global de Verificación de Edad y Bloqueo de Navegación para Menores
+ * Incluye trampa de foco accesible (Focus Trap WCAG AAA).
  */
 function iniciarVerificacionEdad() {
     const estadoEdad = localStorage.getItem("wineshop_mayor_edad");
@@ -140,6 +147,7 @@ function iniciarVerificacionEdad() {
         modal.classList.remove("hidden");
         document.body.classList.add("modal-open");
 
+        // --- ACCESIBILIDAD WCAG AAA: Trampa de Foco (Focus Trap) ---
         const focusableElements = modal.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
@@ -241,7 +249,7 @@ function iniciarNewsletterPopup() {
 }
 
 /**
- * Gestión de Autenticación (Login/Registro)
+ * Gestión de Autenticación
  */
 function iniciarAutenticacion() {
     const tabLogin = document.getElementById("tab-login");
@@ -294,6 +302,153 @@ function iniciarAutenticacion() {
             }
         });
     }
+}
+
+/**
+ * Inicialización de la vista Mi Cuenta
+ */
+function iniciarMiCuenta() {
+    const usuario = obtenerUsuarioActivo();
+    if (!usuario) return;
+
+    const displayNameEl = document.getElementById("user-display-name");
+    const displayEmailEl = document.getElementById("user-display-email");
+    const avatarBadgeEl = document.querySelector(".user-avatar-badge");
+
+    if (displayNameEl) displayNameEl.textContent = usuario.nombre || "Usuario";
+    if (displayEmailEl) displayEmailEl.textContent = usuario.email || "";
+    if (avatarBadgeEl && usuario.nombre) {
+        const iniciales = usuario.nombre
+            .split(" ")
+            .map(n => n[0])
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+        avatarBadgeEl.textContent = iniciales || "U";
+    }
+
+    const inputNombre = document.getElementById("acc-nombre");
+    const inputEmail = document.getElementById("acc-email");
+    const inputTelefono = document.getElementById("acc-telefono");
+    const inputDni = document.getElementById("acc-dni");
+    const inputDireccion = document.getElementById("acc-direccion");
+
+    if (inputNombre) inputNombre.value = usuario.nombre || "";
+    if (inputEmail) inputEmail.value = usuario.email || "";
+    if (inputTelefono) inputTelefono.value = usuario.telefono || "";
+    if (inputDni) inputDni.value = usuario.dni || "";
+    if (inputDireccion) inputDireccion.value = usuario.direccion || "";
+
+    const btnTabDatos = document.getElementById("btn-tab-datos");
+    const btnTabPedidos = document.getElementById("btn-tab-pedidos");
+    const secDatos = document.getElementById("sec-datos-personales");
+    const secPedidos = document.getElementById("sec-historial-pedidos");
+
+    if (btnTabDatos && btnTabPedidos && secDatos && secPedidos) {
+        btnTabDatos.addEventListener("click", () => {
+            secDatos.classList.remove("hidden");
+            secPedidos.classList.add("hidden");
+            btnTabDatos.style.backgroundColor = "var(--color-primario-bordeos)";
+            btnTabDatos.style.color = "var(--color-blanco)";
+            btnTabPedidos.style.backgroundColor = "";
+            btnTabPedidos.style.color = "";
+        });
+
+        btnTabPedidos.addEventListener("click", () => {
+            secPedidos.classList.remove("hidden");
+            secDatos.classList.add("hidden");
+            btnTabPedidos.style.backgroundColor = "var(--color-primario-bordeos)";
+            btnTabPedidos.style.color = "var(--color-blanco)";
+            btnTabDatos.style.backgroundColor = "";
+            btnTabDatos.style.color = "";
+        });
+    }
+
+    const btnToggleEdit = document.getElementById("btn-toggle-edit");
+    const fieldsetDetails = document.getElementById("fieldset-user-details");
+    const btnSaveDetails = document.getElementById("btn-save-details");
+    const formDetails = document.getElementById("form-user-details");
+
+    if (btnToggleEdit && fieldsetDetails && btnSaveDetails) {
+        btnToggleEdit.addEventListener("click", () => {
+            const isDisabled = fieldsetDetails.hasAttribute("disabled");
+            if (isDisabled) {
+                fieldsetDetails.removeAttribute("disabled");
+                btnSaveDetails.classList.remove("hidden");
+                btnToggleEdit.textContent = "❌ Cancelar Edición";
+            } else {
+                fieldsetDetails.setAttribute("disabled", "true");
+                btnSaveDetails.classList.add("hidden");
+                btnToggleEdit.textContent = "✏️ Editar Datos";
+            }
+        });
+    }
+
+    if (formDetails) {
+        formDetails.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            usuario.nombre = inputNombre?.value.trim() || usuario.nombre;
+            usuario.email = inputEmail?.value.trim() || usuario.email;
+            usuario.telefono = inputTelefono?.value.trim() || "";
+            usuario.dni = inputDni?.value.trim() || "";
+            usuario.direccion = inputDireccion?.value.trim() || "";
+
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(usuario));
+
+            if (fieldsetDetails) fieldsetDetails.setAttribute("disabled", "true");
+            if (btnSaveDetails) btnSaveDetails.classList.add("hidden");
+            if (btnToggleEdit) btnToggleEdit.textContent = "✏️ Editar Datos";
+
+            if (displayNameEl) displayNameEl.textContent = usuario.nombre;
+            if (displayEmailEl) displayEmailEl.textContent = usuario.email;
+
+            mostrarToast("Datos actualizados correctamente.");
+            announceToScreenReader("Datos de usuario actualizados.");
+        });
+    }
+
+    const btnLogout = document.getElementById("btn-logout");
+    if (btnLogout) {
+        btnLogout.addEventListener("click", () => {
+            localStorage.removeItem(USER_STORAGE_KEY);
+            mostrarToast("Has cerrado sesión correctamente.");
+            setTimeout(() => {
+                window.location.href = isSubdir ? "../index.html" : "index.html";
+            }, 800);
+        });
+    }
+
+    renderizarPedidosUsuario(usuario.id);
+}
+
+/**
+ * Renderizado del Historial de Pedidos
+ */
+function renderizarPedidosUsuario(usuarioId) {
+    const contenedor = document.getElementById("orders-list") || document.getElementById("pedidos-lista");
+    if (!contenedor || !appData) return;
+
+    const misPedidos = (appData.pedidos || []).filter(p => p.usuarioId === usuarioId || usuarioId.startsWith("usr-local"));
+    
+    if (misPedidos.length === 0) {
+        contenedor.innerHTML = `<p class="body-regular">Aún no has realizado ningún pedido en WineShop.</p>`;
+        return;
+    }
+
+    contenedor.innerHTML = misPedidos.map(p => `
+        <article class="order-card-history">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-borde); padding-bottom: 12px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                <div>
+                    <strong style="color: var(--color-primario-bordeos);">Pedido #${p.id}</strong>
+                    <span class="body-regular" style="font-size: 0.85rem; display: block;">${p.fecha}</span>
+                </div>
+                <span style="background-color: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem;">${p.estado}</span>
+            </div>
+            <p class="body-regular" style="margin-bottom: 8px;">Método de pago: ${p.metodoPago}</p>
+            <strong style="font-size: 1.1rem; color: var(--color-neutro-oscuro);">Total: ${p.total}</strong>
+        </article>
+    `).join("");
 }
 
 /**
@@ -368,7 +523,7 @@ function iniciarCarruselHero() {
 }
 
 /**
- * Renderizado de Reseñas Accesible
+ * Renderizado de Reseñas Accesible 100% libre de advertencias ARIA
  */
 function renderizarResenas() {
     const slider = document.querySelector(".testimonials-slider");
@@ -639,6 +794,107 @@ function renderizarExperiencias(contenedorId) {
 }
 
 /**
+ * Inicializa la lógica interactiva de filtrado del catálogo
+ */
+function iniciarFiltrosCatalogo() {
+    const inputSearch = document.getElementById("search-input");
+    const selectType = document.getElementById("type-select");
+    const rangePrice = document.getElementById("price-range");
+    const labelPrice = document.getElementById("price-value");
+    const resultsCounter = document.getElementById("results-counter");
+    const btnReset = document.getElementById("btn-reset-filters");
+
+    if (!rangePrice || !appData || !appData.vinos) return;
+
+    function aplicarFiltros() {
+        const texto = (inputSearch?.value || "").toLowerCase().trim();
+        const tipo = selectType?.value || "todos";
+        const maxPrecio = parseFloat(rangePrice.value);
+
+        if (labelPrice) {
+            labelPrice.textContent = `${maxPrecio.toFixed(2)} €`;
+        }
+
+        const filtrados = appData.vinos.filter(vino => {
+            const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
+            const coincideTexto = vino.nombre.toLowerCase().includes(texto) || 
+                                 (traduccion.desc && traduccion.desc.toLowerCase().includes(texto));
+            const coincideTipo = (tipo === "todos") || (vino.tipo === tipo);
+            const coincidePrecio = vino.precioNum <= maxPrecio;
+
+            return coincideTexto && coincideTipo && coincidePrecio;
+        });
+
+        const dicc = appData.i18n[currentLang] || appData.i18n["es"];
+        if (resultsCounter) {
+            resultsCounter.textContent = `${filtrados.length} ${dicc.results_text || 'vino(s) encontrado(s)'}`;
+        }
+
+        renderizarVinosFiltrados("catalogo-grid", filtrados);
+    }
+
+    if (inputSearch) inputSearch.addEventListener("input", aplicarFiltros);
+    if (selectType) selectType.addEventListener("change", aplicarFiltros);
+    if (rangePrice) rangePrice.addEventListener("input", aplicarFiltros);
+
+    if (btnReset) {
+        btnReset.addEventListener("click", () => {
+            if (inputSearch) inputSearch.value = "";
+            if (selectType) selectType.value = "todos";
+            if (rangePrice) rangePrice.value = rangePrice.max;
+            aplicarFiltros();
+        });
+    }
+
+    aplicarFiltros();
+}
+
+function renderizarVinosFiltrados(contenedorId, listaVinos) {
+    const contenedor = document.getElementById(contenedorId);
+    if (!contenedor) return;
+
+    contenedor.innerHTML = "";
+    const dicc = appData.i18n[currentLang] || appData.i18n["es"];
+
+    if (listaVinos.length === 0) {
+        contenedor.innerHTML = `<p class="body-regular" style="grid-column: 1/-1; text-align: center; padding: 40px 0;">${dicc.no_wines_found || 'No hay vinos que coincidan con los filtros seleccionados.'}</p>`;
+        return;
+    }
+
+    listaVinos.forEach(vino => {
+        const traduccion = (vino.i18n && vino.i18n[currentLang]) ? vino.i18n[currentLang] : (vino.i18n ? vino.i18n["es"] : {});
+        const isFav = getFavoritos().includes(vino.id);
+        const imgPath = vino.imagen && vino.imagen.startsWith('http') ? vino.imagen : `${basePath}${vino.imagen}`;
+
+        const article = document.createElement("article");
+        article.className = "wine-card";
+        article.setAttribute("data-id", vino.id);
+        
+        article.innerHTML = `
+            <div class="card-img-wrap">
+                <button type="button" class="btn-fav-card ${isFav ? 'active' : ''}" aria-label="Favoritos" aria-pressed="${isFav}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </button>
+                <img src="${imgPath}" alt="${vino.nombre}" class="card-img" loading="lazy">
+            </div>
+            <div class="wine-info">
+                <h2 class="wine-name">
+                    <a href="producto.html?id=${vino.id}" style="color: inherit; text-decoration: none;">${vino.nombre}</a>
+                </h2>
+                <p class="body-regular" style="margin-bottom: 12px;">${traduccion.desc || ''}</p>
+                <p class="wine-price" style="margin-top: auto;">${vino.precio}</p>
+                <button type="button" class="btn btn-primary btn-full btn-add-cart" style="margin-top: 12px;">${dicc.btn_carrito || 'Añadir al carrito'}</button>
+            </div>
+        `;
+        contenedor.appendChild(article);
+    });
+
+    asignarEventosTarjetas(contenedor);
+}
+
+/**
  * Carga y renderiza los detalles del producto en producto.html
  */
 function iniciarDetalleProducto() {
@@ -875,6 +1131,7 @@ function modificarCantidadCarrito(index, cambio) {
     actualizarBadgeCarrito();
     renderizarCarritoCompleto();
 
+    // Restablecer foco accesible si el producto se eliminó al reducir a 0
     if (seElimino) {
         gestionarFocoTrasEliminacion(index, carrito.length);
     }
@@ -897,6 +1154,7 @@ function eliminarItemCarrito(index) {
         announceToScreenReader(`${vinoEliminado} eliminado del carrito.`);
     }
 
+    // Restablecer el foco al siguiente elemento disponible o al mensaje de carrito vacío
     gestionarFocoTrasEliminacion(index, carrito.length);
 }
 
@@ -908,12 +1166,14 @@ function gestionarFocoTrasEliminacion(indexEliminado, totalItemsRestantes) {
     if (!contenedorItems) return;
 
     if (totalItemsRestantes === 0) {
+        // 1. Si el carrito quedó vacío, enfocar el mensaje descriptivo
         const mensajeVacio = contenedorItems.querySelector("p");
         if (mensajeVacio) {
             mensajeVacio.setAttribute("tabindex", "-1");
             mensajeVacio.focus();
         }
     } else {
+        // 2. Si quedan productos, enfocar el botón de borrar de la posición equivalente
         const botonesBorrar = contenedorItems.querySelectorAll(".btn-cart-remove");
         const nuevoIndex = Math.min(indexEliminado, botonesBorrar.length - 1);
         if (botonesBorrar[nuevoIndex]) {
@@ -921,7 +1181,6 @@ function gestionarFocoTrasEliminacion(indexEliminado, totalItemsRestantes) {
         }
     }
 }
-
 /**
  * Gestión de Favoritos
  */
@@ -943,7 +1202,7 @@ function actualizarBadgeFavoritos() {
 }
 
 /**
- * Asignación de Eventos a Tarjetas de Vinos
+ * Asignación de Eventos a Tarjetas
  */
 function asignarEventosTarjetas(contenedor) {
     contenedor.querySelectorAll(".wine-card").forEach(card => {
@@ -977,7 +1236,7 @@ function asignarEventosTarjetas(contenedor) {
         if (btnCart) {
             btnCart.addEventListener("click", (e) => {
                 e.stopPropagation();
-                const vino = appData?.vinos?.find(v => v.id === id);
+                const vino = appData.vinos.find(v => v.id === id);
                 if (vino) {
                     agregarAlCarrito(vino);
                 }
@@ -987,7 +1246,7 @@ function asignarEventosTarjetas(contenedor) {
 }
 
 /**
- * Gestión Global del Carrito
+ * Gestión de Carrito
  */
 function agregarAlCarrito(vino, cantidad = 1) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
@@ -1020,7 +1279,7 @@ function actualizarBadgeCarrito() {
 }
 
 /**
- * Obtener datos del usuario activo
+ * Autenticación de Usuario Activo
  */
 function obtenerUsuarioActivo() {
     return JSON.parse(localStorage.getItem(USER_STORAGE_KEY)) || null;
@@ -1057,8 +1316,12 @@ function actualizarYRenderizarTodo() {
     if (document.getElementById("destacados-grid")) {
         renderizarVinos("destacados-grid", true);
     }
-    if (document.getElementById("catalogo-grid") && !document.getElementById("search-input")) {
-        renderizarVinos("catalogo-grid", false);
+    if (document.getElementById("catalogo-grid")) {
+        if (document.getElementById("search-input") || document.getElementById("type-select")) {
+            iniciarFiltrosCatalogo();
+        } else {
+            renderizarVinos("catalogo-grid", false);
+        }
     }
     if (document.getElementById("bodegas-grid")) {
         renderizarBodegas("bodegas-grid");
@@ -1076,7 +1339,7 @@ function actualizarYRenderizarTodo() {
     if (window.location.pathname.includes("producto.html")) {
         iniciarDetalleProducto();
     }
-    if (document.getElementById("carrito-items-lista")) {
+    if (window.location.pathname.includes("checkout.html") || document.getElementById("carrito-items-lista")) {
         renderizarCarritoCompleto();
     }
 }
@@ -1094,9 +1357,6 @@ function iniciarIdioma() {
             document.documentElement.lang = currentLang;
             
             actualizarYRenderizarTodo();
-            
-            // Disparar evento personalizado para que catalogo.js escuche el cambio de idioma
-            window.dispatchEvent(new CustomEvent("wineshop:langchange"));
         });
     }
 }
@@ -1118,11 +1378,13 @@ function iniciarMenuMobile() {
 
 /**
  * Banner de Cookies Accesible (RGPD / LSSI-CE / AEPD)
+ * Inyección dinámica en el DOM con botones simétricos y persistencia en localStorage.
  */
 function iniciarBannerCookies() {
     const consentimiento = localStorage.getItem("wineshop_cookies_consent");
-    if (consentimiento) return;
+    if (consentimiento) return; // Si el usuario ya aceptó o rechazó, no se muestra
 
+    // Crear la estructura del banner flotante
     const banner = document.createElement("aside");
     banner.id = "cookie-banner";
     banner.className = "cookie-banner";
@@ -1148,6 +1410,7 @@ function iniciarBannerCookies() {
 
     document.body.appendChild(banner);
 
+    // Evento Aceptar
     document.getElementById("btn-cookies-accept")?.addEventListener("click", () => {
         localStorage.setItem("wineshop_cookies_consent", "accepted");
         banner.remove();
@@ -1156,6 +1419,7 @@ function iniciarBannerCookies() {
         }
     });
 
+    // Evento Rechazar
     document.getElementById("btn-cookies-reject")?.addEventListener("click", () => {
         localStorage.setItem("wineshop_cookies_consent", "rejected");
         banner.remove();
@@ -1180,6 +1444,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         iniciarVerificacionEdad();
         iniciarNewsletterPopup();
         iniciarAutenticacion();
+        iniciarMiCuenta();
         iniciarBannerCookies();
         iniciarCarruselHero();
         renderizarResenas();

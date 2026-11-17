@@ -1246,7 +1246,7 @@ function asignarEventosTarjetas(contenedor) {
 }
 
 /**
- * Gestión de Carrito
+ * Gestión Global del Carrito
  */
 function agregarAlCarrito(vino, cantidad = 1) {
     let carrito = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
@@ -1266,7 +1266,13 @@ function agregarAlCarrito(vino, cantidad = 1) {
 
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
     actualizarBadgeCarrito();
-    mostrarToast(`${vino.nombre} añadido al carrito`);
+    
+    // Notificación visual y sonora para lectores de pantalla
+    const textoAnuncio = cantidad > 1 
+        ? `${cantidad} unidades de ${vino.nombre} añadidas al carrito` 
+        : `${vino.nombre} añadido al carrito`;
+        
+    mostrarToast(textoAnuncio);
 }
 
 function actualizarBadgeCarrito() {
@@ -1284,9 +1290,8 @@ function actualizarBadgeCarrito() {
 function obtenerUsuarioActivo() {
     return JSON.parse(localStorage.getItem(USER_STORAGE_KEY)) || null;
 }
-
 /**
- * Sistema de Notificaciones Flotantes (Toast)
+ * Sistema de Notificaciones Flotantes (Toast) Accesible (WCAG AAA)
  */
 function mostrarToast(mensaje) {
     let container = document.querySelector(".toast-container");
@@ -1298,10 +1303,18 @@ function mostrarToast(mensaje) {
 
     const toast = document.createElement("div");
     toast.className = "toast";
+    // Atributos de accesibilidad para lectura automática por lectores de pantalla
     toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    toast.setAttribute("aria-atomic", "true");
+    
     toast.innerHTML = `<span>${mensaje}</span>`;
     
     container.appendChild(toast);
+
+    // Anuncio explícito para el lector de pantalla a través del canal de la página
+    announceToScreenReader(mensaje);
+
     setTimeout(() => {
         toast.remove();
     }, 3500);

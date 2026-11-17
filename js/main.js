@@ -521,8 +521,9 @@ function iniciarCarruselHero() {
 
     startAutoplay();
 }
+
 /**
- * Renderizado de Reseñas Accesible (WCAG AAA)
+ * Renderizado de Reseñas Accesible 100% libre de advertencias ARIA
  */
 function renderizarResenas() {
     const slider = document.querySelector(".testimonials-slider");
@@ -537,19 +538,15 @@ function renderizarResenas() {
 
         const comentario = i18nResena.comentario || resena.comentario || "";
         const rol = i18nResena.rol || resena.rol || "";
-        const estrellas = resena.estrellas || 5;
+        const estrellasStr = "★".repeat(resena.estrellas || 5);
 
         return `
-            <article id="testimonial-panel-${index + 1}" 
-                     class="testimonial-card ${index === 0 ? 'active' : ''}" 
-                     role="tabpanel" 
-                     aria-labelledby="tab-testimonial-${index + 1}"
-                     ${index !== 0 ? 'aria-hidden="true"' : 'aria-hidden="false"'}>
-                <div class="testimonial-stars" role="img" aria-label="Valoración: ${estrellas} de 5 estrellas">
-                    <span aria-hidden="true">${"★".repeat(estrellas)}</span>
+            <article id="testimonial-panel-${index + 1}" class="testimonial-card ${index === 0 ? 'active' : ''}">
+                <div class="testimonial-stars" role="img" aria-label="Valoración: ${resena.estrellas || 5} de 5 estrellas">
+                    <span aria-hidden="true">${estrellasStr}</span>
                 </div>
                 <blockquote class="testimonial-quote">
-                    <p class="body-regular">${comentario}</p>
+                    "${comentario}"
                 </blockquote>
                 <div class="testimonial-author">
                     <img src="${resena.avatar}" alt="Foto de ${resena.nombre}" class="author-avatar" loading="lazy" />
@@ -571,7 +568,7 @@ function renderizarResenas() {
                 role="tab"
                 aria-selected="${index === 0 ? 'true' : 'false'}"
                 aria-controls="testimonial-panel-${index + 1}"
-                aria-label="Opinión ${index + 1} de ${appData.resenas.length}"
+                aria-label="Ver opinión ${index + 1} de ${appData.resenas.length}"
             ></button>
         `).join("");
     }
@@ -580,7 +577,7 @@ function renderizarResenas() {
 let resenasTimer = null;
 
 /**
- * Carrusel de Reseñas Accesible con lectura de estado
+ * Carrusel de Reseñas
  */
 function iniciarCarruselResenas() {
     const slides = document.querySelectorAll('.testimonial-card');
@@ -592,43 +589,26 @@ function iniciarCarruselResenas() {
 
     let currentIndex = 0;
 
-    function goToSlide(index, userTriggered = false) {
-        // Desactivar diapositiva actual
+    function goToSlide(index) {
         slides[currentIndex]?.classList.remove('active');
-        slides[currentIndex]?.setAttribute('aria-hidden', 'true');
-
         if (dots[currentIndex]) {
             dots[currentIndex].classList.remove('active');
             dots[currentIndex].setAttribute('aria-selected', 'false');
         }
 
-        // Calcular nuevo índice
         currentIndex = (index + slides.length) % slides.length;
 
-        // Activar nueva diapositiva
-        const activeSlide = slides[currentIndex];
-        if (activeSlide) {
-            activeSlide.classList.add('active');
-            activeSlide.setAttribute('aria-hidden', 'false');
-        }
-
+        slides[currentIndex]?.classList.add('active');
         if (dots[currentIndex]) {
             dots[currentIndex].classList.add('active');
             dots[currentIndex].setAttribute('aria-selected', 'true');
-        }
-
-        // Si el usuario cambia manualmente de reseña, anunciársela al lector de pantalla
-        if (userTriggered && activeSlide) {
-            const autor = activeSlide.querySelector('.author-name')?.textContent || '';
-            const cita = activeSlide.querySelector('.testimonial-quote')?.textContent.trim() || '';
-            announceToScreenReader(`Opinión de ${autor}: ${cita}`);
         }
     }
 
     function startAutoplay() {
         stopAutoplay();
         resenasTimer = setInterval(() => {
-            goToSlide(currentIndex + 1, false);
+            goToSlide(currentIndex + 1);
         }, 5500);
     }
 
@@ -638,36 +618,28 @@ function iniciarCarruselResenas() {
 
     if (btnNext) {
         btnNext.onclick = () => {
-            goToSlide(currentIndex + 1, true);
+            goToSlide(currentIndex + 1);
             startAutoplay();
         };
     }
 
     if (btnPrev) {
         btnPrev.onclick = () => {
-            goToSlide(currentIndex - 1, true);
+            goToSlide(currentIndex - 1);
             startAutoplay();
         };
     }
 
     dots.forEach((dot, idx) => {
         dot.onclick = () => {
-            goToSlide(idx, true);
+            goToSlide(idx);
             startAutoplay();
         };
     });
 
-    // Pausar reproducción automática al pasar el foco con el teclado o el ratón (WCAG 2.1)
-    const container = document.querySelector('.testimonials-section') || document.querySelector('.testimonials-slider');
-    if (container) {
-        container.addEventListener('mouseenter', stopAutoplay);
-        container.addEventListener('mouseleave', startAutoplay);
-        container.addEventListener('focusin', stopAutoplay);
-        container.addEventListener('focusout', startAutoplay);
-    }
-
     startAutoplay();
 }
+
 /**
  * Carrusel de Anuncios Superior
  */

@@ -209,7 +209,7 @@
       "nombre": "Bodegas Marqués de Riscal",
       "abreviatura": "Marqués de Riscal",
       "url": "https://www.marquesderiscal.com",
-      "imagen": "https://www.viajeroscallejeros.com/wp-content/uploads/hotel-marques-de-riscal-hoteles-bonitos-pais-vasco-750x485.jpg",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-8A-06kVe94zr-Kge1WV_kxQ97vFYNF99ieyMSMwo_w&s",
       "i18n": {
         "es": { "subtitulo": "Elciego (Rioja Alavesa) · Fundada en 1858", "desc": "Pionera en la elaboración de vinos según las técnicas bordolesas. Icono del enoturismo internacional con su Ciudad del Vino diseñada por Frank Gehry." },
         "en": { "subtitulo": "Elciego (Rioja Alavesa) · Founded in 1858", "desc": "Pioneer in modern Bordeaux winemaking in Rioja. An international wine tourism icon with its City of Wine designed by Frank Gehry." },
@@ -354,7 +354,7 @@
       "precio": "65,00 €",
       "nombreBodega": "Bodegas Muga",
       "urlBodega": "https://www.bodegasmuga.com/enoturismo-rioja/",
-      "imagen": "https://www.jorgeordonezselections.com/media/BodegasMuga-large/bodegasmuga-winery-images-026.jpg",
+      "imagen": "https://www.barrioestacion.com/wp-content/uploads/2021/09/Barrio-de-la-estacion-Bodegas-Muga.jpg",
       "i18n": {
         "es": { "banner": "Paseo en Viñedo", "titulo": "Ruta en 4x4 y Visita a Tonelería", "duracion": "Duración: 3h 30m · Exterior", "desc": "Aventura por las parcelas del Barrio de la Estación, demostración de tonelería artesanal y cata comentada con almuerzo campero." },
         "en": { "banner": "Vineyard Journey", "titulo": "4x4 Expedition & Cooperage Tour", "duracion": "Duration: 3h 30m · Outdoor", "desc": "Adventure across Station District plots, artisanal cooperage demonstration and guided tasting." },

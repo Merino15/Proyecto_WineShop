@@ -2,103 +2,89 @@
 
 ## 1. Nombre y Descripción
 
-**WineShop** es una plataforma web para la visualización, exploración y catálogo de vinos finos, bodegas y accesorios vitivinícolas. La aplicación está desarrollada utilizando tecnologías web estándares sin librerías externas ni backend complejo, ofreciendo una experiencia ligera, rápida y fácil de mantener.
+**WineShop** es una plataforma web para la visualización, exploración y compra de vinos finos, bodegas y experiencias vitivinícolas. La aplicación está desarrollada utilizando tecnologías web estándares sin dependencias externas ni backend complejo, ofreciendo una experiencia ligera, accesible, rápida y fácil de mantener.
 
 ## 2. Funcionalidad Principal
 
-* **Catálogo interactivo:** Navegación y filtrado de vinos por tipo (tinto, blanco, rosado, espumoso), origen y rango de precios mediante manipulación dinámica del DOM consumiendo datos localmente.
-* **Carrito de compras (Local):** Gestión del carrito almacenado en `localStorage` del navegador para persistencia entre sesiones.
-* **Vista de detalle de producto:** Modal o vista rápida para cada vino con notas de cata y detalles extra extraídos del origen de datos.
-* **Diseño Responsive:** Interfaz adaptada a todos los dispositivos utilizando CSS3 puro (Flexbox/Grid).
+* **Catálogo interactivo:** Navegación y filtrado de vinos por tipo, origen y rango de precios consumiendo datos dinámicamente desde la base de datos local.
+* **Detalle de Producto:** Vista dedicada para la ficha técnica y notas de cata de cada vino (`html/producto.html`).
+* **Experiencias y Bodegas:** Secciones dedicadas para explorar bodegas colaboradoras y actividades enoturísticas (`html/bodegas.html`, `html/experiencias.html`).
+* **Juego interactivo:** Mini-juego/sección lúdica integrada (`html/juego_menores.html` y `js/arcade.js`).
+* **Proceso de Checkout:** Simulación y validación del proceso de pago (`html/checkout.html` y `js/checkout.js`).
+* **Gestión de Usuario y Favoritos:** Vistas para el perfil del usuario (`html/mi_cuenta.html`) y productos guardados (`html/favoritos.html`).
+* **PWA y Acceso Offline:** Soporte para PWA mediante manifiesto (`manifest.json`) y Service Worker (`sw.js`).
+* **Accesibilidad y Legal:** Cumplimiento con declaración de accesibilidad, términos y condiciones, y política de privacidad.
 
 ## 3. Tecnologías Utilizadas
 
 * **Lenguajes:** HTML5, CSS3, JavaScript Vanilla (ES6+).
-* **Almacenamiento Local:** `localStorage` para persistir el carrito y `sessionStorage` para estados temporales.
-* **Servidor Web:** Nginx, Apache, o cualquier servidor HTTP de archivos estáticos (ej. Live Server, Netlify, GitHub Pages).
-* **Base de Datos:** Archivo JSON local (`data/db.json`).
+* **PWA / Service Worker:** `sw.js` y `manifest.json` para instalación y soporte offline.
+* **Almacenamiento Local:** `localStorage` y `sessionStorage` para persistencia de datos (carrito, favoritos, sesión).
+* **Servidor Web:** Nginx, Apache, o cualquier servidor HTTP de archivos estáticos (ej. Live Server, GitHub Pages).
+* **Base de Datos:** Archivo JSON local (`db.json` en la raíz del proyecto).
 
 ## 4. Requisitos Necesarios para Ejecutarla
 
-Para ejecutar la aplicación localmente solo necesitas:
+Para ejecutar la aplicación localmente se requiere:
 
-* **Navegador Web:** Cualquier navegador moderno con soporte para ES6+ y Fetch API (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).
-* **Servidor HTTP Local:** Recomendado para habilitar las peticiones `fetch()` al archivo `db.json` sin bloquear el acceso por políticas CORS locales (`file://`).
+* **Navegador Web Moderno:** Soporte para ES6+, Fetch API y Service Workers (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).
+* **Servidor HTTP Local:** Necesario para permitir que las peticiones `fetch()` hacia `db.json` funcionen correctamente y no queden bloqueadas por políticas CORS (`file://`).
 
 ## 5. Dependencias que Deben Instalarse
 
-El proyecto está desarrollado completamente en **JavaScript Vanilla**, por lo que **no requiere dependencias externas, gestores de paquetes (npm/yarn), ni procesadores de build**.
+El proyecto está desarrollado completamente en **JavaScript Vanilla**, por lo que **no requiere dependencias externas ni gestores de paquetes (npm/yarn)**.
 
-* *Opcional:* Servidor estático sencillo como la extensión *Live Server* de VS Code o `http-server` de Node.js.
+* *Opcional:* Una extensión de servidor estático como **Live Server** (VS Code) o el paquete `http-server` de Node.js.
 
 ## 6. Procedimiento para Instalar y Ejecutar la Aplicación
 
 ### Paso 1: Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/wineshop.git
-cd wineshop
+git clone https://github.com/tu-usuario/Proyecto_WineShop.git
+cd Proyecto_WineShop
 ```
 
 ### Paso 2: Abrir y Ejecutar
 
-Debido a que los datos se leen mediante la Fetch API desde un archivo JSON local, es altamente aconsejable ejecutar el proyecto en un servidor estático:
+Debido al uso de `fetch()` para leer `db.json` y el registro de `sw.js`, la aplicación debe ser servida bajo un protocolo HTTP/HTTPS:
 
 * **Opción con Live Server (VS Code):** Haz clic derecho sobre `index.html` y selecciona *Open with Live Server*.
 * **Opción con Python:** Abre una terminal en la raíz del proyecto y ejecuta:
-
   ```bash
   python -m http.server 8000
   ```
-
   Luego accede en tu navegador a `http://localhost:8000`.
-
 * **Opción con Node.js (npx):**
-
   ```bash
   npx serve .
   ```
 
 ## 7. Variables de Entorno y Parámetros de Configuración Necesarios
 
-Dado que se trata de un cliente frontend estático, la configuración general del sistema se centraliza en el archivo `js/config.js`:
+Al ser una aplicación frontend estática, la configuración global se gestiona internamente desde los scripts de JavaScript:
 
-```javascript
-// js/config.js
-const CONFIG = {
-  DATA_PATH: "./data/db.json", // Ruta al archivo db.json que actúa como base de datos
-  CURRENCY: "€",
-  ITEMS_PER_PAGE: 12
-};
-```
+* **Ruta de Base de Datos:** `./db.json` (ubicada en la raíz del proyecto).
+* **Service Worker:** `./sw.js` registrado desde la raíz.
+* **Manifest PWA:** `./manifest.json` enlazado en la cabecera de las páginas HTML.
 
 ## 8. Información sobre la Base de Datos
 
-La base de datos del sistema se compone íntegramente de un archivo local en formato JSON (`data/db.json`). Este archivo funciona como la fuente única de verdad para el catálogo de productos y es leído dinámicamente mediante `fetch()`.
+La base de datos del sistema se encuentra en la raíz del proyecto bajo el nombre **`db.json`**. Funciona como origen principal de datos para el catálogo y la información de los productos.
 
-### Estructura de la Base de Datos (`data/db.json`):
+### Estructura de la Base de Datos (`db.json`):
 
 ```json
 [
   {
     "id": 1,
-    "name": "Reserva Rioja 2018",
-    "type": "Tinto",
-    "price": 18.50,
-    "winery": "Bodegas Rioja",
-    "description": "Vino de gran cuerpo con notas de roble y frutos rojos.",
-    "image": "assets/img/rioja.jpg",
+    "nombre": "Reserva Rioja 2018",
+    "tipo": "Tinto",
+    "precio": 18.50,
+    "bodega": "Bodegas Rioja",
+    "descripcion": "Vino de gran cuerpo con notas de roble y frutos rojos.",
+    "imagen": "img/rioja.jpg",
     "stock": 25
-  },
-  {
-    "id": 2,
-    "name": "Albariño Rías Baixas 2022",
-    "type": "Blanco",
-    "price": 14.20,
-    "winery": "Pazo del Mar",
-    "description": "Vino blanco fresco y afrutado con toque cítrico.",
-    "image": "assets/img/albarino.jpg",
-    "stock": 40
   }
 ]
 ```
@@ -106,36 +92,59 @@ La base de datos del sistema se compone íntegramente de un archivo local en for
 ## 9. Estructura de Directorios del Proyecto
 
 ```text
-wineshop/
-├── assets/
-│   ├── css/
-│   │   ├── main.css        # Estilos generales y maquetación
-│   │   └── components.css  # Estilos para tarjetas, modales y botones
-│   ├── img/                # Catálogo de imágenes de los vinos
-│   └── js/
-│       ├── main.js         # Lógica principal de renderizado y filtros
-│       ├── cart.js         # Manipulación del carrito en localStorage
-│       ├── config.js       # Configuración global del proyecto
-│       └── db.js           # Módulo para el consumo y lectura de data/db.json
-├── data/
-│   └── db.json             # Archivo JSON que ejerce de Base de Datos
-├── index.html              # Vista principal / Catálogo de productos
-├── cart.html               # Vista del carrito de compra
-└── README.md               # Documentación general del repositorio
+Proyecto_WineShop/
+├── css/
+│   └── estilos_wineshop.css          # Hoja de estilos principal del sitio
+├── html/
+│   ├── bodegas.html                  # Página de bodegas asociadas
+│   ├── catalogo.html                 # Catálogo general de productos
+│   ├── checkout.html                 # Página de proceso de pago
+│   ├── declaracion_accesibilidad.html# Declaración de accesibilidad
+│   ├── experiencias.html             # Actividades y experiencias enoturísticas
+│   ├── favoritos.html                # Lista de vinos guardados
+│   ├── juego_menores.html            # Mini-juego interactivo
+│   ├── login.html                    # Iniciar sesión / Registro
+│   ├── mi_cuenta.html                # Perfil y panel del usuario
+│   ├── politica_privacidad.html      # Política de privacidad
+│   ├── producto.html                 # Ficha y detalle del vino
+│   └── terminos_condiciones.html     # Términos y condiciones legales
+├── img/
+│   ├── favicon.png                   # Icono de pestaña
+│   ├── logocompleto.png              # Logo completo principal
+│   ├── solologo.png                  # Isotipo / versión reducida del logo
+│   ├── solologoblanco.png            # Logo en versión blanca
+│   ├── transparent-logo.ico          # Favicon formato .ico
+│   ├── transparent-logo.png          # Logo con fondo transparente (.png)
+│   └── transparent-logo.svg          # Logo vectorial (.svg)
+├── js/
+│   ├── arcade.js                     # Lógica del juego interactivo
+│   ├── catalogo.js                   # Renderizado y filtros del catálogo
+│   ├── checkout.js                   # Validación y gestión del checkout
+│   ├── geo.js                        # Lógica de geolocalización o ubicaciones
+│   ├── main.js                       # Script principal e interacciones globales
+│   ├── mi_cuenta.js                  # Lógica del perfil de usuario
+│   └── validators.js                 # Utilidades para validación de formularios
+├── db.json                           # Archivo JSON que actúa como Base de Datos
+├── index.html                        # Página de inicio / Landing page principal
+├── manifest.json                     # Configuración PWA (Progressive Web App)
+├── README.md                         # Documentación técnica del proyecto
+├── robots.txt                        # Instrucciones para motores de búsqueda
+├── sitemap.xml                       # Mapa del sitio web para SEO
+└── sw.js                             # Service Worker para almacenamiento en caché y offline
 ```
 
 ## 10. Procedimiento Previsto para Desplegarla en el Servidor
 
-Al ser una aplicación estática basada en archivos HTML/CSS/JS y JSON, el despliegue no requiere entornos de ejecución de backend:
+Al ser una aplicación web estática (PWA), su despliegue es inmediato y no requiere configuración de servidores de aplicación:
 
-### Opción A: Servicios de Hosting Estático (GitHub Pages / Netlify / Vercel)
+### Opción A: Hosting Estático (GitHub Pages / Netlify / Vercel)
 
-1. Sube el código al repositorio en GitHub.
-2. Configura el despliegue directo desde la rama `main` y la carpeta raíz (`/`).
-3. El servicio servirá el sitio y el archivo `data/db.json` de manera automática.
+1. Sube el código al repositorio de GitHub.
+2. En la plataforma elegida (ej. GitHub Pages), selecciona la rama `main` y la carpeta raíz (`/`).
+3. La plataforma servirá los HTML, el `db.json`, las imágenes y registrará el `sw.js` de forma automática.
 
 ### Opción B: Servidor Web Tradicional (Nginx / Apache / FTP)
 
-1. Conéctate a tu servidor remoto (vía FTP, SCP o consola).
-2. Transfiere el directorio raíz completo del proyecto `wineshop/` a la carpeta pública del servidor web (ej. `/var/www/html/` o `public_html/`).
-3. Asegúrate de que los permisos de lectura en el servidor permitan acceder a la carpeta `data/db.json`.
+1. Conéctate a tu servidor web vía FTP o consola SSH.
+2. Copia todo el contenido del directorio `Proyecto_WineShop/` en el directorio público del servidor (ej. `/var/www/html/`).
+3. Asegúrate de que el servidor web entregue los tipos MIME correctos (`application/json` para `db.json` y `application/manifest+json` para `manifest.json`).
